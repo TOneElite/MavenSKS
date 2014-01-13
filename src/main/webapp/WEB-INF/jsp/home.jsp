@@ -37,8 +37,9 @@
                     <label for="room">Rom:</label>  
                     <div class="styledSelect">
                         <select id="room" class="queueFormMiddle">
-                            <option>Labben</option>
-                            <option>Polarealet i første</option>
+                            <c:forEach var="room" items="${rooms}">
+                                <option>${room.roomCode}</option>
+                            </c:forEach>
                             <option value="other">Annet</option>
                         </select>
                     </div><br>
