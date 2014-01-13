@@ -17,15 +17,8 @@
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/access/*" access="hasRole('ROLE_USER')"/>
         
-        <form-login login-page="/login" 
-                            authentication-failure-url="/login/failure" 
-                            default-target-url="/"/>
-		
-        <access-denied-handler error-page="/denied"/>
-		
-        <logout invalidate-session="true" 
-                        logout-success-url="/logout/success" 
-                        logout-url="/logout"/>
+        <form-login login-page="/login" default-target-url="/access/home"
+                            authentication-failure-url="/loginfailed" />
     </http>
 	
     <authentication-manager>

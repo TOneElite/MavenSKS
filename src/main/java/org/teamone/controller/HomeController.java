@@ -36,6 +36,11 @@ public class HomeController {
     public String passView() {
         return "usersettings";
     }
+    
+    @RequestMapping("/access/home")
+    public String homeView(){
+        return "home";
+    }
 
     @RequestMapping("/login")
     public String login() {

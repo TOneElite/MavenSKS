@@ -15,10 +15,11 @@
 </style>
 <div id="login">
     
-    <form action="http://localhost:8084/TestSKS/">
-	<input type="email" name="email" value="E-Post">
+    <form name="f" action="<c:url value="j_spring_security_check"/>">
+	<input type="text" name="j_username" placeholder="Email">
 	<a href="<c:url value="/passwordReset" />">Reset password</a><br>
-	<input type="text" name="passwordbox" type="password" value="Passord"><br>
-	Husk passord:<input type="checkbox"> <input type="submit" value="Logg inn">
+	<input type="password" name="j_password" type="password" placeholder="Passord"><br>
+	Husk passord:<input type="checkbox"> <input type="submit" name="submit" value="Logg inn">
     </form>
+        
 </div>
