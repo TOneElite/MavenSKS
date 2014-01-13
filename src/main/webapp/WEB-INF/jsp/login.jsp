@@ -13,7 +13,7 @@
 
     <form name="f" action="<c:url value="j_spring_security_check"/>" method="POST">
 
-        <input class="loginMargin" type="text" name="j_username" value="" placeholder="Email"><br/>
+        <input class="loginMargin" type="email" name="j_username" value="" placeholder="Email"><br/>
         <input class="loginMargin" type="password" name="j_password" value="" placeholder="Passord"><br/>
         <input class="loginMargin" id = "loginbutton" type="submit" name="submit" value="Logg inn"><br/>
         Husk passord <input type="checkbox"> <br/>
