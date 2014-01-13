@@ -5,7 +5,7 @@
     
     <h1 class="logo">SKS 2.0</h1>
     <div id="info">
-        <a href="">Øystein Huseby</a></br>
+        <a href=""><c:out value="${username}"/></a></br>
         <a href="" class="link">Bytt passord</a>
         <a href="<c:url value="/j_spring_security_logout" />" class="link">Logg ut</a>
     </div>
