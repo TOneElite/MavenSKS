@@ -1,18 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<style>
-    *{
-	margin:0;
-	padding:0;
-        
-    }
-
-    #login{
-        display: inline-block;
-        text-align: left;
-    }
-</style>
 <div id="login">
     
     <form name="f" action="<c:url value="j_spring_security_check"/>" method="POST">
