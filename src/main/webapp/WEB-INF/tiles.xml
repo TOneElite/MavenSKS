@@ -14,16 +14,12 @@
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
     
-    <definition name="overlaying" template="/WEB-INF/tiles/empty.jsp">
-        <put-attribute name="body"   value="/WEB-INF/tiles/index.jsp"/>
-    </definition>
-    
     <definition name="welcome" template="/WEB-INF/tiles/welcome.jsp">
         <put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
     </definition>
     
     <definition name="databaseTest" template="/WEB-INF/tiles/DatabaseTest.jsp">
-	<put-attribute name="body" value="/WEB-INF/jsp/testDatabase.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/testDatabase.jsp"/>
     </definition>
     <!-- ************************ Templates end ******************************** -->
     
@@ -33,11 +29,6 @@
     
     <definition name="testDatabase2" extends="databaseTest">
         <put-attribute name="body"   value="/WEB-INF/jsp/testDatabase2.jsp"/>      
-    </definition>
-    
-    <definition name="queueOverlay" extends="overlaying">
-        <put-attribute name="title"  value="The Product Store"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/queueOverlay.jsp"/>      
     </definition>
     
     <definition name="login" extends="welcome">
@@ -51,6 +42,14 @@
     <definition name="home" extends="template">
         <put-attribute name="title" value="Home"/>
         <put-attribute name="body" value="/WEB-INF/jsp/home.jsp"/>
+    </definition>    
+        
+    <definition name="teacherQueue" extends="template">
+        <put-attribute name="body"   value="/WEB-INF/jsp/teacherQueue.jsp"/>      
+    </definition>
+    
+    <definition name="approveInQueue" extends="template">
+        <put-attribute name="body"   value="/WEB-INF/jsp/approveInQueue.jsp"/>      
     </definition>
     
     <definition name="usersettings" extends="template">

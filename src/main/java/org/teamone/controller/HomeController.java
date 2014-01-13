@@ -19,20 +19,19 @@ public class HomeController {
     QueueJDBCTemplate queueJDBCTemplate;
 
     /*
-    @RequestMapping("/*")
-    public String testView(Model model) {
-        model.addAttribute("queues", queueJDBCTemplate.listQueue());
-        return "home";
-    }
-    */
+     @RequestMapping("/*")
+     public String testView(Model model) {
+     model.addAttribute("queues", queueJDBCTemplate.listQueue());
+     return "home";
+     }
+     */
     /*
      * 
-    @RequestMapping("/*")
-    public String testView() {
-        return "home";
-    }
+     @RequestMapping("/*")
+     public String testView() {
+     return "home";
+     }
      */
-
     @RequestMapping("/access/password")
     public String passView() {
         return "usersettings";
@@ -64,8 +63,20 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "testDatabase2";
     }
+
+    @RequestMapping("/teacherQueue")
+    public String teacherQueue(Model model) {
+        model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        return "teacherQueue";
+    }
+
+    @RequestMapping("/approveInQueue")
+    public String approveInQueue() {
+        return "approveInQueue";
+    }
+
     @RequestMapping("/access/eksamensrapport")
-    public String examOverview(){
+    public String examOverview() {
         return "eksamensrapport";
     }
 }

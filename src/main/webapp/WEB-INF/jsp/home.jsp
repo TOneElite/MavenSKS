@@ -28,89 +28,148 @@
         </a>
     </div>
 
-    <div class="apple_overlay" id="overlay">
-        <div class="queueContentWrap">            
-        </div>
-    </div>
+    <div class="simple_overlay" id="overlay">
+        <div id="queueForm">
+            <section id="queueFormLeft">
+                <h1>Stå i kø</h1>
+                <form action="#" method="post">
 
-    <div class="queueContainer">
-        <br><br><br>
-        <div class="queueRulesHeader"><span>Regler for øvingene &#x25BC</span>
+                    <label for="room">Rom:</label>  
+                    <div class="styledSelect">
+                        <select id="room" class="queueFormMiddle">
+                            <option>Labben</option>
+                            <option>Polarealet i første</option>
+                            <option value="other">Annet</option>
+                        </select>
+                    </div><br>
 
-        </div>
-        <div class="queueRulesContent">
-            <p>
-                Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-            </p>
-        </div>
-    </div>
+                    <label for="table">Bord:</label>
+                    <div class="styledSelect">
+                        <select id="table" class="queueFormMiddle">
+                            <option>Bord 1</option>
+                            <option>Bord 2</option>
+                            <option>Bord 3</option>
+                        </select>
+                    </div><br>                           
 
-</section>
+                    <div id="queueFormCeckboxes">
+                        <label class="queueFormLabel" for="task">Øving:</label>
+                        <ul class="queueFormMiddle">
+                            <li><label class="checkboxLabel">Øving 1<input class="boxes" type="checkbox" name="task" value="Øving 1"></label></li>
+                            <li><label class="checkboxLabel">Øving 2<input class="boxes"type="checkbox" name="task" value="Øving 2"></label></li>
+                            <li><label class="checkboxLabel">Øving 3<input class="boxes"type="checkbox" name="task" value="Øving 3"></label></li>
+                            <li><label class="checkboxLabel">Øving 14<input class="boxes"type="checkbox" name="task" value="Øving 14"></label></li>
+                            <li><label class="checkboxLabel">Øving 15<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 16<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 17<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
+                        </ul>
+                    </div> <br>
 
-<section id="queue">
-    <table id="queueTable">
-        <col width="6%">
-        <col width="16%">
-        <col width="10%">
-        <col width="28%">
-        <col width="18%">
-        <col width="16%">
-        <tr>
-            <th>Tid</th>
-            <th>Navn</th>
-            <th>Øving(er)</th>
-            <th>Kommentar</th>
-            <th>Status</th>
-            <th>Bord</th>
-        </tr>
-        <c:forEach var="queue" items="${queues}">
-            <tr>
-                <td><c:out value="${queue.date}"/></td>
-                <td><c:out value="${queue.users}"/></td>
-                <td><c:out value="${queue.ov}"/></td>
-                <td><c:out value="${queue.comment}"/></td>
-                <td><c:out value="${queue.status}"/></td>
-                <td><c:out value="${queue.tables}"/></td>
-            </tr>
-        </c:forEach>
-    </table>
-</section>
+                    <label for="group">Gruppe:</label>
+                    <div class="styledSelect">
+                        <select id="group" class="queueFormMiddle">
+                            <option>- Velg -</option>
+                            <option>Tom</option>
+                            <option>Ole</option>
+                            <option>Andreas</option>
+                        </select>
+                    </div><br>
 
-<script language="javascript">
-    $(".queueRulesHeader").click(function() {
+                    <label for="comment">Kommentar:</label>
+                    <textarea id="comment" class="queueFormMiddle"></textarea>
+                    <br>
+                    
+                    <label></label>
+                    <input class="middle" id="cancelbutton" type="button" value="Avbryt" />
+                    <input class="middle" id="okbutton" type="submit" value="OK" />
 
-        $queueRulesHeader = $(this);
-        //getting the next element
-        $queueRulesContent = $queueRulesHeader.next();
-        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-        $queueRulesContent.slideToggle(500, function() {
-            //execute this after slideToggle is done
-            //change text of header based on visibility of content div
-            $queueRulesHeader.text(function() {
-                //change text based on condition
-                return $queueRulesContent.is(":visible") ? "Regler for øvingene" : "Regler for øvingene";
-            });
-        });
-    });
+                </form>
+                <section>
 
-    $(function() {
+                    <div id="queueFormRight">
+                        Dette er høyre
+                    </div>
+                    </div>
 
-        // if the function argument is given to overlay,
-        // it is assumed to be the onBeforeLoad event listener
-        $("a[rel]").overlay({
-            mask: 'lightgrey',
-            effect: 'apple',
-            onBeforeLoad: function() {
+                    <script language="javascript">
+                        var dis1 = document.getElementById("room");
+                        dis1.onchange = function() {
+                            if (this.value == "other") {
+                                document.getElementById("table").disabled = true;
+                                document.getElementById("table").className += " disabled";
+                            }
+                            else {
+                                document.getElementById("table").disabled = false;
+                                document.getElementById("table").className -= " disabled";
+                            }
+                        }
+                    </script>
+                    </div>
 
-                // grab wrapper element inside content
-                var wrap = this.getOverlay().find(".queueContentWrap");
+                    <div class="queueContainer">
+                        <br><br><br>
+                        <div class="queueRulesHeader"><span>Regler for øvingene &#x25BC</span>
 
-                // load the page specified in the trigger
-                wrap.load(this.getTrigger().attr("href"));
-            }
+                        </div>
+                        <div class="queueRulesContent">
+                            <p>
+                                Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                                Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                            </p>
+                        </div>
+                    </div>
 
-        });
-    });
-</script> 
+                </section>
+
+                <section id="queue">
+                    <table id="queueTable">
+                        <col width="6%">
+                        <col width="16%">
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="15%">
+                        <tr>
+                            <th>Tid</th>
+                            <th>Navn</th>
+                            <th>Øving(er)</th>
+                            <th>Kommentar</th>
+                            <th>Status</th>
+                            <th>Bord</th>
+                            <th></th>
+                        </tr>
+                        <c:forEach var="queue" items="${queues}">
+                            <tr>
+                                <td><c:out value="${queue.date}"/></td>
+                                <td><c:out value="${queue.users}"/></td>
+                                <td><c:out value="${queue.ov}"/></td>
+                                <td><c:out value="${queue.comment}"/></td>
+                                <td><c:out value="${queue.status}"/></td>
+                                <td><c:out value="${queue.tables}"/></td>
+                                <td><button type="button">Fjern</button><button type="button">Utsett</button></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </section>
+
+                <script language="javascript">
+                    $(".queueRulesHeader").click(function() {
+
+                        $queueRulesHeader = $(this);
+                        //getting the next element
+                        $queueRulesContent = $queueRulesHeader.next();
+                        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+                        $queueRulesContent.slideToggle(500, function() {
+                            //execute this after slideToggle is done
+                            //change text of header based on visibility of content div
+                            $queueRulesHeader.text(function() {
+                                //change text based on condition
+                                return $queueRulesContent.is(":visible") ? "Regler for øvingene" : "Regler for øvingene";
+                            });
+                        });
+                    });
+
+                   $("a[rel]").overlay();
+                </script> 
 

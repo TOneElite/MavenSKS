@@ -101,94 +101,210 @@
             }
 
 
-            #overlay {
-                /*position: absolute;
-                /*background-image: url(http://jquerytools.org/media/img/overlay/transparent.png);*/
 
-                /*color:#efefef;*/
-                /*height:900px;*/
-            }
-
-
-            div.queueContentWrap {
-                /*height:900px;*/
-            }
-
-            .apple_overlay {
+            .simple_overlay {  
                 display:none;
-                background-image:url(http://jquerytools.org/media/img/overlay/white.png);
-                width:940px;
-                padding:35px;
-                /*font-size:11px; //setsthewhiteframe*/
+                z-index:10000;
+                background-color:#333;
+                width:70%;
+                height:75%;
+                -moz-box-shadow:0 0 90px 5px gray;
+                -webkit-box-shadow: 0 0 90px gray;
             }
 
-            .apple_overlay .close {
+            /* close button positioned on upper right corner */
+            .simple_overlay .close {
                 background-image:url(http://jquerytools.org/media/img/overlay/close.png);
-                position:absolute; right:5px; top:5px;
-                cursor:pointer;
+                position:absolute;
+                right:-15px;
+                top:-15px;
+                cursor:pointer; 
                 height:35px;
                 width:35px;
             }
 
-            #queueForm{
-                width: 500px;
-                height: 900px;
-                padding: 20px;
+            #queueForm {
+                vertical-align: top;
+                padding: 40px;
+                font-family: sans-serif;
+                width: 94%; 
+                height: 100%; 
+                background: #c9d0de; 
+                border: 1px solid #e1e1e1;
+                -moz-box-shadow: 0px 0px 8px #444;
+                box-shadow: 0px 0px 8px #444;
+                border-radius: 3px;
             }
 
-            #queueFormForm{
+
+            #queueForm h1 {
+                font-size: 35px; 
+                color: #445668; 
+                text-transform: uppercase;
+                margin-bottom: 35px; 
+                margin-left: 154px;
+                text-shadow: 0px 1px 0px #f2f2f2;
+            }
+
+            #queueForm label:not(.checkboxLabel) {
+                float: left; 
+                margin: 11px 20px 0 0; 
+                width: 120px;
+                text-align: right; 
+                font-size: 16px; 
+                color: #445668; 
+                text-transform: uppercase; 
+                text-shadow: 0px 1px 0px #f2f2f2;
+            }
+
+            #queueForm #okbutton, #cancelbutton{
+                font-family: sans-serif; 
+                font-size: 16px; 
+                color: #f2f2f2; 
+                text-transform: uppercase; 
+                text-shadow: 0px -1px 0px #334f71; 
+                width: 140px; 
+                height: 52px; 
+                -moz-box-shadow: 0px 0px 5px #999;
+                box-shadow: 0px 0px 5px #999;
+                border: 1px solid #556f8c;
+                background: #728eaa;
+                cursor: pointer;
+                float: right;
+                margin: 6px;
+            }
+
+            #queueForm textarea {
+                width: 240px; 
+                height: 130px; 
+                padding: 12px 20px 0px 20px; 
+                margin: 0 0 20px 0; 
+                border: 0;
+                background: #f8f8f8;
+                border-radius: 5px; 
+                -moz-border-radius: 5px;
+                -moz-box-shadow: 0px 1px 0px #f2f2f2;
+                box-shadow: 0px 1px 0px #f2f2f2;
+                font-family: sans-serif; 
+                font-size: 16px; 
+                color: #728eaa; 
+                text-shadow: 0px -1px 0px #334f71; 
+            }
+
+            #queueForm textarea:focus {
+                background: #F0F8FF;
+            }
+
+            #queueForm select {
+                padding: 5px 15px; 
+                border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+                -moz-box-shadow: 0px 1px 0px #f2f2f2; box-shadow: 0px 1px 0px #f2f2f2;
+                font-family: sans-serif; 
+                font-size: 16px; 
+                color: black; 
+                text-shadow: 0px -1px 0px #334f71; 
+                background: transparent;
+                width: 300px;
+                font-size: 16px;
+                line-height: 1;
+                border: 0;
+                border-radius: 0px;
+                height: 45px;
+                -webkit-appearance: none; -moz-appearance: none;
+                text-indent: 0.01px;
+                text-overflow: '';
+                cursor: pointer;
+                width: 205px;
+            }
+
+            #queueForm option{
+                background-color: #f8f8f8;
+                font-family: sans-serif; 
+                font-size: 16px; 
+                color: black; 
+                text-shadow: 0px -1px 0px #334f71; 
+            }
+
+            #queueForm .styledSelect {  
+                width: 205px;
+                height: 45px;
+                overflow: hidden; 
+                background: url('res/arrow.jpg') no-repeat right #f8f8f8;
+                border-radius: 7px;    
+                border: 1px solid #ccc;
+            }   
+
+            #queueForm ul{
+                margin: 0px;
+                padding: 10px;
+                padding-left: 15px;
+                display: inline-block;   
+                height: 140px; 
+                background-color: #f8f8f8;
+                overflow-y: auto; 
+                overflow-x: hidden; 
+                list-style-type: none;
+                width: 180px;
+                font-family: sans-serif; 
+                font-size: 16px; 
+                color: black; 
+                text-shadow: 0px -1px 0px #f8f8f8;
+                border-radius: 7px;
+            }
+
+            #queueForm li{
+                padding: 5px;
+                width: 120px;
+            }
+
+            #queueForm .boxes{
+                float: left;
+                cursor: pointer;
+            }
+
+            #queueForm .checkboxLabel{
+                cursor: pointer;
+                padding-left: 19px;
+                padding-top: 4.5px;
+                padding-bottom: 4.5px;
+                padding-right: 90px;
+                border-radius: 3px;
+            }
+
+            #queueForm input[type='checkbox'] {
+                width: 1.5em;
+                height: 1.5em;
+            }
+
+            #queueForm ::-webkit-scrollbar {
+                width: 12px;
+            }
+            #queueForm ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+                border-radius: 10px;
+            }
+            #queueForm ::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+            }
+
+            #queueForm .disabled{
+                background: #e1e1e1;
+                cursor: default;
+            }
+
+            #queueForm #queueFormLeft{
                 float: left;
             }
 
-            #queueForm .queueFormLabel{
-                display: inline-block; 
-                width: 95px;
-            }
-
-            .right{
+            #queueForm .queueFormMiddle{
                 display: inline-block;
             }
 
-            #queueForm form select{
-                width: 150px;
-            }
-
-            #queueForm #comment{
-                width: 246px;
-                height: 50px;    
-            }
-
-            #queueForm ul{ 
-                border:2px solid #ccc;  
-                height: 100px; 
-                overflow-y: auto; 
-                text-align: right;
-                list-style-type: none;
-                width: 105.5px;
-                vertical-align: top;
-                margin: 0px;
-            }
-
-            #queueFormMap{
-                float: right;
-                width: 200px;
-                height: 200px;
-                padding: 4px;
-                border: 1px solid;
-            }
-
-            #queueFormMap #queueFormThemap{
-                height: 100%;
-                width: auto;
-            }
-
-            #queueFormGroupMembers{
+            #queueForm #queueFormRight{
                 float: right;
             }
 
-            .highlight{ 
-                background-color: lightblue; 
-            }
 
             .queueContainer {
                 /*height: 100px;*/
@@ -258,7 +374,7 @@
                 padding-top: 1%;
                 padding-bottom: 1%;
             }
-            
+
 
             #navigation{
                 width: 18%;
