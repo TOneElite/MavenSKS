@@ -17,8 +17,8 @@
     </ul>
     <p>Testlinker</p>
     <ul>
-	<li><a href="testDatabase">db1</a></li>
-	<li><a href="testDatabase2">db2</a></li>
+	<li><a href="testDatabase">DB: userList</a></li>
+	<li><a href="testDatabase2">DB: subjectList</a></li>
         <li><a href="teacherQueue">Kø: lærerview</a></li>
     </ul>
 </section>
