@@ -22,21 +22,40 @@
                 font-size: 4em;
                 font-family: "mekanik let", arial;
                 display: inline;
+
             }
 
-            #body{
+            #welcomeScreen{
                 text-align: center;
                 margin-top: 15%;
             }
+
+            #loginTile{
+                padding-top: 1%;
+            }
+
+            #loginbutton{
+                height: 35px;
+                width: 80px;
+            }
+
+            body{
+                background-color: #fcf8ee;
+            }
+            .loginMargin{
+                margin-bottom: 0.5%;
+            }
+
+
 
         </style>
     </style>
 </head>
 <body>
-    <div id="body">
+    <div id="welcomeScreen">
         <img src="<c:url value="/res/histlogo.png"/>" alt="HiST" height="94" width="98">
         <div id="logo">SKS 2.0</div><br>
-        <tiles:insertAttribute name="body"/>
+        <div id="loginTile"><tiles:insertAttribute name="body"/></div>
     </div>
 </body>
 </html>
