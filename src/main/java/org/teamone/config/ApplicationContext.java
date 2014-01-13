@@ -14,6 +14,7 @@ import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
 import org.teamone.domain.QueueJDBCTemplate;
+import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
 
@@ -63,6 +64,13 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
         QueueJDBCTemplate queueJDBCTemplate = new QueueJDBCTemplate();
         queueJDBCTemplate.setDataSource(dataSource());
         return queueJDBCTemplate;
+    }
+    
+    @Bean
+    public RoomJDBCTemplate roomJDBCTemplate() {
+        RoomJDBCTemplate roomJDBCTemplate = new RoomJDBCTemplate();
+        roomJDBCTemplate.setDataSource(dataSource());
+        return roomJDBCTemplate;
     }
 
     @Override
