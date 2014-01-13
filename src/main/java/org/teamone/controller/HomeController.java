@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.teamone.domain.QueueJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
@@ -32,33 +33,33 @@ public class HomeController {
      return "home";
      }
      */
-    @RequestMapping("/access/password")
+    @RequestMapping(value="/access/password", method=RequestMethod.GET)
     public String passView() {
         return "usersettings";
     }
     
-    @RequestMapping("/access/home")
+    @RequestMapping(value="/access/home", method=RequestMethod.GET)
     public String homeView(){
         return "home";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value="/login", method=RequestMethod.GET)
     public String login() {
         return "login";
     }
 
-    @RequestMapping("/access/passwordReset")
+    @RequestMapping(value="/access/passwordReset", method=RequestMethod.GET)
     public String forgotPassword() {
         return "passwordReset";
     }
 
-    @RequestMapping("/access/testDatabase")
+    @RequestMapping(value="/access/testDatabase", method=RequestMethod.GET)
     public String testDatabase(Model model) {
         model.addAttribute("persons", personJDBCTemplate.listUsers());
         return "testDatabase";
     }
 
-    @RequestMapping("/access/testDatabase2")
+    @RequestMapping(value="/access/testDatabase2", method=RequestMethod.GET)
     public String testDatabase2(Model model) {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "testDatabase2";

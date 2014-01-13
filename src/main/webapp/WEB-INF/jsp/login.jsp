@@ -15,10 +15,14 @@
 </style>
 <div id="login">
     
-    <form name="f" action="<c:url value="j_spring_security_check"/>">
-	<input type="text" name="j_username" placeholder="Email">
+    <form name="f" action="<c:url value="j_spring_security_check"/>" method="POST">
+        
+	<input type="text" name="j_username" value="" placeholder="Email">
+        
 	<a href="<c:url value="/passwordReset" />">Reset password</a><br>
-	<input type="password" name="j_password" type="password" placeholder="Passord"><br>
+        
+	<input type="password" name="j_password" value="" placeholder="Passord"><br>
+        
 	Husk passord:<input type="checkbox"> <input type="submit" name="submit" value="Logg inn">
     </form>
         

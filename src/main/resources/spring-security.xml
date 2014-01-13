@@ -13,12 +13,13 @@
  
     <http pattern="/resources" security="none" />
 	
-    <http auto-config="true"  use-expressions="true">
-        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/access/*" access="hasRole('ROLE_USER')"/>
+    <http auto-config="true">
+        <intercept-url pattern="/" access="ROLE_USER"/>
+        <intercept-url pattern="/access/*" access="ROLE_USER"/>
         
         <form-login login-page="/login" default-target-url="/access/home"
-                            authentication-failure-url="/loginfailed" />
+                            authentication-failure-url="/loginfailed" 
+                            always-use-default-target="true"/>
     </http>
 	
     <authentication-manager>
