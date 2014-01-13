@@ -45,7 +45,7 @@
                         </select>
                     </div><br>
 
-                    
+
 
                     <label for="table">Bord:</label>
                     <div class="styledSelect">
@@ -57,17 +57,26 @@
                             </c:forEach>
                         </select>
                     </div><br> 
-                    
+
                     <script type="text/javascript">
 
                         window.onload = function() {
                             var room = document.getElementById("room");
                             var table = document.getElementById("table");
                             room.onchange = function() {
+
                                 var tablecount = room.options[room.selectedIndex].value;
-                                table.options.length = 0;
-                                for (var i = 1; i <= tablecount; i++) {
-                                    table.options[table.options.length] = new Option("Bord " + i);
+                                if (tablecount == "other") {
+                                    document.getElementById("table").disabled = true;
+                                    document.getElementById("table").className += " disabled";
+                                    table.options.length = 0;
+                                } else {
+                                    document.getElementById("table").disabled = false;
+                                    document.getElementById("table").className -= " disabled";
+                                    table.options.length = 0;
+                                    for (var i = 1; i <= tablecount; i++) {
+                                        table.options[table.options.length] = new Option("Bord " + i);
+                                    }
                                 }
                             }
                             room.onchange();
@@ -114,19 +123,7 @@
                     </div>
                     </div>
 
-                    <script language="javascript">
-                        var dis1 = document.getElementById("room");
-                        dis1.onchange = function() {
-                            if (this.value == "other") {
-                                document.getElementById("table").disabled = true;
-                                document.getElementById("table").className += " disabled";
-                            }
-                            else {
-                                document.getElementById("table").disabled = false;
-                                document.getElementById("table").className -= " disabled";
-                            }
-                        }
-                    </script>
+
                     </div>
 
                     <div class="queueContainer">

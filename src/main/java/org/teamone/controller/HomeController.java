@@ -44,6 +44,7 @@ public class HomeController {
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("queues", queueJDBCTemplate.listQueue());
         return "home";
     }
 
