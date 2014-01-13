@@ -107,7 +107,7 @@
                 z-index:10000;
                 background-color:#333;
                 width:70%;
-                height:75%;
+                height:85%;
                 -moz-box-shadow:0 0 90px 5px gray;
                 -webkit-box-shadow: 0 0 90px gray;
             }
@@ -128,7 +128,7 @@
                 padding: 40px;
                 font-family: sans-serif;
                 width: 94%; 
-                height: 100%; 
+                height: 90%; 
                 background: #c9d0de; 
                 border: 1px solid #e1e1e1;
                 -moz-box-shadow: 0px 0px 8px #444;
