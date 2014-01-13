@@ -18,8 +18,9 @@
         <intercept-url pattern="/access/*" access="ROLE_USER"/>
         
         <form-login login-page="/login" default-target-url="/access/home"
-                            authentication-failure-url="/loginfailed" 
+                            authentication-failure-url="/login" 
                             always-use-default-target="true"/>
+        <logout logout-success-url="/login"/>
     </http>
 	
     <authentication-manager>
