@@ -13,7 +13,7 @@
     <p>Fag</p>
     <ul>
         <c:forEach var="subject" items="${subjects}">
-            <li><a href="#">${subject.name}</a></li>
+            <li><a href="${subject.name}">${subject.name}</a></li>
         </c:forEach>
     </ul>
     <p>Testlinker</p>
