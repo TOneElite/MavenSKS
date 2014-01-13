@@ -12,6 +12,7 @@
 </section>
 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 
@@ -37,31 +38,62 @@
                     <label for="room">Rom:</label>  
                     <div class="styledSelect">
                         <select id="room" class="queueFormMiddle">
-                            <option>Labben</option>
-                            <option>Polarealet i første</option>
+                            <c:forEach var="room" items="${rooms}">
+                                <option value="${room.tableCount}">${room.roomCode}</option>
+                            </c:forEach>
                             <option value="other">Annet</option>
                         </select>
                     </div><br>
 
+
+
                     <label for="table">Bord:</label>
                     <div class="styledSelect">
                         <select id="table" class="queueFormMiddle">
-                            <option>Bord 1</option>
-                            <option>Bord 2</option>
-                            <option>Bord 3</option>
+                            <c:set var="room" value="${rooms}"/>
+                            <fmt:parseNumber var="tablecount" type="number" integerOnly="true" value="2" />
+                            <c:forEach var="i" begin="1" end="${tablecount}" >
+                                <option><c:out value="${i}" /></option>
+                            </c:forEach>
                         </select>
-                    </div><br>                           
+                    </div><br> 
+
+                    <script type="text/javascript">
+
+                        window.onload = function() {
+                            var room = document.getElementById("room");
+                            var table = document.getElementById("table");
+                            room.onchange = function() {
+
+                                var tablecount = room.options[room.selectedIndex].value;
+                                if (tablecount == "other") {
+                                    document.getElementById("table").disabled = true;
+                                    document.getElementById("table").className += " disabled";
+                                    table.options.length = 0;
+                                } else {
+                                    document.getElementById("table").disabled = false;
+                                    document.getElementById("table").className -= " disabled";
+                                    table.options.length = 0;
+                                    for (var i = 1; i <= tablecount; i++) {
+                                        table.options[table.options.length] = new Option("Bord " + i);
+                                    }
+                                }
+                            }
+                            room.onchange();
+                        }
+                    </script>
+
 
                     <div id="queueFormCeckboxes">
                         <label class="queueFormLabel" for="task">Øving:</label>
                         <ul class="queueFormMiddle">
                             <li><label class="checkboxLabel">Øving 1<input class="boxes" type="checkbox" name="task" value="Øving 1"></label></li>
-                            <li><label class="checkboxLabel">Øving 2<input class="boxes"type="checkbox" name="task" value="Øving 2"></label></li>
-                            <li><label class="checkboxLabel">Øving 3<input class="boxes"type="checkbox" name="task" value="Øving 3"></label></li>
-                            <li><label class="checkboxLabel">Øving 14<input class="boxes"type="checkbox" name="task" value="Øving 14"></label></li>
-                            <li><label class="checkboxLabel">Øving 15<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
-                            <li><label class="checkboxLabel">Øving 16<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
-                            <li><label class="checkboxLabel">Øving 17<input class="boxes"type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 2<input class="boxes" type="checkbox" name="task" value="Øving 2"></label></li>
+                            <li><label class="checkboxLabel">Øving 3<input class="boxes" type="checkbox" name="task" value="Øving 3"></label></li>
+                            <li><label class="checkboxLabel">Øving 14<input class="boxes" type="checkbox" name="task" value="Øving 14"></label></li>
+                            <li><label class="checkboxLabel">Øving 15<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 16<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 17<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
                         </ul>
                     </div> <br>
 
@@ -78,7 +110,7 @@
                     <label for="comment">Kommentar:</label>
                     <textarea id="comment" class="queueFormMiddle"></textarea>
                     <br>
-                    
+
                     <label></label>
                     <input class="middle" id="cancelbutton" type="button" value="Avbryt" />
                     <input class="middle" id="okbutton" type="submit" value="OK" />
@@ -91,19 +123,7 @@
                     </div>
                     </div>
 
-                    <script language="javascript">
-                        var dis1 = document.getElementById("room");
-                        dis1.onchange = function() {
-                            if (this.value == "other") {
-                                document.getElementById("table").disabled = true;
-                                document.getElementById("table").className += " disabled";
-                            }
-                            else {
-                                document.getElementById("table").disabled = false;
-                                document.getElementById("table").className -= " disabled";
-                            }
-                        }
-                    </script>
+
                     </div>
 
                     <div class="queueContainer">
@@ -170,6 +190,6 @@
                         });
                     });
 
-                   $("a[rel]").overlay();
+                    $("a[rel]").overlay();
                 </script> 
 
