@@ -47,11 +47,6 @@ public class HomeController {
         return "passwordReset";
     }
 
-    @RequestMapping(value = "queueOverlay.htm")
-    public String overlay() {
-        return "queueOverlay";
-    }
-
     @RequestMapping("/access/testDatabase")
     public String testDatabase(Model model) {
         model.addAttribute("persons", personJDBCTemplate.listUsers());
@@ -64,13 +59,13 @@ public class HomeController {
         return "testDatabase2";
     }
 
-    @RequestMapping("/teacherQueue")
+    @RequestMapping("/access/teacherQueue")
     public String teacherQueue(Model model) {
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         return "teacherQueue";
     }
 
-    @RequestMapping("/approveInQueue")
+    @RequestMapping("/access/approveInQueue")
     public String approveInQueue() {
         return "approveInQueue";
     }
