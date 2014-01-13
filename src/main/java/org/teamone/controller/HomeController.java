@@ -22,13 +22,11 @@ public class HomeController {
     @Autowired
     RoomJDBCTemplate roomJDBCTemplate;
 
-    /*
-     @RequestMapping("/*")
+     @RequestMapping("/")
      public String testView(Model model) {
      model.addAttribute("queues", queueJDBCTemplate.listQueue());
      return "home";
      }
-     */
     /*
      * 
      @RequestMapping("/*")
