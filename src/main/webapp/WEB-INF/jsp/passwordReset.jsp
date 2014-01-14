@@ -12,7 +12,15 @@ ko    Document   : passwordReset
 <!DOCTYPE html>
 <form action=<c:url value="/open/passwordReset/process"/>>
     
-    <input class="welcomeMargin" type="email"  name="emailReset" placeholder="Epost"/><br/>
+    <input class="welcomeMargin" type="email"  name="emailReset" placeholder="Epost"/>
+    
+    <c:if test="${error}">
+        <div id="resetPasswordError">
+            <p class="errorMessageP"><c:out value="${errorMessage}" /></p>
+        </div>
+    </c:if>
+    
+    <br/>
     <input class="welcomeMargin welcomebuttons" type="submit" value="Reset"/><br/>
     <a href="<c:url value="/login"/>">Tilbake</a>
     

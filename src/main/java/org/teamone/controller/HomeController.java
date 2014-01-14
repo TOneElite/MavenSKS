@@ -100,93 +100,102 @@ public class HomeController {
     public String examOverview() {
         return "eksamensrapport";
     }
-    
-   @RequestMapping("/lagre")
-    public String nyView(@ModelAttribute(value="queue") Queue queue){
+
+    @RequestMapping("/lagre")
+    public String nyView(@ModelAttribute(value = "queue") Queue queue) {
         queueJDBCTemplate.create(queue);
         return "lagre";
     }
-    
+
     @RequestMapping("/access/change-password")
-    public String changePasswordView(Model model){
+    public String changePasswordView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         return "change-password";
     }
-    
-    @RequestMapping(value="/access/admin")
-    public String adminView(){
+
+    @RequestMapping(value = "/access/admin")
+    public String adminView() {
         return "admin";
     }
-    
-    @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
-            @RequestParam(value="oldPassword")String oldPassword,
-            @RequestParam(value="newPassword")String newPassword,
-            @RequestParam(value="repeatPassword")String repeatPassword,
-            Model model){
-        
+            @RequestParam(value = "oldPassword") String oldPassword,
+            @RequestParam(value = "newPassword") String newPassword,
+            @RequestParam(value = "repeatPassword") String repeatPassword,
+            Model model) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // Get old password from database
         org.teamone.domain.User user = userJDBCTemplate.getUserByEmail(auth.getName());
         String dbOldPassword = user.getPassword();
-        
+
         boolean error = false;
-        if(dbOldPassword.equals(oldPassword)){
-            if(newPassword.equals(repeatPassword)){
+        if (dbOldPassword.equals(oldPassword)) {
+            if (newPassword.equals(repeatPassword)) {
                 user.setPassword(newPassword);
                 userJDBCTemplate.updateUser(user);
                 return "redirect:/access/home";
-            }else{
+            } else {
                 error = true;
                 model.addAttribute("error", error);
                 model.addAttribute("errorMessage", "Passordene er ikke like.");
                 return "change-password";
             }
-        }else{
+        } else {
             error = true;
             model.addAttribute("error", error);
             model.addAttribute("errorMessage", "Gammelt passord er feil.");
             return "change-password";
         }
     }
-   
-   @RequestMapping(value="/access/testqueue", method = RequestMethod.POST)
-   public String form(@RequestParam("room") String room,
-   @RequestParam("table") String table,
-   @RequestParam("task")String[] task,
-   @RequestParam("group") String group,
-   @RequestParam("comment") String comment){
-       String tasks = "";
-       for(int i = 0; i < task.length; i++){
-           tasks += task[i] + ", ";
-       }
-       Queue queue = new Queue();
-       queue.setTables(room + ", " + table);
-       queue.setOv(tasks);
-       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       if(group.equals("Alene")){
-           queue.setUsers(auth.getName());
-       }else{
-           queue.setUsers(group);
-       }
-       queue.setComment(comment);
-       Date a = new Date();
-       queue.setDate(a);
-       queue.setStatus(1);
-       queueJDBCTemplate.create(queue);
-       return "redirect:home";
-   }
-   
-   @RequestMapping(value="/open/passwordReset/process")
-   public String processPasswordReset(@RequestParam("emailReset")String emailReset) throws MessagingException{
-       String password = RandomStringUtils.random(8, true, true);
-       String email = "Hei, \n det nye passordet ditt er : " +
-               password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
-       userJDBCTemplate.setPassword(password, emailReset);
-       EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
-       es.sendMail(emailReset, "Reset password notification", email);
-       return "redirect:/login";
-   }
-   
+
+    @RequestMapping(value = "/access/testqueue", method = RequestMethod.POST)
+    public String form(@RequestParam("room") String room,
+            @RequestParam("table") String table,
+            @RequestParam("task") String[] task,
+            @RequestParam("group") String group,
+            @RequestParam("comment") String comment) {
+        String tasks = "";
+        for (int i = 0; i < task.length; i++) {
+            tasks += task[i] + ", ";
+        }
+        Queue queue = new Queue();
+        queue.setTables(room + ", " + table);
+        queue.setOv(tasks);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (group.equals("Alene")) {
+            queue.setUsers(auth.getName());
+        } else {
+            queue.setUsers(group);
+        }
+        queue.setComment(comment);
+        Date a = new Date();
+        queue.setDate(a);
+        queue.setStatus(1);
+        queueJDBCTemplate.create(queue);
+        return "redirect:home";
+    }
+
+    @RequestMapping(value = "/open/passwordReset/process")
+    public String processPasswordReset(@RequestParam("emailReset") String emailReset, Model model) throws MessagingException {
+        String password = RandomStringUtils.random(8, true, true);
+        String email = "Hei, \n det nye passordet ditt er : "
+                + password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
+        boolean valid = userJDBCTemplate.setPassword(password, emailReset);
+        boolean error = false;
+        
+        if (valid) {
+            EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
+            es.sendMail(emailReset, "Reset password notification", email);
+            return "redirect:/login";
+        }else{
+            error = true;
+            model.addAttribute("error", error);
+            model.addAttribute("errorMessage", "Eposten er feil");
+            return "passwordReset";
+        }
+    }
+
 }
