@@ -4,20 +4,11 @@ import java.util.ArrayList;
 
 public class User {
 
-    private int id;
     private String firstName;
     private String surname;
     private String email;
     private String password;
-	private ArrayList<UserRights> userRights;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private ArrayList<UserRights> userRights;
 
     public String getFirstName() {
         return firstName;
@@ -62,6 +53,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "id: " + id + ", firstname: " + firstName + ", surname: " + surname + ", email: " + email + ", password: " + password;
+        return "firstname: " + firstName + ", surname: " + surname + ", email: " + email + ", password: " + password;
     }
 }

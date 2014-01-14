@@ -6,7 +6,8 @@
 	<li><a href="">Hjem</a></li>
 	<li><a href="">Oversikt</a></li>
 	<li><a href="">Øvinger</a></li>
-	<li><a href="">Admin</a></li>
+	<li><a href="<c:url value="/access/admin"/>">Admin</a></li>
+        
     </ul>
 </section>
 <section id="nav-fag">

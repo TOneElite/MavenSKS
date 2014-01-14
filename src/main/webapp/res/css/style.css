@@ -416,3 +416,21 @@ body{
     color: red;
     font-weight: bold;
 }
+
+#adminWrapper .controller{
+    display: block;
+    margin-bottom: 1%;
+}
+
+#adminWrapper .button{
+    width: 100px;
+    height: 30px;
+    display: block;
+    margin-bottom: 1%;
+}
+
+#adminWrapper{
+    width: 100%;
+    background-color: #f3ede1;
+    padding: 1%;
+}
