@@ -5,7 +5,8 @@
 }
 
 body{
-    background-color: #fcf8ee;
+    /*background-color: #fcf8ee;*/
+    background-color: #d6e3eb;
 }
 
 #main-wrapper{
@@ -16,7 +17,8 @@ body{
 }
 #banner{
     padding: 1% 6%;
-    background-color: #f3ede1;
+    /*background-color: #f3ede1;*/
+    background-color: #2a71a4;
     overflow: hidden;
 }
 .link{
@@ -43,7 +45,7 @@ body{
 
 
 #queueHeader{
-    background-color: #f3ede1;
+    background-color: #9ba6b5;
     padding: 2%;
     text-align: left;    
     margin-bottom: 15px;
@@ -305,7 +307,7 @@ body{
 }
 
 #queueTable tr:nth-child(odd) {
-    background: #F0F0F0;
+    background: #f2f7ff;
 }
 
 #queueTable tr:nth-child(even) {
@@ -322,7 +324,7 @@ body{
 }
 
 #queueTable th, #queue{
-    background-color: lightgrey;
+    background-color: #9ba6b5;
 }
 
 #queueTable td{
@@ -344,7 +346,7 @@ body{
 #navigation{
     width: 18%;
     padding: 1%;
-    background-color: #f3ede1;
+    background-color: #9ba6b5;
     float: left;
     font-family: "Open Sans", sans-serif;
 }

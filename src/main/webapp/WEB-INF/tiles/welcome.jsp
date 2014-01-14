@@ -20,11 +20,11 @@
                 color: #404245;
             }
 
-            #logo{
+            #skslab{
                 font-size: 4em;
-                font-family: "mekanik let", arial;
-                display: inline;
-
+                color: #a2adc1;
+                color: black;
+                font-family: Arial;
             }
 
             #welcomeScreen{
@@ -41,13 +41,13 @@
 
             #login, #newpassword{
                 width: 400px;
-                height: 140px;
+                height: 240px;
                 margin: 0 auto;
-                background-color: #f3ede1;
+                background-color: #a2adc1;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
                 padding-bottom: 30px;
-                padding-top: 30px;
+                padding-top: 20px;
 
             }
 
@@ -60,10 +60,27 @@
                 color: #404245;
                 font-family: verdana;
                 font-weight: bold;
+                cursor: pointer;
+            }
+
+            .button:active{
+                background-color: #a2adc1;
+            }
+
+            #newpassbutton{
+                margin-left: 115px;
+                height: 35px;
+                width: 90px;
+                border-radius: 5px;
+                background-color: white;
+                color: #404245;
+                font-family: verdana;
+                font-weight: bold;
+                cursor: pointer;
             }
 
             body{
-                background-color: #fcf8ee;
+                background-color: #d6e3eb;
             }
 
             .welcomeMargin{
@@ -89,7 +106,6 @@
                 margin-left: 100px;
                 font-size: 0.85em;
             }
-                      
 
             #goback{
                 margin-left: 160px;
@@ -107,7 +123,8 @@
             }
 
             #head{
-                background-color: #e2dccd;
+                background-color: #2a71a4;
+                /*background-color: #2c3d82;*/
                 width: 400px;
                 margin: 0 auto;                
                 border-top-left-radius: 5px;
@@ -117,17 +134,36 @@
                 color: black;
             }
 
+            #loginimg{
+                width: 60px;
+                border-radius: 5px;
+                padding-top: 55px;
+            }
+
+                        #passimg{
+                width: 60px;
+                border-radius: 5px;
+                padding-top: 99px;
+            }
+            
+            #remember{
+                cursor: pointer;
+            }
+            
+            
+
         </style>
     </head>
     <body>
         <div id="welcomeScreen">
             <section id="head">
-                <img src="<c:url value="/res/histlogo.png"/>" alt="HiST" height="94" width="98">
-
-                <div id="logo">SKS 2.0</div><br>
-            </section>
-            <div id="loginTile"><tiles:insertAttribute name="body"/></div>
-
-        </div>
-    </body>
-</html>
+<div id="skstext">
+    <label id="skslab">SKS 2.0</label></div>
+                <div id="logo">
+                    
+                    
+                    </section>
+                    <div id="loginTile"><tiles:insertAttribute name="body"/></div>
+                </div>
+                </body>
+                </html>
