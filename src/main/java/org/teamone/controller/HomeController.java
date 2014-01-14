@@ -103,6 +103,13 @@ public class HomeController {
         queueJDBCTemplate.create(queue);
         return "lagre";
     }
+    
+    @RequestMapping("/access/change-password")
+    public String changePasswordView(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        return "change-password";
+    }
    
    @RequestMapping(value="/access/testqueue", method = RequestMethod.POST)
    public String form(@RequestParam("room") String room,
@@ -130,4 +137,12 @@ public class HomeController {
        queueJDBCTemplate.create(queue);
        return "redirect:home";
    }
+   
+   @RequestMapping(value="/open/passwordReset/process")
+   public String processPasswordReset(@RequestParam("emailReset")String emailReset){
+       
+       
+       return "redirect:/login";
+   }
+   
 }

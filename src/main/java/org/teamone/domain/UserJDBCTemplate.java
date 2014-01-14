@@ -25,4 +25,12 @@ public class UserJDBCTemplate {
         List<User> user = jdbcTemplateObject.query(SQL, new UserMapper());
         return user;
     }
+    
+    public void setPassword(String password, String email){
+        String SQL = "update user set password=? where email=?";
+        jdbcTemplateObject.update(SQL, new Object[]{
+            password,
+            email
+        });
+    }
 }

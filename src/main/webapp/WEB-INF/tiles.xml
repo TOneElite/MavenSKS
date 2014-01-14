@@ -61,4 +61,9 @@
         <put-attribute name="title" value="Eksamensrapport"/>
         <put-attribute name="body" value="/WEB-INF/jsp/examReport.jsp"/>
     </definition>
+    
+    <definition name="change-password" extends="template">
+        <put-attribute name="title" value="Bytt Passord"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/change-password.jsp"/>
+    </definition>
 </tiles-definitions>

@@ -17,6 +17,7 @@ body{
 #banner{
     padding: 1% 6%;
     background-color: #f3ede1;
+    overflow: hidden;
 }
 .link{
     font-size: 0.8em;
@@ -29,11 +30,15 @@ body{
     text-align: right;
     margin-top: 45px;
 }
-.logo{
+.Bannerlogo{
     font-size: 4em;
     font-family: "mekanik let", arial;
     display: inline;
     margin-left: 2%;
+}
+#logo{
+    float:left;
+    width: 30%;
 }
 
 
@@ -369,6 +374,7 @@ body{
     float: left;
     font-family: "Open Sans", sans-serif;
 }
+
 #navigation a {
     color: rgba(0, 0, 0, 0.6);
     text-decoration: none;
@@ -377,6 +383,7 @@ body{
 #navigation a:hover, li:hover {
     color: #000;
 }
+
 #navigation ul{
     list-style: none;
     margin-left: 8%;
@@ -385,4 +392,22 @@ body{
 #main-body{
     float: right;
     width: 78%;
+}
+
+#changePasswordWrapper{
+    width: 100%;
+    background-color: #f3ede1;
+    padding: 1%;
+}
+
+#changePasswordWrapper .controller{
+    display: block;
+    margin-bottom: 1%;
+}
+
+#changePasswordWrapper .button{
+    width: 100px;
+    height: 30px;
+    display: block;
+    margin-bottom: 1%;
 }
