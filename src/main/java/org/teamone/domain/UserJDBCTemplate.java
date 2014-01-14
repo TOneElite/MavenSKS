@@ -33,4 +33,15 @@ public class UserJDBCTemplate {
             email
         });
     }
+    
+    public void updateUser(User user){
+        String SQL = "update user set firstname=?,surname=?,email=?,password=? where email=?";
+        jdbcTemplateObject.update(SQL, new Object[]{user.getFirstName(),user.getSurname(),user.getEmail(),user.getPassword(),user.getEmail()});
+    }
+    
+    public User getUserByEmail(String email){
+        String SQL = "Select * from user where email=?";
+        User user = (User)jdbcTemplateObject.queryForObject(SQL, new Object[]{email},new UserMapper());
+        return user;
+    }
 }

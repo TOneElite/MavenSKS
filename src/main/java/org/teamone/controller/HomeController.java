@@ -110,6 +110,27 @@ public class HomeController {
         model.addAttribute("username", auth.getName());
         return "change-password";
     }
+    
+    @RequestMapping(value="/access/change-password/process")
+    public String changePasswordProcess(
+            @RequestParam(value="oldPassword")String oldPassword,
+            @RequestParam(value="newPassword")String newPassword,
+            @RequestParam(value="repeatPassword")String repeatPassword){
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // Get old password from database
+        org.teamone.domain.User user = userJDBCTemplate.getUserByEmail(auth.getName());
+        String dbOldPassword = user.getPassword();
+        
+        if(dbOldPassword.equals(oldPassword)){
+            if(newPassword.equals(repeatPassword)){
+                user.setPassword(newPassword);
+                userJDBCTemplate.updateUser(user);
+            }
+        }
+        
+        return "redirect:/access/home";
+    }
    
    @RequestMapping(value="/access/testqueue", method = RequestMethod.POST)
    public String form(@RequestParam("room") String room,
