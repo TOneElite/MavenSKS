@@ -139,6 +139,24 @@ public class HomeController {
         return "/admin";
     }
     
+    @RequestMapping(value="/access/admin/addUser")
+    public String addUserProcess(
+            @RequestParam(value="firstName", required = false)String firstName,
+            @RequestParam(value="surname", required = false)String surname,
+            @RequestParam(value="mail", required = false)String email,
+            @RequestParam(value="password", required = false)String password){
+        
+        org.teamone.domain.User user = new org.teamone.domain.User();
+        user.setFirstName(firstName);
+        user.setSurname(surname);
+        user.setEmail(email);
+        user.setPassword(password);
+        
+        //userJDBCTemplate.create(user);
+        
+        return "/admin";
+    }
+    
     @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value = "oldPassword") String oldPassword,

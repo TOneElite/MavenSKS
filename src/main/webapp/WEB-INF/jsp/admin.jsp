@@ -1,4 +1,6 @@
 <div id="adminWrapper">
+    <h3>Legg til Elev:</h3>
+    <br/>
     <form>
         <label for="">Fornavn:</label>
         <input class="controller" name="firstName" type="text" placeholder="fn"/>
