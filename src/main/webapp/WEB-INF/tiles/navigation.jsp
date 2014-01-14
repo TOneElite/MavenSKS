@@ -3,10 +3,10 @@
 <section id="nav-nav">
     <p>Navigasjon</p>
     <ul>
-	<li><a href="">Hjem</a></li>
+	<li><a href="<c:url value="/access/home"/>">Hjem</a></li>
 	<li><a href="">Oversikt</a></li>
 	<li><a href="">Øvinger</a></li>
-	<li><a href="<c:url value="/access/admin"/>">Admin</a></li>
+	<li><a href="<c:url value="admin"/>">Admin</a></li>
         
     </ul>
 </section>
