@@ -1,3 +1,5 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <section id="nav-nav">
     <p>Navigasjon</p>
     <ul>
@@ -10,10 +12,9 @@
 <section id="nav-fag">
     <p>Fag</p>
     <ul>
-	<li><a href="">Matematikk 2</a></li>
-	<li><a href="">Systemutvikling</a></li>
-	<li><a href="">Datakommunikasjon</a></li>
-	<li><a href="">Realfag</a></li>
+        <c:forEach var="subject" items="${subjects}">
+            <li><a href="${subject.name}">${subject.name}</a></li>
+        </c:forEach>
     </ul>
     <p>Testlinker</p>
     <ul>

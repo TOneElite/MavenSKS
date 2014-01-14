@@ -14,9 +14,11 @@ import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
 import org.teamone.domain.QueueJDBCTemplate;
+import org.teamone.domain.RoleJDBCTemplate;
 import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
+import org.teamone.domain.UserRightsJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation
@@ -71,6 +73,20 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
         RoomJDBCTemplate roomJDBCTemplate = new RoomJDBCTemplate();
         roomJDBCTemplate.setDataSource(dataSource());
         return roomJDBCTemplate;
+    }
+	
+	@Bean
+    public UserRightsJDBCTemplate userRightsJDBCTemplate() {
+        UserRightsJDBCTemplate userRightsJDBCTemplate = new UserRightsJDBCTemplate();
+        userRightsJDBCTemplate.setDataSource(dataSource());
+        return userRightsJDBCTemplate;
+    }
+	
+	@Bean
+    public RoleJDBCTemplate roleJDBCTemplate() {
+        RoleJDBCTemplate roleJDBCTemplate = new RoleJDBCTemplate();
+        roleJDBCTemplate.setDataSource(dataSource());
+        return roleJDBCTemplate;
     }
 
     @Override
