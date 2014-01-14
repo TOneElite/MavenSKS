@@ -117,7 +117,12 @@ public class HomeController {
        Queue queue = new Queue();
        queue.setTables(room + ", " + table);
        queue.setOv(tasks);
-       queue.setUsers(group);
+       if(group.equals("Alene")){
+           Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+           queue.setUsers(auth.getName());
+       }else{
+           queue.setUsers(group);
+       }
        queue.setComment(comment);
        Date a = new Date();
        queue.setDate(a);
