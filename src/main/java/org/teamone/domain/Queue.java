@@ -9,7 +9,7 @@ public class Queue {
     private String users;
     private String ov;
     private String comment;
-    private String status;
+    private int status;
     private String tables;
 
     public int getId() {
@@ -44,11 +44,11 @@ public class Queue {
 	this.comment = comment;
     }
     
-    public String getStatus() {
+    public int getStatus() {
 	return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
 	this.status = status;
     }
 
@@ -62,5 +62,8 @@ public class Queue {
     
     public Date getDate(){
         return date;
+    }
+    public void setDate(Date date){
+        this.date = date;
     }
 }

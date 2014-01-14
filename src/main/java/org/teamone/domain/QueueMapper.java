@@ -15,9 +15,10 @@ public class QueueMapper implements RowMapper<Queue> {
         Queue queue = new Queue();
         queue.setId(rs.getInt("queue_id"));
         queue.setUsers(rs.getString("user"));
+        queue.setDate(rs.getDate("timestamp"));
         queue.setOv(rs.getString("tasks"));
         queue.setComment(rs.getString("comment"));
-        queue.setStatus(rs.getString("status"));
+        queue.setStatus(rs.getInt("status"));
         queue.setTables(rs.getString("location"));
         return queue;
     }

@@ -33,50 +33,40 @@
         <div id="queueForm">
             <section id="queueFormLeft">
                 <h1>Stå i kø</h1>
-                <form action="#" method="post">
+                <form action="<c:url value="/access/testqueue" />" method="POST">
+                    
 
                     <label for="room">Rom:</label>  
                     <div class="styledSelect">
-                        <select id="room" class="queueFormMiddle">
+                        <select name="room" id="room" class="queueFormMiddle">
                             <c:forEach var="room" items="${rooms}">
-                                <option value="${room.tableCount}">${room.roomCode}</option>
+                                <option title="${room.tableCount}" value="${room.roomCode}">${room.roomCode}</option>
                             </c:forEach>
                             <option value="other">Annet</option>
                         </select>
                     </div><br>
 
-
+                    
 
                     <label for="table">Bord:</label>
                     <div class="styledSelect">
-                        <select id="table" class="queueFormMiddle">
-                            <c:set var="room" value="${rooms}"/>
-                            <fmt:parseNumber var="tablecount" type="number" integerOnly="true" value="2" />
+                        <select name="table" id="table" class="queueFormMiddle">
                             <c:forEach var="i" begin="1" end="${tablecount}" >
                                 <option><c:out value="${i}" /></option>
                             </c:forEach>
                         </select>
                     </div><br> 
-
+                    
                     <script type="text/javascript">
 
                         window.onload = function() {
                             var room = document.getElementById("room");
                             var table = document.getElementById("table");
                             room.onchange = function() {
-
-                                var tablecount = room.options[room.selectedIndex].value;
-                                if (tablecount == "other") {
-                                    document.getElementById("table").disabled = true;
-                                    document.getElementById("table").className += " disabled";
-                                    table.options.length = 0;
-                                } else {
-                                    document.getElementById("table").disabled = false;
-                                    document.getElementById("table").className -= " disabled";
-                                    table.options.length = 0;
-                                    for (var i = 1; i <= tablecount; i++) {
-                                        table.options[table.options.length] = new Option("Bord " + i);
-                                    }
+                                var tablecount = room.options[room.selectedIndex].title;
+                                table.options.length = 0;
+                                for (var i = 1; i <= tablecount; i++) {
+                                    table.options[table.options.length] = new Option("Bord " + i);
                                 }
                             }
                             room.onchange();
@@ -87,28 +77,28 @@
                     <div id="queueFormCeckboxes">
                         <label class="queueFormLabel" for="task">Øving:</label>
                         <ul class="queueFormMiddle">
-                            <li><label class="checkboxLabel">Øving 1<input class="boxes" type="checkbox" name="task" value="Øving 1"></label></li>
-                            <li><label class="checkboxLabel">Øving 2<input class="boxes" type="checkbox" name="task" value="Øving 2"></label></li>
-                            <li><label class="checkboxLabel">Øving 3<input class="boxes" type="checkbox" name="task" value="Øving 3"></label></li>
-                            <li><label class="checkboxLabel">Øving 14<input class="boxes" type="checkbox" name="task" value="Øving 14"></label></li>
-                            <li><label class="checkboxLabel">Øving 15<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
-                            <li><label class="checkboxLabel">Øving 16<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
-                            <li><label class="checkboxLabel">Øving 17<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
+                            <li><label class="checkboxLabel">Øving 1<input class="boxes" type="checkbox" name="task" value="Ov1"></label></li>
+                            <li><label class="checkboxLabel">Øving 2<input class="boxes" type="checkbox" name="task" value="Ov2"></label></li>
+                            <li><label class="checkboxLabel">Øving 3<input class="boxes" type="checkbox" name="task" value="Ov3"></label></li>
+                            <li><label class="checkboxLabel">Øving 14<input class="boxes" type="checkbox" name="task" value="Ov4"></label></li>
+                            <li><label class="checkboxLabel">Øving 15<input class="boxes" type="checkbox" name="task" value="Ov5"></label></li>
+                            <li><label class="checkboxLabel">Øving 16<input class="boxes" type="checkbox" name="task" value="Ov6"></label></li>
+                            <li><label class="checkboxLabel">Øving 17<input class="boxes" type="checkbox" name="task" value="Ov7"></label></li>
                         </ul>
                     </div> <br>
 
                     <label for="group">Gruppe:</label>
                     <div class="styledSelect">
-                        <select id="group" class="queueFormMiddle">
-                            <option>- Velg -</option>
-                            <option>Tom</option>
-                            <option>Ole</option>
-                            <option>Andreas</option>
+                        <select name="group" id="group" class="queueFormMiddle">
+                                <option selected value="Alene">Alene</option>
+                            <c:forEach var="user" items="${users}">
+                                <option value="${user.email}">${user.email}</option>
+                            </c:forEach>
                         </select>
                     </div><br>
 
                     <label for="comment">Kommentar:</label>
-                    <textarea id="comment" class="queueFormMiddle"></textarea>
+                    <textarea name="comment" id="comment" class="queueFormMiddle"></textarea>
                     <br>
 
                     <label></label>
@@ -123,7 +113,19 @@
                     </div>
                     </div>
 
-
+                    <script language="javascript">
+                        var dis1 = document.getElementById("room");
+                        dis1.onchange = function() {
+                            if (this.value == "other") {
+                                document.getElementById("table").disabled = true;
+                                document.getElementById("table").className += " disabled";
+                            }
+                            else {
+                                document.getElementById("table").disabled = false;
+                                document.getElementById("table").className -= " disabled";
+                            }
+                        }
+                    </script>
                     </div>
 
                     <div class="queueContainer">

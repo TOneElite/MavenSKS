@@ -1,12 +1,16 @@
 package org.teamone.controller;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.teamone.domain.Queue;
 import org.teamone.domain.QueueJDBCTemplate;
 import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
@@ -16,7 +20,7 @@ import org.teamone.domain.SubjectJDBCTemplate;
 public class HomeController {
 
     @Autowired
-    private UserJDBCTemplate personJDBCTemplate;
+    private UserJDBCTemplate userJDBCTemplate;
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
     @Autowired
@@ -24,11 +28,13 @@ public class HomeController {
     @Autowired
     RoomJDBCTemplate roomJDBCTemplate;
 
-    @RequestMapping("/")
-    public String testView(Model model) {
-        model.addAttribute("queues", queueJDBCTemplate.listQueue());
-        return "home";
-    }
+    /*
+     @RequestMapping("/*")
+     public String testView(Model model) {
+     model.addAttribute("queues", queueJDBCTemplate.listQueue());
+     return "home";
+     }
+     */
     /*
      * 
      @RequestMapping("/*")
@@ -36,7 +42,6 @@ public class HomeController {
      return "home";
      }
      */
-
     @RequestMapping(value = "/access/password", method = RequestMethod.GET)
     public String passView() {
         return "usersettings";
@@ -45,11 +50,8 @@ public class HomeController {
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        model.addAttribute("username", name);
         return "home";
     }
 
@@ -58,14 +60,14 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping(value = "/open/passwordReset", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/passwordReset", method = RequestMethod.GET)
     public String forgotPassword() {
         return "passwordReset";
     }
 
     @RequestMapping(value = "/access/testDatabase", method = RequestMethod.GET)
     public String testDatabase(Model model) {
-        model.addAttribute("persons", personJDBCTemplate.listUsers());
+        model.addAttribute("persons", userJDBCTemplate.listUsers());
         return "testDatabase";
     }
 
@@ -90,4 +92,33 @@ public class HomeController {
     public String examOverview() {
         return "eksamensrapport";
     }
+    
+   @RequestMapping("/lagre")
+    public String nyView(@ModelAttribute(value="queue") Queue queue){
+        queueJDBCTemplate.create(queue);
+        return "lagre";
+    }
+   
+   @RequestMapping(value="/access/testqueue", method = RequestMethod.POST)
+   public String form(@RequestParam("room") String room,
+   @RequestParam("table") String table,
+   @RequestParam("task")String[] task,
+   @RequestParam("group") String group,
+   @RequestParam("comment") String comment){
+       String tasks = "";
+       for(int i = 0; i < task.length; i++){
+           tasks += task[i] + ", ";
+       }
+       Queue queue = new Queue();
+       queue.setTables(room + ", " + table);
+       queue.setOv(tasks);
+       queue.setUsers(group);
+       queue.setComment(comment);
+       Date a = new Date();
+       queue.setDate(a);
+       queue.setStatus(1);
+       JOptionPane.showMessageDialog(null, room + " " + table + " " + tasks + ", " + group + ", " +comment + ", " + a);
+       queueJDBCTemplate.create(queue);
+       return "redirect:home";
+   }
 }
