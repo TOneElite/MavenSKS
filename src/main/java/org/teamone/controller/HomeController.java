@@ -175,9 +175,10 @@ public class HomeController {
    
    @RequestMapping(value="/open/passwordReset/process")
    public String processPasswordReset(@RequestParam("emailReset")String emailReset) throws MessagingException{
-       String passord = RandomStringUtils.random(8, true, true);
+       String password = RandomStringUtils.random(8, true, true);
        String email = "Hei, \n det nye passordet ditt er : " +
-               passord + "\n Ha en fin dag!ø \n Mvh.\nSKS";
+               password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
+       userJDBCTemplate.setPassword(password, emailReset);
        EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
        es.sendMail(emailReset, "Reset password notification", email);
        return "redirect:/login";

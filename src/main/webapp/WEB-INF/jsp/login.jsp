@@ -7,9 +7,10 @@
 
         <input class="welcomeMargin" type="email" name="j_username" value="" placeholder="Epost"><br/>
         <input class="welcomeMargin" type="password" name="j_password" value="" placeholder="Passord"><br/>
-        <input class="welcomeMargin" id = "loginbutton" type="submit" name="submit" value="Logg inn"><br/>
-        Husk passord <input type="checkbox"> <br/>
+        <input class="welcomeMargin welcomebuttons" type="submit" name="submit" value="Logg inn"><br/>
+        Husk E-post <input type="checkbox"> <br/>
         <a href="<c:url value="/open/passwordReset" />">Glemt passord?</a>
+        
     </form>
 
 </div>

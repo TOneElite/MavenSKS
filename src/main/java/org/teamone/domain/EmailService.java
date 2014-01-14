@@ -54,11 +54,9 @@ public class EmailService {
 
             Transport.send(message);
 
-        } catch (MessagingException e) {
-            System.out.println(e);
+        }catch (MessagingException e) {
             return false;
         }
-        System.out.println("Done");
         return true;
     }
 
