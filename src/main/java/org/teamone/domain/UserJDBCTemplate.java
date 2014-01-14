@@ -26,12 +26,18 @@ public class UserJDBCTemplate {
         return user;
     }
     
-    public void setPassword(String password, String email){
+    public boolean setPassword(String password, String email){
         String SQL = "update user set password=? where email=?";
-        jdbcTemplateObject.update(SQL, new Object[]{
+        int update = jdbcTemplateObject.update(SQL, new Object[]{
             password,
             email
         });
+        
+        if(update != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     public void updateUser(User user){
