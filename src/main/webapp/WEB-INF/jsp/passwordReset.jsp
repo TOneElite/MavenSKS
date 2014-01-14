@@ -1,5 +1,5 @@
 <%-- 
-    Document   : passwordReset
+ko    Document   : passwordReset
     Created on : Jan 9, 2014, 4:26:55 PM
     Author     : Øystein
 --%>
@@ -10,9 +10,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<div class="logo">SKS 2.0</div><br>
 <form action="http://localhost:8084/TestSKS/">
     
-    Epost:<input type="email" name="email" value="E-Post"><br>
-    <input type="submit" value="Reset">
+    Epost:<input class="welcomeMargin" type="email"  name="email" placeholder="Epost"><br>
+    <input class="welcomeMargin" type="submit" value="Reset">
 </form>
