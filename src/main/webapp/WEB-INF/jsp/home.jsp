@@ -15,6 +15,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<meta http-equiv="refresh" content="5" />
 
 <section id="queueHeader">
     <div id="queueInfo">                         

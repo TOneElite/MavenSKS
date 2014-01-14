@@ -15,7 +15,7 @@ public class QueueJDBCTemplate {
     }
     
     public Queue getQueue(int ID){
-        String SQL = "select * from queue where queueid = ?";
+        String SQL = "select * from queue where queue_id = ?";
         Queue queue = (Queue)jdbcTemplateObject.queryForObject(SQL, new Object[]{ID}, new QueueMapper());
         return queue;
     }
@@ -27,12 +27,12 @@ public class QueueJDBCTemplate {
     }
 
     public void delete(int id) {
-        String SQL = "delete from queue where queueid = ?";
+        String SQL = "delete from queue where queue_id = ?";
         jdbcTemplateObject.update(SQL, id);
     }
     
     public void update(Queue queue){
-        String SQL = "update queue set users=?, ov=?, comment=?, tables=? where queueid=?";
+        String SQL = "update queue set users=?, tasks=?, comment=?, tables=? where queue_id=?";
         jdbcTemplateObject.update(SQL, new Object[]{
             queue.getUsers(),
             queue.getOv(),

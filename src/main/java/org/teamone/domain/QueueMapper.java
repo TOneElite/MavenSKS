@@ -14,11 +14,11 @@ public class QueueMapper implements RowMapper<Queue> {
     public Queue mapRow(ResultSet rs, int i) throws SQLException {
         Queue queue = new Queue();
         queue.setId(rs.getInt("queue_id"));
-        queue.setUsers(rs.getString("users"));
-        queue.setOv(rs.getString("ov"));
+        queue.setUsers(rs.getString("user"));
+        queue.setOv(rs.getString("tasks"));
         queue.setComment(rs.getString("comment"));
         queue.setStatus(rs.getString("status"));
-        queue.setTables(rs.getString("tables"));
+        queue.setTables(rs.getString("location"));
         return queue;
     }
     
