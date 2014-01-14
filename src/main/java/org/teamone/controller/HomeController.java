@@ -145,24 +145,6 @@ public class HomeController {
         
     }
     
-    @RequestMapping(value="/access/admin/addUser")
-    public String addUserProcess(
-            @RequestParam(value="firstName", required = false)String firstName,
-            @RequestParam(value="surname", required = false)String surname,
-            @RequestParam(value="mail", required = false)String email,
-            @RequestParam(value="password", required = false)String password){
-        
-        org.teamone.domain.User user = new org.teamone.domain.User();
-        user.setFirstName(firstName);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setPassword(password);
-        
-        //userJDBCTemplate.create(user);
-        
-        return "/admin";
-    }
-    
     @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value = "oldPassword") String oldPassword,
@@ -221,7 +203,7 @@ public class HomeController {
         queueJDBCTemplate.create(queue);
         return "redirect:home";
     }
-
+    
     @RequestMapping(value = "/open/passwordReset/process")
     public String processPasswordReset(@RequestParam("emailReset") String emailReset, Model model) throws MessagingException {
         String password = RandomStringUtils.random(8, true, true);
@@ -229,12 +211,17 @@ public class HomeController {
                 + password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
         boolean valid = userJDBCTemplate.setPassword(password, emailReset);
         boolean error = false;
-        
+        boolean check = false;
+
         if (valid) {
             EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
             es.sendMail(emailReset, "Reset password notification", email);
-            return "redirect:/login";
-        }else{
+            
+            check = true;
+            model.addAttribute("check", check);
+            model.addAttribute("infoMessage", "Passordet er sendt til eposten du registerte");
+            return "passwordReset";
+        } else {
             error = true;
             model.addAttribute("error", error);
             model.addAttribute("errorMessage", "Eposten er feil");
