@@ -56,6 +56,7 @@ public class HomeController {
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "home";
     }
 
