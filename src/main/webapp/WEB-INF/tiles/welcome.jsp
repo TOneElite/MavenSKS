@@ -42,7 +42,8 @@
             body{
                 background-color: #fcf8ee;
             }
-            .loginMargin{
+            
+            .welcomeMargin{
                 margin-bottom: 0.5%;
             }
 

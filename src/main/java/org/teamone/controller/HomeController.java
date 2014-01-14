@@ -60,7 +60,7 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping(value = "/access/passwordReset", method = RequestMethod.GET)
+    @RequestMapping(value = "/open/passwordReset", method = RequestMethod.GET)
     public String forgotPassword() {
         return "passwordReset";
     }
