@@ -42,14 +42,26 @@ public class User {
         this.password = password;
     }
 
-	public ArrayList<UserRights> getUserRights() {
-		return userRights;
-	}
-	
-	public void addUserRights(UserRights userRight){
-		userRights.add(userRight);
-	}
-	
+    public ArrayList<UserRights> getUserRights() {
+        return userRights;
+    }
+
+    public void addUserRights(UserRights userRight) {
+        userRights.add(userRight);
+    }
+    
+    public boolean checkUserData(){
+        if(firstName == null || firstName.equals(""))
+            return false;
+        if(surname == null || surname.equals(""))
+            return false;
+        if(email == null || email.equals(""))
+            return false;
+        if(password == null || password.equals(""))
+            return false;
+        
+        return true;
+    }
 
     @Override
     public String toString() {

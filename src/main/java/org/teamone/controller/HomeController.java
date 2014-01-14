@@ -133,6 +133,7 @@ public class HomeController {
         user.setSurname(surname);
         user.setEmail(email);
         user.setPassword(password);
+        
         //userJDBCTemplate.create(user);
         
         return "/admin";
