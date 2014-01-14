@@ -1,7 +1,9 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <div id="adminWrapper">
     <h3>Legg til Elev:</h3>
     <br/>
-    <form>
+    <form action="<c:url value="/access/admin/addUser" />" method="GET">
         <label for="">Fornavn:</label>
         <input class="controller" name="firstName" type="text" placeholder="fn"/>
         
@@ -16,4 +18,9 @@
         
         <input class="button" name="submit" type="submit"/>
     </form>
+    <c:if test="${error}">
+        <div>
+            <p class="errorMessageP">Feil på skjema</p>
+        </div>
+    </c:if>
 </div>

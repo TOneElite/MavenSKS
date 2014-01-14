@@ -121,12 +121,13 @@ public class HomeController {
         return "admin";
     }
     
-    @RequestMapping(value="/access/admin/addUser")
+    @RequestMapping(value="/access/admin/addUser", method = RequestMethod.GET)
     public String addUserProcess(
             @RequestParam(value="firstName", required = false)String firstName,
             @RequestParam(value="surname", required = false)String surname,
-            @RequestParam(value="mail", required = false)String email,
-            @RequestParam(value="password", required = false)String password){
+            @RequestParam(value="email", required = false)String email,
+            @RequestParam(value="password", required = false)String password,
+            Model model){
         
         org.teamone.domain.User user = new org.teamone.domain.User();
         user.setFirstName(firstName);
@@ -134,9 +135,14 @@ public class HomeController {
         user.setEmail(email);
         user.setPassword(password);
         
-        //userJDBCTemplate.create(user);
+        if(user.checkUserData()){
+            userJDBCTemplate.create(user);
+            return "home";
+        }else{
+            model.addAttribute("error", true);
+            return "admin";
+        }
         
-        return "/admin";
     }
     
     @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
