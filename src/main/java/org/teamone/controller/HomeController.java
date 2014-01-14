@@ -117,8 +117,8 @@ public class HomeController {
        Queue queue = new Queue();
        queue.setTables(room + ", " + table);
        queue.setOv(tasks);
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
        if(group.equals("Alene")){
-           Authentication auth = SecurityContextHolder.getContext().getAuthentication();
            queue.setUsers(auth.getName());
        }else{
            queue.setUsers(group);
