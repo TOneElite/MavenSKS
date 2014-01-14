@@ -114,6 +114,11 @@ public class HomeController {
         return "change-password";
     }
     
+    @RequestMapping(value="/access/admin")
+    public String adminView(){
+        return "admin";
+    }
+    
     @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value="oldPassword")String oldPassword,

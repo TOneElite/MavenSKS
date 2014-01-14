@@ -44,4 +44,8 @@ public class UserJDBCTemplate {
         User user = (User)jdbcTemplateObject.queryForObject(SQL, new Object[]{email},new UserMapper());
         return user;
     }
+    
+    public void create(User user){
+        
+    }
 }
