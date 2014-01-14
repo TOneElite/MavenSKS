@@ -19,7 +19,7 @@
                 font-family: arial;
                 color: #404245;
             }
-            
+
             #logo{
                 font-size: 4em;
                 font-family: "mekanik let", arial;
@@ -39,25 +39,27 @@
                 display: inline;
             }
 
-            #login{
+            #login, #newpassword{
                 width: 400px;
+                height: 140px;
                 margin: 0 auto;
                 background-color: #f3ede1;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
                 padding-bottom: 30px;
                 padding-top: 30px;
-                
+
             }
 
-            #button{
+            .button{
                 margin-left: 20px;
                 height: 35px;
                 width: 90px;
                 border-radius: 5px;
                 background-color: white;
                 color: #404245;
-                font-family: verdana bold;
+                font-family: verdana;
+                font-weight: bold;
             }
 
             body{
@@ -83,8 +85,14 @@
                 color: #404245;
             }     
 
-            a{
+            #forgotpassword{
                 margin-left: 100px;
+                font-size: 0.85em;
+            }
+                      
+
+            #goback{
+                margin-left: 160px;
                 font-size: 0.85em;
             }
 
@@ -97,7 +105,7 @@
                 -webkit-box-shadow: 0 0 0px 1000px white inset;
 
             }
-            
+
             #head{
                 background-color: #e2dccd;
                 width: 400px;
@@ -114,12 +122,12 @@
     <body>
         <div id="welcomeScreen">
             <section id="head">
-            <img src="<c:url value="/res/histlogo.png"/>" alt="HiST" height="94" width="98">
-              
-            <div id="logo">SKS 2.0</div><br>
+                <img src="<c:url value="/res/histlogo.png"/>" alt="HiST" height="94" width="98">
+
+                <div id="logo">SKS 2.0</div><br>
             </section>
             <div id="loginTile"><tiles:insertAttribute name="body"/></div>
-          
+
         </div>
     </body>
 </html>

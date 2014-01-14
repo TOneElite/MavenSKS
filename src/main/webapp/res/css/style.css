@@ -91,14 +91,14 @@ body{
     top:1px;
 }
 
-
+/********** OVERLAY **********/
 
 .simple_overlay {  
     display:none;
     z-index:10000;
-    background-color:#333;
-    width:70%;
-    height:85%;
+    background-color:#c9d0de;
+    width:800px;
+    height: 600px;
     -moz-box-shadow:0 0 90px 5px gray;
     -webkit-box-shadow: 0 0 90px gray;
 }
@@ -114,143 +114,66 @@ body{
     width:35px;
 }
 
-#queueForm {
-    vertical-align: top;
-    padding: 40px;
+#queueForm{
+    padding: 20px;
+    width: 800px;
     font-family: sans-serif;
-    width: 94%; 
-    height: 90%; 
-    background: #c9d0de; 
-    border: 1px solid #e1e1e1;
-    -moz-box-shadow: 0px 0px 8px #444;
-    box-shadow: 0px 0px 8px #444;
-    border-radius: 3px;
 }
 
-
-#queueForm h1 {
+#queueForm h1{
+    padding-left: 153px;
+    padding-bottom: 20px;
     font-size: 35px; 
     color: #445668; 
     text-transform: uppercase;
-    margin-bottom: 35px; 
-    margin-left: 154px;
     text-shadow: 0px 1px 0px #f2f2f2;
 }
 
-#queueForm label:not(.checkboxLabel) {
-    float: left; 
-    margin: 11px 20px 0 0; 
-    width: 120px;
-    text-align: right; 
-    font-size: 16px; 
-    color: #445668; 
-    text-transform: uppercase; 
-    text-shadow: 0px 1px 0px #f2f2f2;
+#queueForm #left{    
+    float: left;
+    width: 400px;    
 }
 
-#queueForm #okbutton, #cancelbutton{
-    font-family: sans-serif; 
+#queueForm label:not(.checkboxLabel){
+    width: 100px;
+    margin: 8px 10px 0 20px; 
+    float: left;
+    text-align: right;
+    padding-right: 15px;
+    text-transform: uppercase;
     font-size: 16px; 
-    color: #f2f2f2; 
-    text-transform: uppercase; 
-    text-shadow: 0px -1px 0px #334f71; 
-    width: 140px; 
-    height: 52px; 
-    -moz-box-shadow: 0px 0px 5px #999;
-    box-shadow: 0px 0px 5px #999;
-    border: 1px solid #556f8c;
-    background: #728eaa;
-    cursor: pointer;
+    color: black; 
+    text-shadow: 0px -1px 0px #334f71;
+}
+
+#queueForm #right{
     float: right;
-    margin: 6px;
+    width: 400px;    
+    margin-top: 63px;;
 }
 
-#queueForm textarea {
-    width: 240px; 
-    height: 130px; 
-    padding: 12px 20px 0px 20px; 
-    margin: 0 0 20px 0; 
-    border: 0;
-    background: #f8f8f8;
-    border-radius: 5px; 
-    -moz-border-radius: 5px;
-    -moz-box-shadow: 0px 1px 0px #f2f2f2;
-    box-shadow: 0px 1px 0px #f2f2f2;
-    font-family: sans-serif; 
-    font-size: 16px; 
-    color: #728eaa; 
-    text-shadow: 0px -1px 0px #334f71; 
-}
-
-#queueForm textarea:focus {
-    background: #F0F8FF;
-}
-
-#queueForm select {
-    padding: 5px 15px; 
-    border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
-    -moz-box-shadow: 0px 1px 0px #f2f2f2; box-shadow: 0px 1px 0px #f2f2f2;
+#queueForm select{
+    width: 210px;
+    height: 35px;
+    -webkit-appearance: none; 
+    background: url('arrow.jpg') no-repeat right #f8f8f8;
+    padding: 5px 15px;      
+    overflow: hidden;
     font-family: sans-serif; 
     font-size: 16px; 
     color: black; 
-    text-shadow: 0px -1px 0px #334f71; 
-    background: transparent;
-    width: 300px;
-    font-size: 16px;
-    line-height: 1;
-    border: 0;
-    border-radius: 0px;
-    height: 45px;
-    -webkit-appearance: none; -moz-appearance: none;
-    text-indent: 0.01px;
-    text-overflow: '';
+    text-shadow: 0px 1px 0px #f2f2f2; 
     cursor: pointer;
-    width: 205px;
 }
 
-#queueForm option{
-    background-color: #f8f8f8;
-    font-family: sans-serif; 
-    font-size: 16px; 
-    color: black; 
-    text-shadow: 0px -1px 0px #334f71; 
-}
-
-#queueForm .styledSelect {  
-    width: 205px;
-    height: 45px;
-    overflow: hidden; 
-    background: url('res/arrow.jpg') no-repeat right #f8f8f8;
-    border-radius: 7px;    
-    border: 1px solid #ccc;
-}   
-
-#queueForm ul{
-    margin: 0px;
-    padding: 10px;
-    padding-left: 15px;
-    display: inline-block;   
-    height: 140px; 
-    background-color: #f8f8f8;
+#queueForm #checkboxes{
+    border: 1px solid;
+    width: 200px;
+    padding: 4px;
+    height: 150px;
+    cursor: pointer;    
     overflow-y: auto; 
     overflow-x: hidden; 
-    list-style-type: none;
-    width: 180px;
-    font-family: sans-serif; 
-    font-size: 16px; 
-    color: black; 
-    text-shadow: 0px -1px 0px #f8f8f8;
-    border-radius: 7px;
-}
-
-#queueForm li{
-    padding: 5px;
-    width: 120px;
-}
-
-#queueForm .boxes{
-    float: left;
-    cursor: pointer;
 }
 
 #queueForm .checkboxLabel{
@@ -267,6 +190,53 @@ body{
     height: 1.5em;
 }
 
+#queueForm .boxes{
+    float: left;
+    cursor: pointer;
+}
+
+#queueForm ul{
+    margin: 0px;
+    padding: 7px;
+    display: inline-block;   
+    height: 140px; 
+    background-color: #f8f8f8;
+    list-style-type: none;
+    width: 180px;
+    font-family: sans-serif; 
+    font-size: 16px; 
+    color: black; 
+    text-shadow: 0px -1px 0px #f8f8f8;
+    border-radius: 7px;
+}
+
+#queueForm li{
+    padding: 5px;
+    width: 120px;
+}
+
+#queueForm select, #queueForm #checkboxes, #queueForm textarea{
+    margin-bottom: 10px;
+    border-radius: 5px;    
+    background-color: #f8f8f8;
+    font-size: 16px; 
+    color: black; 
+    border: none; 
+    border: 1px solid #ccc;
+}
+
+#queueForm textarea{
+    height: 65px;
+    width: 200px;
+    font-size: 15px;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+#queueForm textarea:focus {
+    background: #F0F8FF;
+}
+
 #queueForm ::-webkit-scrollbar {
     width: 12px;
 }
@@ -279,23 +249,27 @@ body{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-#queueForm .disabled{
-    background: #e1e1e1;
-    cursor: default;
+#queueForm .button{
+    font-family: sans-serif; 
+    font-size: 12px; 
+    color: #f2f2f2; 
+    text-transform: uppercase; 
+    text-shadow: 0px -1px 0px #334f71; 
+    width: 60px; 
+    height: 32px; 
+    -moz-box-shadow: 0px 0px 5px #999;
+    box-shadow: 0px 0px 5px #999;
+    border: 1px solid #556f8c;
+    background: #728eaa;
+    cursor: pointer;
+    margin: 6px;
 }
 
-#queueForm #queueFormLeft{
-    float: left;
+#queueForm img{
+    width: 220px;
 }
 
-#queueForm .queueFormMiddle{
-    display: inline-block;
-}
-
-#queueForm #queueFormRight{
-    float: right;
-}
-
+/********* OVERLAY END *********/
 
 .queueContainer {
     /*height: 100px;*/
