@@ -117,7 +117,6 @@ public class HomeController {
        Date a = new Date();
        queue.setDate(a);
        queue.setStatus(1);
-       JOptionPane.showMessageDialog(null, room + " " + table + " " + tasks + ", " + group + ", " +comment + ", " + a);
        queueJDBCTemplate.create(queue);
        return "redirect:home";
    }
