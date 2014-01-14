@@ -411,3 +411,8 @@ body{
     display: block;
     margin-bottom: 1%;
 }
+
+.errorMessageP{
+    color: red;
+    font-weight: bold;
+}
