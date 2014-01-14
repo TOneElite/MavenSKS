@@ -34,7 +34,7 @@
                 padding-top: 1%;
             }
 
-            #loginbutton{
+            .welcomebuttons{
                 height: 35px;
                 width: 80px;
             }

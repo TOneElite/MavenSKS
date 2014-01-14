@@ -1,6 +1,7 @@
 package org.teamone.controller;
 
 import java.util.Date;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.teamone.domain.EmailService;
 import org.teamone.domain.Queue;
 import org.teamone.domain.QueueJDBCTemplate;
 import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
+import org.apache.commons.lang.RandomStringUtils;
 
 @Controller
 public class HomeController {
@@ -176,9 +179,13 @@ public class HomeController {
    }
    
    @RequestMapping(value="/open/passwordReset/process")
-   public String processPasswordReset(@RequestParam("emailReset")String emailReset){
-       
-       
+   public String processPasswordReset(@RequestParam("emailReset")String emailReset) throws MessagingException{
+       String password = RandomStringUtils.random(8, true, true);
+       String email = "Hei, \n det nye passordet ditt er : " +
+               password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
+       userJDBCTemplate.setPassword(password, emailReset);
+       EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
+       es.sendMail(emailReset, "Reset password notification", email);
        return "redirect:/login";
    }
    
