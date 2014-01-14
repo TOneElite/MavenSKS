@@ -66,4 +66,9 @@
         <put-attribute name="title" value="Bytt Passord"/>
         <put-attribute name="body" value="/WEB-INF/jsp/change-password.jsp"/>
     </definition>
+    
+    <definition name="admin" extends="template">
+        <put-attribute name="title" value="Admin"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin.jsp"/>
+    </definition>
 </tiles-definitions>
