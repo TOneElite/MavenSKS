@@ -32,7 +32,7 @@ public class QueueJDBCTemplate {
     }
     
     public void update(Queue queue){
-        String SQL = "update queue set users=?, tasks=?, comment=?, tables=? where queue_id=?";
+        String SQL = "update queue set user=?, tasks=?, comment=?, location=? where queue_id=?";
         jdbcTemplateObject.update(SQL, new Object[]{
             queue.getUsers(),
             queue.getOv(),
@@ -43,7 +43,7 @@ public class QueueJDBCTemplate {
     }
     
     public void create(Queue queue){
-        String SQL = "insert into queue(time, users, ov, comment, status, tables) values(?,?,?,?,?,?)";
+        String SQL = "insert into queue(time, user, tasks, comment, status, location) values(?,?,?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{queue.getDate(), queue.getUsers(), queue.getOv(), queue.getComment(), queue.getStatus(), queue.getTables()});
     }
     
