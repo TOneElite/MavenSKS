@@ -15,7 +15,7 @@
     </form>
     <c:if test="${error}">
         <div id="changePasswordError">
-            <c:out value="${errorMessage}" />
+            <p class="errorMessageP"><c:out value="${errorMessage}" /></p>
         </div>
     </c:if>
 </div>
