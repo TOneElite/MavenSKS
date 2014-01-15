@@ -17,6 +17,13 @@
         <label for="password">Passord:</label>
         <input class="controller" id="password" name="password" type="password" placeholder="Lag et passord"/>
 
+        <label for="role">Rettigheter:</label>
+        <select class="multiSelect" name="role" multiple="multiple" size="4">
+            <option>Bruker</option>
+            <option>Studentassistent</option>
+            <option>Lærer</option>
+            <option>Admin</option>
+        </select>
         <input class="button" name="submit" type="submit" value="Legg til"/>
     </form>
     <c:if test="${error}">

@@ -20,6 +20,7 @@ import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
 import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.security.core.GrantedAuthority;
 
 @Controller
 public class HomeController {
@@ -46,6 +47,16 @@ public class HomeController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        System.out.println("test: " + auth.getAuthorities());
+        // Check for admin rights
+        boolean admin = false;
+        for(GrantedAuthority ga : auth.getAuthorities()){
+            if(ga.toString().equals("ROLE_ADMIN")){
+                System.out.println("is ADMIN!");
+                admin = true;
+            }
+        }
+        model.addAttribute("isAdmin", admin);
         return "home";
     }
 
