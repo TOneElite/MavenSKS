@@ -37,6 +37,7 @@
   </section>
 
 <section id="queue">
+    <form action="<c:url value="/access/teacherQueue"/>" method="POST">
     <table id="queueTable">
         <col width="6%">
         <col width="16%">
@@ -62,10 +63,17 @@
                 <td><c:out value="${queue.comment}"/></td>
                 <td><c:out value="${queue.status}"/></td>
                 <td><c:out value="${queue.tables}"/></td>
-                <td><button type="button">Fjern</button><button type="button">Utsett</button><button type="button">Godkjenn</button><button type="button">Hjelp</button></td>
+            
+                <td>
+                    <button name="remove" value="remove" type="submit">Fjern</button>
+                    <button name="postpone" type="submit">Utsett</button>
+                    <button name="approve" type="submit">Godkjenn</button>
+                    <button name="help" type="submit">Hjelp</button>
+                </td>            
             </tr>
         </c:forEach>
     </table>
+    </form>
 </section>
 
 <script language="javascript">
