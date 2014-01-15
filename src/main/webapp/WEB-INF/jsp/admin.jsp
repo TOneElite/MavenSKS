@@ -18,9 +18,9 @@
         <input class="controller" id="password" name="password" type="password" placeholder="Lag et passord"/>
 
         <label for="role">Rettigheter:</label>
-        <select class="multiSelect" name="role" multiple="multiple" size="4">
+        <select class="multiSelect" name="roles" multiple="multiple" size="4">
             <c:forEach var="role" items="${roles}">
-                <option value="${role}">${role.roleName}</option>
+                <option value="${role.roleName}">${role.roleName}</option>
             </c:forEach>
         </select>
         <input class="button" name="submit" type="submit" value="Legg til"/>
