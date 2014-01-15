@@ -12,7 +12,7 @@ body{
 #main-wrapper{
     width: 78%;
     padding: 1%;
-    margin: 4% auto;
+    margin: 2% auto;
 }
 
 
@@ -29,7 +29,7 @@ body{
     overflow: hidden;
     font-family: Tahoma;
     color: black;
-    border: 1px solid lightgray;
+    border-bottom: 1px solid gray;
     box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
@@ -403,8 +403,10 @@ h1{
 
 #footer{
     text-align: center;
-    background-color: #f3ede1;
     margin-top: 1%;
+    background-color: #d5ded9;
+    border-top: 1px solid gray;
+    box-shadow: 0px -1px 1px 1px #e3e8e5;
 }
 
 #footer p{
@@ -423,17 +425,32 @@ h1{
     box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
+#navigation #nav-nav{
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+}
+
+#navigation li{
+    margin-left: 5%;
+}
+
 #navigation a {
-    color: rgba(0, 0, 0, 0.6);
+    color: black;
     text-decoration: none;
+    text-shadow: 1px 1px 2px #d5ded9;
+}
+
+.navigationHeading{
+    font-weight: bold;
 }
 
 #navigation a:hover, li:hover {
-    color: #000;
+    color: #7F5137;
 }
 
 #navigation ul{
-    list-style: none;
+    list-style-type: circle;
     margin-left: 8%;
 }
 
