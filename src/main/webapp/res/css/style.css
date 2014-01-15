@@ -73,6 +73,7 @@ body{
 }
 
 #info{
+    margin-right: 2%;
     float:right;
     overflow: hidden;
     font-size: 1.5em;
