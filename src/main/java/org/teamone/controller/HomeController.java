@@ -21,6 +21,7 @@ import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.security.core.GrantedAuthority;
+import org.teamone.domain.RoleNameJDBCTemplate;
 
 @Controller
 public class HomeController {
@@ -33,6 +34,8 @@ public class HomeController {
     QueueJDBCTemplate queueJDBCTemplate;
     @Autowired
     RoomJDBCTemplate roomJDBCTemplate;
+    @Autowired
+    RoleNameJDBCTemplate roleNameJDBCTemplate;
 
     @RequestMapping(value = "/access/password", method = RequestMethod.GET)
     public String passView() {
@@ -116,6 +119,7 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
         return "admin";
     }
     

@@ -19,10 +19,9 @@
 
         <label for="role">Rettigheter:</label>
         <select class="multiSelect" name="role" multiple="multiple" size="4">
-            <option>Bruker</option>
-            <option>Studentassistent</option>
-            <option>Lærer</option>
-            <option>Admin</option>
+            <c:forEach var="role" items="${roles}">
+                <option value="${role}">${role.roleName}</option>
+            </c:forEach>
         </select>
         <input class="button" name="submit" type="submit" value="Legg til"/>
     </form>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
 import org.teamone.domain.QueueJDBCTemplate;
 import org.teamone.domain.RoleJDBCTemplate;
+import org.teamone.domain.RoleNameJDBCTemplate;
 import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
@@ -87,6 +88,13 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
         RoleJDBCTemplate roleJDBCTemplate = new RoleJDBCTemplate();
         roleJDBCTemplate.setDataSource(dataSource());
         return roleJDBCTemplate;
+    }
+    
+    @Bean
+    public RoleNameJDBCTemplate roleNameJDBCTemplate() {
+        RoleNameJDBCTemplate roleNameJDBCTemplate = new RoleNameJDBCTemplate();
+        roleNameJDBCTemplate.setDataSource(dataSource());
+        return roleNameJDBCTemplate;
     }
 
     @Override
