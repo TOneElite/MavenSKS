@@ -482,9 +482,13 @@ h1{
     font-weight: bold;
 }
 
-#adminWrapper .controller{
-    display: block;
+#adminWrapper .controller{            
     margin-bottom: 1%;
+    padding: 0.3%;
+    width: 190px;
+    height: 25px;
+    border-radius: 3px;
+    display: block;
 }
 
 #adminWrapper .button{
@@ -492,10 +496,17 @@ h1{
     height: 30px;
     display: block;
     margin-bottom: 1%;
+    background-color: white;
+    width: 100px;
+    height: 35px;
+
 }
 
 #adminWrapper{
     width: 100%;
-    background-color: #f3ede1;
-    padding: 1%;
-}
+    background-color: #F7F7F7;
+    padding: 3%;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
+    font-family: Arial;
+}  
