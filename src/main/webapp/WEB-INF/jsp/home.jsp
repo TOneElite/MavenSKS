@@ -20,7 +20,7 @@
 <section id="queueHeader">
 
     <div id="queueInfo">
-        <h1>Øvinger i Matematikk 2</h1>
+        <h1>Øvinger i <span id="subjectHeader"></span></h1>
         <p>1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19</p>
 
         <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
@@ -29,7 +29,7 @@
 
         <div class="queueContainer">
             <br><br><br>
-            <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
+            <span class="queueRulesHeader">Regler for øvingene &#x25BC;</span>
             <div class="queueRulesContent">
                 <p>
                     Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
@@ -76,6 +76,14 @@
 </section>
 
 <script language="javascript">
+    <c:set var="subject" value="${subjects[0].name}" />
+    sessionStorage.activeSubject = "${subject}";
+    document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+    function changeSubject(subject){
+        sessionStorage.activeSubject = subject;
+        document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+    }
+    
     $(".queueRulesHeader").click(function() {
 
         $queueRulesHeader = $(this);
@@ -85,10 +93,10 @@
         $queueRulesContent.slideToggle(500, function() {
             //execute this after slideToggle is done
             //change text of header based on visibility of content div
-            $queueRulesHeader.text(function() {
+            /*$queueRulesHeader.text = (function() {
                 //change text based on condition
-                return $queueRulesContent.is(":visible") ? "Regler for øvingene" : "Regler for øvingene";
-            });
+                return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
+            });*/
         });
     });
 
