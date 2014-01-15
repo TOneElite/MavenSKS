@@ -17,28 +17,18 @@
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 
 <section id="queueHeader">
+    <h1>Øvinger i Matematikk 2</h1>
     <div id="queueInfo">                         
-        <h1>Øvinger i Matematikk 2</h1>
+        
         <p>1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19</p>
-    </div>
-
-
-    <div>         
         <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
             <button id="queueButton" type="button">Stå i kø</button>
         </a>
     </div>
 
-
-    <div class="simple_overlay" id="overlay">
-        <jsp:include page="queueOverlay.jsp" />
-    </div>
-
-    <div class="queueContainer">
+                <div class="queueContainer">
         <br><br><br>
-        <div class="queueRulesHeader"><span>Regler for øvingene &#x25BC</span>
-
-        </div>
+       <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
         <div class="queueRulesContent">
             <p>
                 Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
@@ -46,6 +36,12 @@
             </p>
         </div>
     </div>
+
+    <div class="simple_overlay" id="overlay">
+        <jsp:include page="queueOverlay.jsp" />
+    </div>
+
+
 
 </section>
 
@@ -79,6 +75,8 @@
             </tr>
         </c:forEach>
     </table>
+    
+    
 </section>
 
 <script language="javascript">
