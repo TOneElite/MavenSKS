@@ -11,9 +11,8 @@ body{
 
 #main-wrapper{
     width: 78%;
-    margin: 0 auto;
-    margin-top: 1%;
     padding: 1%;
+    margin: 4% auto;
 }
 
 
@@ -24,7 +23,7 @@ body{
 }
 
 #banner{
-    padding: 1% 6%;
+    padding: 1% 10%;
     /*background-color: #f3ede1;*/
     background-color: #d5ded9;
     overflow: hidden;
@@ -109,11 +108,15 @@ h1{
     padding-bottom: 5px;
 }
 #queueInfo{
-    width: 100%;
+    width: 97%;
     /*border-top:3px solid lightgray;
     border-bottom:3px solid lightgray;*/
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
     margin-bottom:10px;
-    padding: 5px;    
+    padding: 1%;
+    overflow: hidden;
+    background-color: #F7F7F7;
 }
 
 #queueInfo p{
@@ -141,6 +144,7 @@ h1{
     font-family: verdana;
     font-weight: bold;
     cursor: pointer;
+    float:right;
 }
 
 #queueButton:hover {
@@ -353,10 +357,14 @@ h1{
 }
 
 #queue{
+    width: 97%;
+    padding: 1%;
     clear: both;
     height: 650px;
     font-family: arial;
     overflow-y: scroll;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
 #queueTable{
@@ -411,7 +419,6 @@ h1{
     background-color: #F7F7F7;
     float: left;
     font-family: "Open Sans", sans-serif;
-    margin-top: 100px;
     border: 1px solid lightgray;
     box-shadow: 0 1px 1px 1px #e3e8e5;
 }
