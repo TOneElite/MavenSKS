@@ -4,8 +4,7 @@
 
     <style>
 
-        #adminWrapper .controller{
-            display: block;
+        #adminWrapper .controller{            
             margin-bottom: 1%;
             padding: 0.3%;
             width: 190px;
@@ -32,7 +31,8 @@
             border: 1px solid lightgray;
             box-shadow: 0 1px 1px 1px #e3e8e5;
             font-family: Arial;
-        }
+        }     
+        
     </style>
 
     <h3>Legg til elev:</h3>
