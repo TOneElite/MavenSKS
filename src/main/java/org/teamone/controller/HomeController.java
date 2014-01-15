@@ -122,7 +122,7 @@ public class HomeController {
         return "admin";
     }
     
-    @RequestMapping(value="/access/admin/addUser", method = RequestMethod.GET)
+    @RequestMapping(value="/access/admin/addUser", method = RequestMethod.POST)
     public String addUserProcess(
             @RequestParam(value="firstName", required = false)String firstName,
             @RequestParam(value="surname", required = false)String surname,
@@ -138,7 +138,7 @@ public class HomeController {
         
         if(user.checkUserData()){
             userJDBCTemplate.create(user);
-            return "home";
+            return "redirect:home";
         }else{
             model.addAttribute("error", true);
             return "admin";

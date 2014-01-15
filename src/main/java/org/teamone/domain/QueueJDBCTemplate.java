@@ -43,6 +43,7 @@ public class QueueJDBCTemplate {
     }
     
     public void create(Queue queue){
+        System.out.println(queue.toString());
         String SQL = "insert into queue(timestamp, user, tasks, comment, status, location) values(?,?,?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             queue.getDate(), 

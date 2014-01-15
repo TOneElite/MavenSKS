@@ -4,7 +4,7 @@
 
     <h3>Legg til elev:</h3>
     <br/>
-    <form action="<c:url value="/access/admin/addUser" />" method="GET">
+    <form accept-charset="utf-8" action="<c:url value="/access/admin/addUser" />" method="POST">
         <label for="firstName">Fornavn:</label>
         <input class="controller" id="firstName" name="firstName" type="text" placeholder="Skriv inn fornavn" autofocus="autofocus"/>
 

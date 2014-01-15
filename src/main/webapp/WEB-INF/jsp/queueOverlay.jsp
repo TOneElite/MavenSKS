@@ -1,11 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <div id="queueForm">        
     <article id="left">
-        <h1>Stå i kø</h1>
+        <h1>StÃ¥ i kÃ¸</h1>
 
-        <form action="<c:url value="/access/testqueue" />" method="POST">  
+        <form accept-charset="utf-8" action="<c:url value="/access/testqueue" />" method="POST">  
             <label for="room">Rom:</label>  
             <select name="room" id="room" class="styledSelect">
                 <c:forEach var="room" items="${rooms}">
@@ -18,13 +20,13 @@
             <select name="table" id="table" class="styledSelect">
             </select><br>
 
-            <label>Øving:</label>
+            <label>Ã˜ving:</label>
 
             <section id="checkboxes">
                 <ul id="tasks">
                     <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" />
                     <c:forEach var="i" begin="1" end="${nr_of_tasks}">
-                        <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                        <li><label class="checkboxLabel">Ã˜ving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
                     </c:forEach>
                 </ul>
             </section>
