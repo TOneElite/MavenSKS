@@ -33,20 +33,6 @@ public class HomeController {
     @Autowired
     RoomJDBCTemplate roomJDBCTemplate;
 
-    /*
-     @RequestMapping("/*")
-     public String testView(Model model) {
-     model.addAttribute("queues", queueJDBCTemplate.listQueue());
-     return "home";
-     }
-     */
-    /*
-     * 
-     @RequestMapping("/*")
-     public String testView() {
-     return "home";
-     }
-     */
     @RequestMapping(value = "/access/password", method = RequestMethod.GET)
     public String passView() {
         return "usersettings";
@@ -138,7 +124,7 @@ public class HomeController {
         
         if(user.checkUserData()){
             userJDBCTemplate.create(user);
-            return "redirect:home";
+            return "redirect:/access/home";
         }else{
             model.addAttribute("error", true);
             return "admin";
