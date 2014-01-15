@@ -138,37 +138,6 @@ public class HomeController {
         return "admin";
     }
 
-    @RequestMapping(value = "/access/admin/addUser", method = RequestMethod.POST)
-    public String addUserProcess(
-            @RequestParam(value = "firstName", required = false) String firstName,
-            @RequestParam(value = "surname", required = false) String surname,
-            @RequestParam(value = "email", required = false) String email,
-            @RequestParam(value = "password", required = false) String password,
-            @RequestParam(value = "roles", required = false) String[] roles,
-            Model model) {
-
-        org.teamone.domain.User user = new org.teamone.domain.User();
-        user.setFirstName(firstName);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setPassword(password);
-
-        if (user.checkUserData()) {
-            userJDBCTemplate.create(user);
-            for (int i = 0; i < roles.length; i++) {
-                Role temp = new Role();
-                temp.setRoleName(roles[i]);
-                temp.setUsername(email);
-                roleJDBCTemplate.create(temp);
-            }
-            return "redirect:/access/home";
-        } else {
-            model.addAttribute("error", true);
-            return "admin";
-        }
-
-    }
-
     @RequestMapping(value = "/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value = "oldPassword") String oldPassword,
@@ -251,6 +220,61 @@ public class HomeController {
             model.addAttribute("errorMessage", "Eposten er feil");
             return "passwordReset";
         }
+    }
+
+    @RequestMapping(value = "/access/admin/addUser", method = RequestMethod.POST)
+    public String addUserProcess(
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "surname", required = false) String surname,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "roles", required = false) String[] roles,
+            Model model) {
+
+        org.teamone.domain.User user = new org.teamone.domain.User();
+        user.setFirstName(firstName);
+        user.setSurname(surname);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        if (user.checkUserData()) {
+            userJDBCTemplate.create(user);
+            for (int i = 0; i < roles.length; i++) {
+                Role temp = new Role();
+                temp.setRoleName(roles[i]);
+                temp.setUsername(email);
+                roleJDBCTemplate.create(temp);
+            }
+            return "redirect:/access/home";
+        } else {
+            model.addAttribute("error", true);
+            return "admin";
+        }
+
+    }
+
+    @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
+    public String teacherQueuePost(
+            @RequestParam(value = "remove", required = false) String remove,
+            @RequestParam(value = "postpone", required = false) String postpone,
+            @RequestParam(value = "help", required = false) String help,
+            @RequestParam("queueId") String queueId,
+            Model model) {
+        int id = Integer.parseInt(queueId);
+
+        if (remove != null) {
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+            queueJDBCTemplate.delete(id);
+        }
+        if (postpone != null) {
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+            queueJDBCTemplate.status(id, 2);
+        }
+        if (help != null) {
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+            queueJDBCTemplate.status(id, 3);
+        }
+        return "teacherQueue";
     }
 
 }

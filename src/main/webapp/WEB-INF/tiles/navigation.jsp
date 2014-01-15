@@ -18,6 +18,14 @@
             <li><a href="${subject.name}">${subject.name}</a></li>
             </c:forEach>
     </ul>
+    <section id="test">
+        <p class="navigationHeading">Test</p>
+        <ul>
+            <li>
+                <a href="<c:url value="/access/teacherQueue"/>">Lærerkø</a>
+            </li>
+        </ul>
+    </section>
     <!--
     <p class="navigationHeading">Testlinker</p>
     <ul>
