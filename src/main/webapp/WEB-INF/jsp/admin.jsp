@@ -6,7 +6,7 @@
     <br/>
     <form action="<c:url value="/access/admin/addUser" />" method="GET">
         <label for="firstName">Fornavn:</label>
-        <input class="controller" id="firstName" name="firstName" type="text" placeholder="Skriv inn fornavn"/>
+        <input class="controller" id="firstName" name="firstName" type="text" placeholder="Skriv inn fornavn" autofocus="autofocus"/>
 
         <label for="surname">Etternavn:</label>
         <input class="controller" id="surname" name="surname" type="text" placeholder="Skriv inn etternavn"/>
