@@ -1,14 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <div id="queueForm">        
     <article id="left">
         <h1>Stå i kø</h1>
 
-        <form action="#" method="post">  
+        <form action="<c:url value="/access/testqueue" />" method="POST">  
             <label for="room">Rom:</label>  
-            <select id="room" class="styledSelect">
+            <select name="room" id="room" class="styledSelect">
                 <c:forEach var="room" items="${rooms}">
                     <option value="${room.roomCode}" title="${room.tableCount}">${room.roomCode}</option>
                 </c:forEach>
@@ -16,25 +15,17 @@
             </select><br>
 
             <label for="table">Bord:</label>
-            <select id="table" class="styledSelect">
-                <c:set var="room" value="${rooms}"/>
-                <fmt:parseNumber var="tablecount" type="number" integerOnly="true" value="2" />
-                <c:forEach var="i" begin="1" end="${tablecount}" >
-                    <option><c:out value="${i}" /></option>
-                </c:forEach>
+            <select name="table" id="table" class="styledSelect">
             </select><br>
 
             <label>Øving:</label>
 
             <section id="checkboxes">
-                <ul>
-                    <li><label class="checkboxLabel">Øving 1<input class="boxes" type="checkbox" name="task" value="Øving 1"></label></li>
-                    <li><label class="checkboxLabel">Øving 2<input class="boxes" type="checkbox" name="task" value="Øving 2"></label></li>
-                    <li><label class="checkboxLabel">Øving 3<input class="boxes" type="checkbox" name="task" value="Øving 3"></label></li>
-                    <li><label class="checkboxLabel">Øving 14<input class="boxes" type="checkbox" name="task" value="Øving 14"></label></li>
-                    <li><label class="checkboxLabel">Øving 15<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
-                    <li><label class="checkboxLabel">Øving 16<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
-                    <li><label class="checkboxLabel">Øving 17<input class="boxes" type="checkbox" name="task" value="Øving 15"></label></li>
+                <ul id="tasks">
+                    <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" />
+                    <c:forEach var="i" begin="1" end="${nr_of_tasks}">
+                        <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                    </c:forEach>
                 </ul>
             </section>
 
@@ -51,7 +42,7 @@
 
 
             <label for="comment">Kommentar:</label>
-            <textarea style="resize:none"></textarea><br>
+            <textarea name="comment" style="resize:none"></textarea><br>
 
             <label></label>
             <input class="button" type="submit" value="OK"/>
@@ -105,5 +96,12 @@
 
         };
         group.onchange();
+        
+        var tasks = document.getElementById("tasks");
+        var tablecount = room.options[room.selectedIndex].title;
+                table.options.length = 0;
+                for (var i = 1; i <= tablecount; i++) {
+                    table.options[table.options.length] = new Option("Bord " + i);
+                }
     };
 </script>
