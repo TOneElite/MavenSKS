@@ -1,11 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <div id="queueForm">        
     <article id="left">
-        <h1>Stå i kø</h1>
+        <h1>STÃ… I KÃ˜</h1>
 
-        <form action="<c:url value="/access/testqueue" />" method="POST">  
+        <form accept-charset="utf-8" action="<c:url value="/access/testqueue" />" method="POST">  
             <label for="room">Rom:</label>  
             <select name="room" id="room" class="styledSelect">
                 <c:forEach var="room" items="${rooms}">
@@ -18,13 +20,13 @@
             <select name="table" id="table" class="styledSelect">
             </select><br>
 
-            <label>Øving:</label>
+            <label>ÃƒÂ˜ving:</label>
 
             <section id="checkboxes">
                 <ul id="tasks">
                     <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" />
                     <c:forEach var="i" begin="1" end="${nr_of_tasks}">
-                        <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                        <li><label class="checkboxLabel">Ã˜ving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
                     </c:forEach>
                 </ul>
             </section>
@@ -55,24 +57,29 @@
         <section id="group">
             <label style="text-align: left; margin-left:0;">Gruppe:</label><br /><br />
             <div class="styledSelect">
-                <ul id="selectedUserList" class="queueFormMiddle" style="height:auto;min-height:20px;"></ul>
+                <select id="selectedUserList" class="queueFormMiddle" style="height:auto;" size="6"></select>
             </div>
         </section>
 
     </article>    
 </div>  
 
-
 <script type="text/javascript">
-
+    /* TABLE options changes when you choose a ROOM */
     window.onload = function() {
         var room = document.getElementById("room");
         var table = document.getElementById("table");
+        
+        function pictureChange(room){
+            document.getElementById("img").src=room;
+        }
+        
         room.onchange = function() {
             if (this.value === "other") {
                 table.disabled = true;
                 table.className += " disabled";
                 table.options.length = 0;
+                pictureChange("<c:url value='../res/lab3.png'/>");
             }
             else {
                 table.disabled = false;
@@ -87,21 +94,24 @@
         };
         room.onchange();
 
+        /* Filling the GROUP box */
         var group = document.getElementById("group");
         var selectedUserList = document.getElementById("selectedUserList");
         group.onchange = function() {
-            var selectedUser = group.options[group.selectedIndex].title;
-            if (selectedUser !== "")
-                selectedUserList.innerHTML += "<li>" + selectedUser + "</li>";
-
+            var selectedUser = group.options[group.selectedIndex];
+            if (selectedUser.title !== "") {
+                selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser);
+                selectedUser.remove();
+            }
         };
         group.onchange();
+
+        selectedUserList.onchange = function() {
+            var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
+            group.options[group.options.length] = new Option(removeUser.text, removeUser);
+            removeUser.remove();
+        };
+        selectedUserList.onchange();
         
-        var tasks = document.getElementById("tasks");
-        var tablecount = room.options[room.selectedIndex].title;
-                table.options.length = 0;
-                for (var i = 1; i <= tablecount; i++) {
-                    table.options[table.options.length] = new Option("Bord " + i);
-                }
     };
 </script>

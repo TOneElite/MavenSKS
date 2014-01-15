@@ -8,6 +8,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
+    
     private ArrayList<UserRights> userRights;
 
     public String getFirstName() {

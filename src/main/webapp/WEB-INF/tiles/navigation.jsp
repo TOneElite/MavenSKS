@@ -3,11 +3,12 @@
 <section id="nav-nav">
     <p class="navigationHeading">Navigasjon</p>
     <ul>
-	<li><a href="<c:url value="/access/home"/>">Hjem</a></li>
-	<li><a href="">Oversikt</a></li>
-	<li><a href="">Øvinger</a></li>
-	<li><a href="<c:url value="admin"/>">Admin</a></li>
-        
+        <li><a href="<c:url value="/access/home"/>">Hjem</a></li>
+        <li><a href="">Oversikt</a></li>
+        <li><a href="">Øvinger</a></li>
+        <c:if test="${isAdmin}">
+            <li><a href="<c:url value="admin"/>">Admin</a></li>
+        </c:if>
     </ul>
 </section>
 <section id="nav-fag">
@@ -15,13 +16,13 @@
     <ul>
         <c:forEach var="subject" items="${subjects}">
             <li><a href="${subject.name}">${subject.name}</a></li>
-        </c:forEach>
+            </c:forEach>
     </ul>
     <!--
     <p class="navigationHeading">Testlinker</p>
     <ul>
-	<li><a href="testDatabase">DB: userList</a></li>
-	<li><a href="testDatabase2">DB: subjectList</a></li>
+        <li><a href="testDatabase">DB: userList</a></li>
+        <li><a href="testDatabase2">DB: subjectList</a></li>
         <li><a href="teacherQueue">Kø: lærerview</a></li>
     </ul>
     -->

@@ -20,6 +20,11 @@ import org.teamone.domain.RoomJDBCTemplate;
 import org.teamone.domain.UserJDBCTemplate;
 import org.teamone.domain.SubjectJDBCTemplate;
 import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.teamone.domain.Role;
+import org.teamone.domain.RoleJDBCTemplate;
+import org.teamone.domain.RoleName;
+import org.teamone.domain.RoleNameJDBCTemplate;
 
 @Controller
 public class HomeController {
@@ -32,21 +37,11 @@ public class HomeController {
     QueueJDBCTemplate queueJDBCTemplate;
     @Autowired
     RoomJDBCTemplate roomJDBCTemplate;
+    @Autowired
+    RoleNameJDBCTemplate roleNameJDBCTemplate;
+    @Autowired
+    RoleJDBCTemplate roleJDBCTemplate;
 
-    /*
-     @RequestMapping("/*")
-     public String testView(Model model) {
-     model.addAttribute("queues", queueJDBCTemplate.listQueue());
-     return "home";
-     }
-     */
-    /*
-     * 
-     @RequestMapping("/*")
-     public String testView() {
-     return "home";
-     }
-     */
     @RequestMapping(value = "/access/password", method = RequestMethod.GET)
     public String passView() {
         return "usersettings";
@@ -60,6 +55,17 @@ public class HomeController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        System.out.println("test: " + auth.getAuthorities());
+        // Check for admin rights
+        boolean admin = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+        }
+
         return "home";
     }
 
@@ -113,40 +119,57 @@ public class HomeController {
         model.addAttribute("username", auth.getName());
         return "change-password";
     }
-    
-    @RequestMapping(value="/access/admin")
-    public String adminView(Model model){
+
+    @RequestMapping(value = "/access/admin")
+    public String adminView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
+        // Check for admin rights
+        boolean admin = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+        }
         return "admin";
     }
-    
-    @RequestMapping(value="/access/admin/addUser", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/access/admin/addUser", method = RequestMethod.POST)
     public String addUserProcess(
-            @RequestParam(value="firstName", required = false)String firstName,
-            @RequestParam(value="surname", required = false)String surname,
-            @RequestParam(value="email", required = false)String email,
-            @RequestParam(value="password", required = false)String password,
-            Model model){
-        
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "surname", required = false) String surname,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "roles", required = false) String[] roles,
+            Model model) {
+
         org.teamone.domain.User user = new org.teamone.domain.User();
         user.setFirstName(firstName);
         user.setSurname(surname);
         user.setEmail(email);
         user.setPassword(password);
-        
-        if(user.checkUserData()){
+
+        if (user.checkUserData()) {
             userJDBCTemplate.create(user);
-            return "home";
-        }else{
+            for (int i = 0; i < roles.length; i++) {
+                Role temp = new Role();
+                temp.setRoleName(roles[i]);
+                temp.setUsername(email);
+                roleJDBCTemplate.create(temp);
+            }
+            return "redirect:/access/home";
+        } else {
             model.addAttribute("error", true);
             return "admin";
         }
-        
+
     }
-    
-    @RequestMapping(value="/access/change-password/process", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value = "oldPassword") String oldPassword,
             @RequestParam(value = "newPassword") String newPassword,
@@ -204,7 +227,7 @@ public class HomeController {
         queueJDBCTemplate.create(queue);
         return "redirect:home";
     }
-    
+
     @RequestMapping(value = "/open/passwordReset/process")
     public String processPasswordReset(@RequestParam("emailReset") String emailReset, Model model) throws MessagingException {
         String password = RandomStringUtils.random(8, true, true);
@@ -217,7 +240,7 @@ public class HomeController {
         if (valid) {
             EmailService es = new EmailService("noreply.skssystem@gmail.com", "weareteamone");
             es.sendMail(emailReset, "Reset password notification", email);
-            
+
             check = true;
             model.addAttribute("check", check);
             model.addAttribute("infoMessage", "Passordet er sendt til eposten du registerte");
