@@ -67,7 +67,11 @@
                 <td><c:out value="${queue.users}"/></td>
                 <td><c:out value="${queue.ov}"/></td>
                 <td><c:out value="${queue.comment}"/></td>
-                <td><c:out value="${queue.status}"/></td>
+                <td> <c:choose>
+                        <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
+                        <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
+                        <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
+                    </c:choose></td>
                 <td><c:out value="${queue.tables}"/></td>
                 <td><button type="button">Fjern</button><button type="button">Utsett</button></td>
             </tr>

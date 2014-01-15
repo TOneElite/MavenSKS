@@ -63,25 +63,21 @@
                         <td><c:out value="${queue.ov}"/></td>
                         <td><c:out value="${queue.comment}"/></td>
                         <td> <c:choose>
-                            <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/>
-                        </c:when>
-                            <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/>
-                        </c:when>
-                        <c:otherwise>
-                           <c:out value="${queue.status}"/>
-                        </c:otherwise>
-                    </c:choose></td>
-                       
-                    <td><c:out value="${queue.tables}"/></td>
-                    <td><c:out value="${queue.tables}"/></td>
-                    <td><input type="checkbox" name="queueId" value="${queue.id}"/></td>
+                                <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
+                                <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
+                                <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
+                            </c:choose></td>
 
-                    <td>                   
-                        <input name="remove" value="Slett" type="submit"/>
-                        <input name="postpone" value = "Utsett" type="submit"/>
-                        <input name="help" value="Hjelp" type="submit"/>
-                        <input name="approve" type="submit"/>
-                    </td>            
+                        <td><c:out value="${queue.tables}"/></td>
+                        <td><c:out value="${queue.tables}"/></td>
+                        <td><input type="checkbox" name="queueId" value="${queue.id}"/></td>
+
+                        <td>                   
+                            <input name="remove" value="Slett" type="submit"/>
+                            <input name="postpone" value = "Utsett" type="submit"/>
+                            <input name="help" value="Hjelp" type="submit"/>
+                            <input name="approve" type="submit"/>
+                        </td>            
                     </tr>
                 </c:forEach>
             </table>

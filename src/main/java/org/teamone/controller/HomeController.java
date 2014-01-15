@@ -261,18 +261,17 @@ public class HomeController {
             @RequestParam("queueId") String queueId,
             Model model) {
         int id = Integer.parseInt(queueId);
-
-        if (remove != null) {
-            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        if (remove != null) {            
             queueJDBCTemplate.delete(id);
-        }
-        if (postpone != null) {
             model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        }
+        if (postpone != null) {            
             queueJDBCTemplate.status(id, 2);
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
         }
         if (help != null) {
-            model.addAttribute("queues", queueJDBCTemplate.listQueue());
             queueJDBCTemplate.status(id, 3);
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());            
         }
         return "teacherQueue";
     }
