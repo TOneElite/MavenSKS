@@ -29,8 +29,10 @@
                 text-align: center;
                 width: 400px;
                 margin: 0 auto;
-                border: 1px solid #f3fced;
-                box-shadow: 0 2px 2px 2px #e3e8e5;
+                border: 1px solid lightgray;
+                box-shadow: 0 1px 1px 1px #e3e8e5;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
             }            
 
             #head{

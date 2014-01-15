@@ -6,7 +6,7 @@
 
 body{
     /*background-color: #fcf8ee;*/
-    background-color: #d6e3eb;
+    background-color: white;
 }
 
 #main-wrapper{
@@ -15,14 +15,62 @@ body{
     margin-top: 1%;
     padding: 1%;
 }
+
+
+/*************** BANNER START ********************/
+
+#Bannerlogo{
+    color: black;
+}
+
 #banner{
     padding: 1% 6%;
     /*background-color: #f3ede1;*/
-    background-color: #2a71a4;
+    background-color: #d5ded9;
     overflow: hidden;
+    font-family: Tahoma;
+    color: black;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
 }
-.link{
-    font-size: 0.8em;
+
+#banner a {
+    text-decoration:none;
+    color: black;
+}
+#banner a:visited {
+    text-decoration:none;
+    color: black;
+}
+
+#banner img{
+    width: 100px;
+    border-radius: 5px;
+}
+
+#banner ul{
+    list-style: none; 
+}
+#banner li{
+    color: black;
+    font-size: 0.65em;
+    float: left; 
+    white-space:pre; 
+    text-transform: uppercase; 
+    margin-right: 5px; 
+}
+
+#banner li:before{
+    content:"  /  "
+
+}
+
+#banner li:first-of-type:before{
+    content:" "
+}
+
+#banner li a:hover{
+    color:#878787
 }
 
 #info{
@@ -34,31 +82,48 @@ body{
 }
 .Bannerlogo{
     font-size: 4em;
-    font-family: "mekanik let", arial;
     display: inline;
     margin-left: 2%;
+    color: black;
+    font-family: Arial;
+    font-weight: bold;
 }
 #logo{
     float:left;
     width: 30%;
 }
 
+/******************* BANNER END *****************************/
+/********* QUEHEADER START ***********/
 
 #queueHeader{
-    background-color: #9ba6b5;
-    padding: 2%;
+    //background-color: #9ba6b5;
+    //padding: 2%;
     text-align: left;    
-    margin-bottom: 15px;
+    //margin-bottom: 15px;
     overflow: hidden;
+    font-family: Tahoma;
 }
 
+h1{
+    padding-bottom: 5px;
+}
 #queueInfo{
+    width: 100%;
+    /*border-top:3px solid lightgray;
+    border-bottom:3px solid lightgray;*/
+    margin-bottom:10px;
+    padding: 5px;    
+}
+
+#queueInfo p{
     float: left;
 }
+
 #queueInfo p{
-    font-size: 1em; 
-    font-family: courier;
-    font-weight: bold;
+    font-size: 1.3em; 
+    color: black;
+    font-family: sans-serif;
 }
 #queueInfo #accepted{
     background-color: #90ff46;
@@ -68,22 +133,16 @@ body{
 }
 
 #queueButton {
-    float: right;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ccccff), color-stop(1, #9999ff));
-    background:-moz-linear-gradient(center top, #63b8ee 5%, #468ccf 100%);
-    background-color:#9999ff;
-    text-indent:0;
-    border:1px solid #3866a3;
-    color:#14396a;
-    font-family:Arial;
-    font-size:1em;
-    font-weight:bold;
-    height:40px;
-    line-height:40px;
-    width:120px;
-    text-decoration:none;
-    text-align:center;
+    height: 35px;
+    width: 90px;
+    border-radius: 5px;
+    background-color: white;
+    color: #404245;
+    font-family: verdana;
+    font-weight: bold;
+    cursor: pointer;
 }
+
 #queueButton:hover {
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #468ccf), color-stop(1, #63b8ee) );
     background:-moz-linear-gradient( center top, #468ccf 5%, #63b8ee 100% );
@@ -272,6 +331,7 @@ body{
 }
 
 /********* OVERLAY END *********/
+/********* QUEUE START **********/
 
 .queueContainer {
     /*height: 100px;*/
@@ -287,7 +347,7 @@ body{
     cursor: pointer;
     font-weight: bold;
 }
-.queueContainer .queueRulesContent {
+.queueRulesContent {
     display: none;
     padding : 5px;
 }
@@ -307,7 +367,7 @@ body{
 }
 
 #queueTable tr:nth-child(odd) {
-    background: #f2f7ff;
+    background: #F7F7F7;
 }
 
 #queueTable tr:nth-child(even) {
@@ -324,12 +384,14 @@ body{
 }
 
 #queueTable th, #queue{
-    background-color: #9ba6b5;
+    background-color: #F7F7F7;
 }
 
 #queueTable td{
     height: 30px;
 }
+
+/********* QUEUE END **********/
 
 #footer{
     text-align: center;
@@ -342,13 +404,16 @@ body{
     padding-bottom: 1%;
 }
 
-
+/*********************** NAVIGATION START *******************************************/
 #navigation{
-    width: 18%;
+    width: 16%;
     padding: 1%;
-    background-color: #9ba6b5;
+    background-color: #F7F7F7;
     float: left;
     font-family: "Open Sans", sans-serif;
+    margin-top: 100px;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
 #navigation a {
