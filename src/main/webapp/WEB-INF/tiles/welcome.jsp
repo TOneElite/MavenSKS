@@ -20,34 +20,74 @@
                 color: #404245;
             }
 
-            #skslab{
-                font-size: 4em;
-                color: #a2adc1;
-                color: black;
-                font-family: Arial;
+            body{
+                background-color: white;
+                padding-top: 10%;
             }
 
             #welcomeScreen{
                 text-align: center;
-                margin-top: 15%;
+                width: 400px;
+                margin: 0 auto;
+                border: 1px solid #f3fced;
+                box-shadow: 0 2px 2px 2px #e3e8e5;
+            }            
+
+            #head{
+                background-color: #d5ded9;
+                /*background-color: #2c3d82;*/
+                width: 400px;
+                margin: 0 auto;                
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                color: black;
             }
 
-            #loginTile{
-                padding-top: 1%;
-                text-align: center;
-                width: 400px;
-                display: inline;
+            #skslab{
+                font-size: 4em;
+                color: black;
+                font-family: Arial;
+                font-weight: bold;
             }
 
             #login, #newpassword{
                 width: 400px;
                 height: 240px;
                 margin: 0 auto;
-                background-color: #a2adc1;
-                border-bottom-left-radius: 5px;
-                border-bottom-right-radius: 5px;
+                /*background-color: #a7dbd8;*/
+                background-color: #F7F7F7;
                 padding-bottom: 30px;
                 padding-top: 20px;
+            }
+
+            #forgotpassword{
+                margin-left: 100px;
+                font-size: 0.85em;
+            }
+
+            #goback{
+                margin-left: 160px;
+                font-size: 0.85em;
+            }
+
+            .field{
+                padding-left: 20px;
+                margin: 10px auto;
+                width: 190px;
+                height: 30px;
+                border-radius: 5px;
+                display: block;
+                -webkit-box-shadow:inset 0 0 1px gray;
+            }
+
+            input::-webkit-input-placeholder {
+                color: #404245;
+            } 
+
+            input:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0px 1000px white inset;
 
             }
 
@@ -63,10 +103,6 @@
                 cursor: pointer;
             }
 
-            .button:active{
-                background-color: #a2adc1;
-            }
-
             #newpassbutton{
                 margin-left: 115px;
                 height: 35px;
@@ -77,61 +113,12 @@
                 font-family: verdana;
                 font-weight: bold;
                 cursor: pointer;
-            }
-
-            body{
-                background-color: #d6e3eb;
-            }
-
-            .welcomeMargin{
-                margin-bottom: 0.5%;
-            }
-
-            .field{
-                padding-left: 20px;
-                margin: 10px auto;
-                width: 190px;
-                height: 30px;
-                border-radius: 5px;
-                display: block;
-                -webkit-box-shadow:inset 0 0 1px gray;
-            }
-
-            input::-webkit-input-placeholder {
-                /*color: rgba(0,5,143,.5);*/
-                color: #404245;
-            }     
-
-            #forgotpassword{
-                margin-left: 100px;
-                font-size: 0.85em;
-            }
-
-            #goback{
-                margin-left: 160px;
-                font-size: 0.85em;
-            }
+            }    
 
             #remember{
                 font-size: 0.75em;
                 color: #404245;
-            }
-
-            input:-webkit-autofill {
-                -webkit-box-shadow: 0 0 0px 1000px white inset;
-
-            }
-
-            #head{
-                background-color: #2a71a4;
-                /*background-color: #2c3d82;*/
-                width: 400px;
-                margin: 0 auto;                
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                padding-top: 30px;
-                padding-bottom: 20px;
-                color: black;
+                cursor: pointer;
             }
 
             #loginimg{
@@ -140,30 +127,25 @@
                 padding-top: 55px;
             }
 
-                        #passimg{
+            #passimg{
                 width: 60px;
                 border-radius: 5px;
                 padding-top: 99px;
             }
-            
-            #remember{
-                cursor: pointer;
-            }
-            
-            
+
+
+
 
         </style>
     </head>
     <body>
         <div id="welcomeScreen">
-            <section id="head">
-<div id="skstext">
-    <label id="skslab">SKS 2.0</label></div>
-                <div id="logo">
-                    
-                    
-                    </section>
-                    <div id="loginTile"><tiles:insertAttribute name="body"/></div>
-                </div>
-                </body>
-                </html>
+            <div id="head">
+                <label id="skslab">SKS 2.0</label>
+            </div>
+            <div id="loginTile">
+                <tiles:insertAttribute name="body"/>
+            </div>
+        </div>
+    </body>
+</html>
