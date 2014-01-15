@@ -19,7 +19,9 @@
             height: 30px;
             display: block;
             margin-bottom: 1%;
-            color: white;
+            background-color: white;
+            width: 100px;
+            height: 35px;
             
         }
 
