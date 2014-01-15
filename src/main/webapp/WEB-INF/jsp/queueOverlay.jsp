@@ -5,7 +5,7 @@
 
 <div id="queueForm">        
     <article id="left">
-        <h1>Stå i kø</h1>
+        <h1>STÅ I KØ</h1>
 
         <form accept-charset="utf-8" action="<c:url value="/access/testqueue" />" method="POST">  
             <label for="room">Rom:</label>  
@@ -20,7 +20,7 @@
             <select name="table" id="table" class="styledSelect">
             </select><br>
 
-            <label>Øving:</label>
+            <label>Ãving:</label>
 
             <section id="checkboxes">
                 <ul id="tasks">
@@ -57,24 +57,29 @@
         <section id="group">
             <label style="text-align: left; margin-left:0;">Gruppe:</label><br /><br />
             <div class="styledSelect">
-                <ul id="selectedUserList" class="queueFormMiddle" style="height:auto;min-height:20px;"></ul>
+                <select id="selectedUserList" class="queueFormMiddle" style="height:auto;" size="6"></select>
             </div>
         </section>
 
     </article>    
 </div>  
 
-
 <script type="text/javascript">
-
+    /* TABLE options changes when you choose a ROOM */
     window.onload = function() {
         var room = document.getElementById("room");
         var table = document.getElementById("table");
+        
+        function pictureChange(room){
+            document.getElementById("img").src=room;
+        }
+        
         room.onchange = function() {
             if (this.value === "other") {
                 table.disabled = true;
                 table.className += " disabled";
                 table.options.length = 0;
+                pictureChange("<c:url value='../res/lab3.png'/>");
             }
             else {
                 table.disabled = false;
@@ -89,21 +94,24 @@
         };
         room.onchange();
 
+        /* Filling the GROUP box */
         var group = document.getElementById("group");
         var selectedUserList = document.getElementById("selectedUserList");
         group.onchange = function() {
-            var selectedUser = group.options[group.selectedIndex].title;
-            if (selectedUser !== "")
-                selectedUserList.innerHTML += "<li>" + selectedUser + "</li>";
-
+            var selectedUser = group.options[group.selectedIndex];
+            if (selectedUser.title !== "") {
+                selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser);
+                selectedUser.remove();
+            }
         };
         group.onchange();
+
+        selectedUserList.onchange = function() {
+            var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
+            group.options[group.options.length] = new Option(removeUser.text, removeUser);
+            removeUser.remove();
+        };
+        selectedUserList.onchange();
         
-        var tasks = document.getElementById("tasks");
-        var tablecount = room.options[room.selectedIndex].title;
-                table.options.length = 0;
-                for (var i = 1; i <= tablecount; i++) {
-                    table.options[table.options.length] = new Option("Bord " + i);
-                }
     };
 </script>
