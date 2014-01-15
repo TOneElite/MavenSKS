@@ -5,6 +5,7 @@ public class Subject {
     private String code;
     private String name;
     private int status;
+    private int nrOfTasks;
 
     public String getCode() {
         return code;
@@ -30,8 +31,16 @@ public class Subject {
         this.status = status;
     }
 
+    public int getNrOfTasks() {
+        return nrOfTasks;
+    }
+
+    public void setNrOfTasks(int nr_of_tasks) {
+        this.nrOfTasks = nr_of_tasks;
+    }
+
     @Override
     public String toString() {
-        return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + '}';
+        return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + ", nr_of_tasks=" + nrOfTasks + '}';
     }
 }
