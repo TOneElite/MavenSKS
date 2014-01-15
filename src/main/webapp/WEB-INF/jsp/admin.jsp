@@ -2,39 +2,6 @@
 
 <div id="adminWrapper">
 
-    <style>
-
-        #adminWrapper .controller{            
-            margin-bottom: 1%;
-            padding: 0.3%;
-            width: 190px;
-            height: 25px;
-            border-radius: 3px;
-            display: block;
-        }
-
-        #adminWrapper .button{
-            width: 100px;
-            height: 30px;
-            display: block;
-            margin-bottom: 1%;
-            background-color: white;
-            width: 100px;
-            height: 35px;
-            
-        }
-
-        #adminWrapper{
-            width: 100%;
-            background-color: #F7F7F7;
-            padding: 3%;
-            border: 1px solid lightgray;
-            box-shadow: 0 1px 1px 1px #e3e8e5;
-            font-family: Arial;
-        }     
-        
-    </style>
-
     <h3>Legg til elev:</h3>
     <br/>
     <form action="<c:url value="/access/admin/addUser" />" method="GET">
