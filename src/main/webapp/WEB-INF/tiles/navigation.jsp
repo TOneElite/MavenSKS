@@ -15,8 +15,8 @@
     <p class="navigationHeading">Fag</p>
     <ul>
         <c:forEach var="subject" items="${subjects}">
-            <li><a href="${subject.name}">${subject.name}</a></li>
-            </c:forEach>
+            <li><a href="#" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+        </c:forEach>
     </ul>
     <section id="test">
         <p class="navigationHeading">Test</p>

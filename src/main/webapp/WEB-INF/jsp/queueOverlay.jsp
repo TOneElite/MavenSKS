@@ -5,7 +5,7 @@
 
 <div id="queueForm">        
     <article id="left">
-        <h1>STÅ I KØ</h1>
+        <h1>Stå i kø</h1>
 
         <form accept-charset="utf-8" action="<c:url value="/access/testqueue" />" method="POST">  
             <label for="room">Rom:</label>  
@@ -20,14 +20,15 @@
             <select name="table" id="table" class="styledSelect">
             </select><br>
 
-            <label>Ãving:</label>
+            <label>Øving:</label>
 
             <section id="checkboxes">
                 <ul id="tasks">
-                    <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" />
+                    <c:set var="nr_of_tasks" value="activeSubjects" />
+                    <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" /> <!-- HER MÅ DET INN ACTIVESUBJECT FRA JAVASCRIPT, BUT HAOWWW!?!=!==!=!?!?!??! -->
                     <c:forEach var="i" begin="1" end="${nr_of_tasks}">
                         <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
-                    </c:forEach>
+                            </c:forEach>
                 </ul>
             </section>
 
@@ -67,13 +68,14 @@
 <script type="text/javascript">
     /* TABLE options changes when you choose a ROOM */
     window.onload = function() {
+
         var room = document.getElementById("room");
         var table = document.getElementById("table");
-        
-        function pictureChange(room){
-            document.getElementById("img").src=room;
+
+        function pictureChange(room) {
+            document.getElementById("img").src = room;
         }
-        
+
         room.onchange = function() {
             if (this.value === "other") {
                 table.disabled = true;
@@ -112,6 +114,6 @@
             removeUser.remove();
         };
         selectedUserList.onchange();
-        
+
     };
 </script>
