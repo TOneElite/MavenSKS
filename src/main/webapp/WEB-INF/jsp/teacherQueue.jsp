@@ -37,7 +37,7 @@
     </section>
 
     <section id="queue">
-        <form action="<c:url value="/access/teacherQueue"/>" method="POST">
+        <form action="<c:url value="/access/approveInQueue"/>" method="POST">
             <table id="queueTable">
                 <col width="6%">
                 <col width="16%">
@@ -76,13 +76,14 @@
                             <input name="remove" value="Slett" type="submit"/>
                             <input name="postpone" value = "Utsett" type="submit"/>
                             <input name="help" value="Hjelp" type="submit"/>
-                            <input name="approve" type="submit"/>
+                            <input name="approve" value="Godkjenn" type="submit"/>
                         </td>            
                     </tr>
                 </c:forEach>
             </table>
         </form>
     </section>
+            
 
     <script language="javascript">
         $(".queueRulesHeader").click(function() {
@@ -100,8 +101,6 @@
                 });
             });
         });
-
-        $("a[rel]").overlay();
     </script> 
 
 </div>

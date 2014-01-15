@@ -96,12 +96,7 @@ public class HomeController {
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         return "teacherQueue";
     }
-
-    @RequestMapping("/access/approveInQueue")
-    public String approveInQueue() {
-        return "approveInQueue";
-    }
-
+    
     @RequestMapping("/access/eksamensrapport")
     public String examOverview() {
         return "eksamensrapport";
@@ -253,27 +248,34 @@ public class HomeController {
 
     }
 
-    @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
+    @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String teacherQueuePost(
             @RequestParam(value = "remove", required = false) String remove,
             @RequestParam(value = "postpone", required = false) String postpone,
             @RequestParam(value = "help", required = false) String help,
+            @RequestParam(value = "approve", required = false) String approve,
             @RequestParam("queueId") String queueId,
             Model model) {
         int id = Integer.parseInt(queueId);
-        if (remove != null) {            
+        if (remove != null) {
             queueJDBCTemplate.delete(id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue());
         }
-        if (postpone != null) {            
+        if (postpone != null) {
             queueJDBCTemplate.status(id, 2);
             model.addAttribute("queues", queueJDBCTemplate.listQueue());
         }
         if (help != null) {
             queueJDBCTemplate.status(id, 3);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue());            
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        }
+        if (approve != null) {
+            model.addAttribute("queue", queueJDBCTemplate.getQueue(id));
+             return "approveInQueue";
         }
         return "teacherQueue";
     }
+    
+    
 
 }

@@ -1,30 +1,30 @@
-        <ul class="left">
-            <li>Ida</li>
-            <li><label class="checkboxLabel">Øving 1<input type="checkbox" name="task" value="Øving 1"></label></li>
-            <li><label class="checkboxLabel">Øving 2<input type="checkbox" name="task" value="Øving 2" checked></label></li>
-            <li><label class="checkboxLabel">Øving 3<input type="checkbox" name="task" value="Øving 3"></label></li>
-            <li><label class="checkboxLabel">Øving 14<input type="checkbox" name="task" value="Øving 14"></label></li>
-            <li><label class="checkboxLabel">Øving 15<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 16<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 17<input type="checkbox" name="task" value="Øving 15"></label></li>
-        </ul>
-        <ul class="middle">
-            <li>Tom</li>
-            <li><label class="checkboxLabel">Øving 1<input type="checkbox" name="task" value="Øving 1"></label></li>
-            <li><label class="checkboxLabel">Øving 2<input type="checkbox" name="task" value="Øving 2" checked></label></li>
-            <li><label class="checkboxLabel">Øving 3<input type="checkbox" name="task" value="Øving 3"></label></li>
-            <li><label class="checkboxLabel">Øving 14<input type="checkbox" name="task" value="Øving 14"></label></li>
-            <li><label class="checkboxLabel">Øving 15<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 16<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 17<input type="checkbox" name="task" value="Øving 15"></label></li>
-        </ul>
-        <ul class="right">
-            <li>Ole</li>
-            <li><label class="checkboxLabel">Øving 1<input type="checkbox" name="task" value="Øving 1"></label></li>
-            <li><label class="checkboxLabel">Øving 2<input type="checkbox" name="task" value="Øving 2" checked></label></li>
-            <li><label class="checkboxLabel">Øving 3<input type="checkbox" name="task" value="Øving 3"></label></li>
-            <li><label class="checkboxLabel">Øving 14<input type="checkbox" name="task" value="Øving 14"></label></li>
-            <li><label class="checkboxLabel">Øving 15<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 16<input type="checkbox" name="task" value="Øving 15"></label></li>
-            <li><label class="checkboxLabel">Øving 17<input type="checkbox" name="task" value="Øving 15"></label></li>
-        </ul>
+
+<section id="queue">
+            <table id="queueTable">
+                <col width="6%">
+                <col width="16%">
+                <col width="10%">
+                <col width="20%">
+                <col width="15%">
+                <col width="10%">
+                <col width="15%">
+                <tr>
+                    <th>Tid</th>
+                    <th>Navn</th>
+                    <th>Øving(er)</th>
+                    <th>Kommentar</th>
+                    <th>Status</th>
+                    <th>Bord</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                    <tr>
+                        
+                        <td>${queue.date}</td>
+                        <td>${queue.users}</td>
+                        <td>${queue.ov}</td>
+                        <td>${queue.id}</td>
+                 
+                    </tr>
+            </table>
+    </section>
