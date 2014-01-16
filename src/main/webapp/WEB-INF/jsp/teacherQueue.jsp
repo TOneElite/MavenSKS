@@ -70,9 +70,7 @@
 
                         <td><c:out value="${queue.tables}"/></td>
                         <td><c:out value="${queue.tables}"/></td>
-                        <td><input type="checkbox" name="queueId" value="${queue.id}"/></td>
-
-                        <td>                   
+                        <td><input type="checkbox" name="queueId" value="${queue.id}"/>                 
                             <input name="remove" value="Slett" type="submit"/>
                             <input name="postpone" value = "Utsett" type="submit"/>
                             <input name="help" value="Hjelp" type="submit"/>
