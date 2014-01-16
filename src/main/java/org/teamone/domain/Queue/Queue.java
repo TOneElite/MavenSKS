@@ -1,4 +1,4 @@
-package org.teamone.domain;
+package org.teamone.domain.Queue;
 
 import java.util.Date;
 

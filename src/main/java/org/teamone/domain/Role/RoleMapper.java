@@ -1,5 +1,5 @@
 
-package org.teamone.domain;
+package org.teamone.domain.Role;
 
 /**
  *

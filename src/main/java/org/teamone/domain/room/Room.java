@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.teamone.domain;
+package org.teamone.domain.room;
 
 /**
  *
