@@ -451,7 +451,7 @@ h1{
 }
 
 #navigation ul{
-    list-style-type: circle;
+    list-style-type: disc;
     margin-left: 8%;
 }
 
