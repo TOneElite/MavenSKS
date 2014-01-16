@@ -222,7 +222,7 @@ h1{
     width: 210px;
     height: 35px;
     -webkit-appearance: none; 
-    background: url('arrow.jpg') no-repeat right #f8f8f8;
+    background: url('./arrow.jpg') no-repeat right #f8f8f8;
     padding: 5px 15px;      
     overflow: hidden;
     font-family: sans-serif; 
