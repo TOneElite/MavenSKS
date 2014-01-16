@@ -1,4 +1,4 @@
-package org.teamone.domain;
+package org.teamone.domain.Role;
 
 import java.util.List;
 import javax.sql.DataSource;

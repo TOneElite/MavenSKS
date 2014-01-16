@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.teamone.domain.EmailService;
-import org.teamone.domain.UserJDBCTemplate;
+import org.teamone.logic.EmailService;
+import org.teamone.domain.User.UserJDBCTemplate;
 
 @Controller
 public class AccountController {
@@ -45,7 +45,7 @@ public class AccountController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // Get old password from database
-        org.teamone.domain.User user = userJDBCTemplate.getUserByEmail(auth.getName());
+        org.teamone.domain.User.User user = userJDBCTemplate.getUserByEmail(auth.getName());
         String dbOldPassword = user.getPassword();
 
         boolean error = false;

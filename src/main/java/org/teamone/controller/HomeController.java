@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.teamone.domain.QueueJDBCTemplate;
-import org.teamone.domain.RoomJDBCTemplate;
-import org.teamone.domain.UserJDBCTemplate;
-import org.teamone.domain.SubjectJDBCTemplate;
+import org.teamone.domain.Queue.QueueJDBCTemplate;
+import org.teamone.domain.room.RoomJDBCTemplate;
+import org.teamone.domain.User.UserJDBCTemplate;
+import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 
 @Controller

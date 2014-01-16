@@ -13,13 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
-import org.teamone.domain.QueueJDBCTemplate;
-import org.teamone.domain.RoleJDBCTemplate;
-import org.teamone.domain.RoleNameJDBCTemplate;
-import org.teamone.domain.RoomJDBCTemplate;
-import org.teamone.domain.UserJDBCTemplate;
-import org.teamone.domain.SubjectJDBCTemplate;
-import org.teamone.domain.UserRightsJDBCTemplate;
+import org.teamone.domain.Queue.QueueJDBCTemplate;
+import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Role.RoleNameJDBCTemplate;
+import org.teamone.domain.room.RoomJDBCTemplate;
+import org.teamone.domain.User.UserJDBCTemplate;
+import org.teamone.domain.Subject.SubjectJDBCTemplate;
+import org.teamone.domain.userRights.UserRightsJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation

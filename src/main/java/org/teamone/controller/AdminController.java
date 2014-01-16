@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.teamone.domain.Role;
-import org.teamone.domain.RoleJDBCTemplate;
-import org.teamone.domain.RoleNameJDBCTemplate;
-import org.teamone.domain.SubjectJDBCTemplate;
-import org.teamone.domain.UserJDBCTemplate;
+import org.teamone.domain.Role.Role;
+import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Role.RoleNameJDBCTemplate;
+import org.teamone.domain.Subject.SubjectJDBCTemplate;
+import org.teamone.domain.User.UserJDBCTemplate;
 
 @Controller
 public class AdminController {
@@ -54,7 +54,7 @@ public class AdminController {
             @RequestParam(value = "roles", required = false) String[] roles,
             Model model) {
 
-        org.teamone.domain.User user = new org.teamone.domain.User();
+        org.teamone.domain.User.User user = new org.teamone.domain.User.User();
         user.setFirstName(firstName);
         user.setSurname(surname);
         user.setEmail(email);

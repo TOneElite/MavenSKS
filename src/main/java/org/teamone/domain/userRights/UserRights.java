@@ -1,4 +1,7 @@
-package org.teamone.domain;
+package org.teamone.domain.userRights;
+
+import org.teamone.domain.Subject.Subject;
+import org.teamone.domain.Role.Role;
 
 /**
  *

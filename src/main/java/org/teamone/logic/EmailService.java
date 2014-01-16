@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.teamone.domain;
+package org.teamone.logic;
 
 import java.util.Properties;
 import javax.mail.Message;

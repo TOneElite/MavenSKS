@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.teamone.domain.Queue;
-import org.teamone.domain.QueueJDBCTemplate;
+import org.teamone.domain.Queue.Queue;
+import org.teamone.domain.Queue.QueueJDBCTemplate;
 
 @Controller
 public class QueueController {

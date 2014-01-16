@@ -1,4 +1,4 @@
-package org.teamone.domain;
+package org.teamone.domain.Role;
 
 public class RoleName {
     private String roleName;

@@ -1,4 +1,4 @@
-package org.teamone.domain;
+package org.teamone.domain.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
