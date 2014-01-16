@@ -1,30 +1,30 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <section id="queue">
-            <table id="queueTable">
-                <col width="6%">
-                <col width="16%">
-                <col width="10%">
-                <col width="20%">
-                <col width="15%">
-                <col width="10%">
-                <col width="15%">
-                <tr>
-                    <th>Tid</th>
-                    <th>Navn</th>
-                    <th>Øving(er)</th>
-                    <th>Kommentar</th>
-                    <th>Status</th>
-                    <th>Bord</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                    <tr>
-                        
-                        <td>${queue.date}</td>
-                        <td>${queue.users}</td>
-                        <td>${queue.ov}</td>
-                        <td>${queue.id}</td>
-                 
-                    </tr>
-            </table>
-    </section>
+    <form action="<c:url value="/access/teacherQueue"/>" method="POST">
+        <table id="approvetasks">
+            <tr>                        
+            </tr>
+        </table>
+        
+        <c:set var="string" value="${queue.ov}"/>
+        <c:set var="tasktab" value="${fn:split(string, ', ')}"/>
+
+        <ul>
+            <c:forEach var="i" items="${tasktab}">
+                <li><label class="checkboxLabel">Ã˜ving ${i}<input class="boxes" type="checkbox" name="task" value="${queue.users}, ${i}" checked="checked"></label></li>
+                    </c:forEach>
+        </ul>
+
+        <input type="hidden" name="queueId" value="${queue.id}">
+        <input name="approved" value="Godkjenn" type="submit"/>
+        <input name="cancel" value="Avbryt" type="submit"/>
+    </form>
+</section>
+
+
+
+
