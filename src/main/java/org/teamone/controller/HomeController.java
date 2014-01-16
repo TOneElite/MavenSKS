@@ -25,13 +25,6 @@ public class HomeController {
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
 
-    /*
-    @RequestMapping(value = "/access/password", method = RequestMethod.GET)
-    public String passView() {
-        return "usersettings";
-    }
-    */
-
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
