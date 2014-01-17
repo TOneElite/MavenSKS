@@ -11,6 +11,7 @@ public class Queue {
     private String comment;
     private int status;
     private String tables;
+    private String subjectCode;
 
     public int getId() {
 	return id;
@@ -66,6 +67,16 @@ public class Queue {
     public void setDate(Date date){
         this.date = date;
     }
+
+    public String getSubjectCode() {
+        return subjectCode;
+    }
+
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
+    }
+    
+    
     @Override
     public String toString(){
         return "User: " + users + ", comment: " + comment;

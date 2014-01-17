@@ -12,6 +12,7 @@ import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -24,7 +25,7 @@ public class HomeController {
     private QueueJDBCTemplate queueJDBCTemplate;
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
-
+    
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -33,6 +34,29 @@ public class HomeController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        System.out.println("test: " + auth.getAuthorities());
+        // Check for admin rights
+        boolean admin = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+        }
+
+        return "home";
+    }
+
+    @RequestMapping(value = "/access/{subjectCode}", method = RequestMethod.GET)
+    public String homeView(Model model, @PathVariable String subjectCode) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("activeSubject", subjectCode);
         System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights
         boolean admin = false;

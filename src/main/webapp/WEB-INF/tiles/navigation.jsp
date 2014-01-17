@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <section id="nav-nav">
     <p class="navigationHeading">Navigasjon</p>
@@ -15,7 +16,7 @@
     <p class="navigationHeading">Fag</p>
     <ul>
         <c:forEach var="subject" items="${subjects}">
-            <li><a href="#" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+            <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
         </c:forEach>
     </ul>
     <section id="test">

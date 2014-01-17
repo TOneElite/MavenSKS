@@ -23,7 +23,8 @@ public class QueueController {
             @RequestParam("table") String table,
             @RequestParam("task") String[] task,
             @RequestParam("group") String group,
-            @RequestParam("comment") String comment) {
+            @RequestParam("comment") String comment, 
+            @RequestParam("subjectCode") String subjectCode) {
         String tasks = "";
         for (int i = 0; i < task.length; i++) {
             tasks += task[i] + ", ";
@@ -41,6 +42,7 @@ public class QueueController {
         Date a = new Date();
         queue.setDate(a);
         queue.setStatus(1);
+        queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue);
         return "redirect:home";
     }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.teamone.domain.Queue;
 
 import java.sql.ResultSet;
@@ -20,6 +16,7 @@ public class QueueMapper implements RowMapper<Queue> {
         queue.setComment(rs.getString("comment"));
         queue.setStatus(rs.getInt("status"));
         queue.setTables(rs.getString("location"));
+        queue.setSubjectCode(rs.getString("subject_code"));
         return queue;
     }
     

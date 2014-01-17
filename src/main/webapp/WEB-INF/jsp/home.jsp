@@ -82,8 +82,8 @@
 </section>
 
 <script language="javascript">
-    <c:set var="subject" value="${subjects[0].name}" />
-    sessionStorage.activeSubject = "${subject}";
+    <c:set var="defaultSubject" value="${subjects[0]}" />
+    if (sessionStorage.activeSubject == null) sessionStorage.activeSubject = "${defaultSubject.name}";
     document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
     function changeSubject(subject){
         sessionStorage.activeSubject = subject;
