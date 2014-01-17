@@ -1,5 +1,6 @@
 package org.teamone.domain.UserTask;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,4 +26,11 @@ public class UserTaskJDBCTemplate {
             userTasks.getSubjectCode(),
             userTasks.getTaskNr()});
     }
+    
+    /*
+    public List<UserTask> getApprovedTasks(String email, String subject_code){
+        String SQL = "SELECT task_nr from user_tasks where email=? subject_code=?";
+        List<UserTask> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
+        return tasks;
+    } */
 }

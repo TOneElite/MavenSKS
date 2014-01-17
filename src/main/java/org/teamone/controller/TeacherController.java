@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
+import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 
@@ -17,11 +18,15 @@ public class TeacherController {
     private QueueJDBCTemplate queueJDBCTemplate;
 
     @Autowired
+    private SubjectJDBCTemplate subjectJDBCTemplate;
+
+    @Autowired
     private UserTaskJDBCTemplate userTasksJDBCTemplate;
 
     @RequestMapping("/access/teacherQueue")
     public String teacherQueue(Model model) {
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "teacherQueue";
     }
 
@@ -76,12 +81,12 @@ public class TeacherController {
                 userTask.setEmail(temp[0]);
                 userTask.setSubjectCode("TDAT1005");
                 userTask.setTaskNr(Integer.parseInt(temp[1]));
-                userTasksJDBCTemplate.approve(userTask);               
+                userTasksJDBCTemplate.approve(userTask);
             }
-             queueJDBCTemplate.delete(Integer.parseInt(queueId));
-                model.addAttribute("queues", queueJDBCTemplate.listQueue());
-                return "teacherQueue";
-            
+            queueJDBCTemplate.delete(Integer.parseInt(queueId));
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+            return "teacherQueue";
+
         }
         return "teacherQueue";
     }
