@@ -604,7 +604,7 @@ h1{
     padding-bottom: 2%;
     margin-bottom: 2%;
     overflow: hidden;
-    
+
 }
 
 #adminTabs{
@@ -624,49 +624,45 @@ h1{
 }
 
 .teacherbuttons{
-	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
-	
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
-	
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
-	background-color:#bddbfa;
-	-webkit-border-top-left-radius:42px;
-	
-	border-top-left-radius:42px;
-	-webkit-border-top-right-radius:42px;
-	
-	border-top-right-radius:42px;
-	-webkit-border-bottom-right-radius:42px;
-	-moz-border-radius-bottomright:42px;
-	border-bottom-right-radius:42px;
-	-webkit-border-bottom-left-radius:42px;
-	-moz-border-radius-bottomleft:42px;
-	border-bottom-left-radius:42px;
-	text-indent:0;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:35px;
-	line-height:35px;
-	width:35px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #528ecc;
-        
-        cursor: pointer;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
+    background-color:#bddbfa;
+    -webkit-border-top-left-radius:42px;
+
+    border-top-left-radius:42px;
+    -webkit-border-top-right-radius:42px;
+
+    border-top-right-radius:42px;
+    -webkit-border-bottom-right-radius:42px;
+    -moz-border-radius-bottomright:42px;
+    border-bottom-right-radius:42px;
+    -webkit-border-bottom-left-radius:42px;
+    -moz-border-radius-bottomleft:42px;
+    border-bottom-left-radius:42px;
+    text-indent:0;
+    border:1px solid #84bbf3;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    font-style:normal;
+    height:35px;
+    line-height:35px;
+    width:35px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 1px 0px #528ecc;
+
+    cursor: pointer;
 }
 .teacherbuttons:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa) );
-	background:-moz-linear-gradient( center top, #80b5ea 5%, #bddbfa 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
-	background-color:#80b5ea;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa) );
+    background:-moz-linear-gradient( center top, #80b5ea 5%, #bddbfa 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
+    background-color:#80b5ea;
 }.teacherbuttons :active {
-	position:relative;
-	top:1px;
+    position:relative;
+    top:1px;
 }
 
 #teacherQueue td:not(#buttons){

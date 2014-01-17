@@ -57,7 +57,7 @@
                         <td class="click"><c:out value="${queue.tables}"/></td>    
                         <td id="buttons"><p>
                                 <!--<input type="checkbox" name="queueId" value="${queue.id}"/>-->
-                                <input type="hidden" name="queueId" value="${queue.id}"/>
+                                <input type="hidden" name="queueId" value="${queue.id}">
                                 <input class="teacherbuttons" name="help" value="&#x2661;" type="submit"/>
                                 <input class="teacherbuttons" name="approve" value="&#x2713;" type="submit"/>
                                 <input class="teacherbuttons" name="remove" value="X" type="submit"/>                                                            
@@ -96,13 +96,14 @@
         });
 
         $(document).ready(function() {
-                    $('td p').hide();
-                    $('.click').click(function() {
-                                $('td p').hide();
-                                $(this).closest('tr').find('p').show();
-                            }
-                    );
-                }
+            $('td p').hide();
+            $('td p:first').show();
+            $('.click').click(function() {
+                $('td p').hide();
+                $(this).closest('tr').find('p').show();
+            }
+            );
+        }
         );
 
 
