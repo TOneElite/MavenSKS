@@ -3,64 +3,78 @@
 <div id="adminWrapper">
     <section class="adminSection">
         <h3>Fagpanel</h3>
-        <table id="subjectTable">
-            <tr class="subjectTableRow">
-                <th class="subjectHeader subjectCell">Fagkode</th>
-                <th class="subjectHeader subjectCell">Fagnavn</th>
-                <th class="subjectHeader subjectCell">Lærer</th>
-                <th class="subjectHeader subjectCell">Valg</th>
-            </tr>
-            <c:forEach var="subject" items="${subjects}">
-                <tr class="subjectTableRow">
-                    <td class="subjectCell">${subject.code}</td>
-                    <td class="subjectCell">${subject.name}</td>
-                    <td class="subjectCell">Ikke Implementert</td>
-                    <td class="subjectCell">
-                        <a href="#" class="adminLinks">Detaljer</a>
-                        <a href="#" class="adminLinks editLinkPadding">Endre</a>
-                        <a href="#" class="adminLinks editLinkPadding">Slett</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+        <br/>
+        <div id="adminSubjectList">
+            <h4>Fagliste:</h4>
+            <br/>
+            <div class="scroll">
+                <table id="subjectTable">
+                    <tr class="subjectTableRow">
+                        <th class="subjectHeader subjectCell">Fagkode</th>
+                        <th class="subjectHeader subjectCell">Fagnavn</th>
+                        <th class="subjectHeader subjectCell">Lærer</th>
+                        <th class="subjectHeader subjectCell">Valg</th>
+                    </tr>
+                    <c:forEach var="subject" items="${subjects}">
+                        <tr class="subjectTableRow">
+                            <td class="subjectCell">${subject.code}</td>
+                            <td class="subjectCell">${subject.name}</td>
+                            <td class="subjectCell">Ikke Implementert</td>
+                            <td class="subjectCell">
+                                <a href="#" class="adminLinks">Detaljer</a>
+                                <a href="#" class="adminLinks editLinkPadding">Endre</a>
+                                <a href="#" class="adminLinks editLinkPadding">Slett</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+        <div id="adminSubjectForm">
+            <h4>Legg til fag:</h4>
+            <br/>
+            <form>
+                <label for="subjectCode">Fagkode</label>
+                <input type="text" placeholder="Skriv inn fagkode" class="controller"/>
+
+                <label for="subjectName">Fagnavn</label>
+                <input type="text" placeholder="Skriv inn fagnavn" class="controller"/>
+
+                <input type="submit" value="Legg Til" class="button"/>
+            </form>
+        </div>
     </section>
     <section class="adminSection">
         <h3>Brukere</h3>
         <br/>
+
         <div id="adminUserList">
             <h4>Brukerliste:</h4>
             <br/>
-            <table id="adminUserTable">
-                <tr>
-                    <th class="subjectHeader">Fornavn</th>
-                    <th class="subjectHeader">Etternavn</th>
-                    <th class="subjectHeader">E-post</th>
-                    <th class="subjectHeader">Aktiv</th>
-                    <th class="subjectHeader">Valg</th>
-                </tr>
-                <tr>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Ja</td>
-                    <td class="adminUserTableCell">
-                        <a href="#" class="adminLinks">Detaljer</a>
-                        <a href="#" class="adminLinks editLinkPadding">Endre</a>
-                        <a href="#" class="adminLinks editLinkPadding">Slett</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Test</td>
-                    <td class="adminUserTableCell">Ja</td>
-                    <td class="adminUserTableCell">
-                        <a href="#" class="adminLinks">Detaljer</a>
-                        <a href="#" class="adminLinks editLinkPadding">Endre</a>
-                        <a href="#" class="adminLinks editLinkPadding">Slett</a>
-                    </td>
-                </tr>
-            </table>
+            <div class="scroll">
+                <table id="adminUserTable">
+                    <tr>
+                        <th class="adminUserHeading">Fornavn</th>
+                        <th class="adminUserHeading">Etternavn</th>
+                        <th class="adminUserHeading">E-post</th>
+                        <th class="adminUserHeading">Aktiv</th>
+                        <th class="adminUserHeading">Valg</th>
+                    </tr>
+                    <c:forEach var="user" items="${users}">
+                        <tr>
+                            <td class="aminUserTableCell">${user.firstName}</td>
+                            <td class="aminUserTableCell">${user.surname}</td>
+                            <td class="aminUserTableCell">${user.email}</td>
+                            <td class="aminUserTableCell">Ikke Implementert</td>
+                            <td class="adminUserTableEditCell">
+                                <a href="#" class="adminLinks">Detaljer</a>
+                                <a href="#" class="adminLinks editLinkPadding">Endre</a>
+                                <a href="#" class="adminLinks editLinkPadding">Slett</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
         <div id="adminAddUserForm">
             <h4>Legg til bruker:</h4>
@@ -93,4 +107,5 @@
             </c:if>
         </div>
     </section>
+    <br clear="both"/>
 </div>

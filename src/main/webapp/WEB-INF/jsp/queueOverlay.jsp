@@ -50,7 +50,11 @@
             <label></label>
             <input class="button" type="submit" value="OK"/>
             <input class="button" type="button" value="Avbryt"/>
-
+            
+            <select style="display:none" name="subjectCode" >
+                <c:set var="subject" value="${activeSubject}" />
+                <option selected value="${subject}"></option>
+            </select>
         </form>
     </article>
     <article id="right">

@@ -19,9 +19,16 @@ public class QueueJDBCTemplate {
         Queue queue = (Queue) jdbcTemplateObject.queryForObject(SQL, new Object[]{ID}, new QueueMapper());
         return queue;
     }
-
+    
     public List<Queue> listQueue() {
         String SQL = "SELECT * FROM queue";
+        List<Queue> queues = jdbcTemplateObject.query(SQL, new QueueMapper());
+        return queues;
+    }
+
+    // Returns queueposts with the given subjectCode
+    public List<Queue> listQueue(String subjectCode) {
+        String SQL = "SELECT * FROM queue WHERE subject_code='"+subjectCode+"'";
         List<Queue> queues = jdbcTemplateObject.query(SQL, new QueueMapper());
         return queues;
     }
@@ -48,14 +55,15 @@ public class QueueJDBCTemplate {
 
     public void create(Queue queue) {
         System.out.println(queue.toString());
-        String SQL = "insert into queue(timestamp, user, tasks, comment, status, location) values(?,?,?,?,?,?)";
+        String SQL = "insert into queue(timestamp, user, tasks, comment, status, location, subject_code) values(?,?,?,?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             queue.getDate(),
             queue.getUsers(),
             queue.getOv(),
             queue.getComment(),
             queue.getStatus(),
-            queue.getTables()});
+            queue.getTables(), 
+            queue.getSubjectCode()});
     }
 
 }

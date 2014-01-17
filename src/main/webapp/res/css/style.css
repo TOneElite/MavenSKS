@@ -485,26 +485,49 @@ h1{
 
 
 /*********************** Admin START ***********************/
+#adminSubjectList{
+    width: 80%;
+    height: 175px;
+    float: left;
+}
+
+#adminSubjectForm{
+    width: 18%;
+    float: right;
+}
+
 #adminAddUserForm{
     width: 18%;
     float: right;
 }
 
+.scroll{
+    overflow-y: scroll;
+}
+
 #adminUserList{
-    width: 78%;
-    height: 100px;
+    width: 80%;
+    height: 370px;
     float: left;
 }
 
-.adminUserTableCell{
-    width: 18%;
+.aminUserTableCell{
+    width: 17%;
+    padding: 1%;
+}
+.adminUserTableEditCell{
+    width: 20%;
+    padding: 1%;
+}
+
+.adminUserHeading{
+    text-align: left;
     padding: 1%;
 }
 
 #adminUserTable{
     width: 100%;
     border-collapse: collapse;
-    
 }
 
 #adminUserTable tr:nth-child(odd) {
@@ -532,7 +555,7 @@ h1{
     background-color: white;
     width: 100px;
     height: 35px;
-
+    margin-top: 15px;
 }
 
 .multiSelect{
