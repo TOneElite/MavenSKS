@@ -1,10 +1,10 @@
-package org.teamone.domain.userTasks;
+package org.teamone.domain.UserTask;
 
 /**
  *
  * @author Ida
  */
-public class UserTasks {
+public class UserTask {
 
     private String email;
     private String subjectCode;

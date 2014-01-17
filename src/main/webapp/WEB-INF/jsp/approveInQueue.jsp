@@ -5,11 +5,6 @@
 
 <section id="queue">
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
-        <table id="approvetasks">
-            <tr>                        
-            </tr>
-        </table>
-        
         <c:set var="string" value="${queue.ov}"/>
         <c:set var="tasktab" value="${fn:split(string, ', ')}"/>
 

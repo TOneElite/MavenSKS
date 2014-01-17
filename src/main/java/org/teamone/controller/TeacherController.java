@@ -1,18 +1,23 @@
 package org.teamone.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
+import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
+import org.teamone.domain.UserTask.UserTask;
 
 @Controller
 public class TeacherController {
 
     @Autowired
     private QueueJDBCTemplate queueJDBCTemplate;
+
+    @Autowired
+    private UserTaskJDBCTemplate userTasksJDBCTemplate;
 
     @RequestMapping("/access/teacherQueue")
     public String teacherQueue(Model model) {
@@ -53,4 +58,31 @@ public class TeacherController {
         return "teacherQueue";
     }
 
+    @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
+    public String approve(
+            @RequestParam(value = "cancel", required = false) String cancel,
+            @RequestParam(value = "approved", required = false) String approve,
+            @RequestParam("task") String[] tasks,
+            @RequestParam("queueId") String queueId,
+            Model model) {
+        if (cancel != null) {
+            model.addAttribute("queues", queueJDBCTemplate.listQueue());
+            return "teacherQueue";
+        }
+        if (approve != null) {
+            for (int i = 0; i < tasks.length; i++) {
+                String[] temp = tasks[i].split(", ");
+                UserTask userTask = new UserTask();
+                userTask.setEmail(temp[0]);
+                userTask.setSubjectCode("TDAT1005");
+                userTask.setTaskNr(Integer.parseInt(temp[1]));
+                userTasksJDBCTemplate.approve(userTask);               
+            }
+             queueJDBCTemplate.delete(Integer.parseInt(queueId));
+                model.addAttribute("queues", queueJDBCTemplate.listQueue());
+                return "teacherQueue";
+            
+        }
+        return "teacherQueue";
+    }
 }

@@ -20,6 +20,7 @@ import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
+import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation
@@ -61,40 +62,47 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
         subjectJDBCTemplate.setDataSource(dataSource());
         return subjectJDBCTemplate;
     }
-    
+
     @Bean
     public QueueJDBCTemplate queueJDBCTemplate() {
         QueueJDBCTemplate queueJDBCTemplate = new QueueJDBCTemplate();
         queueJDBCTemplate.setDataSource(dataSource());
         return queueJDBCTemplate;
     }
-    
+
     @Bean
     public RoomJDBCTemplate roomJDBCTemplate() {
         RoomJDBCTemplate roomJDBCTemplate = new RoomJDBCTemplate();
         roomJDBCTemplate.setDataSource(dataSource());
         return roomJDBCTemplate;
     }
-	
-	@Bean
+
+    @Bean
     public UserRightsJDBCTemplate userRightsJDBCTemplate() {
         UserRightsJDBCTemplate userRightsJDBCTemplate = new UserRightsJDBCTemplate();
         userRightsJDBCTemplate.setDataSource(dataSource());
         return userRightsJDBCTemplate;
     }
-	
-	@Bean
+
+    @Bean
     public RoleJDBCTemplate roleJDBCTemplate() {
         RoleJDBCTemplate roleJDBCTemplate = new RoleJDBCTemplate();
         roleJDBCTemplate.setDataSource(dataSource());
         return roleJDBCTemplate;
     }
-    
+
     @Bean
     public RoleNameJDBCTemplate roleNameJDBCTemplate() {
         RoleNameJDBCTemplate roleNameJDBCTemplate = new RoleNameJDBCTemplate();
         roleNameJDBCTemplate.setDataSource(dataSource());
         return roleNameJDBCTemplate;
+    }
+
+    @Bean
+    public UserTaskJDBCTemplate userTaskemplate() {
+        UserTaskJDBCTemplate userTaskJDBCTemplate = new UserTaskJDBCTemplate();
+        userTaskJDBCTemplate.setDataSource(dataSource());
+        return userTaskJDBCTemplate;
     }
 
     @Override
