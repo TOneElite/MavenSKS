@@ -487,8 +487,7 @@ h1{
 /*********************** Admin START ***********************/
 #adminSubjectList{
     width: 80%;
-    height: 200px;
-    overflow-y: scroll;
+    height: 175px;
     float: left;
 }
 
@@ -502,11 +501,14 @@ h1{
     float: right;
 }
 
+.scroll{
+    overflow-y: scroll;
+}
+
 #adminUserList{
     width: 80%;
     height: 370px;
     float: left;
-    overflow-y: scroll;
 }
 
 .aminUserTableCell{
