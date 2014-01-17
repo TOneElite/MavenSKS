@@ -35,7 +35,7 @@
 
             <label for="group">Studenter:</label>
             <div class="styledSelect">
-                <select name="group" id="group" class="queueFormMiddle">
+                <select name="group" id="groupList" class="queueFormMiddle">
                     <option selected value="Alene">Alene</option>
                     <c:forEach var="user" items="${users}">
                         <option value="${user.email}" title="${fn:substring(user.firstName, 0, 1)}.${user.surname}">${user.surname}, ${user.firstName}</option>
@@ -51,6 +51,7 @@
             <input class="button" type="submit" value="OK"/>
             <input class="button" type="button" value="Avbryt"/>
             
+            <!-- Send in the active subject. Might need alternative coding.-->
             <select style="display:none" name="subjectCode" >
                 <c:set var="subject" value="${activeSubject}" />
                 <option selected value="${subject}"></option>
@@ -101,7 +102,7 @@
         room.onchange();
 
         /* Filling the GROUP box */
-        var group = document.getElementById("group");
+        var group = document.getElementById("groupList");
         var selectedUserList = document.getElementById("selectedUserList");
         group.onchange = function() {
             var selectedUser = group.options[group.selectedIndex];

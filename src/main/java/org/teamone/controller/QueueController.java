@@ -22,7 +22,7 @@ public class QueueController {
     public String form(@RequestParam("room") String room,
             @RequestParam("table") String table,
             @RequestParam("task") String[] task,
-            @RequestParam("group") String group,
+            @RequestParam("group") String[] group,
             @RequestParam("comment") String comment, 
             @RequestParam("subjectCode") String subjectCode) {
         String tasks = "";
@@ -33,11 +33,12 @@ public class QueueController {
         queue.setTables(room + ", " + table);
         queue.setOv(tasks);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (group.equals("Alene")) {
+        if (group.length <= 1) {
             queue.setUsers(auth.getName());
         } else {
-            queue.setUsers(group);
+            queue.setUsers(group[0]); // Insert loop with setUsers for each item in group, when database can handle it.
         }
+        for (Object user : group) System.out.println(" *** " + user + ". Length: " + group.length);
         queue.setComment(comment);
         Date a = new Date();
         queue.setDate(a);
