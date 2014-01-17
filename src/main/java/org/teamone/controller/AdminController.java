@@ -82,6 +82,7 @@ public class AdminController {
     public String adminHomeView(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("username", auth.getName());
         
         return "admin";
