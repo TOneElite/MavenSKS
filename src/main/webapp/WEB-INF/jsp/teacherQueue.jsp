@@ -54,7 +54,6 @@
                     <th>Status</th>
                     <th>Bord</th>
                     <th></th>
-                    <th></th>
                 </tr>
                 <c:forEach var="queue" items="${queues}">
                     <tr>
@@ -69,15 +68,18 @@
                             </c:choose></td>
 
                         <td><c:out value="${queue.tables}"/></td>
-                        <td><c:out value="${queue.tables}"/></td>
-
-                        <td><input type="checkbox" name="queueId" value="${queue.id}"/>
+                        <td><c:out value="${queue.tables}"/></td>         
+                    </tr>
+                    <tr><td colspan="8">
+                            <p>
+                            <input type="checkbox" name="queueId" value="${queue.id}"/>
 
                             <input name="remove" value="Slett" type="submit"/>
                             <input name="postpone" value = "Utsett" type="submit"/>
                             <input name="help" value="Hjelp" type="submit"/>
                             <input name="approve" value="Godkjenn" type="submit"/>
-                        </td>            
+                            </p>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
@@ -107,6 +109,19 @@
                     //change text based on condition
                     return $queueRulesContent.is(":visible") ? "Regler for øvingene" : "Regler for øvingene";
                 });
+            });
+        });
+
+        $(function() {
+            $("td[colspan=8]").find("p").hide();
+            $("table").click(function(event) {
+                event.stopPropagation();
+                var $target = $(event.target);
+                if ($target.closest("td").attr("colspan") > 1) {
+                    $target.slideUp();
+                } else {
+                    $target.closest("tr").next().find("p").slideToggle();
+                }
             });
         });
     </script> 
