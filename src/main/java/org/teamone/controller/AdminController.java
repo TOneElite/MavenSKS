@@ -26,6 +26,8 @@ public class AdminController {
     private RoleNameJDBCTemplate roleNameJDBCTemplate;
     @Autowired
     private RoleJDBCTemplate roleJDBCTemplate;
+    
+    
 
     @RequestMapping(value = "/access/admin")
     public String adminView(Model model) {
@@ -74,6 +76,15 @@ public class AdminController {
             return "admin";
         }
 
+    }
+    
+    @RequestMapping(value="/admin")
+    public String adminHomeView(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("username", auth.getName());
+        
+        return "admin";
     }
 
 }

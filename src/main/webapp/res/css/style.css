@@ -483,6 +483,38 @@ h1{
     font-weight: bold;
 }
 
+
+/*********************** Admin START ***********************/
+#adminAddUserForm{
+    width: 18%;
+    float: right;
+}
+
+#adminUserList{
+    width: 78%;
+    height: 100px;
+    float: left;
+}
+
+.adminUserTableCell{
+    width: 18%;
+    padding: 1%;
+}
+
+#adminUserTable{
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+#adminUserTable tr:nth-child(odd) {
+    background: #F7F7F7;
+}
+
+#adminUserTable tr:nth-child(even) {
+    background: #FFFFFF;
+}
+
 #adminWrapper .controller{            
     margin-bottom: 1%;
     padding: 0.3%;
@@ -503,6 +535,12 @@ h1{
 
 }
 
+.multiSelect{
+    display: block;
+    width: 200px;
+    margin-bottom: 1%;
+}
+
 #adminWrapper{
     width: 100%;
     background-color: #F7F7F7;
@@ -512,8 +550,52 @@ h1{
     font-family: Arial;
 }  
 
-.multiSelect{
-    display: block;
-    width: 200px;
-    margin-bottom: 1%;
+#subjectTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#subjectTable tr:nth-child(odd) {
+    background: #F7F7F7;
+}
+
+#subjectTable tr:nth-child(even) {
+    background: #FFFFFF;
+}
+
+.subjectHeader{
+    text-align: left;
+}
+
+.subjectCell{
+    width: 23%;
+    padding: 1%;
+}
+
+.editLinkPadding{
+    padding-left: 5%;
+}
+
+.adminSection{
+    border-bottom: 1px dashed lightgray;
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+    overflow: hidden;
+    
+}
+
+#adminTabs{
+    list-style: none;
+}
+
+#adminTabs li{
+    display: inline;
+}
+
+.adminLinks{
+    color: black;
+}
+
+.adminLinks:hover{
+    color: #7F5137;
 }
