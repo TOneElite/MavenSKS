@@ -21,7 +21,7 @@
     <section id="queueHeader">
 
         <div id="queueInfo">
-            <h1>Øvinger i Matematikk 2</h1>
+            <h1>Øvinger i <span id="subjectHeader"></span></h1>
             <button id="queueButton" type="button">Åpne køen</button>
 
             <div class="queueContainer">
@@ -70,9 +70,9 @@
 
                         <td><c:out value="${queue.tables}"/></td>
                         <td><c:out value="${queue.tables}"/></td>
-                        <td><input type="checkbox" name="queueId" value="${queue.id}"/></td>
 
-                        <td>                   
+                        <td><input type="checkbox" name="queueId" value="${queue.id}"/>
+
                             <input name="remove" value="Slett" type="submit"/>
                             <input name="postpone" value = "Utsett" type="submit"/>
                             <input name="help" value="Hjelp" type="submit"/>
@@ -83,9 +83,17 @@
             </table>
         </form>
     </section>
-            
+
 
     <script language="javascript">
+        <c:set var="subject" value="${subjects[0].name}" />
+        sessionStorage.activeSubject = "${subject}";
+        document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+        function changeSubject(subject) {
+            sessionStorage.activeSubject = subject;
+            document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+        }
+
         $(".queueRulesHeader").click(function() {
 
             $queueRulesHeader = $(this);

@@ -22,7 +22,9 @@
     <div id="queueInfo">
         <h1>Øvinger i <span id="subjectHeader"></span></h1>
         <p>1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19</p>
-
+        <p></p>
+        <p>
+        
         <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
             <button id="queueButton" type="button">Stå i kø</button>
         </a>
