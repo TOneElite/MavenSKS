@@ -67,7 +67,7 @@ public class TeacherController {
     public String approve(
             @RequestParam(value = "cancel", required = false) String cancel,
             @RequestParam(value = "approved", required = false) String approve,
-            @RequestParam("task") String[] tasks,
+            @RequestParam(value = "task", required = false) String[] tasks,
             @RequestParam("queueId") String queueId,
             Model model) {
         if (cancel != null) {
