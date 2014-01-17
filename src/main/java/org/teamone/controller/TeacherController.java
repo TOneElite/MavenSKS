@@ -1,5 +1,6 @@
 package org.teamone.controller;
 
+import java.util.StringTokenizer;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
+import org.teamone.domain.User.User;
+import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 
@@ -16,6 +19,8 @@ public class TeacherController {
 
     @Autowired
     private QueueJDBCTemplate queueJDBCTemplate;
+    @Autowired 
+    private UserJDBCTemplate userJDBCTemplate;
 
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
@@ -62,6 +67,31 @@ public class TeacherController {
         }
         return "teacherQueue";
     }
+    
+    @RequestMapping(value = "/access/readfile")
+    public String readfile(){
+        return "readfile";
+    }
+    
+    @RequestMapping(value = "/access/fileread", method = RequestMethod.POST)
+    public String fileread(
+            @RequestParam("output") String fileread){
+        StringTokenizer stringTokenizer = new StringTokenizer(fileread);
+        String forr = stringTokenizer.nextToken();
+        String last = stringTokenizer.nextToken();
+        String email = stringTokenizer.nextToken();
+        String pw = stringTokenizer.nextToken();
+        String[] words= fileread.split("\\s+");
+        User user = new User();
+        for(int i = 0; i < (words.length/4) - 1; i++){
+            user.setFirstName(stringTokenizer.nextToken());
+            user.setSurname(stringTokenizer.nextToken());
+            user.setEmail(stringTokenizer.nextToken());
+            user.setPassword(stringTokenizer.nextToken());
+            userJDBCTemplate.create(user);
+        }
+        return "redirect:home";
+    }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
     public String approve(
@@ -91,3 +121,4 @@ public class TeacherController {
         return "teacherQueue";
     }
 }
+

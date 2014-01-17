@@ -71,4 +71,9 @@
         <put-attribute name="title" value="Admin"/>
         <put-attribute name="body" value="/WEB-INF/jsp/admin.jsp"/>
     </definition>
+    
+    <definition name="readfile" extends="template">
+        <put-attribute name="title" value="AddtoDB"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/readfile.jsp"/>
+    </definition>
 </tiles-definitions>
