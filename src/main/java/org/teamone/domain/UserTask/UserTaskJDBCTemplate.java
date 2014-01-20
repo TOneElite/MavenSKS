@@ -18,13 +18,14 @@ public class UserTaskJDBCTemplate {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
-    public examReport(String SubjectCode){
-        //SQL koder
-        //Subjectkode
-        //Antall Øvinger
+    public String examReport(String SubjectCode){
+        String subjectSQL = "SELECT subject_name FROM Subject";
+        String taskSQL = "";
+        String numbOfTasksSQL="";
+        
         //Student liste med øvinger
         
-        
+        return "Hei!";
     }
 
     public void approve(UserTask userTasks) {
