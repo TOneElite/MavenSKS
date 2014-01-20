@@ -24,10 +24,10 @@
         <p>1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19</p>
         <p></p>
         <p>
-        
-        <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
-            <button id="queueButton" type="button">Stå i kø</button>
-        </a>
+
+            <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
+                <button id="queueButton" type="button">Stå i kø</button>
+            </a>
 
         <div class="queueContainer">
             <br><br><br>
@@ -75,21 +75,27 @@
                         <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                     </c:choose></td>
                 <td><c:out value="${queue.tables}"/></td>
-                <td><button type="button">Fjern</button><button type="button">Utsett</button></td>
-            </tr>
+               
+                        <td> <c:choose>
+                    <c:when test="${queue.users==username}">   
+                        <button type="button">Fjern</button></c:when>
+                    </c:choose></td>
+
+                </tr>
         </c:forEach>
     </table>
 </section>
 
 <script language="javascript">
     <c:set var="defaultSubject" value="${subjects[0]}" />
-    if (sessionStorage.activeSubject == null) sessionStorage.activeSubject = "${defaultSubject.name}";
+    if (sessionStorage.activeSubject == null)
+        sessionStorage.activeSubject = "${defaultSubject.name}";
     document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    function changeSubject(subject){
+    function changeSubject(subject) {
         sessionStorage.activeSubject = subject;
         document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
     }
-    
+
     $(".queueRulesHeader").click(function() {
 
         $queueRulesHeader = $(this);
@@ -100,14 +106,14 @@
             //execute this after slideToggle is done
             //change text of header based on visibility of content div
             /*$queueRulesHeader.text = (function() {
-                //change text based on condition
-                return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
-            });*/
+             //change text based on condition
+             return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
+             });*/
         });
     });
 
     $("a[rel]").overlay();
-   
+
 
 </script> 
 

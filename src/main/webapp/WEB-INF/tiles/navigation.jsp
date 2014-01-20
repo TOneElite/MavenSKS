@@ -7,9 +7,9 @@
         <li><a href="<c:url value="/access/home"/>">Hjem</a></li>
         <li><a href="">Oversikt</a></li>
         <li><a href="">Øvinger</a></li>
-        <c:if test="${isAdmin}">
+            <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
-        </c:if>
+            </c:if>
     </ul>
 </section>
 <section id="nav-fag">
@@ -17,14 +17,15 @@
     <ul>
         <c:forEach var="subject" items="${subjects}">
             <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-        </c:forEach>
+            </c:forEach>
     </ul>
-    <section id="test">
-        <p class="navigationHeading">Test</p>
+</section>
+    <section id="nav-teach">
+        <p class="navigationHeading">Lærer</p>
         <ul>
-            <li>
-                <a href="<c:url value="/access/teacherQueue"/>">Lærerkø</a>
-            </li>
+            <c:forEach var="subject" items="${subjects}">
+                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                </c:forEach>
         </ul>
     </section>
     <!--
@@ -35,4 +36,3 @@
         <li><a href="teacherQueue">Kø: lærerview</a></li>
     </ul>
     -->
-</section>

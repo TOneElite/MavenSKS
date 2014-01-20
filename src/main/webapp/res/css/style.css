@@ -426,7 +426,7 @@ h1{
     box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
-#navigation #nav-nav{
+#navigation #nav-nav, #navigation #nav-fag{
     border-bottom: 1px dashed lightgray;
     margin-bottom: 5%;
     padding-bottom: 5%;
@@ -665,6 +665,6 @@ h1{
     top:1px;
 }
 
-#teacherQueue td:not(#buttons){
+#teacherQueue td{
     cursor: pointer;
 }
