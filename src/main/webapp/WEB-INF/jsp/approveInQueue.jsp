@@ -12,6 +12,7 @@
             <li>${queue.users}</li>
                 <c:forEach var="i" items="${tasktab}">
                 <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${queue.users}, ${i}" checked="checked"></label></li>
+                
                     </c:forEach>
         </ul>
 

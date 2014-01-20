@@ -19,7 +19,6 @@ import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 import org.teamone.domain.room.RoomJDBCTemplate;
 
-
 @Controller
 public class TeacherController {
 
@@ -115,32 +114,35 @@ public class TeacherController {
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
+        System.out.println("Dette er tasks. " + tasks[0]);
         if (cancel != null) {
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
             return "teacherQueue";
         }
         if (approve != null) {
-            for (int i = 0; i < tasks.length; i++) {
-                String[] temp = tasks[i].split(", ");
-                UserTask userTask = new UserTask();
-                userTask.setEmail(temp[0]);
-                userTask.setSubjectCode(subjectCode);
-                userTask.setTaskNr(Integer.parseInt(temp[1]));
-                userTasksJDBCTemplate.approve(userTask);
-            }
+            
+                for (String s : tasks) {
+                    String[] temp = s.split(", ");
+                    UserTask userTask = new UserTask();
+                    userTask.setEmail(temp[0]);
+                    userTask.setSubjectCode(subjectCode);
+                    userTask.setTaskNr(Integer.parseInt(temp[1]));
+                    userTasksJDBCTemplate.approve(userTask);
+                    System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
+                }
+            
             queueJDBCTemplate.delete(Integer.parseInt(queueId));
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
             return "teacherQueue";
-
         }
         return "teacherQueue";
     }
 
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
-    public String teacherView(Model model, @PathVariable String subjectCode) {
+    public String teacherView(Model model, @PathVariable String subjectCode
+    ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
-        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
