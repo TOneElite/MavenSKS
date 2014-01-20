@@ -154,7 +154,7 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
-    public String teacherView(Model model, @PathVariable String subjectCode
+    public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
