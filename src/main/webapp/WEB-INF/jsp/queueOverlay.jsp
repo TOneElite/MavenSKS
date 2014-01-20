@@ -38,7 +38,7 @@
                 <select name="group" id="group" class="queueFormMiddle">
                     <option selected value="Alene">Alene</option>
                     <c:forEach var="user" items="${users}">
-                        <option value="${user.email}" title="${fn:substring(user.firstName, 0, 1)}.${user.surname}">${user.surname}, ${user.firstName}</option>
+                        <option value="${user.email}" title="${user.surname}.${fn:substring(user.firstName, 0, 1)}">${user.surname}, ${user.firstName}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -48,13 +48,10 @@
             <textarea name="comment" style="resize:none"></textarea><br>
 
             <label></label>
-            <input class="button" type="submit" value="OK"/>
+            <input class="button" type="submit" onclick="groupArray();" value="OK"/>
             <input class="button" type="button" value="Avbryt"/>
-
-            <select style="display:none" name="subjectCode" >
-                <c:set var="subject" value="${activeSubject}" />
-                <option selected value="${subject}"></option>
-            </select>
+            <input name="subjectCode" value="${activeSubject}" hidden />
+            <input name="groupList" id="groupList" value="" hidden />
         </form>
     </article>
     <article id="right">
@@ -69,54 +66,64 @@
 </div>  
 
 <script type="text/javascript">
-    /* TABLE options changes when you choose a ROOM */
-    window.onload = function() {
+/* TABLE options changes when you choose a ROOM */
+window.onload = function() {
 
-        var room = document.getElementById("room");
-        var table = document.getElementById("table");
+    var room = document.getElementById("room");
+    var table = document.getElementById("table");
 
-        function pictureChange(room) {
-            document.getElementById("img").src = room;
+    function pictureChange(room) {
+        document.getElementById("img").src = room;
+    }
+
+    room.onchange = function() {
+        if (this.value === "other") {
+            table.disabled = true;
+            table.className += " disabled";
+            table.options.length = 0;
+            pictureChange("<c:url value='../res/lab3.png'/>");
         }
+        else {
+            table.disabled = false;
+            table.className -= " disabled";
 
-        room.onchange = function() {
-            if (this.value === "other") {
-                table.disabled = true;
-                table.className += " disabled";
-                table.options.length = 0;
-                pictureChange("<c:url value='../res/lab3.png'/>");
+            var tablecount = room.options[room.selectedIndex].title;
+            table.options.length = 0;
+            for (var i = 1; i <= tablecount; i++) {
+                table.options[table.options.length] = new Option("Bord " + i);
             }
-            else {
-                table.disabled = false;
-                table.className -= " disabled";
-
-                var tablecount = room.options[room.selectedIndex].title;
-                table.options.length = 0;
-                for (var i = 1; i <= tablecount; i++) {
-                    table.options[table.options.length] = new Option("Bord " + i);
-                }
-            }
-        };
-        room.onchange();
-
-        /* Filling the GROUP box */
-        var group = document.getElementById("group");
-        var selectedUserList = document.getElementById("selectedUserList");
-        group.onchange = function() {
-            var selectedUser = group.options[group.selectedIndex];
-            if (selectedUser.title !== "") {
-                selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser);
-                selectedUser.remove();
-            }
-        };
-        group.onchange();
-
-        selectedUserList.onchange = function() {
-            var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
-            group.options[group.options.length] = new Option(removeUser.text, removeUser);
-            removeUser.remove();
-        };
-        selectedUserList.onchange();
-
+        }
     };
+    room.onchange();
+
+    /* Filling the GROUP box */
+    var group = document.getElementById("group");
+    var selectedUserList = document.getElementById("selectedUserList");
+    group.onchange = function() {
+        var selectedUser = group.options[group.selectedIndex];
+        if (selectedUser.title !== "") {
+            selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser.email);
+            selectedUserList.options[selectedUserList.options.length].title = selectedUser.title;
+            selectedUser.remove();
+        }
+    };
+    group.onchange();
+
+    selectedUserList.onchange = function() {
+        var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
+        group.options[group.options.length] = new Option(removeUser.text, removeUser);
+        removeUser.remove();
+    };
+    selectedUserList.onchange();
+
+
+};
+function groupArray() {
+    var groupArray = new Array();
+    var selectList = document.getElementById("selectedUserList");
+    for (var i = 0; i < selectList.options.length; i++) {
+        groupArray[i] = selectList.options[i].value;
+    }
+    document.getElementById("groupList").value = groupArray;
+};
 </script>

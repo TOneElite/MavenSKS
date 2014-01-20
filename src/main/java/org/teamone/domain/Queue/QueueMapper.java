@@ -14,7 +14,7 @@ public class QueueMapper implements RowMapper<Queue> {
         queue.setDate(rs.getDate("timestamp"));
         queue.setOv(rs.getString("tasks"));
         queue.setComment(rs.getString("comment"));
-        queue.setStatus(rs.getInt("status"));
+        queue.setStatus(rs.getString("status"));
         queue.setTables(rs.getString("location"));
         queue.setSubjectCode(rs.getString("subject_code"));
         return queue;
