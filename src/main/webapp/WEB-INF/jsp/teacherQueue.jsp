@@ -1,16 +1,3 @@
-<!--
-<section id="queueHeader">
-    <div id="queueInfo">                         
-        <h1>Øvinger i Matematikk 2</h1>
-        <p>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</p>
-    </div>
-
-
-    <div id="queueButtons">         
-        <input type="button" value="Stå i kø" name="getInLine"/>
-    </div>
-</section>
--->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -38,14 +25,14 @@
 
     <section id="queue">
         <form action="<c:url value="/access/approveInQueue"/>" method="POST">
-            <table id="queueTable">
-                <col width="6%">
-                <col width="16%">
+            <table id="queueTable" width="100%">
+                <col width="10%">
+                <col width="15%">
                 <col width="10%">
                 <col width="20%">
-                <col width="15%">
+                <col width="20%">
                 <col width="10%">
-                <col width="15%">
+                <col width="20%">
                 <tr>
                     <th>Tid</th>
                     <th>Navn</th>
@@ -54,30 +41,28 @@
                     <th>Status</th>
                     <th>Bord</th>
                     <th></th>
-                    <th></th>
                 </tr>
                 <c:forEach var="queue" items="${queues}">
                     <tr>
-                        <td><c:out value="${queue.date}"/></td>
-                        <td><c:out value="${queue.users}"/></td>
-                        <td><c:out value="${queue.ov}"/></td>
-                        <td><c:out value="${queue.comment}"/></td>
-                        <td> <c:choose>
-                                <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
+                        <td class="click"><c:out value="${queue.date}"/></td>
+                        <td class="click"><c:out value="${queue.users}"/></td>
+                        <td class="click"><c:out value="${queue.ov}"/></td>
+                        <td class="click"><c:out value="${queue.comment}"/></td>
+                        <td class="click"> <c:choose>
+                                <c:when test="${queue.status=='2'}"><<c:out value="Utsatt"/></c:when>
                                 <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
                                 <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                             </c:choose></td>
 
-                        <td><c:out value="${queue.tables}"/></td>
-                        <td><c:out value="${queue.tables}"/></td>
-
-                        <td><input type="checkbox" name="queueId" value="${queue.id}"/>
-
-                            <input name="remove" value="Slett" type="submit"/>
-                            <input name="postpone" value = "Utsett" type="submit"/>
-                            <input name="help" value="Hjelp" type="submit"/>
-                            <input name="approve" value="Godkjenn" type="submit"/>
-                        </td>            
+                        <td class="click"><c:out value="${queue.tables}"/></td>    
+                        <td id="buttons"><p>
+                                <!--<input type="checkbox" name="queueId" value="${queue.id}"/>-->
+                                <input type="hidden" name="queueId" value="${queue.id}">
+                                <input class="teacherbuttons" name="help" value="&#x2661;" type="submit"/>
+                                <input class="teacherbuttons" name="approve" value="&#x2713;" type="submit"/>
+                                <input class="teacherbuttons" name="remove" value="X" type="submit"/>                                                            
+                                <input class="teacherbuttons" name="postpone" value = &#x21e9; type="submit"/>
+                            </p></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -109,6 +94,19 @@
                 });
             });
         });
+
+        $(document).ready(function() {
+            $('td p').hide();
+            $('td p:first').show();
+            $('.click').click(function() {
+                $('td p').hide();
+                $(this).closest('tr').find('p').show();
+            }
+            );
+        }
+        );
+
+
     </script> 
 
 </div>
