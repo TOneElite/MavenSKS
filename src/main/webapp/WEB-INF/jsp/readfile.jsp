@@ -34,7 +34,7 @@
     // If we use onloadend, we need to check the readyState.
     reader.onloadend = function(evt) {
       if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-        document.getElementById('byte_content').textContent = evt.target.result;
+        document.getElementById('byte_content').innerHTML = evt.target.result.replace(/\n/g, "<br />");
         document.getElementById('output').textContent = evt.target.result;
       }
     };

@@ -1,6 +1,7 @@
 package org.teamone.controller;
 
 import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -92,25 +93,16 @@ public class TeacherController {
     @RequestMapping(value = "/access/fileread", method = RequestMethod.POST)
     public String fileread(
             @RequestParam("output") String fileread) {
-        StringTokenizer stringTokenizer = new StringTokenizer(fileread);
-        String forr = stringTokenizer.nextToken();
-        String last = stringTokenizer.nextToken();
-        String email = stringTokenizer.nextToken();
-        String pw = stringTokenizer.nextToken();
-        String[] words = fileread.split("\\s+");
+        String[] words = fileread.split("[,\\n]");
         User user = new User();
         Role role = new Role();
-        for(int i = 0; i < (words.length/4) - 1; i++){
-            forr = stringTokenizer.nextToken().replace("_", " ");
-            user.setFirstName(forr);
-            last = stringTokenizer.nextToken().replace("_", " ");
-            user.setSurname(last);
-            email = stringTokenizer.nextToken();
-            user.setEmail(email);
-            pw = stringTokenizer.nextToken();
-            user.setPassword(pw);
+        for(int i = 0; i < (words.length/4); i++){
+            user.setSurname(words[(i * 4)]);
+            user.setFirstName(words[(i*4)+1]);
+            user.setEmail(words[(i*4)+2]);
+            role.setUsername(words[(i*4)+2]);
+            user.setPassword(words[(i*4)+3]);
             role.setRoleName("ROLE_USER");
-            role.setUsername(email);
             userJDBCTemplate.create(user);
             roleJDBCTemplate.create(role);
         }
