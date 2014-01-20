@@ -126,4 +126,5 @@
             </tr>
         </form:form>
     </table>
+    <input type="button" value="Skriv ut" />
 </div>
