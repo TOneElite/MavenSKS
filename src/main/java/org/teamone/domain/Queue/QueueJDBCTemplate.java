@@ -48,7 +48,7 @@ public class QueueJDBCTemplate {
             queue.getId(),});
     }
 
-    public void status(int status, int id) {
+    public void status(String status, int id) {
         String SQL = "update queue set status=? where queue_id=?";
         jdbcTemplateObject.update(SQL, id, status);
     }

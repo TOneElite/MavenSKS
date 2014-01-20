@@ -63,6 +63,7 @@ public class TeacherController {
             @RequestParam("subjectcode") String subjectCode,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String helper = "Får hjelp av " + auth.getName(); 
         model.addAttribute("username", auth.getName());
         int id = Integer.parseInt(queueId);
         if (remove != null) {
@@ -70,11 +71,11 @@ public class TeacherController {
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
-            queueJDBCTemplate.status(id, 2);
+            queueJDBCTemplate.status("Utsatt", id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
-            queueJDBCTemplate.status(id, 3);
+            queueJDBCTemplate.status(helper, id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
@@ -171,7 +172,6 @@ public class TeacherController {
                 model.addAttribute("isAdmin", admin);
             }
         }
-
         return "teacherQueue";
     }
 }
