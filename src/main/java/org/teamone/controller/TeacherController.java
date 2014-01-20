@@ -63,7 +63,7 @@ public class TeacherController {
             @RequestParam("subjectcode") String subjectCode,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String helper = "Får hjelp av " + auth.getName(); 
+        String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
         int id = Integer.parseInt(queueId);
         if (remove != null) {
@@ -173,5 +173,12 @@ public class TeacherController {
             }
         }
         return "teacherQueue";
+    }
+
+    @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
+    public String teacherSettings(Model model, @PathVariable String subjectCode
+    ) {
+        
+        return "subjectSettingd";
     }
 }
