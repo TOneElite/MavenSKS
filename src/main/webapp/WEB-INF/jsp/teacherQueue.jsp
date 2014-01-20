@@ -33,7 +33,7 @@
                 <col width="20%">
                 <col width="10%">
                 <col width="20%">
-                <tr>
+                <tr id="header">
                     <th>Tid</th>
                     <th>Navn</th>
                     <th>Øving(er)</th>
@@ -44,7 +44,7 @@
                 </tr>
 
                 <c:forEach var="queue" items="${queues}">
-                    <tr>  
+                    <tr id="rows">  
                         <td class="click"><c:out value="${queue.date}"/></td>
                         <td class="click"><c:out value="${queue.users}"/></td>
                         <td class="click"><c:out value="${queue.ov}"/></td>
@@ -103,17 +103,20 @@
         $(document).ready(function() {
             $('td p').hide();
             $('td p:first').show();
+            $('#rows').addClass("selected");
 
             $('td').click(function() {
                 $('td p').hide();
+                $('tr').removeClass("selected");
                 $(this).closest('tr').find('p').show();
                 $('tr .check').prop("checked", false);
                 $(this).closest('tr').find('.check').prop("checked", true);
+                $(this).closest('tr').addClass("selected");
+
             }
             );
         }
         );
-
 
     </script> 
 
