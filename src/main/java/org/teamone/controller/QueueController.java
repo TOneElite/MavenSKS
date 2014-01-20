@@ -45,9 +45,8 @@ public class QueueController {
         }
         for (int i=0;i<group.length;i++) System.out.println(" *** " + group[i]);
         queue.setComment(comment);
-        Date a = new Date();
-        queue.setDate(a);
-        queue.setStatus("Venter");
+        queue.setDate(new Date());
+        queue.setStatus("");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue);
         return "redirect:home";
