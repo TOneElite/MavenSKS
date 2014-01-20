@@ -123,10 +123,11 @@ public class TeacherController {
             @RequestParam(value = "task", required = false) String[] tasks,
             @RequestParam(value = "queueId") String queueId,
             @RequestParam(value = "subjectCode") String subjectCode,
+            @RequestParam(value = "some", required = false) String some,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
-        System.out.println("Dette er tasks. " + tasks[0]);
+        System.out.println("Dette er task 0: " + tasks[0] + " task 1: " + tasks[1]);
         if (cancel != null) {
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
             return "teacherQueue";

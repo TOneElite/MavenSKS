@@ -7,6 +7,7 @@
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
         <c:set var="string" value="${queue.ov}"/>
         <c:set var="tasktab" value="${fn:split(string, ', ')}"/>
+        <input type ="hidden" value="${tasktab[0]}" name="some"/>
 
         <ul>
             <li>${queue.users}</li>
