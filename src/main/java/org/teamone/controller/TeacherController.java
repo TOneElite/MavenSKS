@@ -178,7 +178,7 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
     public String teacherSettings(Model model, @PathVariable String subjectCode
     ) {
-        
+        System.out.println("IS HERE");
         return "subjectSettings";
     }
 }

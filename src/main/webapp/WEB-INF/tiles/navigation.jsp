@@ -9,8 +9,8 @@
             <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
             </c:if>
-        <c:if test="${isTeacher}">
-            <li><a href="<c:url value="modifySubject"/>">Teacher</a></li>
+            <c:if test="${isTeacher}">
+            <li><a href="<c:url value="subjectSettings"/>">Teacher</a></li>
             </c:if>
     </ul>
 </section>
