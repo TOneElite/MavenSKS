@@ -1,5 +1,6 @@
 package org.teamone.controller;
 
+import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 import org.springframework.ui.Model;
@@ -103,8 +104,14 @@ public class TeacherController {
             role.setUsername(words[(i * 4) + 2]);
             user.setPassword(words[(i * 4) + 3]);
             role.setRoleName("ROLE_USER");
-            userJDBCTemplate.create(user);
-            roleJDBCTemplate.create(role);
+            List<User> users = userJDBCTemplate.listUsers();
+            for(User email : users){
+                if(email.getEmail() != user.getEmail()){
+                }else{
+                    userJDBCTemplate.create(user);
+                    roleJDBCTemplate.create(role);
+                }
+            }
         }
         return "redirect:home";
     }
