@@ -97,7 +97,9 @@ public class HomeController {
 
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
     public String taskOverview(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "taskoverview";
     }
-
 }

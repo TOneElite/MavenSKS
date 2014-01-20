@@ -9,7 +9,7 @@
         background-color: #f8f8f8;
         padding: 2%;
         text-align: left;    
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         overflow: hidden;
         border-radius: 5px;    
         background-color: #f8f8f8;
@@ -24,19 +24,38 @@
         border: 1px solid #ccc;
         box-shadow: 0 1px 1px 1px #e3e8e5;
         margin: 0px;
+        margin-bottom: 10px;
+
     }
-    #overview-table tr:nth-child(odd) {
+    #overview-table{
         background-color: #F0F0F0;
         border-collapse: collapse;
-    }
+        border:none;
 
-    #overview-table tr:nth-child(even) {
-        background-color: #FFFFFF;
-        border-collapse: collapse;
     }
-
-    .highlight {
+    #overview-table td{
+        padding: 4px;
+    }
+    #highlight-whole {
         background-color: limegreen !important;
+    }
+    #highlight-one {
+        color: limegreen !important;
+    }
+    .overviewContainer .overviewRulesHeader {
+        /*background-color:#d3d3d3;*/
+        padding: 4px;
+        cursor: pointer;
+    }
+    .overviewRulesContent {
+        display: none;
+        padding : 5px;
+    }
+    #overview-subject{
+        font-weight: bold
+    }
+    #overview-tasks{
+        text-align: right;
     }
 </style>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -45,24 +64,52 @@
 
 <header id="overview-header">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <h1>Øvingsoversikt, <c:out value="${username}"/> </h1>
+    <h1>Øvingsoversikt for <c:out value="${username}"/> </h1>
 </header>
-<div id="overview-list">
-    <table id="overview-table">
-        <col width="15%">
-        <col width="16%">
-        <col width="3%">
-        <form:form method="post" modelAttribute="approvestudent" action="updateapprovelist">
-            <tr class="green">
-            <label>
+<c:forEach var="subject" items="${subjects}">
+    <div id="overview-list">
+        <table id="overview-table">
+            <col width="15%">
+            <col width="16%">
+            <tr>
                 <td>
-                    <p class="blacktext">Mattematikk</p>
+                    <p id="overview-subject"><c:out value="${subject.name}"/></p>
                 </td>
                 <td>
-                    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+                    <section id="overview-tasks"><c:forEach var="i" begin="1" end="${subject.nrOfTasks}"> <c:out value="${i}"/></c:forEach></section>
                 </td>
-            </label>
             </tr>
-        </form:form>
-    </table>
-</div>
+        </table>
+        <div class="overviewContainer">
+            <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
+            <div class="overviewRulesContent">
+                <p>
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                </p>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
+
+<script language="javascript">
+    $(".overviewRulesHeader").click(function() {
+
+        $overviewRulesHeader = $(this);
+        //getting the next element
+        $overviewRulesContent = $overviewRulesHeader.next();
+        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+        $overviewRulesContent.slideToggle(500, function() {
+            //execute this after slideToggle is done
+            //change text of header based on visibility of content div
+            /*$queueRulesHeader.text = (function() {
+             //change text based on condition
+             return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
+             });*/
+        });
+    });
+    $("a[rel]").overlay();
+
+
+</script> 
