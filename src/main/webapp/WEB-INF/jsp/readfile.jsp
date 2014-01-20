@@ -11,7 +11,7 @@
 
 <input type="file" id="files" name="file" /> Se innhold: 
 <span class="readBytesButtons">
-  <button>Innhold</button>
+  <button onclick="show()" >Innhold</button>
 </span>
 <div id="byte_range"></div>
 <div id="byte_content"></div>
@@ -50,9 +50,13 @@
       readBlob(startByte, endByte);
     }
   }, false);
+  
+  function show(){
+      document.getElementById('button').style.display="block";
+  }
 </script>
 
 <form accept-charset="utf-8" action="<c:url value="/access/fileread" />" method="POST"> 
     <textarea style="display:none" id="output" name="output">${fileString}</textarea>
-    <input class="button" type="submit" value="OK"/>
+    <input style="display: none" id="button" class="button" type="submit" value="OK"/>
 </form>
