@@ -5,8 +5,7 @@
     <p class="navigationHeading">Navigasjon</p>
     <ul>
         <li><a href="<c:url value="/access/home"/>">Hjem</a></li>
-        <li><a href="">Oversikt</a></li>
-        <li><a href="">Øvinger</a></li>
+        <li><a href="taskoverview">Øvinger</a></li>
             <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
             </c:if>
