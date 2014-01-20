@@ -10,7 +10,7 @@
         <div id="queueInfo">
             <h1>Kø i <span id="subjectHeader"></span></h1>  
             <button id="queueButton" type="button">Åpne køen</button>
-            
+
             <div class="queueContainer">
                 <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
                 <div class="queueRulesContent">
@@ -49,9 +49,8 @@
                         <td class="click"><c:out value="${queue.users}"/></td>
                         <td class="click"><c:out value="${queue.ov}"/></td>
                         <td class="click"><c:out value="${queue.comment}"/></td>
-                        <td class="click"> <c:choose>
-                                <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
-                                <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
+                        <td class="click" id="status"> <c:choose>
+                                <c:when test="${queue.status=='0'}"><c:out value=" "/></c:when>
                                 <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                             </c:choose></td>
 
@@ -114,8 +113,6 @@
             );
         }
         );
-
-
 
 
     </script> 
