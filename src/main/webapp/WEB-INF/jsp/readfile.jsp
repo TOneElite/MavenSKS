@@ -8,87 +8,55 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
+<input type="file" id="files" name="file" /> Se innhold: 
+<span class="readBytesButtons">
+  <button onclick="show()" >Innhold</button>
+</span>
+<div id="byte_range"></div>
+<div id="byte_content"></div>
+
 <script>
-function startRead()
-{
-  // obtain input element through DOM 
-  
-  var file = document.getElementById('file').files[0];
-  if(file)
-	{
-    getAsText(file);
-  }
-}
+  function readBlob(opt_startByte, opt_stopByte) {
 
-function getAsText(readFile)
-{
-	var reader;
-	try
-	{
-    reader = new FileReader();
-	}catch(e)
-	{
-		document.getElementById('output').innerHTML = 
-			"Error: seems File API is not supported on your browser";
-	  return;
-  }
-  
-  // Read file into memory as UTF-8      
-  reader.readAsText(readFile, "UTF-8");
-  
-  // Handle progress, success, and errors
-  reader.onprogress = updateProgress;
-  reader.onload = loaded;
-  reader.onerror = errorHandler;
-}
-
-function updateProgress(evt)
-{
-  if (evt.lengthComputable)
-	{
-    // evt.loaded and evt.total are ProgressEvent properties
-    var loaded = (evt.loaded / evt.total);
-    if (loaded < 1)
-		{
-      // Increase the prog bar length
-      // style.width = (loaded * 200) + "px";
-			document.getElementById("bar").style.width = (loaded*100) + "%";
+    var files = document.getElementById('files').files;
+    if (!files.length) {
+      alert('Please select a file!');
+      return;
     }
-  }
-}
 
-function loaded(evt)
-{
-  // Obtain the read file data    
-  var fileString = evt.target.result;
-  document.getElementById('output').innerHTML = fileString;
-  document.getElementById('output2').innerHTML = fileString;
-		document.getElementById("bar").style.width = 100 + "%";
-}
+    var file = files[0];
+    var start = parseInt(opt_startByte) || 0;
+    var stop = parseInt(opt_stopByte) || file.size - 1;
 
-function errorHandler(evt)
-{
-  if(evt.target.error.code == evt.target.error.NOT_READABLE_ERR)
-	{
-    // The file could not be read
-		document.getElementById('output').innerHTML = "Error reading file..."
+    var reader = new FileReader();
+
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = function(evt) {
+      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+        document.getElementById('byte_content').textContent = evt.target.result;
+        document.getElementById('output').textContent = evt.target.result;
+      }
+    };
+
+    var blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
   }
-}
-		</script>
+  
+  document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
+    if (evt.target.tagName.toLowerCase() == 'button') {
+      var startByte = evt.target.getAttribute('data-startbyte');
+      var endByte = evt.target.getAttribute('data-endbyte');
+      readBlob(startByte, endByte);
+    }
+  }, false);
+  
+  function show(){
+      document.getElementById('button').style.display="block";
+  }
+</script>
 
 <form accept-charset="utf-8" action="<c:url value="/access/fileread" />" method="POST"> 
-		<input id="file" type="file" name="file" multiple onchange="startRead()">
-		<h3>Progress:</h3>
-		<div style="width:100%;height:20px;border:1px solid black;">
-		<div id="bar" style="background-color:#45F;width:0px;height:20px;"></div>
-		</div>
-		<h3>File contents:</h3>
-              <textarea style="display:none" id="output" name="output">${fileString}</textarea>
-		<pre>
-			<code id="output2">
-			</code>
-		</pre> 
-            <label></label>
-            <input class="button" type="submit" value="OK"/>
-
-        </form>
+    <textarea style="display:none" id="output" name="output">${fileString}</textarea>
+    <input style="display: none" id="button" class="button" type="submit" value="OK"/>
+</form>

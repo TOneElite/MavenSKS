@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
+import org.teamone.domain.Role.Role;
+import org.teamone.domain.Role.RoleJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
@@ -26,6 +28,8 @@ public class TeacherController {
     private QueueJDBCTemplate queueJDBCTemplate;
     @Autowired
     private UserJDBCTemplate userJDBCTemplate;
+    @Autowired
+    private RoleJDBCTemplate roleJDBCTemplate;
 
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
@@ -94,12 +98,20 @@ public class TeacherController {
         String pw = stringTokenizer.nextToken();
         String[] words = fileread.split("\\s+");
         User user = new User();
-        for (int i = 0; i < (words.length / 4) - 1; i++) {
-            user.setFirstName(stringTokenizer.nextToken());
-            user.setSurname(stringTokenizer.nextToken());
-            user.setEmail(stringTokenizer.nextToken());
-            user.setPassword(stringTokenizer.nextToken());
+        Role role = new Role();
+        for(int i = 0; i < (words.length/4) - 1; i++){
+            forr = stringTokenizer.nextToken().replace("_", " ");
+            user.setFirstName(forr);
+            last = stringTokenizer.nextToken().replace("_", " ");
+            user.setSurname(last);
+            email = stringTokenizer.nextToken();
+            user.setEmail(email);
+            pw = stringTokenizer.nextToken();
+            user.setPassword(pw);
+            role.setRoleName("ROLE_USER");
+            role.setUsername(email);
             userJDBCTemplate.create(user);
+            roleJDBCTemplate.create(role);
         }
         return "redirect:home";
     }
