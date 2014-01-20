@@ -34,7 +34,9 @@
     // If we use onloadend, we need to check the readyState.
     reader.onloadend = function(evt) {
       if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-        document.getElementById('byte_content').textContent = evt.target.result;
+          //replace section replaces linebreaks in file "\n" with linebreaks for html which
+          //are usable with ".innerHTML" tag, "/xx/g" makes it a global occurence, meaning it happens every place with a \n linebreak
+        document.getElementById('byte_content').innerHTML = evt.target.result.replace(/\n/g, "<br />");
         document.getElementById('output').textContent = evt.target.result;
       }
     };

@@ -82,5 +82,10 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "testDatabase2";
     }
+    
+    @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
+    public String taskOverview(Model model){
+        return "taskoverview";
+    }
 
 }
