@@ -25,7 +25,7 @@ public class HomeController {
     private QueueJDBCTemplate queueJDBCTemplate;
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
-    
+
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -60,11 +60,17 @@ public class HomeController {
         System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights
         boolean admin = false;
+        boolean teacher = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
                 System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
+            }
+            if (ga.toString().equals("ROLE_TEACHER")) {
+                System.out.println("is TEACHER!");
+                teacher = true;
+                model.addAttribute("isTeacher", teacher);
             }
         }
 
@@ -82,9 +88,9 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         return "testDatabase2";
     }
-    
+
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
-    public String taskOverview(Model model){
+    public String taskOverview(Model model) {
         return "taskoverview";
     }
 

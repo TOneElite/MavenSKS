@@ -9,7 +9,7 @@ public class Queue {
     private String users;
     private String ov;
     private String comment;
-    private int status;
+    private String status;
     private String tables;
     private String subjectCode;
 
@@ -45,11 +45,11 @@ public class Queue {
 	this.comment = comment;
     }
     
-    public int getStatus() {
+    public String getStatus() {
 	return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
 	this.status = status;
     }
 
@@ -75,10 +75,10 @@ public class Queue {
     public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;
     }
-    
-    
+
     @Override
-    public String toString(){
-        return "User: " + users + ", comment: " + comment;
+    public String toString() {
+        return "Queue{" + "id=" + id + ", date=" + date + ", users=" + users + ", ov=" + ov + ", comment=" + comment + ", status=" + status + ", tables=" + tables + ", subjectCode=" + subjectCode + '}';
     }
+    
 }

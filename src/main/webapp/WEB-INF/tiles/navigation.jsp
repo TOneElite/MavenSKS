@@ -9,6 +9,10 @@
             <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
             </c:if>
+        Navigation.jsp
+        <c:if test="${isTeacher}">
+            <li><a href="<c:url value="modifySubject"/>">Teacher</a></li>
+            </c:if>
     </ul>
 </section>
 <section id="nav-fag">
@@ -19,19 +23,19 @@
             </c:forEach>
     </ul>
 </section>
-    <section id="nav-teach">
-        <p class="navigationHeading">Lærer</p>
-        <ul>
-            <c:forEach var="subject" items="${subjects}">
-                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-                </c:forEach>
-        </ul>
-    </section>
-    <!--
-    <p class="navigationHeading">Testlinker</p>
+<section id="nav-teach">
+    <p class="navigationHeading">Lærer</p>
     <ul>
-        <li><a href="testDatabase">DB: userList</a></li>
-        <li><a href="testDatabase2">DB: subjectList</a></li>
-        <li><a href="teacherQueue">Kø: lærerview</a></li>
+        <c:forEach var="subject" items="${subjects}">
+            <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+            </c:forEach>
     </ul>
-    -->
+</section>
+<!--
+<p class="navigationHeading">Testlinker</p>
+<ul>
+    <li><a href="testDatabase">DB: userList</a></li>
+    <li><a href="testDatabase2">DB: subjectList</a></li>
+    <li><a href="teacherQueue">Kø: lærerview</a></li>
+</ul>
+-->
