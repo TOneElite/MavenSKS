@@ -19,15 +19,20 @@ public class QueueController {
     private QueueJDBCTemplate queueJDBCTemplate;
     
     @RequestMapping(value = "/access/testqueue", method = RequestMethod.POST)
-    public String form(@RequestParam("room") String room,
+    public String form(
+            @RequestParam("room") String room,
             @RequestParam("table") String table,
             @RequestParam("task") String[] task,
-            @RequestParam("group") String[] group,
+            @RequestParam("groupList") String[] group,
             @RequestParam("comment") String comment, 
             @RequestParam("subjectCode") String subjectCode) {
         String tasks = "";
         for (int i = 0; i < task.length; i++) {
-            tasks += task[i] + ", ";
+            if (i==(task.length - 1)) {
+                tasks += task[i];
+            } else {
+                tasks += task[i] + ", ";
+            }
         }
         Queue queue = new Queue();
         queue.setTables(room + ", " + table);
@@ -36,13 +41,13 @@ public class QueueController {
         if (group.length <= 1) {
             queue.setUsers(auth.getName());
         } else {
-            queue.setUsers(group[0]); // Insert loop with setUsers for each item in group, when database can handle it.
+            queue.setUsers(auth.getName()); // Insert loop with setUsers for each item in group, when database can handle it.
         }
-        for (Object user : group) System.out.println(" *** " + user + ". Length: " + group.length);
+        for (int i=0;i<group.length;i++) System.out.println(" *** " + group[i]);
         queue.setComment(comment);
         Date a = new Date();
         queue.setDate(a);
-        queue.setStatus(1);
+        queue.setStatus("Venter");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue);
         return "redirect:home";

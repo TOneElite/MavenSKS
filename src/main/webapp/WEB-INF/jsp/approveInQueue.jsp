@@ -7,11 +7,13 @@
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
         <c:set var="string" value="${queue.ov}"/>
         <c:set var="tasktab" value="${fn:split(string, ', ')}"/>
+        <input type ="hidden" value="${tasktab[0]}" name="some"/>
 
         <ul>
             <li>${queue.users}</li>
-                <c:forEach var="i" items="${tasktab}">
-                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${queue.users}, ${i}" checked="checked"></label></li>
+
+            <c:forEach var="i" items="${tasktab}">
+                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${queue.users}, ${i}" checked="checked"></label></li>                
                     </c:forEach>
         </ul>
 

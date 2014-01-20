@@ -5,10 +5,12 @@
     <p class="navigationHeading">Navigasjon</p>
     <ul>
         <li><a href="<c:url value="/access/home"/>">Hjem</a></li>
-        <li><a href="">Oversikt</a></li>
-        <li><a href="">Øvinger</a></li>
+        <li><a href="taskoverview">Øvinger</a></li>
             <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
+            </c:if>
+            <c:if test="${isTeacher}">
+            <li><a href="<c:url value="subjectSettings"/>">Teacher</a></li>
             </c:if>
     </ul>
 </section>
@@ -20,19 +22,19 @@
             </c:forEach>
     </ul>
 </section>
-    <section id="nav-teach">
-        <p class="navigationHeading">Lærer</p>
-        <ul>
-            <c:forEach var="subject" items="${subjects}">
-                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-                </c:forEach>
-        </ul>
-    </section>
-    <!--
-    <p class="navigationHeading">Testlinker</p>
+<section id="nav-teach">
+    <p class="navigationHeading">Lærer</p>
     <ul>
-        <li><a href="testDatabase">DB: userList</a></li>
-        <li><a href="testDatabase2">DB: subjectList</a></li>
-        <li><a href="teacherQueue">Kø: lærerview</a></li>
+        <c:forEach var="subject" items="${subjects}">
+            <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+            </c:forEach>
     </ul>
-    -->
+</section>
+<!--
+<p class="navigationHeading">Testlinker</p>
+<ul>
+    <li><a href="testDatabase">DB: userList</a></li>
+    <li><a href="testDatabase2">DB: subjectList</a></li>
+    <li><a href="teacherQueue">Kø: lærerview</a></li>
+</ul>
+-->

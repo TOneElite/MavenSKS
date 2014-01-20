@@ -668,3 +668,11 @@ h1{
 #teacherQueue td{
     cursor: pointer;
 }
+
+.selected{
+    color: brown;
+}
+
+#rows:hover{
+ color:gray;
+}

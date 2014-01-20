@@ -23,7 +23,6 @@ import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 import org.teamone.domain.room.RoomJDBCTemplate;
 
-
 @Controller
 public class TeacherController {
 
@@ -65,6 +64,7 @@ public class TeacherController {
             @RequestParam("subjectcode") String subjectCode,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
         int id = Integer.parseInt(queueId);
         if (remove != null) {
@@ -72,11 +72,11 @@ public class TeacherController {
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
-            queueJDBCTemplate.status(id, 2);
+            queueJDBCTemplate.status("Utsatt", id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
-            queueJDBCTemplate.status(id, 3);
+            queueJDBCTemplate.status(helper, id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
@@ -95,14 +95,14 @@ public class TeacherController {
     public String fileread(
             @RequestParam("output") String fileread) {
         String[] words = fileread.split("[,\\n]");
-        User user = new User(); 
-       Role role = new Role();
-        for(int i = 0; i < (words.length/4); i++){
+        User user = new User();
+        Role role = new Role();
+        for (int i = 0; i < (words.length / 4); i++) {
             user.setSurname(words[(i * 4)]);
-            user.setFirstName(words[(i*4)+1]);
-            user.setEmail(words[(i*4)+2]);
-            role.setUsername(words[(i*4)+2]);
-            user.setPassword(words[(i*4)+3]);
+            user.setFirstName(words[(i * 4) + 1]);
+            user.setEmail(words[(i * 4) + 2]);
+            role.setUsername(words[(i * 4) + 2]);
+            user.setPassword(words[(i * 4) + 3]);
             role.setRoleName("ROLE_USER");
             List<User> users = userJDBCTemplate.listUsers();
             for(User email : users){
@@ -123,35 +123,48 @@ public class TeacherController {
             @RequestParam(value = "task", required = false) String[] tasks,
             @RequestParam(value = "queueId") String queueId,
             @RequestParam(value = "subjectCode") String subjectCode,
+            @RequestParam(value = "some", required = false) String some,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
+        System.out.println("Dette er task 0: " + tasks[0] + " task 1: " + tasks[1]);
         if (cancel != null) {
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
             return "teacherQueue";
         }
         if (approve != null) {
-            for (int i = 0; i < tasks.length; i++) {
-                String[] temp = tasks[i].split(", ");
+            if (tasks[0].contains(",")) {
+                for (String s : tasks) {
+                    String[] temp = s.split(", ");
+                    UserTask userTask = new UserTask();
+                    userTask.setEmail(temp[0]);
+                    userTask.setSubjectCode(subjectCode);
+                    userTask.setTaskNr(Integer.parseInt(temp[1]));
+                    userTasksJDBCTemplate.approve(userTask);
+                    System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
+                }
+            } else {
                 UserTask userTask = new UserTask();
-                userTask.setEmail(temp[0]);
+                userTask.setEmail(tasks[0]);
                 userTask.setSubjectCode(subjectCode);
-                userTask.setTaskNr(Integer.parseInt(temp[1]));
+
+                userTask.setTaskNr(Integer.parseInt(tasks[1]));
                 userTasksJDBCTemplate.approve(userTask);
+                System.out.println("dette er tasks 1 " + tasks[1] + " dette er tasks 0 " + tasks[0]);
             }
+
             queueJDBCTemplate.delete(Integer.parseInt(queueId));
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
             return "teacherQueue";
-
         }
         return "teacherQueue";
     }
 
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
-    public String teacherView(Model model, @PathVariable String subjectCode) {
+    public String teacherQueueView(Model model, @PathVariable String subjectCode
+    ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
-        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -166,7 +179,13 @@ public class TeacherController {
                 model.addAttribute("isAdmin", admin);
             }
         }
-
         return "teacherQueue";
+    }
+
+    @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
+    public String teacherSettings(Model model
+    ) {
+        System.out.println("IS HERE");
+        return "subjectSettings";
     }
 }

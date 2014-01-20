@@ -17,10 +17,20 @@ public class UserTaskJDBCTemplate {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
+    
+    public String examReport(String SubjectCode){
+        String subjectSQL = "SELECT subject_name FROM Subject";
+        String taskSQL = "";
+        String numbOfTasksSQL="";
+        
+        //Student liste med øvinger
+        
+        return "Hei!";
+    }
 
     public void approve(UserTask userTasks) {
         System.out.println(userTasks.toString());
-        String SQL = "insert into user_tasks(email, subject_code, task_nr) values(?,?,?)";
+        String SQL = "insert into user_subject(email, subject_code, task_nr) values(?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             userTasks.getEmail(),
             userTasks.getSubjectCode(),

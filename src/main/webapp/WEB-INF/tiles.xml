@@ -76,4 +76,14 @@
         <put-attribute name="title" value="AddtoDB"/>
         <put-attribute name="body" value="/WEB-INF/jsp/readfile.jsp"/>
     </definition>
+    
+    <definition name="taskoverview" extends="template">
+        <put-attribute name="title" value="Oversikt"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/taskOverview.jsp"/>
+    </definition>
+    
+    <definition name="subjectSettings" extends="template">
+        <put-attribute name="body" value="/WEB-INF/jsp/subjectSettings.jsp"/>
+    </definition>
+    
 </tiles-definitions>
