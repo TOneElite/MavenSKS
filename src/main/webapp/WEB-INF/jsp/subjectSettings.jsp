@@ -6,4 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-Dette er en test
+<div id="subjectSettingsSelector">
+    
+</div>
