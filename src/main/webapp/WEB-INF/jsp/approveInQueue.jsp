@@ -15,6 +15,7 @@
                     </c:forEach>
         </ul>
 
+        <input type="hidden" name="subjectCode" value="${queue.subjectCode}">
         <input type="hidden" name="queueId" value="${queue.id}">
         <input name="approved" value="Godkjenn" type="submit"/>
         <input name="cancel" value="Avbryt" type="submit"/>

@@ -8,9 +8,9 @@
     <section id="queueHeader">
 
         <div id="queueInfo">
-            <h1>Øvinger i <span id="subjectHeader"></span></h1>
+            <h1>Kø i <span id="subjectHeader"></span></h1>  
             <button id="queueButton" type="button">Åpne køen</button>
-
+            
             <div class="queueContainer">
                 <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
                 <div class="queueRulesContent">
@@ -42,22 +42,23 @@
                     <th>Bord</th>
                     <th></th>
                 </tr>
+
                 <c:forEach var="queue" items="${queues}">
-                    <tr>
+                    <tr>  
                         <td class="click"><c:out value="${queue.date}"/></td>
                         <td class="click"><c:out value="${queue.users}"/></td>
                         <td class="click"><c:out value="${queue.ov}"/></td>
                         <td class="click"><c:out value="${queue.comment}"/></td>
                         <td class="click"> <c:choose>
-                                <c:when test="${queue.status=='2'}"><<c:out value="Utsatt"/></c:when>
+                                <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
                                 <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
                                 <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                             </c:choose></td>
 
                         <td class="click"><c:out value="${queue.tables}"/></td>    
                         <td id="buttons"><p>
-                                <!--<input type="checkbox" name="queueId" value="${queue.id}"/>-->
-                                <input type="hidden" name="queueId" value="${queue.id}">
+                                <input class="check" type="checkbox" style="display:none" name="subjectcode" value="${queue.subjectCode}"/>
+                                <input class="check" type="checkbox" style="display:none" name="queueId" value="${queue.id}"/>
                                 <input class="teacherbuttons" name="help" value="&#x2661;" type="submit"/>
                                 <input class="teacherbuttons" name="approve" value="&#x2713;" type="submit"/>
                                 <input class="teacherbuttons" name="remove" value="X" type="submit"/>                                                            
@@ -66,13 +67,16 @@
                     </tr>
                 </c:forEach>
             </table>
+
         </form>
     </section>
 
 
     <script language="javascript">
-        <c:set var="subject" value="${subjects[0].name}" />
-        sessionStorage.activeSubject = "${subject}";
+
+        <c:set var="defaultSubject" value="${subjects[0]}" />
+        if (sessionStorage.activeSubject == null)
+            sessionStorage.activeSubject = "${defaultSubject.name}";
         document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
         function changeSubject(subject) {
             sessionStorage.activeSubject = subject;
@@ -88,23 +92,30 @@
             $queueRulesContent.slideToggle(500, function() {
                 //execute this after slideToggle is done
                 //change text of header based on visibility of content div
-                $queueRulesHeader.text(function() {
-                    //change text based on condition
-                    return $queueRulesContent.is(":visible") ? "Regler for øvingene" : "Regler for øvingene";
-                });
+                /*$queueRulesHeader.text = (function() {
+                 //change text based on condition
+                 return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
+                 });*/
             });
         });
+
+
 
         $(document).ready(function() {
             $('td p').hide();
             $('td p:first').show();
-            $('.click').click(function() {
+
+            $('td').click(function() {
                 $('td p').hide();
                 $(this).closest('tr').find('p').show();
+                $('tr .check').prop("checked", false);
+                $(this).closest('tr').find('.check').prop("checked", true);
             }
             );
         }
         );
+
+
 
 
     </script> 
