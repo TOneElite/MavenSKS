@@ -179,6 +179,6 @@ public class TeacherController {
     public String teacherSettings(Model model, @PathVariable String subjectCode
     ) {
         
-        return "subjectSettingd";
+        return "subjectSettings";
     }
 }
