@@ -65,6 +65,7 @@
         </tr>
         <c:forEach var="queue" items="${queues}">
             <tr>
+                <c:set var="now" value="<%=new java.util.Date()%>" /> <!-- NOW - QUEUE.DATE = WIN -->
                 <td><c:out value="${queue.date}"/></td>
                 <td><c:out value="${queue.users}"/></td>
                 <td><c:out value="${queue.ov}"/></td>
