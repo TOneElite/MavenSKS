@@ -1,5 +1,6 @@
 package org.teamone.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
@@ -140,6 +141,7 @@ public class TeacherController {
                     userTask.setEmail(temp[0]);
                     userTask.setSubjectCode(subjectCode);
                     userTask.setTaskNr(Integer.parseInt(temp[1]));
+                    userTask.setDate(new Date());
                     userTasksJDBCTemplate.approve(userTask);
                     System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
                 }
@@ -147,8 +149,8 @@ public class TeacherController {
                 UserTask userTask = new UserTask();
                 userTask.setEmail(tasks[0]);
                 userTask.setSubjectCode(subjectCode);
-
                 userTask.setTaskNr(Integer.parseInt(tasks[1]));
+                userTask.setDate(new Date());
                 userTasksJDBCTemplate.approve(userTask);
                 System.out.println("dette er tasks 1 " + tasks[1] + " dette er tasks 0 " + tasks[0]);
             }
