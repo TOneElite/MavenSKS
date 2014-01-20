@@ -82,7 +82,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/taskOverview.jsp"/>
     </definition>
     
-    <definition name="taskoverview" extends="template">
+    <definition name="subjectSettings" extends="template">
         <put-attribute name="body" value="/WEB-INF/jsp/subjectsettings.jsp"/>
     </definition>
     
