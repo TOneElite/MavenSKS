@@ -75,12 +75,11 @@
                     <p id="overview-subject"><c:out value="${subject.name}"/></p>
                 </td>
                 <td>
+                    <table>
                     <section id="overview-tasks">
-                        <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                            <c:forEach var="thetasks" items="${tasks}">
-                                test
+                        <td>   <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
+                            <c:forEach var="thetasks" items="${userTasks}">
                                 <c:if test="${thetasks.subjectCode == subject.code}">
-                                    test2
                                     <c:if test="${thetasks.taskNr==i}">
                                         correct
                                     </c:if>
@@ -88,7 +87,9 @@
                             </c:forEach>
                             <c:out value="${i}"/>
                         </c:forEach>
+                        </td>
                     </section>
+                    </table>
                 </td>
             </tr>
         </table>
