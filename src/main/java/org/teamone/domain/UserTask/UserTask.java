@@ -1,5 +1,7 @@
 package org.teamone.domain.UserTask;
 
+import java.util.Date;
+
 /**
  *
  * @author Ida
@@ -9,6 +11,15 @@ public class UserTask {
     private String email;
     private String subjectCode;
     private int taskNr;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getEmail() {
         return email;

@@ -14,7 +14,7 @@ public class SubjectJDBCTemplate {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public Subject getSubject(int subjectCode) {
+    public Subject getSubject(String subjectCode) {
         String SQL = "SELECT * FROM subject WHERE subject_code=?";
         Subject subject = (Subject) jdbcTemplateObject.queryForObject(SQL, new Object[]{subjectCode}, new SubjectMapper());
         return subject;
@@ -26,7 +26,7 @@ public class SubjectJDBCTemplate {
         return subjects;
     }
     
-    public void setStatus(int status, int subjectCode){
+    public void setStatus(int status, String subjectCode){
         String SQL = "UPDATE subject SET status = ? where subject_code = ?";
          jdbcTemplateObject.update(SQL, status, subjectCode);        
     }
