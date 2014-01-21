@@ -4,6 +4,7 @@
     Author     : Øystein
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="adminSubjectList">
     <section class="adminSection">
         <h3>${subjectname}</h3>
@@ -31,7 +32,10 @@
             </div>
         </div>
         <div id="adminSubjectForm">
-            <h4>Legg til fag:</h4>
+            <h4>Legg til regel:</h4>
+            <c:forEach var="subject" items="${subjectTaskNr}">
+                HERE
+            </c:forEach>
             <br/>
             <form>
                 <label for="subjectCode">Fagkode</label>

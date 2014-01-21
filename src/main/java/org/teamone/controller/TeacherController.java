@@ -231,11 +231,13 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings/{subjectCode}", method = RequestMethod.GET)
     public String subjectSettings(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
         
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjectname", subject.getName());
+        model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
         model.addAttribute("isTeacher", true);
-        model.addAttribute("subjectname", subjectJDBCTemplate.getSubject(subjectCode).getName());
         
         return "subjectSettings";
     }
