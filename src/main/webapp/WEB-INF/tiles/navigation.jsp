@@ -14,14 +14,16 @@
             </c:if>
     </ul>
 </section>
-<section id="nav-fag">
-    <p class="navigationHeading">Fag</p>
-    <ul>
-        <c:forEach var="subject" items="${subjects}">
-            <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-            </c:forEach>
-    </ul>
-</section>
+<c:if test="${isUser}">
+    <section id="nav-fag">
+        <p class="navigationHeading">Fag</p>
+        <ul>
+            <c:forEach var="subject" items="${subjects}">
+                <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                </c:forEach>
+        </ul>
+    </section>
+</c:if>
 <c:if test="${isTeacher}">
     <section id="nav-teach">
         <p class="navigationHeading">Lærer</p>
