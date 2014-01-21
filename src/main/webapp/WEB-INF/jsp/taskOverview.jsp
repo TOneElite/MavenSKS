@@ -77,9 +77,11 @@
                 <td>
                     <section id="overview-tasks">
                         <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                            <c:forEach var="usertasks" items="${tasks}">
-                                <c:if test="${usertasks.subjectCode == subject.code}">
-                                    <c:if test="${usertasks.taskNr==i}">
+                            <c:forEach var="thetasks" items="${tasks}">
+                                test
+                                <c:if test="${thetasks.subjectCode == subject.code}">
+                                    test2
+                                    <c:if test="${thetasks.taskNr==i}">
                                         correct
                                     </c:if>
                                 </c:if>

@@ -1,6 +1,5 @@
 package org.teamone.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +14,6 @@ import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.teamone.domain.Subject.Subject;
 
 @Controller
 public class HomeController {
@@ -119,7 +117,6 @@ public class HomeController {
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
     public String taskOverview(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List subjects = subjectJDBCTemplate.listSubjects();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("tasks", userTaskJDBCTemplate.getApprovedTasks(auth.getName()));
