@@ -17,14 +17,15 @@ public class UserTaskJDBCTemplate {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-    
+
     public void approve(UserTask userTasks) {
         System.out.println(userTasks.toString());
-        String SQL = "insert into user_subject(email, subject_code, task_nr) values(?,?,?)";
+        String SQL = "insert into user_subject(email, subject_code, task_nr, date) values(?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             userTasks.getEmail(),
             userTasks.getSubjectCode(),
-            userTasks.getTaskNr()});
+            userTasks.getTaskNr(),
+            userTasks.getDate()});
     }
     
     public List<UserTask> getApprovedTasks(String email, String subject_code){

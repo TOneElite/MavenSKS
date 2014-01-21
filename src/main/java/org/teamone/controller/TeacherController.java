@@ -1,5 +1,6 @@
 package org.teamone.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
@@ -16,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
 import org.teamone.domain.Role.Role;
 import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Role.RoleNameJDBCTemplate;
+import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 import org.teamone.domain.room.RoomJDBCTemplate;
+import org.teamone.domain.userRights.UserRights;
+import org.teamone.domain.userRights.UserRightsJDBCTemplate;
 
 @Controller
 public class TeacherController {
@@ -32,6 +37,8 @@ public class TeacherController {
     private UserJDBCTemplate userJDBCTemplate;
     @Autowired
     private RoleJDBCTemplate roleJDBCTemplate;
+    @Autowired
+    private UserRightsJDBCTemplate userRightsJDBCTemplate;
 
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
@@ -41,6 +48,9 @@ public class TeacherController {
 
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
+
+    @Autowired
+    private RoleNameJDBCTemplate roleNameJDBCTemplate;
 
     /*
      @RequestMapping("/access/teacherQueue")
@@ -60,28 +70,38 @@ public class TeacherController {
             @RequestParam(value = "postpone", required = false) String postpone,
             @RequestParam(value = "help", required = false) String help,
             @RequestParam(value = "approve", required = false) String approve,
-            @RequestParam("queueId") String queueId,
-            @RequestParam("subjectcode") String subjectCode,
+            @RequestParam(value = "queueStatus", required = false) String queueStatus,
+            @RequestParam(value = "queueId", required = false) String queueId,
+            @RequestParam(value = "subjectcode", required = false) String subjectCode,
+            @RequestParam(value = "currentSubject", required = false) String currentSubject,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
-        int id = Integer.parseInt(queueId);
+
         if (remove != null) {
+            int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
+            int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status("Utsatt", id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
+            int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status(helper, id);
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
+            int id = Integer.parseInt(queueId);
             model.addAttribute("queue", queueJDBCTemplate.getQueue(id));
             return "approveInQueue";
+        }
+        if (queueStatus != null) {
+            subjectJDBCTemplate.setStatus(0, "TDAT1005");
+            model.addAttribute("queues", queueJDBCTemplate.listQueue(currentSubject));
         }
         return "teacherQueue";
     }
@@ -93,10 +113,15 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/fileread", method = RequestMethod.POST)
     public String fileread(
-            @RequestParam("output") String fileread) {
+            @RequestParam("output") String fileread/*,
+     @RequestParam("subject") String subjectcode*/) {
         String[] words = fileread.split("[,\\n]");
         User user = new User();
         Role role = new Role();
+        String subjectcode = "TDAT1005";
+        List<Subject> subjects = subjectJDBCTemplate.listSubjects();
+        UserRights userRights = new UserRights();
+        Boolean exist = false;
         for (int i = 0; i < (words.length / 4); i++) {
             user.setSurname(words[(i * 4)]);
             user.setFirstName(words[(i * 4) + 1]);
@@ -104,13 +129,22 @@ public class TeacherController {
             role.setUsername(words[(i * 4) + 2]);
             user.setPassword(words[(i * 4) + 3]);
             role.setRoleName("ROLE_USER");
-            List<User> users = userJDBCTemplate.listUsers();
-            for(User email : users){
-                if(email.getEmail() != user.getEmail()){
-                }else{
-                    userJDBCTemplate.create(user);
-                    roleJDBCTemplate.create(role);
+            userRights.setRole(role);
+            for (Subject subject : subjects) {
+                if (subject.getCode().equals(subjectcode)) {
+                    userRights.setSubject(subject);
                 }
+            }
+            //user.addUserRights(userRights);
+            List<User> users = userJDBCTemplate.listUsers();
+            for (User email : users) {
+                if (email.getEmail().equals(user.getEmail())) {
+                    exist = true;
+                }
+            }
+            if (exist == false) {
+                userJDBCTemplate.create(user);
+                roleJDBCTemplate.create(role);
             }
         }
         return "redirect:home";
@@ -140,6 +174,7 @@ public class TeacherController {
                     userTask.setEmail(temp[0]);
                     userTask.setSubjectCode(subjectCode);
                     userTask.setTaskNr(Integer.parseInt(temp[1]));
+                    userTask.setDate(new Date());
                     userTasksJDBCTemplate.approve(userTask);
                     System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
                 }
@@ -147,8 +182,8 @@ public class TeacherController {
                 UserTask userTask = new UserTask();
                 userTask.setEmail(tasks[0]);
                 userTask.setSubjectCode(subjectCode);
-
                 userTask.setTaskNr(Integer.parseInt(tasks[1]));
+                userTask.setDate(new Date());
                 userTasksJDBCTemplate.approve(userTask);
                 System.out.println("dette er tasks 1 " + tasks[1] + " dette er tasks 0 " + tasks[0]);
             }
@@ -185,6 +220,12 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
     public String teacherSettings(Model model
     ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("isTeacher", true);
         System.out.println("IS HERE");
         return "subjectSettings";
     }

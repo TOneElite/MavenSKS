@@ -10,26 +10,30 @@
             <li><a href="<c:url value="admin"/>">Admin</a></li>
             </c:if>
             <c:if test="${isTeacher}">
-            <li><a href="<c:url value="subjectSettings"/>">Teacher</a></li>
+            <li><a href="<c:url value="subjectSettings"/>">Lærer</a></li>
             </c:if>
     </ul>
 </section>
-<section id="nav-fag">
-    <p class="navigationHeading">Fag</p>
-    <ul>
-        <c:forEach var="subject" items="${subjects}">
-            <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-            </c:forEach>
-    </ul>
-</section>
-<section id="nav-teach">
-    <p class="navigationHeading">Lærer</p>
-    <ul>
-        <c:forEach var="subject" items="${subjects}">
-            <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-            </c:forEach>
-    </ul>
-</section>
+<c:if test="${isUser}">
+    <section id="nav-fag">
+        <p class="navigationHeading">Fag</p>
+        <ul>
+            <c:forEach var="subject" items="${subjects}">
+                <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                </c:forEach>
+        </ul>
+    </section>
+</c:if>
+<c:if test="${isTeacher}">
+    <section id="nav-teach">
+        <p class="navigationHeading">Lærer</p>
+        <ul>
+            <c:forEach var="subject" items="${subjects}">
+                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                </c:forEach>
+        </ul>
+    </section>
+</c:if>
 <!--
 <p class="navigationHeading">Testlinker</p>
 <ul>

@@ -43,6 +43,7 @@ public class HomeController {
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
+        boolean user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
                 System.out.println("is ADMIN!");
@@ -53,6 +54,11 @@ public class HomeController {
                 System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
             }
         }
 

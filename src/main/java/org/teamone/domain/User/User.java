@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String password;
     
-    private ArrayList<UserRights> userRights;
+    //private ArrayList<UserRights> userRights;
 
     public String getFirstName() {
         return firstName;
@@ -44,13 +44,14 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<UserRights> getUserRights() {
+    /*public ArrayList<UserRights> getUserRights() {
         return userRights;
     }
 
     public void addUserRights(UserRights userRight) {
         userRights.add(userRight);
     }
+    */
     
     public boolean checkUserData(){
         if(firstName == null || firstName.equals(""))

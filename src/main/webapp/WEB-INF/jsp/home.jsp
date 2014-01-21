@@ -19,27 +19,30 @@
 
 <section id="queueHeader">
 
-    <div id="queueInfo">
-        <h1>Øvinger i <span id="subjectHeader"></span></h1>
-        <p>1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19</p>
-        <p></p>
-        <p>
+    <section id="queueHeader">
 
+        <div id="queueInfo">
+            <h1>Kø i <span id="subjectHeader"></span></h1>
+            
+            <p> 1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19 </p>
+            
             <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
                 <button id="queueButton" type="button">Stå i kø</button>
             </a>
+                
+                <br /><br />
 
-        <div class="queueContainer">
-            <br><br><br>
-            <span class="queueRulesHeader">Regler for øvingene &#x25BC;</span>
-            <div class="queueRulesContent">
-                <p>
-                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                </p>
+            <div class="queueContainer">
+                <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
+                <div class="queueRulesContent">
+                    <p>
+                        Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                        Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <div class="simple_overlay" id="overlay">
         <jsp:include page="queueOverlay.jsp" />
     </div>
