@@ -221,9 +221,11 @@ public class TeacherController {
     public String teacherSettings(Model model
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("username", auth.getName());
+        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("isTeacher", true);
         System.out.println("IS HERE");
         return "subjectSettings";
     }
