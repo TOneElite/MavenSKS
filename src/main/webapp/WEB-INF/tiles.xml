@@ -77,6 +77,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/readfile.jsp"/>
     </definition>
     
+    <definition name="usersearch" extends="template">
+        <put-attribute name="title" value="search"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/usersearch.jsp"/>
+    </definition>
+    
     <definition name="taskoverview" extends="template">
         <put-attribute name="title" value="Oversikt"/>
         <put-attribute name="body" value="/WEB-INF/jsp/taskOverview.jsp"/>
