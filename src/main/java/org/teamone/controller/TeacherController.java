@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
 import org.teamone.domain.Role.Role;
 import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Role.RoleNameJDBCTemplate;
 import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
@@ -47,6 +48,9 @@ public class TeacherController {
 
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
+
+    @Autowired
+    private RoleNameJDBCTemplate roleNameJDBCTemplate;
 
     /*
      @RequestMapping("/access/teacherQueue")
@@ -217,6 +221,9 @@ public class TeacherController {
     public String teacherSettings(Model model
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("username", auth.getName());
         System.out.println("IS HERE");
         return "subjectSettings";
     }
