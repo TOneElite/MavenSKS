@@ -2,8 +2,6 @@ package org.teamone.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
-import javax.swing.JOptionPane;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -240,5 +238,58 @@ public class TeacherController {
         model.addAttribute("isTeacher", true);
         System.out.println("IS HERE: " + subjectCode);
         return "subjectSettings";
+    }
+    
+    @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
+    public String userSearch(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("usercons", userJDBCTemplate.listUsers());
+        model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        // Check for admin rights
+        boolean admin = false;
+        boolean teacher = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+            if (ga.toString().equals("ROLE_TEACHER")) {
+                System.out.println("is TEACHER!");
+                teacher = true;
+                model.addAttribute("isTeacher", teacher);
+            }
+        }
+        return "usersearch";
+    }
+
+    @RequestMapping(value = "/access/usersearched", method = RequestMethod.GET)
+    public String userSearched(
+            @RequestParam("con") String con, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
+        model.addAttribute("usercons", userJDBCTemplate.listUsersCon(con));
+        model.addAttribute("queues", queueJDBCTemplate.listQueue());
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        // Check for admin rights
+        boolean admin = false;
+        boolean teacher = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+            if (ga.toString().equals("ROLE_TEACHER")) {
+                System.out.println("is TEACHER!");
+                teacher = true;
+                model.addAttribute("isTeacher", teacher);
+            }
+        }
+        return "usersearch";
     }
 }

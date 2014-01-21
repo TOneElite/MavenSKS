@@ -16,13 +16,23 @@ public class UserJDBCTemplate {
 
     public User getUser(int userID) {
         String SQL = "SELECT * FROM user WHERE user_id=?";
-        User user = (User) jdbcTemplateObject.queryForObject(SQL, new Object[]{userID}, new UserMapper());
+        User user = (User) jdbcTemplateObject.queryForObject(SQL, new Object[]{userID}, 
+                new UserMapper());
         return user;
     }
 
     public List<User> listUsers() {
-        String SQL = "SELECT * FROM user";
+        String SQL = "SELECT * FROM user ORDER BY surname ASC" ;
         List<User> user = jdbcTemplateObject.query(SQL, new UserMapper());
+        return user;
+    }
+    
+    public List<User> listUsersCon(String con) {
+        String a = "%"+con+"%";
+        String SQL = "SELECT * FROM user WHERE surname LIKE ?";
+        List<User> user = jdbcTemplateObject.query(SQL, new Object[]{a}, 
+                new UserMapper(){
+        });
         return user;
     }
     
@@ -61,4 +71,5 @@ public class UserJDBCTemplate {
             user.getPassword()
         });
     }
+    
 }
