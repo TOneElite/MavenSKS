@@ -22,14 +22,16 @@
             </c:forEach>
     </ul>
 </section>
-<section id="nav-teach">
-    <p class="navigationHeading">Lærer</p>
-    <ul>
-        <c:forEach var="subject" items="${subjects}">
-            <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
-            </c:forEach>
-    </ul>
-</section>
+<c:if test="${isTeacher}">
+    <section id="nav-teach">
+        <p class="navigationHeading">Lærer</p>
+        <ul>
+            <c:forEach var="subject" items="${subjects}">
+                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                </c:forEach>
+        </ul>
+    </section>
+</c:if>
 <!--
 <p class="navigationHeading">Testlinker</p>
 <ul>
