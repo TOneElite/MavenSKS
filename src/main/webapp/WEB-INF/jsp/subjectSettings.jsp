@@ -25,5 +25,7 @@
     }
 </style>
 <div class="subjectEditor">
-    
+    <c:forEach var="subject" items="${subjects}">
+        <a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a>
+    </c:forEach>
 </div>
