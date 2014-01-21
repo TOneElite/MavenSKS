@@ -65,6 +65,11 @@ public class HomeController {
                 user = true;
                 model.addAttribute("isUser", user);
             }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
         }
 
         return "home";
