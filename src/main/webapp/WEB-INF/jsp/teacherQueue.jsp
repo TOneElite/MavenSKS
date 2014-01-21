@@ -49,10 +49,7 @@
                         <td class="click"><c:out value="${queue.users}"/></td>
                         <td class="click"><c:out value="${queue.ov}"/></td>
                         <td class="click"><c:out value="${queue.comment}"/></td>
-                        <td class="click" id="status"> <c:choose>
-                                <c:when test="${queue.status=='0'}"><c:out value=" "/></c:when>
-                                <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
-                            </c:choose></td>
+                        <td class="click"><c:out value="${queue.status}"/></td>
 
                         <td class="click"><c:out value="${queue.tables}"/></td>    
                         <td id="buttons"><p>
