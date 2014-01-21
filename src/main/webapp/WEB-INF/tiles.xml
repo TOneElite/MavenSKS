@@ -87,8 +87,12 @@
         <put-attribute name="body" value="/WEB-INF/jsp/taskOverview.jsp"/>
     </definition>
     
-    <definition name="subjectSettings" extends="template">
+    <definition name="teacherSettings" extends="template">
         <put-attribute name="body" value="/WEB-INF/jsp/subjectSettings.jsp"/>
+    </definition>
+    
+    <definition name="subjectSettings" extends="template">
+        <put-attribute name="body" value="/WEB-INF/jsp/configureSubject.jsp"/>
     </definition>
     
 </tiles-definitions>

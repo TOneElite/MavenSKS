@@ -25,5 +25,25 @@
     }
 </style>
 <div class="subjectEditor">
-    
+        <div id="adminSubjectList">
+            <h4>Fagliste:</h4>
+            <br/>
+                <table id="subjectTable">
+                    <tr class="subjectTableRow">
+                        <th class="subjectHeader subjectCell">Fagkode</th>
+                        <th class="subjectHeader subjectCell">Fagnavn</th>
+                        <th class="subjectHeader subjectCell">Valg</th>
+                    </tr>
+                    <c:forEach var="subject" items="${subjects}">
+                        <tr class="subjectTableRow">
+                            <td class="subjectCell">${subject.code}</td>
+                            <td class="subjectCell">${subject.name}</td>
+                            <td class="subjectCell">
+                                <a href="#" class="adminLinks">Detaljer</a>
+                                <a href="<c:url value="/access/subjectSettings/${subject.code}"/>" class="adminLinks editLinkPadding">Endre</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+        </div>
 </div>
