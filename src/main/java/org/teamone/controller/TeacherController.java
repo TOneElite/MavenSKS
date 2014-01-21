@@ -238,7 +238,7 @@ public class TeacherController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("isTeacher", true);
-        System.out.println("IS HERE");
+        System.out.println("IS HERE: " + subjectCode);
         return "subjectSettings";
     }
 }
