@@ -122,10 +122,7 @@ public class HomeController {
         List subjects = subjectJDBCTemplate.listSubjects();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        for (int i = 0; i < subjectJDBCTemplate.listSubjects().size(); i++) {
-            String temp = "usertask"+i;
-            model.addAttribute(temp, userTaskJDBCTemplate.getApprovedTasks(auth.getName(), ((Subject) subjects.get(i)).getCode()));
-        }
+        model.addAttribute("tasks", userTaskJDBCTemplate.getApprovedTasks(auth.getName()));
         return "taskoverview";
     }
 }
