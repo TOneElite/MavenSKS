@@ -10,7 +10,7 @@
             <li><a href="<c:url value="admin"/>">Admin</a></li>
             </c:if>
             <c:if test="${isTeacher}">
-            <li><a href="<c:url value="subjectSettings"/>">Teacher</a></li>
+            <li><a href="<c:url value="subjectSettings"/>">Lærer</a></li>
             </c:if>
     </ul>
 </section>
