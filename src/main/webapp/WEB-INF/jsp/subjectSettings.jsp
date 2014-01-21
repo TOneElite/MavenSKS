@@ -25,7 +25,25 @@
     }
 </style>
 <div class="subjectEditor">
-    <c:forEach var="subject" items="${subjects}">
-        <a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a>
-    </c:forEach>
+        <div id="adminSubjectList">
+            <h4>Fagliste:</h4>
+            <br/>
+                <table id="subjectTable">
+                    <tr class="subjectTableRow">
+                        <th class="subjectHeader subjectCell">Fagkode</th>
+                        <th class="subjectHeader subjectCell">Fagnavn</th>
+                        <th class="subjectHeader subjectCell">Valg</th>
+                    </tr>
+                    <c:forEach var="subject" items="${subjects}">
+                        <tr class="subjectTableRow">
+                            <td class="subjectCell">${subject.code}</td>
+                            <td class="subjectCell">${subject.name}</td>
+                            <td class="subjectCell">
+                                <a href="#" class="adminLinks">Detaljer</a>
+                                <a href="#" class="adminLinks editLinkPadding">Endre</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+        </div>
 </div>
