@@ -27,6 +27,8 @@ public class QueueController {
             @RequestParam("comment") String comment, 
             @RequestParam("subjectCode") String subjectCode) {
         String tasks = "";
+        room = room.split("#")[0];
+        if (table == null) table = "asd";
         for (int i = 0; i < task.length; i++) {
             if (i==(task.length - 1)) {
                 tasks += task[i];
@@ -49,7 +51,7 @@ public class QueueController {
         queue.setStatus("");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue);
-        return "redirect:home";
+        return "redirect:"+subjectCode;
     }
     
     @RequestMapping("/lagre")
