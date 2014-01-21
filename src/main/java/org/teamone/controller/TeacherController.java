@@ -290,6 +290,6 @@ public class TeacherController {
                 model.addAttribute("isTeacher", teacher);
             }
         }
-        return "usersearch";
+        return "usersearched";
     }
 }

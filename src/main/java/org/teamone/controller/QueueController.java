@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +29,8 @@ public class QueueController {
             @RequestParam("comment") String comment, 
             @RequestParam("subjectCode") String subjectCode) {
         String tasks = "";
+        room = room.split("#")[0];
+        if (table == null) table = "asd";
         for (int i = 0; i < task.length; i++) {
             if (i==(task.length - 1)) {
                 tasks += task[i];
@@ -35,7 +39,7 @@ public class QueueController {
             }
         }
         Queue queue = new Queue();
-        queue.setTables(room + ", " + table);
+        queue.setTables(room + ", " + table); // Has the name "location" in the database
         queue.setOv(tasks);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (group.length <= 1) {
@@ -49,13 +53,18 @@ public class QueueController {
         queue.setStatus("");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue);
-        return "redirect:home";
+        return "redirect:"+subjectCode;
     }
     
     @RequestMapping("/lagre")
     public String nyView(@ModelAttribute(value = "queue") Queue queue) {
         queueJDBCTemplate.create(queue);
         return "lagre";
+    }
+    @RequestMapping(value = "/access/{id}", method = RequestMethod.GET)
+    public String remove(Model model, @PathVariable String id) {
+        queueJDBCTemplate.delete(Integer.parseInt(id));
+        return "home";
     }
     
 }

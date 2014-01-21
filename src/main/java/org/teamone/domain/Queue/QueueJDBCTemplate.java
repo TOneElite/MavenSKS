@@ -44,7 +44,7 @@ public class QueueJDBCTemplate {
             queue.getUsers(),
             queue.getOv(),
             queue.getComment(),
-            queue.getTables(),
+            queue.getTables(), // Has the name "location" in the database
             queue.getId(),});
     }
 

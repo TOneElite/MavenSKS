@@ -11,9 +11,9 @@
             <label for="room">Rom:</label>  
             <select name="room" id="room" class="styledSelect">
                 <c:forEach var="room" items="${rooms}">
-                    <option value="${room.roomCode}" title="${room.tableCount}">${room.roomCode}</option>
+                    <option value="${room.roomCode}#${room.pictureLink}" title="${room.tableCount}">${room.roomCode}</option>
                 </c:forEach>
-                <option value="other">Annet</option>
+                <option value="other" selected>Annet</option>
             </select><br>
 
             <label for="table">Bord:</label>
@@ -22,12 +22,16 @@
 
             <label>Øving:</label>
 
+            <!-- Checks what the active subject is and lists the number of tasks -->
             <section id="checkboxes">
                 <ul id="tasks">
-                    <c:set var="nr_of_tasks" value="activeSubjects" />
-                    <c:set var="nr_of_tasks" value="${subjects[0].nrOfTasks}" /> <!-- HER MÅ DET INN ACTIVESUBJECT FRA JAVASCRIPT, BUT HAOWWW!?!=!==!=!?!?!??! -->
-                    <c:forEach var="i" begin="1" end="${nr_of_tasks}">
-                        <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                    <c:set var="activeCode" value="${activeSubject}" />
+                    <c:forEach var="subject" items="${subjects}" >
+                        <c:if test="${subject.code == activeCode}">
+                            <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
+                                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                                    </c:forEach>
+                                </c:if>
                             </c:forEach>
                 </ul>
             </section>
@@ -54,7 +58,7 @@
         </form>
     </article>
     <article id="right">
-        <img src="<c:url value='../res/lab2.png'/>" />     
+        <img id="roomImg" src="<c:url value='../res/lab4.png'/>" />     
         <section id="group">
             <label style="text-align: left; margin-left:0;">Gruppe:</label><br /><br />
             <div class="styledSelect">
@@ -65,64 +69,61 @@
 </div>  
 
 <script type="text/javascript">
-/* TABLE options changes when you choose a ROOM */
-window.onload = function() {
+                /* TABLE options changes when you choose a ROOM */
 
-    var room = document.getElementById("room");
-    var table = document.getElementById("table");
+                var room = document.getElementById("room");
+                var table = document.getElementById("table");
 
-    function pictureChange(room) {
-        document.getElementById("img").src = room;
-    }
+                function pictureChange(pictureLink) {
+                    document.getElementById("roomImg").src = pictureLink;
+                }
 
-    room.onchange = function() {
-        if (this.value === "other") {
-            table.disabled = true;
-            table.className += " disabled";
-            table.options.length = 0;
-            pictureChange("<c:url value='../res/lab3.png'/>");
-        }
-        else {
-            table.disabled = false;
-            table.className -= " disabled";
+                room.onchange = function() {
+                    if (this.value === "other") {
+                        table.disabled = true;
+                        table.className += " disabled";
+                        table.options.length = 0;
+                        pictureChange('../res/lab4.png');
+                    }
+                    else {
+                        table.disabled = false;
+                        table.className -= " disabled";
 
-            var tablecount = room.options[room.selectedIndex].title;
-            table.options.length = 0;
-            for (var i = 1; i <= tablecount; i++) {
-                table.options[table.options.length] = new Option("Bord " + i);
-            }
-        }
-    };
-    room.onchange();
+                        var tablecount = room.options[room.selectedIndex].title;
+                        table.options.length = 0;
+                        for (var i = 1; i <= tablecount; i++) {
+                            table.options[table.options.length] = new Option("Bord " + i);
+                        }
+                        pictureChange(room.options[room.selectedIndex].value.split("#")[1]);
+                    }
+                };
 
-    /* Filling the GROUP box */
-    var group = document.getElementById("group");
-    var selectedUserList = document.getElementById("selectedUserList");
-    group.onchange = function() {
-        var selectedUser = group.options[group.selectedIndex];
-        if (selectedUser.title !== "") {
-            selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser.email);
-            selectedUserList.options[selectedUserList.options.length].title = selectedUser.title;
-            selectedUser.remove();
-        }
-    };
-    group.onchange();
+                /* Filling the GROUP box */
+                var group = document.getElementById("group");
+                var selectedUserList = document.getElementById("selectedUserList");
+                group.onchange = function() {
+                    var selectedUser = group.options[group.selectedIndex];
+                    if (selectedUser.title !== "") {
+                        selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser.email);
+                        selectedUser.remove();
+                    }
+                };
+                group.onchange();
 
-    selectedUserList.onchange = function() {
-        var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
-        group.options[group.options.length] = new Option(removeUser.text, removeUser);
-        removeUser.remove();
-    };
-    selectedUserList.onchange();
+                selectedUserList.onchange = function() {
+                    var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
+                    group.options[group.options.length] = new Option(removeUser.text, removeUser.value);
+                    removeUser.remove();
+                };
+                selectedUserList.onchange();
 
-
-};
-function groupArray() {
-    var groupArray = new Array();
-    var selectList = document.getElementById("selectedUserList");
-    for (var i = 0; i < selectList.options.length; i++) {
-        groupArray[i] = selectList.options[i].value;
-    }
-    document.getElementById("groupList").value = groupArray;
-};
+                function groupArray() {
+                    var groupArray = new Array();
+                    var selectList = document.getElementById("selectedUserList");
+                    for (var i = 0; i < selectList.options.length; i++) {
+                        groupArray[i] = selectList.options[i].value;
+                    }
+                    document.getElementById("groupList").value = groupArray;
+                }
+                ;
 </script>

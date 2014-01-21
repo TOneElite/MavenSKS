@@ -10,7 +10,7 @@ public class Queue {
     private String ov;
     private String comment;
     private String status;
-    private String tables;
+    private String tables; // Has the name "location" in the database
     private String subjectCode;
 
     public int getId() {

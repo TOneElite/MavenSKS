@@ -28,11 +28,16 @@ public class AdminController {
     private RoleJDBCTemplate roleJDBCTemplate;
     
     
-
+    /**
+     * TO BE REMOVED ?
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = "/access/admin")
     public String adminView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
         // Check for admin rights
@@ -47,6 +52,17 @@ public class AdminController {
         return "admin";
     }
 
+    /**
+     * Method for processing the registration form for users.
+     * 
+     * @param firstName - users first name
+     * @param surname - users surname
+     * @param email - users email / change this to auto-resolve
+     * @param password - users password / change this to auto-resolve
+     * @param roles - users roles.
+     * @param model - The model. This is for transferring from the controller to the view.
+     * @return 
+     */
     @RequestMapping(value = "/access/admin/addUser", method = RequestMethod.POST)
     public String addUserProcess(
             @RequestParam(value = "firstName", required = false) String firstName,
@@ -78,6 +94,12 @@ public class AdminController {
 
     }
     
+    /**
+     * Shows the administrator home page.
+     * The home page shows all users, subjects and rooms.
+     * @param model - The model. This is for transferring from the controller to the view.
+     * @return name for tilesViewResolver.
+     */
     @RequestMapping(value="/admin")
     public String adminHomeView(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

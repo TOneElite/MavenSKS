@@ -1,6 +1,5 @@
 package org.teamone.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +14,6 @@ import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.teamone.domain.Subject.Subject;
 
 @Controller
 public class HomeController {
@@ -88,6 +86,7 @@ public class HomeController {
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
+        boolean user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
                 System.out.println("is ADMIN!");
@@ -98,6 +97,21 @@ public class HomeController {
                 System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
             }
         }
 
@@ -119,13 +133,9 @@ public class HomeController {
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
     public String taskOverview(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List subjects = subjectJDBCTemplate.listSubjects();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        for (int i = 0; i < subjectJDBCTemplate.listSubjects().size(); i++) {
-            String temp = "usertask"+i;
-            model.addAttribute(temp, userTaskJDBCTemplate.getApprovedTasks(auth.getName(), ((Subject) subjects.get(i)).getCode()));
-        }
+        model.addAttribute("tasks", userTaskJDBCTemplate.getApprovedTasks(auth.getName()));
         return "taskoverview";
     }
 }
