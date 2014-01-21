@@ -216,6 +216,7 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
     public String teacherSettings(Model model
     ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("IS HERE");
         return "subjectSettings";
     }
