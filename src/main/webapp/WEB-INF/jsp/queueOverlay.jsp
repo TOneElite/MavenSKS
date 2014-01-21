@@ -49,7 +49,6 @@
 
             <label></label>
             <input class="button" type="submit" onclick="groupArray();" value="OK"/>
-            <input class="button" type="button" value="Avbryt"/>
             <input name="subjectCode" value="${activeSubject}" hidden />
             <input name="groupList" id="groupList" value="" hidden />
         </form>
