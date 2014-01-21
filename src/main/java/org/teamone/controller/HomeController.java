@@ -135,7 +135,7 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("tasks", userTaskJDBCTemplate.getApprovedTasks(auth.getName()));
+        model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         return "taskoverview";
     }
 }
