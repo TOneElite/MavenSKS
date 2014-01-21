@@ -27,10 +27,9 @@ public class UserTaskJDBCTemplate {
             userTasks.getTaskNr()});
     }
     
-    /*
     public List<UserTask> getApprovedTasks(String email, String subject_code){
-        String SQL = "SELECT task_nr from user_tasks where email=? subject_code=?";
+        String SQL = "SELECT task_nr from user_subject where email=? subject_code=?";
         List<UserTask> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
         return tasks;
-    } */
+    }
 }
