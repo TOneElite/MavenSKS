@@ -37,6 +37,7 @@ public class AdminController {
     public String adminView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
         // Check for admin rights
