@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
 import org.teamone.domain.Role.Role;
 import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
 import org.teamone.domain.UserTask.UserTask;
 import org.teamone.domain.room.RoomJDBCTemplate;
+import org.teamone.domain.userRights.UserRights;
+import org.teamone.domain.userRights.UserRightsJDBCTemplate;
 
 @Controller
 public class TeacherController {
@@ -32,6 +35,8 @@ public class TeacherController {
     private UserJDBCTemplate userJDBCTemplate;
     @Autowired
     private RoleJDBCTemplate roleJDBCTemplate;
+    @Autowired
+    private UserRightsJDBCTemplate userRightsJDBCTemplate;
 
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
@@ -93,10 +98,15 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/fileread", method = RequestMethod.POST)
     public String fileread(
-            @RequestParam("output") String fileread) {
+            @RequestParam("output") String fileread/*,
+            @RequestParam("subject") String subjectcode*/){
         String[] words = fileread.split("[,\\n]");
         User user = new User();
         Role role = new Role();
+        String subjectcode = "TDAT1005";
+        List<Subject> subjects = subjectJDBCTemplate.listSubjects();
+        UserRights userRights = new UserRights();
+        Boolean exist = false;
         for (int i = 0; i < (words.length / 4); i++) {
             user.setSurname(words[(i * 4)]);
             user.setFirstName(words[(i * 4) + 1]);
@@ -104,13 +114,22 @@ public class TeacherController {
             role.setUsername(words[(i * 4) + 2]);
             user.setPassword(words[(i * 4) + 3]);
             role.setRoleName("ROLE_USER");
+            userRights.setRole(role);
+            for(Subject subject : subjects){
+                if(subject.getCode().equals(subjectcode)){
+                    userRights.setSubject(subject);
+                }
+            }
+            //user.addUserRights(userRights);
             List<User> users = userJDBCTemplate.listUsers();
             for(User email : users){
-                if(email.getEmail() != user.getEmail()){
-                }else{
-                    userJDBCTemplate.create(user);
-                    roleJDBCTemplate.create(role);
+                if(email.getEmail().equals(user.getEmail())){
+                    exist = true;
                 }
+            }
+            if(exist == false){
+                userJDBCTemplate.create(user);
+                roleJDBCTemplate.create(role);
             }
         }
         return "redirect:home";
