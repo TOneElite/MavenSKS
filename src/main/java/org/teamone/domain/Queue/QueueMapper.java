@@ -9,14 +9,16 @@ public class QueueMapper implements RowMapper<Queue> {
     @Override
     public Queue mapRow(ResultSet rs, int i) throws SQLException {
         Queue queue = new Queue();
+        
         queue.setId(rs.getInt("queue_id"));
-        queue.setDate(rs.getDate("timestamp"));
+        queue.setSubjectCode(rs.getString("subject_code"));
+        queue.setTasks(rs.getString("tasks"));
         queue.setComment(rs.getString("comment"));
         queue.setStatus(rs.getString("status"));
-        queue.setSubjectCode(rs.getString("subject_code"));
-		queue.setLocation(rs.getString("location"));
-		
-		// needs queuegroup mapper
+        queue.setDate(rs.getDate("timestamp"));
+        queue.setLocation(rs.getString("location"));
+        queue.setFirstNames(rs.getString("name"));
+        queue.setUsers(rs.getString("email"));
 		
         return queue;
     }

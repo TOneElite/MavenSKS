@@ -20,7 +20,7 @@ import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
-import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasks;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
@@ -42,7 +42,7 @@ public class TeacherController {
     private SubjectJDBCTemplate subjectJDBCTemplate;
 
     @Autowired
-    private UserTaskJDBCTemplate userTasksJDBCTemplate;
+    private ApprovedTasksJDBCTemplate userTasksJDBCTemplate;
 
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
@@ -175,7 +175,7 @@ public class TeacherController {
                     userTask.setEmail(temp[0]);
                     userTask.setSubjectCode(subjectCode);
                     userTask.setTaskNr(Integer.parseInt(temp[1]));
-                    userTask.setDate(new Date());
+                    userTask.setApprovedDate(new Date());
                     userTasksJDBCTemplate.approve(userTask);
                     System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
                 }
@@ -184,7 +184,7 @@ public class TeacherController {
                 userTask.setEmail(tasks[0]);
                 userTask.setSubjectCode(subjectCode);
                 userTask.setTaskNr(Integer.parseInt(tasks[1]));
-                userTask.setDate(new Date());
+                userTask.setApprovedDate(new Date());
                 userTasksJDBCTemplate.approve(userTask);
                 System.out.println("dette er tasks 1 " + tasks[1] + " dette er tasks 0 " + tasks[0]);
             }
