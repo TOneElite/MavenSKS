@@ -16,7 +16,12 @@
     <http auto-config="true">
         <intercept-url pattern="/" access="ROLE_USER"/>
         <intercept-url pattern="/access/*" access="ROLE_USER,ROLE_ADMIN, ROLE_TEACHER"/>
+        
         <intercept-url pattern="/open/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/user/*" access="ROLE_USER, ROLE_ADMIN"/>
+        <intercept-url pattern="/teacher/*" access="ROLE_TEACHER, ROLE_ADMIN"/>
+        <intercept-url pattern="/studass/*" access="ROLE_STUDASS"/>
+        <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         
         <form-login login-page="/login" default-target-url="/access/home"
                             authentication-failure-url="/login" 
