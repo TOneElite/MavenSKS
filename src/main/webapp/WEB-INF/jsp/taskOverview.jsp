@@ -35,10 +35,10 @@
     #overview-table td{
         padding: 4px;
     }
-    #highlight-whole {
-        background-color: limegreen !important;
+    .highlight-whole {
+        background-color: #74e571 !important;
     }
-    #highlight-one {
+    .highlight-one {
         color: limegreen !important;
     }
     .overviewContainer .overviewRulesHeader {
@@ -54,7 +54,17 @@
         font-weight: bold
     }
     #overview-tasks{
-        text-align: right;
+        float: right;
+    }
+    #overview-tasktable td{
+        border: 1px solid #ccc;
+        box-shadow: 0 1px 1px 1px #e3e8e5;
+        padding:0px;
+    }
+
+    #overview-tasktable td p{
+        display: inline;
+        padding: 2px;
     }
 </style>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -75,21 +85,23 @@
                     <p id="overview-subject"><c:out value="${subject.name}"/></p>
                 </td>
                 <td>
-                    <table>
                     <section id="overview-tasks">
-                        <td>   <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                            <c:forEach var="thetasks" items="${userTasks}">
-                                <c:if test="${thetasks.subjectCode == subject.code}">
-                                    <c:if test="${thetasks.taskNr==i}">
-                                        correct
-                                    </c:if>
-                                </c:if>
+                        <table id="overview-tasktable">
+                            <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
+                                <td>  
+                                    <c:forEach var="thetasks" items="${userTasks}">
+                                        <c:if test="${thetasks.subjectCode == subject.code}">
+                                            <c:if test="${thetasks.taskNr==i}">
+                                                <span class="highlight-whole">
+                                                </c:if>
+                                            </c:if>
+                                        </c:forEach>
+                                        <p><c:out value="${i}"/></p>
+                                    </span>
+                                </td>
                             </c:forEach>
-                            <c:out value="${i}"/>
-                        </c:forEach>
-                        </td>
+                        </table>
                     </section>
-                    </table>
                 </td>
             </tr>
         </table>
