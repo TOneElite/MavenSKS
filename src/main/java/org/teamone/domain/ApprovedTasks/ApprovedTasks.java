@@ -11,14 +11,27 @@ public class ApprovedTasks {
     private String email;
     private String subjectCode;
     private int taskNr;
-    private Date date;
+    private Date approvedDate;
+	private String approvedBy;
 
-    public Date getDate() {
-        return date;
+	
+
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+
+	
+	
+    public Date getApprovedDate() {
+        return approvedDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setApprovedDate(Date date) {
+        this.approvedDate = date;
     }
 
     public String getEmail() {
@@ -45,9 +58,8 @@ public class ApprovedTasks {
         this.taskNr = taskNr;
     }
 
-    @Override
-    public String toString() {
-        return "Email: " + email + " Subject code: " + subjectCode + " Task Nr: " + taskNr;
-    }
-
+	@Override
+	public String toString() {
+		return "ApprovedTasks{" + "email=" + email + ", subjectCode=" + subjectCode + ", taskNr=" + taskNr + ", approvedDate=" + approvedDate + ", approvedBy=" + approvedBy + '}';
+	}
 }

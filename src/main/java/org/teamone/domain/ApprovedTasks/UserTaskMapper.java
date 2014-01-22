@@ -8,11 +8,12 @@ public class UserTaskMapper implements RowMapper<ApprovedTasks> {
 
     @Override
     public ApprovedTasks mapRow(ResultSet rs, int i) throws SQLException {
-        ApprovedTasks userTasks = new ApprovedTasks();
-        userTasks.setEmail(rs.getString("email"));
-        userTasks.setSubjectCode(rs.getString("subject_code"));
-        userTasks.setTaskNr(rs.getInt("task_nr"));
-        userTasks.setDate(rs.getDate("date"));
-        return userTasks;
+        ApprovedTasks approvedTasks = new ApprovedTasks();
+        approvedTasks.setEmail(rs.getString("email"));
+        approvedTasks.setSubjectCode(rs.getString("subject_code"));
+        approvedTasks.setTaskNr(rs.getInt("task_nr"));
+        approvedTasks.setApprovedDate(rs.getDate("approved_date"));
+		approvedTasks.setApprovedBy(rs.getString("approved_by"));
+        return approvedTasks;
     }
 }

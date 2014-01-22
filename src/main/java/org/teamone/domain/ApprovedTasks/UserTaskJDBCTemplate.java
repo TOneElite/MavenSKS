@@ -18,24 +18,27 @@ public class UserTaskJDBCTemplate {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void approve(ApprovedTasks userTasks) {
-        System.out.println(userTasks.toString());
-        String SQL = "insert into user_task(email, subject_code, task_nr, date) values(?,?,?,?)";
+    public void approve(ApprovedTasks approvedTasks) {
+        System.out.println(approvedTasks.toString());
+        String SQL = "INSERT INTO approved_tasks(email, subject_code, task_nr, approved_date, approved_by) values(?,?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
-            userTasks.getEmail(),
-            userTasks.getSubjectCode(),
-            userTasks.getTaskNr(),
-            userTasks.getDate()});
+            approvedTasks.getEmail(),
+            approvedTasks.getSubjectCode(),
+            approvedTasks.getTaskNr(),
+            approvedTasks.getApprovedDate(),
+			approvedTasks.getApprovedBy()
+		});
+		
     }
     
     public List<ApprovedTasks> listApprovedTasks(String email, String subjectCode){
-        String SQL = "SELECT * FROM user_task WHERE email='"+email+"' AND subject_code='"+subjectCode+"'";
+        String SQL = "SELECT * FROM approved_tasks WHERE email='"+email+"' AND subject_code='"+subjectCode+"'";
         List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
         return tasks;
     }
     
         public List<ApprovedTasks> listApprovedTasksWithoutSubject(String email){
-        String SQL = "SELECT * FROM user_task WHERE email='"+email+"'";
+        String SQL = "SELECT * FROM approved_tasks WHERE email='"+email+"'";
         List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
         return tasks;
     }
