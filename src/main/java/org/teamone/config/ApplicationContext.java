@@ -21,6 +21,7 @@ import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
+import org.teamone.domain.Rules.TaskRuleJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation
@@ -103,6 +104,13 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
         ApprovedTasksJDBCTemplate userTaskJDBCTemplate = new ApprovedTasksJDBCTemplate();
         userTaskJDBCTemplate.setDataSource(dataSource());
         return userTaskJDBCTemplate;
+    }
+    
+    @Bean
+    public TaskRuleJDBCTemplate TaskRuleJDBCTemplate(){
+        TaskRuleJDBCTemplate taskRuleJDBCTemplate = new TaskRuleJDBCTemplate();
+        taskRuleJDBCTemplate.setDataSource(dataSource());
+        return taskRuleJDBCTemplate;
     }
 
     @Override

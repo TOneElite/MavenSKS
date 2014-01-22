@@ -29,7 +29,7 @@ public class TaskRuleJDBCTemplate {
         return list;
     }
     
-    public TaskRule getTaskRule(String subjectcode){
+    public TaskRule getTaskRule(String subjectcode){ 
         String SQL = "SELECT * from subject_task_rules WHERE subject_code = ?";
         TaskRule rule = jdbcTemplateObject.queryForObject(SQL, new Object[] {subjectcode}, new TaskRuleMapper());
         return rule;

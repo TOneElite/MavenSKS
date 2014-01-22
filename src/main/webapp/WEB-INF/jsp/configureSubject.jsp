@@ -17,10 +17,10 @@
                     <tr class="subjectTableRow">
                         <th class="subjectHeader subjectCell">Regel</th>
                     </tr>
-                    <c:forEach var="subject" items="${subjects}">
+                    <c:forEach var="tasks" items="${taskRules}">
                         <tr class="subjectTableRow">
-                            <td class="subjectCell">${subject.code}</td>
-                            <td class="subjectCell">${subject.name}</td>
+                            <td class="subjectCell">${rulestring}</td>
+                            <td class="subjectCell">Nothing</td>
                             <td class="subjectCell">Ikke Implementert</td>
                             <td class="subjectCell">
                                 <a href="#" class="adminLinks editLinkPadding">Endre</a>
