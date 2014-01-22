@@ -120,13 +120,16 @@ public class TeacherController {
         List<Subject> subjects = subjectJDBCTemplate.listSubjects();
         UserRights userRights = new UserRights();
         Boolean exist = false;
+        Date date = new Date();
         for (int i = 0; i < (words.length / 4); i++) {
             user.setSurname(words[(i * 4)]);
             user.setFirstName(words[(i * 4) + 1]);
             user.setEmail(words[(i * 4) + 2]);
-            role.setUsername(words[(i * 4) + 2]);
+            role.setEmail(words[(i * 4) + 2]);
             user.setPassword(words[(i * 4) + 3]);
+            role.setCode("TDAT-2007-13H");
             role.setRoleName("ROLE_USER");
+            user.setDate(date);
             userRights.setRole(role);
             for (Subject subject : subjects) {
                 if (subject.getCode().equals(subjectcode)) {

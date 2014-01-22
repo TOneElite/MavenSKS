@@ -4,7 +4,6 @@ package org.teamone.domain.Role;
  *
  * @author Kim
  */
-import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,7 +24,10 @@ public class RoleJDBCTemplate {
     }
     
     public void create(Role role){
-        String SQL = "insert into role (rolename, username) values(?,?)";
-        jdbcTemplateObject.update(SQL, new Object[]{role.getRoleName(), role.getUsername()});
+        String SQL = "insert into user_subject (email, subject_code, rolename) values(?,?,?)";
+        jdbcTemplateObject.update(SQL, new Object[]{
+            role.getEmail(), 
+            role.getCode(), 
+            role.getRoleName()});
     }
 }

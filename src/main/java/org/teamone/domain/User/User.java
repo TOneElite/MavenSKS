@@ -1,7 +1,6 @@
 package org.teamone.domain.User;
 
-import java.util.ArrayList;
-import org.teamone.domain.userRights.UserRights;
+import java.util.Date;
 
 public class User {
 
@@ -9,8 +8,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
-    
-    //private ArrayList<UserRights> userRights;
+    private Date date;
 
     public String getFirstName() {
         return firstName;
@@ -44,14 +42,13 @@ public class User {
         this.password = password;
     }
 
-    /*public ArrayList<UserRights> getUserRights() {
-        return userRights;
+    public Date getDate(){
+        return date;
     }
-
-    public void addUserRights(UserRights userRight) {
-        userRights.add(userRight);
+    
+    public void setDate(Date date){
+        this.date =  date;
     }
-    */
     
     public boolean checkUserData(){
         if(firstName == null || firstName.equals(""))

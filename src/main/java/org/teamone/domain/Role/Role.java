@@ -6,20 +6,21 @@ package org.teamone.domain.Role;
  */
 public class Role {
 
-    private int roleID;
+    private String email;
+    private String code;
     private String roleName;
-    private String username;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Role(int roleID, String roleName) {
-        this.roleID = roleID;
+    public Role(String email, String code, String roleName) {
+        this.email = email;
+        this.code = code;
         this.roleName = roleName;
     }
 
@@ -27,12 +28,12 @@ public class Role {
 
     }
 
-    public int getRoleID() {
-        return roleID;
+    public String getCode() {
+        return code;
     }
 
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getRoleName() {
@@ -45,6 +46,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "roleID: " + roleID + ", roleName: " + roleName;
+        return "email: " + email + ", code: " + code + ", rolename : " + roleName;
     }
 }

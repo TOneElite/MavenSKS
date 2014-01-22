@@ -14,22 +14,15 @@ public class UserJDBCTemplate {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public User getUser(int userID) {
-        String SQL = "SELECT * FROM user WHERE user_id=?";
-        User user = (User) jdbcTemplateObject.queryForObject(SQL, new Object[]{userID}, 
-                new UserMapper());
-        return user;
-    }
-
     public List<User> listUsers() {
-        String SQL = "SELECT * FROM user ORDER BY surname ASC" ;
+        String SQL = "SELECT * FROM users ORDER BY lastname ASC" ;
         List<User> user = jdbcTemplateObject.query(SQL, new UserMapper());
         return user;
     }
     
     public List<User> listUsersCon(String con) {
         String a = "%"+con+"%";
-        String SQL = "SELECT * FROM user WHERE surname LIKE ?";
+        String SQL = "SELECT * FROM users WHERE lastname LIKE ?";
         List<User> user = jdbcTemplateObject.query(SQL, new Object[]{a}, 
                 new UserMapper(){
         });
@@ -37,7 +30,7 @@ public class UserJDBCTemplate {
     }
     
     public boolean setPassword(String password, String email){
-        String SQL = "update user set password=? where email=?";
+        String SQL = "update users set password=? where email=?";
         int update = jdbcTemplateObject.update(SQL, new Object[]{
             password,
             email
@@ -51,24 +44,25 @@ public class UserJDBCTemplate {
     }
     
     public void updateUser(User user){
-        String SQL = "update user set firstname=?,surname=?,email=?,password=? where email=?";
+        String SQL = "update users set firstname=?,lastname=?,email=?,password=? where email=?";
         jdbcTemplateObject.update(SQL, new Object[]{user.getFirstName(),user.getSurname(),user.getEmail(),user.getPassword(),user.getEmail()});
     }
     
     public User getUserByEmail(String email){
-        String SQL = "Select * from user where email=?";
+        String SQL = "Select * from users where email=?";
         User user = (User)jdbcTemplateObject.queryForObject(SQL, new Object[]{email},new UserMapper());
         return user;
     }
     
     public void create(User user){
         System.out.println(user.toString());
-        String SQL = "insert into user (firstname, surname, email, password, enabled) values(?,?,?,?,1)";
+        String SQL = "insert into users (email, firstname, lastname, password, enabled, registerdate) values(?,?,?,?,1,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
+            user.getEmail(),
             user.getFirstName(),
             user.getSurname(),
-            user.getEmail(),
-            user.getPassword()
+            user.getPassword(),
+            user.getDate()
         });
     }
     
