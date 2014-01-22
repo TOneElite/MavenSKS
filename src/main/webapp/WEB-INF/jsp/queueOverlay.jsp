@@ -42,7 +42,7 @@
                 <select name="group" id="group" class="queueFormMiddle">
                     <option selected value="Alene">Alene</option>
                     <c:forEach var="user" items="${users}">
-                        <option value="${user.email}" title="${user.surname}.${fn:substring(user.firstName, 0, 1)}">${user.surname}, ${user.firstName}</option>
+                        <option value="${user.email}" title="${user.lastName}.${fn:substring(user.firstName, 0, 1)}">${user.lastName}, ${user.firstName}</option>
                     </c:forEach>
                 </select>
             </div>

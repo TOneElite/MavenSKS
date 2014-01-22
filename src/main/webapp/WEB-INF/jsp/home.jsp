@@ -71,14 +71,14 @@
                 <c:set var="now" value="<%=new java.util.Date()%>" /> <!-- NOW - QUEUE.DATE = WIN -->
                 <td><c:out value="${queue.date}"/></td>
                 <td><c:out value="${queue.users}"/></td>
-                <td><c:out value="${queue.ov}"/></td>
+                <td><c:out value="${queue.tasks}"/></td>
                 <td><c:out value="${queue.comment}"/></td>
                 <td> <c:choose>
                         <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
                         <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
                         <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                     </c:choose></td>
-                <td><c:out value="${queue.tables}"/></td>
+                <td><c:out value="${queue.location}"/></td>
                
                         <td> <c:choose>
                     <c:when test="${queue.users==username}">   

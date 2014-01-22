@@ -62,10 +62,11 @@ public class QueueController {
         return "lagre";
     }
     
+    /*
     @RequestMapping(value = "/access/{id}", method = RequestMethod.GET)
     public String remove(Model model, @PathVariable String id) {
         queueJDBCTemplate.delete(Integer.parseInt(id));
         return "home";
     }
-    
+    */
 }

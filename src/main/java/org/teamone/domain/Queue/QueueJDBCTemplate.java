@@ -57,6 +57,7 @@ public class QueueJDBCTemplate {
 "                   FROM queue" +
 "                    NATURAL JOIN queue_group" +
 "                    NATURAL JOIN users" +
+"                    WHERE subject_code=?"+
 "                   GROUP by" +
 "                    queue_group.queue_id";
 		// Hent queueView

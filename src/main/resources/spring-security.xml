@@ -23,7 +23,7 @@
         <intercept-url pattern="/studass/*" access="ROLE_STUDASS"/>
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         
-        <form-login login-page="/login" default-target-url="/access/home"
+        <form-login login-page="/login" default-target-url="/access/taskoverview"
                             authentication-failure-url="/login" 
                             always-use-default-target="true"/>
         <logout logout-success-url="/login"/>

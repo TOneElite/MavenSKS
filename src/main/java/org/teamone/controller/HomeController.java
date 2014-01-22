@@ -136,6 +136,39 @@ public class HomeController {
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
+        
+        // Check for admin rights
+        boolean admin = false;
+        boolean teacher = false;
+        boolean user = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+            if (ga.toString().equals("ROLE_TEACHER")) {
+                System.out.println("is TEACHER!");
+                teacher = true;
+                model.addAttribute("isTeacher", teacher);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+        }
+        
         return "taskoverview";
     }
 }

@@ -74,7 +74,7 @@ public class AdminController {
 
         org.teamone.domain.User.User user = new org.teamone.domain.User.User();
         user.setFirstName(firstName);
-        user.setSurname(surname);
+        user.setLastName(surname);
         user.setEmail(email);
         user.setPassword(password);
 

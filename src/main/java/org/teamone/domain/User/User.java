@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class User {
 
-	private String email;
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
-	private int enabled;
+    private int enabled;
     private Date date;
 
     public String getFirstName() {
@@ -23,8 +23,8 @@ public class User {
         return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.lastName = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -34,7 +34,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-	
+
     public String getPassword() {
         return password;
     }
@@ -43,39 +43,37 @@ public class User {
         this.password = password;
     }
 
-	public int getEnabled() {
-		return enabled;
-	}
+    public int getEnabled() {
+        return enabled;
+    }
 
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 
-	   public Date getDate(){
+    public Date getDate() {
         return date;
     }
-    
-    public void setDate(Date date){
-        this.date =  date;
+
+    public void setDate(Date date) {
+        this.date = date;
     }
-    
-    public boolean checkUserData(){
-        if(firstName == null || firstName.equals(""))
+
+    public boolean checkUserData() {
+        if (firstName == null || firstName.equals("")) {
             return false;
-        if(lastName == null || lastName.equals(""))
+        }
+        if (lastName == null || lastName.equals("")) {
             return false;
-        if(email == null || email.equals(""))
+        }
+        if (email == null || email.equals("")) {
             return false;
-        if(password == null || password.equals(""))
+        }
+        if (password == null || password.equals("")) {
             return false;
-        
+        }
+
         return true;
     }
 
-	@Override
-	public String toString() {
-		return "User{" + "email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", enabled=" + enabled + ", date=" + date + '}';
-	}
-
-    
 }

@@ -13,7 +13,7 @@
             <label for="usercon">Bruker :</label>  
             <select name="usercon" id="usercon" class="styledSelect">
                 <c:forEach var="usercon" items="${usercons}">
-                    <option value="${usercon.email}" title="${usercon.surname}.${fn:substring(usercon.firstName, 0, 1)}">${usercon.surname}, ${usercon.firstName}</option>
+                    <option value="${usercon.email}" title="${usercon.lastName}.${fn:substring(usercon.firstName, 0, 1)}">${usercon.lastName}, ${usercon.firstName}</option>
                 </c:forEach>
             </select><br>
             <input class="button" type="submit" onclick="groupArray();" value="OK"/>

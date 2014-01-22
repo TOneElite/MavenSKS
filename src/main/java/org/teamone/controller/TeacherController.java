@@ -122,7 +122,7 @@ public class TeacherController {
         Boolean exist = false;
         Date date = new Date();
         for (int i = 0; i < (words.length / 4); i++) {
-            user.setSurname(words[(i * 4)]);
+            user.setLastName(words[(i * 4)]);
             user.setFirstName(words[(i * 4) + 1]);
             user.setEmail(words[(i * 4) + 2]);
             role.setEmail(words[(i * 4) + 2]);

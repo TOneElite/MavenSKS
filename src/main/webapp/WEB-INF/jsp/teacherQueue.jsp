@@ -50,11 +50,11 @@
                         <tr id="rows">  
                             <td class="click"><c:out value="${queue.date}"/></td>
                             <td class="click"><c:out value="${queue.users}"/></td>
-                            <td class="click"><c:out value="${queue.ov}"/></td>
+                            <td class="click"><c:out value="${queue.tasks}"/></td>
                             <td class="click"><c:out value="${queue.comment}"/></td>
                             <td class="click"><c:out value="${queue.status}"/></td>
 
-                            <td class="click"><c:out value="${queue.tables}"/></td>    
+                            <td class="click"><c:out value="${queue.location}"/></td>    
                             <td id="buttons"><p>
                                     <input class="check" type="checkbox" style="display:none" name="subjectcode" value="${queue.subjectCode}"/>
                                     <input class="check" type="checkbox" style="display:none" name="queueId" value="${queue.id}"/>
