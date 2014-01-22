@@ -33,10 +33,6 @@
         </div>
         <div id="adminSubjectForm">
             <h4>Legg til regel:</h4>
-            <c:forEach var="subject" items="${subjectTaskNr}">
-                HERE
-            </c:forEach>
-            <br/>
             <form>
                 <label for="subjectCode">Fagkode</label>
                 <input type="text" placeholder="Skriv inn fagkode" class="controller"/>
