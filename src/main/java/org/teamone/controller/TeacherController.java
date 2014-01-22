@@ -20,7 +20,7 @@ import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
-import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasks;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
@@ -42,7 +42,7 @@ public class TeacherController {
     private SubjectJDBCTemplate subjectJDBCTemplate;
 
     @Autowired
-    private UserTaskJDBCTemplate userTasksJDBCTemplate;
+    private ApprovedTasksJDBCTemplate userTasksJDBCTemplate;
 
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;

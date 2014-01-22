@@ -20,7 +20,7 @@ import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
-import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation
@@ -99,8 +99,8 @@ public class ApplicationContext extends WebMvcConfigurationSupport {
     }
 
     @Bean
-    public UserTaskJDBCTemplate userTaskemplate() {
-        UserTaskJDBCTemplate userTaskJDBCTemplate = new UserTaskJDBCTemplate();
+    public ApprovedTasksJDBCTemplate userTaskemplate() {
+        ApprovedTasksJDBCTemplate userTaskJDBCTemplate = new ApprovedTasksJDBCTemplate();
         userTaskJDBCTemplate.setDataSource(dataSource());
         return userTaskJDBCTemplate;
     }

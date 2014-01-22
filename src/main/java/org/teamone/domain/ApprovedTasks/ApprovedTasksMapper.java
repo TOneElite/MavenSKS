@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-public class UserTaskMapper implements RowMapper<ApprovedTasks> {
+public class ApprovedTasksMapper implements RowMapper<ApprovedTasks> {
 
     @Override
     public ApprovedTasks mapRow(ResultSet rs, int i) throws SQLException {

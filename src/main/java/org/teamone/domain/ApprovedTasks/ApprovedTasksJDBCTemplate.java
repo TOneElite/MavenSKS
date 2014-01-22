@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author Ida
  */
-public class UserTaskJDBCTemplate {
+public class ApprovedTasksJDBCTemplate {
 
     DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -33,13 +33,13 @@ public class UserTaskJDBCTemplate {
     
     public List<ApprovedTasks> listApprovedTasks(String email, String subjectCode){
         String SQL = "SELECT * FROM approved_tasks WHERE email='"+email+"' AND subject_code='"+subjectCode+"'";
-        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
+        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new ApprovedTasksMapper());       
         return tasks;
     }
     
         public List<ApprovedTasks> listApprovedTasksWithoutSubject(String email){
         String SQL = "SELECT * FROM approved_tasks WHERE email='"+email+"'";
-        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
+        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new ApprovedTasksMapper());       
         return tasks;
     }
 }
