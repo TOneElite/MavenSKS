@@ -83,7 +83,7 @@ public class AdminController {
             for (int i = 0; i < roles.length; i++) {
                 Role temp = new Role();
                 temp.setRoleName(roles[i]);
-                temp.setUsername(email);
+                temp.setEmail(email);
                 roleJDBCTemplate.create(temp);
             }
             return "redirect:/access/home";
