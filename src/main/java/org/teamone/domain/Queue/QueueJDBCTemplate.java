@@ -3,6 +3,7 @@ package org.teamone.domain.Queue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
@@ -38,15 +39,29 @@ public class QueueJDBCTemplate {
 
 	// Returns all queueposts with the given subjectCode
 	public List<Queue> listQueue(String subjectCode) {
-		String SQL = "SELECT * FROM queue NATURAL JOIN queue_group WHERE queue.queue_id = queue_group.queue_id AND queue.subject_code = ?";
+                /*
+                SELECT queue.*, 
+                    group_concat(DISTINCT queue_group.email SEPARATOR ', ') as email, 
+                    group_concat(DISTINCT(CONVERT(queue_group.task_nr, CHAR(2))) SEPARATOR ', ') as tasks, 
+                    group_concat(DISTINCT users.firstname SEPARATOR ', ') as name
+                FROM queue
+                    NATURAL JOIN queue_group
+                    NATURAL JOIN users
+                GROUP by
+                    queue_group.queue_id;
+                */
+		String SQL = "SELECT queue.*," +
+"                    group_concat(DISTINCT queue_group.email SEPARATOR ', ') as email," +
+"                    group_concat(DISTINCT(CONVERT(queue_group.task_nr, CHAR(2))) SEPARATOR ', ') as tasks," +
+"                    group_concat(DISTINCT users.firstname SEPARATOR ', ') as name" +
+"                   FROM queue" +
+"                    NATURAL JOIN queue_group" +
+"                    NATURAL JOIN users" +
+"                   GROUP by" +
+"                    queue_group.queue_id";
 		// Hent queueView
-                List<QueueView> queues = jdbcTemplateObject.query(SQL, new Object[]{subjectCode}, new QueueViewMapper());
-		
-		// Lag ett queue-object av all med samme id, gjenta for alle forskjellige id
-                
-                
-		// return list med queue-object.
-		return null;
+                List<Queue> queues = jdbcTemplateObject.query(SQL, new Object[]{subjectCode}, new QueueMapper());
+		return queues;
 	}
 
 	public void delete(int id) {

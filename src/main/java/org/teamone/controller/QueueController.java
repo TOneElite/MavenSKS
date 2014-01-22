@@ -1,6 +1,6 @@
 package org.teamone.controller;
 
-import java.util.Date;
+import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,8 +39,8 @@ public class QueueController {
             }
         }
         Queue queue = new Queue();
-        queue.setTables(room + ", " + table); // Has the name "location" in the database
-        queue.setOv(tasks);
+        queue.setLocation(room + ", " + table); // Has the name "location" in the database
+        //queue.setOv(tasks);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (group.length <= 1) {
             queue.setUsers(auth.getName());
@@ -49,18 +49,19 @@ public class QueueController {
         }
         for (int i=0;i<group.length;i++) System.out.println(" *** " + group[i]);
         queue.setComment(comment);
-        queue.setDate(new Date());
+        queue.setDate(new Date(new java.util.Date().getTime()));
         queue.setStatus("");
         queue.setSubjectCode(subjectCode);
-        queueJDBCTemplate.create(queue);
+        //queueJDBCTemplate.create(queue);
         return "redirect:"+subjectCode;
     }
     
     @RequestMapping("/lagre")
     public String nyView(@ModelAttribute(value = "queue") Queue queue) {
-        queueJDBCTemplate.create(queue);
+        //queueJDBCTemplate.create(queue);
         return "lagre";
     }
+    
     @RequestMapping(value = "/access/{id}", method = RequestMethod.GET)
     public String remove(Model model, @PathVariable String id) {
         queueJDBCTemplate.delete(Integer.parseInt(id));
