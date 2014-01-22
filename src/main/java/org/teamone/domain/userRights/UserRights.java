@@ -2,44 +2,40 @@ package org.teamone.domain.userRights;
 
 import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Role.Role;
+import org.teamone.domain.User.User;
 
 /**
  *
- * @author Kim
+ * @author Oystein
+ * 
  */
 public class UserRights {
 	
 	private Subject subject;
 	private Role role;
-	
-	public UserRights(Subject subject, Role role){
-		this.subject = subject;
-		this.role = role;
-	}
-	
-	public UserRights(){
-	
-	}
+        private User user;
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
-	
-	public Subject getSubject(){
-		return subject;
-	}
-	
-	public Role getRole(){
-		return role;
-	}
-	
-	public void setRole(Role newRole){
-		role = newRole;
-	}
-	
-	@Override
-	public String toString(){
-		return "Subject details: " + subject.toString() + " Role details: " + role.toString();
-	}
-	
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
