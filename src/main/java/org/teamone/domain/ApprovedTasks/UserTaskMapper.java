@@ -1,14 +1,14 @@
-package org.teamone.domain.UserTask;
+package org.teamone.domain.ApprovedTasks;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-public class UserTaskMapper implements RowMapper<UserTask> {
+public class UserTaskMapper implements RowMapper<ApprovedTasks> {
 
     @Override
-    public UserTask mapRow(ResultSet rs, int i) throws SQLException {
-        UserTask userTasks = new UserTask();
+    public ApprovedTasks mapRow(ResultSet rs, int i) throws SQLException {
+        ApprovedTasks userTasks = new ApprovedTasks();
         userTasks.setEmail(rs.getString("email"));
         userTasks.setSubjectCode(rs.getString("subject_code"));
         userTasks.setTaskNr(rs.getInt("task_nr"));

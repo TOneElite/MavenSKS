@@ -20,7 +20,7 @@ import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
-import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
 
 @Configuration
 @EnableWebMvc  // mvc annotation

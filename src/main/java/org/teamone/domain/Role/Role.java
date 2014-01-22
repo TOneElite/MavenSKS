@@ -1,13 +1,13 @@
 package org.teamone.domain.Role;
 
 /**
- *
+ * TODO: Control usages, class may not be needed
  * @author Kim
  */
 public class Role {
 
     private String email;
-    private String code;
+    private String subjectCode;
     private String roleName;
 
     public String getEmail() {
@@ -18,22 +18,17 @@ public class Role {
         this.email = email;
     }
 
-    public Role(String email, String code, String roleName) {
-        this.email = email;
-        this.code = code;
-        this.roleName = roleName;
-    }
-
+    
     public Role() {
 
     }
 
-    public String getCode() {
-        return code;
+    public String getSubjectCode() {
+        return subjectCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
     }
 
     public String getRoleName() {
@@ -46,6 +41,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "email: " + email + ", code: " + code + ", rolename : " + roleName;
+        return "email: " + email + ", subjectCode: " + subjectCode + ", rolename : " + roleName;
     }
 }

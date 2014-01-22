@@ -30,7 +30,7 @@ public class UserJDBCTemplate {
     }
     
     public boolean setPassword(String password, String email){
-        String SQL = "update users set password=? where email=?";
+        String SQL = "UPDATE users SET password=? WHERE email=?";
         int update = jdbcTemplateObject.update(SQL, new Object[]{
             password,
             email
@@ -44,23 +44,23 @@ public class UserJDBCTemplate {
     }
     
     public void updateUser(User user){
-        String SQL = "update users set firstname=?,lastname=?,email=?,password=? where email=?";
-        jdbcTemplateObject.update(SQL, new Object[]{user.getFirstName(),user.getSurname(),user.getEmail(),user.getPassword(),user.getEmail()});
+        String SQL = "UPDATE users SET firstname=?,lastname=?,email=?,enabled=?,password=? WHERE email=?";
+        jdbcTemplateObject.update(SQL, new Object[]{user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getEnabled(),user.getEmail()});
     }
     
     public User getUserByEmail(String email){
-        String SQL = "Select * from users where email=?";
+        String SQL = "SELECT * FROM users WHERE email=?";
         User user = (User)jdbcTemplateObject.queryForObject(SQL, new Object[]{email},new UserMapper());
         return user;
     }
     
     public void create(User user){
         System.out.println(user.toString());
-        String SQL = "insert into users (email, firstname, lastname, password, enabled, registerdate) values(?,?,?,?,1,?)";
+        String SQL = "INSERT INTO users (email, firstname, lastname, password, enabled, registerdate) values(?,?,?,?,1,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             user.getEmail(),
             user.getFirstName(),
-            user.getSurname(),
+            user.getLastName(),
             user.getPassword(),
             user.getDate()
         });
