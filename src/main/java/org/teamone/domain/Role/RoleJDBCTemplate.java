@@ -1,7 +1,7 @@
 package org.teamone.domain.Role;
 
 /**
- *
+ * TODO: Control usages, class may not be needed. Review getRole-function!
  * @author Kim
  */
 import javax.sql.DataSource;
@@ -16,7 +16,10 @@ public class RoleJDBCTemplate {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-
+	
+	/*
+	 * Not used, does not function, no idea what it's supposed to do
+	 */
     public Role getRole(int role_id) {
         String SQL = "SELECT * FROM role WHERE role_id=?";
         Role role = (Role) jdbcTemplateObject.queryForObject(SQL, new Object[]{role_id}, new RoleMapper());
@@ -27,7 +30,7 @@ public class RoleJDBCTemplate {
         String SQL = "insert into user_subject (email, subject_code, rolename) values(?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             role.getEmail(), 
-            role.getCode(), 
+            role.getSubjectCode(), 
             role.getRoleName()});
     }
 }

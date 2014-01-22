@@ -2,7 +2,7 @@
 package org.teamone.domain.Role;
 
 /**
- *
+ * TODO: Control usages, class may not be needed
  * @author Kim
  */
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ public class RoleMapper implements RowMapper<Role> {
     public Role mapRow(ResultSet rs, int i) throws SQLException {
         Role role = new Role();
         role.setEmail(rs.getString("email"));
-        role.setCode(rs.getString("subject_code"));
+        role.setSubjectCode(rs.getString("subject_code"));
         role.setRoleName(rs.getString("rolename"));
         return role;
     }

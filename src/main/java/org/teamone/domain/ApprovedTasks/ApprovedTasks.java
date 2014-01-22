@@ -1,4 +1,4 @@
-package org.teamone.domain.UserTask;
+package org.teamone.domain.ApprovedTasks;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author Ida
  */
-public class UserTask {
+public class ApprovedTasks {
 
     private String email;
     private String subjectCode;

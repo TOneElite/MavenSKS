@@ -20,8 +20,8 @@ import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
-import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
-import org.teamone.domain.UserTask.UserTask;
+import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.ApprovedTasks;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
@@ -127,7 +127,7 @@ public class TeacherController {
             user.setEmail(words[(i * 4) + 2]);
             role.setEmail(words[(i * 4) + 2]);
             user.setPassword(words[(i * 4) + 3]);
-            role.setCode("TDAT-2007-13H");
+            role.setSubjectCode("TDAT-2007-13H");
             role.setRoleName("ROLE_USER");
             user.setDate(date);
             userRights.setRole(role);
@@ -171,7 +171,7 @@ public class TeacherController {
             if (tasks[0].contains(",")) {
                 for (String s : tasks) {
                     String[] temp = s.split(", ");
-                    UserTask userTask = new UserTask();
+                    ApprovedTasks userTask = new ApprovedTasks();
                     userTask.setEmail(temp[0]);
                     userTask.setSubjectCode(subjectCode);
                     userTask.setTaskNr(Integer.parseInt(temp[1]));
@@ -180,7 +180,7 @@ public class TeacherController {
                     System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
                 }
             } else {
-                UserTask userTask = new UserTask();
+                ApprovedTasks userTask = new ApprovedTasks();
                 userTask.setEmail(tasks[0]);
                 userTask.setSubjectCode(subjectCode);
                 userTask.setTaskNr(Integer.parseInt(tasks[1]));

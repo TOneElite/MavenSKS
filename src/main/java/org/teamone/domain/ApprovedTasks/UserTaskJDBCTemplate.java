@@ -1,4 +1,4 @@
-package org.teamone.domain.UserTask;
+package org.teamone.domain.ApprovedTasks;
 
 import java.util.List;
 import javax.sql.DataSource;
@@ -18,7 +18,7 @@ public class UserTaskJDBCTemplate {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void approve(UserTask userTasks) {
+    public void approve(ApprovedTasks userTasks) {
         System.out.println(userTasks.toString());
         String SQL = "insert into user_task(email, subject_code, task_nr, date) values(?,?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
@@ -28,15 +28,15 @@ public class UserTaskJDBCTemplate {
             userTasks.getDate()});
     }
     
-    public List<UserTask> listApprovedTasks(String email, String subjectCode){
+    public List<ApprovedTasks> listApprovedTasks(String email, String subjectCode){
         String SQL = "SELECT * FROM user_task WHERE email='"+email+"' AND subject_code='"+subjectCode+"'";
-        List<UserTask> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
+        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
         return tasks;
     }
     
-        public List<UserTask> listApprovedTasksWithoutSubject(String email){
+        public List<ApprovedTasks> listApprovedTasksWithoutSubject(String email){
         String SQL = "SELECT * FROM user_task WHERE email='"+email+"'";
-        List<UserTask> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
+        List<ApprovedTasks> tasks = jdbcTemplateObject.query(SQL, new UserTaskMapper());       
         return tasks;
     }
 }

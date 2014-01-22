@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.teamone.domain.Queue.QueueJDBCTemplate;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
-import org.teamone.domain.UserTask.UserTaskJDBCTemplate;
+import org.teamone.domain.ApprovedTasks.UserTaskJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PathVariable;

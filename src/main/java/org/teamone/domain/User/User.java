@@ -4,10 +4,11 @@ import java.util.Date;
 
 public class User {
 
+	private String email;
     private String firstName;
-    private String surname;
-    private String email;
+    private String lastName;
     private String password;
+	private int enabled;
     private Date date;
 
     public String getFirstName() {
@@ -18,12 +19,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+        this.lastName = surname;
     }
 
     public String getEmail() {
@@ -33,7 +34,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
+	
     public String getPassword() {
         return password;
     }
@@ -42,7 +43,15 @@ public class User {
         this.password = password;
     }
 
-    public Date getDate(){
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+	   public Date getDate(){
         return date;
     }
     
@@ -53,7 +62,7 @@ public class User {
     public boolean checkUserData(){
         if(firstName == null || firstName.equals(""))
             return false;
-        if(surname == null || surname.equals(""))
+        if(lastName == null || lastName.equals(""))
             return false;
         if(email == null || email.equals(""))
             return false;
@@ -63,8 +72,10 @@ public class User {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "firstname: " + firstName + ", surname: " + surname + ", email: " + email + ", password: " + password;
-    }
+	@Override
+	public String toString() {
+		return "User{" + "email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", enabled=" + enabled + ", date=" + date + '}';
+	}
+
+    
 }
