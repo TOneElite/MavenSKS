@@ -7,10 +7,13 @@ package org.teamone.domain.userRights;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+import org.teamone.domain.Role.Role;
+import org.teamone.domain.Subject.Subject;
+import org.teamone.domain.User.User;
 
 /**
  *
- * @author Kim
+ * @author Oystein
  */
 public class UserRightsMapper implements RowMapper<UserRights> {
 
@@ -18,7 +21,10 @@ public class UserRightsMapper implements RowMapper<UserRights> {
     public UserRights mapRow(ResultSet rs, int i) throws SQLException {
         UserRights userRight = new UserRights();
 
-        userRight.setRole(null);
+        userRight.setRole(rs.getObject("role", Role.class));
+        userRight.setSubject(rs.getObject("subject", Subject.class));
+        userRight.setUser(rs.getObject("user", User.class));
+        
         return userRight;
     }
 }
