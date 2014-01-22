@@ -39,12 +39,14 @@ public class QueueJDBCTemplate {
 	// Returns all queueposts with the given subjectCode
 	public List<Queue> listQueue(String subjectCode) {
 		String SQL = "SELECT * FROM queue NATURAL JOIN queue_group WHERE queue.queue_id = queue_group.queue_id AND queue.subject_code = ?";
-		List<Queue> queues = jdbcTemplateObject.query(SQL, new Object[]{subjectCode}, new QueueMapper());
-		
 		// Hent queueView
+                List<QueueView> queues = jdbcTemplateObject.query(SQL, new Object[]{subjectCode}, new QueueViewMapper());
+		
 		// Lag ett queue-object av all med samme id, gjenta for alle forskjellige id
+                
+                
 		// return list med queue-object.
-		return queues;
+		return null;
 	}
 
 	public void delete(int id) {
