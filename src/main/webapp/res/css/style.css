@@ -366,6 +366,10 @@ h1{
     width: 220px;
 }
 
+.disabled{
+    background-color: lightgray !important;
+}
+
 /********* OVERLAY END *********/
 /********* QUEUE START **********/
 
@@ -429,6 +433,24 @@ h1{
 
 #queueTable td{
     height: 35px;
+}
+
+.helpedOdd{
+    background: #6BB8C0 !important;
+    color: black !important;
+  /*border: 3px solid #7EA7D8 !important;*/
+}
+
+.helpedEven{
+    
+    background: #4CB6C0 !important;
+    color: black !important;
+    
+    /*border: 3px solid #6ECFF6 !important;*/
+}
+
+.currentuser{
+    border: 3px solid green !important;
 }
 
 /********* QUEUE END **********/

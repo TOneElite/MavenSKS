@@ -12,8 +12,8 @@
 
         <div id="queueInfo">
             <h1>Kø i <span id="subjectHeader"></span></h1>
-            <c:forEach var="subject" items="${subjects}">
-                <c:if test="${subject.code==activeSubject}">
+                <c:forEach var="subject" items="${subjects}">
+                    <c:if test="${subject.code==activeSubject}">
                     <table id="overview-tasktable">
                         <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
                             <td
@@ -28,25 +28,25 @@
                                 <p><c:out value="${i}"/></p>
                             </td>
                         </c:forEach>
-                            
-                            <section id ="queueStatus">
+
+                        <section id ="queueStatus">
                             <c:choose>
                                 <c:when test = "${queueStatus.status == 1}">
                                     <label id="open">Køen er åpen</label>
-                        <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
-                            <button class="queueButton" type="button">Stå i kø</button>
-                        </a>     
+                                    <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
+                                        <button class="queueButton" type="button">Stå i kø</button>
+                                    </a>     
                                 </c:when>
-                                      <c:otherwise>
+                                <c:otherwise>
                                     <label id="closed">Køen er stengt</label>
-                        <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
-                            <button class="queueButton" id="disabled" type="button" disabled>Stå i kø</button>
-                        </a>     
+                                    <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
+                                        <button class="queueButton" id="disabled" type="button" disabled>Stå i kø</button>
+                                    </a>     
                                 </c:otherwise>
                             </c:choose>
-                            </section>
-                            
-                            
+                        </section>
+
+
                     </table>
                 </c:if>
             </c:forEach>
@@ -93,14 +93,11 @@
                 <td><c:out value="${queue.firstNames}"/></td>
                 <td><c:out value="${queue.tasks}"/></td>
                 <td><c:out value="${queue.comment}"/></td>
-                <td> <c:choose>
-                        <c:when test="${queue.status=='2'}"><c:out value="Utsatt"/></c:when>
-                        <c:when test="${queue.status=='3'}"><c:out value="Får hjelp"/></c:when>
-                        <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
-                    </c:choose></td>
+                <td><c:out value="${queue.status}"/>
                 <td><c:out value="${queue.location}"/></td>
 
-                <td><c:choose>
+                <td>
+                    <c:choose>
                         <c:when test="${fn:split(queue.users, ', ')[0]==username}">
                             <button type="button">Endre</button>
                             <button type="button">Fjern</button>
@@ -114,32 +111,33 @@
 
 <script language="javascript">
     <c:set var="defaultSubject" value="${subjects[0]}" />
-        if (sessionStorage.activeSubject == null)
-            sessionStorage.activeSubject = "${defaultSubject.name}";
+    if (sessionStorage.activeSubject == null)
+        sessionStorage.activeSubject = "${defaultSubject.name}";
+    document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+    function changeSubject(subject) {
+        sessionStorage.activeSubject = subject;
         document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-        function changeSubject(subject) {
-            sessionStorage.activeSubject = subject;
-            document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+    }
+
+    $(".queueRulesHeader").click(function() {
+
+        $queueRulesHeader = $(this);
+        $queueRulesContent = $queueRulesHeader.next();
+        $queueRulesContent.slideToggle(500, function() {
+        });
+    });
+
+    $("a[rel]").overlay();
+
+
+    $("tr td:contains('hjelp')").each(function(index) {
+        if (index % 2 === 0) {
+            $(this).closest('tr').addClass("helpedOdd");
+        } else {
+            $(this).closest('tr').addClass("helpedEven");
         }
 
-        $(".queueRulesHeader").click(function() {
-
-            $queueRulesHeader = $(this);
-            //getting the next element
-            $queueRulesContent = $queueRulesHeader.next();
-            //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-            $queueRulesContent.slideToggle(500, function() {
-                //execute this after slideToggle is done
-                //change text of header based on visibility of content div
-                /*$queueRulesHeader.text = (function() {
-             //change text based on condition
-             return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
-             });*/
-            });
-        });
-
-        $("a[rel]").overlay();
-
+    });
 
 </script> 
 

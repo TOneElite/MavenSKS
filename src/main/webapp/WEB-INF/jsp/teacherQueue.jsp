@@ -6,7 +6,6 @@
 
 <form action="<c:url value="/access/approveInQueue"/>" method="POST">
     <input type ="hidden" name="currentSubject" value="${currentS}"/> 
-    <p>${currentS}</p>
     <div id ="teacherQueue">
         <section id="queueHeader">
             <div id="queueInfo">
@@ -57,7 +56,6 @@
                             <td class="click"><c:out value="${queue.tasks}"/></td>
                             <td class="click"><c:out value="${queue.comment}"/></td>
                             <td class="click"><c:out value="${queue.status}"/></td>
-
                             <td class="click"><c:out value="${queue.location}"/></td>    
                             <td id="buttons"><p>
                                     <input class="check" type="checkbox" style="display:none" name="subjectCode" value="${queue.subjectCode}"/>
@@ -89,16 +87,8 @@
     $(".queueRulesHeader").click(function() {
 
         $queueRulesHeader = $(this);
-        //getting the next element
         $queueRulesContent = $queueRulesHeader.next();
-        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
         $queueRulesContent.slideToggle(500, function() {
-            //execute this after slideToggle is done
-            //change text of header based on visibility of content div
-            /*$queueRulesHeader.text = (function() {
-             //change text based on condition
-             return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
-             });*/
         });
     });
 
@@ -121,6 +111,15 @@
         );
     }
     );
+
+    $("tr td:contains('hjelp')").each(function(index) {
+        if (index % 2 === 0) {
+            $(this).closest('tr').addClass("helpedOdd");
+        } else {
+            $(this).closest('tr').addClass("helpedEven");
+        }
+
+    });
 
 </script> 
 
