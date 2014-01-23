@@ -22,7 +22,6 @@ import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasks;
-import org.teamone.domain.Rules.TaskRuleJDBCTemplate;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
@@ -51,8 +50,6 @@ public class TeacherController {
     @Autowired
     private RoleNameJDBCTemplate roleNameJDBCTemplate;
     
-    @Autowired
-    private TaskRuleJDBCTemplate taskRuleJDBCTemplate;
 
     /*
      @RequestMapping("/access/teacherQueue")
@@ -304,9 +301,6 @@ public class TeacherController {
         model.addAttribute("subjectname", subject.getName());
         model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
         model.addAttribute("isTeacher", true);
-        model.addAttribute("taskRules", taskRuleJDBCTemplate.getTaskRule(subjectCode));
-        
-        System.out.println("Here: " + taskRuleJDBCTemplate.getTaskRule(subjectCode).getRulestring());
         
         return "subjectSettings";
     }
