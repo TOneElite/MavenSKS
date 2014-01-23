@@ -1,6 +1,5 @@
 package org.teamone.logic;
 
-
 import org.apache.commons.lang.StringUtils;
 
 /*
@@ -63,6 +62,21 @@ public class RuleService {
             }
         }
         return tasks;
+    }
+
+    public boolean vertifyRequirements(boolean[] taskDone, int[][] rules) {
+        int required = 0;
+        int done = 0;
+        
+        for(int i = 0; i < rules.length;i++){
+            for(int j = 0; j < rules[i].length;j++){
+                if(j==0) required = rules[i][j];
+                if(taskDone[j]) done++; 
+            }
+            if(done < required) return false;
+        }
+
+        return true;
     }
 
     public String[] readRulesNOR(int[][] rules) {
