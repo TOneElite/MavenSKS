@@ -14,6 +14,7 @@ import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.teamone.domain.Role.RoleJDBCTemplate;
 
 @Controller
 public class HomeController {
@@ -28,6 +29,8 @@ public class HomeController {
     private RoomJDBCTemplate roomJDBCTemplate;
     @Autowired
     private ApprovedTasksJDBCTemplate userTaskJDBCTemplate;
+    @Autowired
+    private RoleJDBCTemplate roleJDBCTemplate;
 
     @RequestMapping(value = "/access/home", method = RequestMethod.GET)
     public String homeView(Model model) {
@@ -136,7 +139,7 @@ public class HomeController {
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
-        
+        model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;

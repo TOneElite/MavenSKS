@@ -88,16 +88,16 @@
                     <section id="overview-tasks">
                         <table id="overview-tasktable">
                             <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                                <td>  
+                                <td
                                     <c:forEach var="thetasks" items="${userTasks}">
                                         <c:if test="${thetasks.subjectCode == subject.code}">
                                             <c:if test="${thetasks.taskNr==i}">
-                                                <span class="highlight-whole">
-                                                </c:if>
+                                                class="highlight-whole"
                                             </c:if>
-                                        </c:forEach>
-                                        <p><c:out value="${i}"/></p>
-                                    </span>
+                                        </c:if>
+                                    </c:forEach>
+                                    >
+                                    <p><c:out value="${i}"/></p>
                                 </td>
                             </c:forEach>
                         </table>

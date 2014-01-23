@@ -20,9 +20,9 @@ public class RoleJDBCTemplate {
 	/*
 	 * Not used, does not function, no idea what it's supposed to do
 	 */
-    public Role getRole(int role_id) {
-        String SQL = "SELECT * FROM role WHERE role_id=?";
-        Role role = (Role) jdbcTemplateObject.queryForObject(SQL, new Object[]{role_id}, new RoleMapper());
+    public Role getSubjectRoles(String email) {
+        String SQL = "SELECT * FROM user_subject WHERE email=?";
+        Role role = (Role) jdbcTemplateObject.queryForObject(SQL, new Object[]{email}, new RoleMapper());
         return role;
     }
     
