@@ -2,6 +2,7 @@ package org.teamone.controller;
 
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -153,7 +154,6 @@ public class TeacherController {
     public String fileread(
             @RequestParam(value = "output", required = false) String fileread,
             @PathVariable String subjectCode) {
-        System.out.println(subjectCode);
         if(fileread == null){
             return "readfile";
         }else{ 
@@ -163,7 +163,18 @@ public class TeacherController {
             List<Subject> subjects = subjectJDBCTemplate.listSubjects();
             UserRights userRights = new UserRights();
             Date date = new Date();
+            Boolean error = false;
             int remove = words.length % 4;
+            for (int i = 0; i < (words.length / 4); i++) {
+                if(words[(i*4)+2].contains("@")){
+                }else{
+                    JOptionPane.showMessageDialog(null, "There is an error in file format");
+                    error = true;
+                }
+            }
+            if(error == true){
+                return "admin";
+            }
             int test = words.length - remove;
             for (int i = 0; i < (test / 4); i++) {
                 user.setLastName(words[(i * 4)]);
@@ -252,6 +263,7 @@ public class TeacherController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("currentS", subjectCode);
 
         System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights

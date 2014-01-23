@@ -4,7 +4,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 
-<form accept-charset="utf-8" action="<c:url value="/access/readfile${activeSubject}" />" method="GET"> 
+<form accept-charset="utf-8" action="<c:url value="/access/readfile${currentS}" />" method="GET"> 
       <input id="button" class="button" type="submit" value="Legg til studenter"/>
 </form>
       
