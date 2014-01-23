@@ -685,7 +685,7 @@ h1{
 }
 
 .selected{
-    color: brown;
+    color: gray;
 }
 
 #rows:hover{
