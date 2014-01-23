@@ -40,7 +40,7 @@ public class HomeController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        System.out.println("test: " + auth.getAuthorities());
+        System.out.println("test: " + auth.getName());
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
