@@ -58,8 +58,6 @@ public class TeacherController {
     public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      //  model.addAttribute("username", auth.getName());
-      //  model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("currentS", subjectCode);
@@ -110,17 +108,10 @@ public class TeacherController {
             @RequestParam(value = "queueId", required = false) String queueId,
             @RequestParam(value = "subjectCode", required = false) String subjectCode,
             @RequestParam(value = "currentSubject", required = false) String currentSubject,
-         //   @RequestParam(value = "queueStatus", required = false) String queueStatus,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
-
-        
-        /*
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("activeSubject", subjectCode);
-        model.addAttribute("thisSubject", currentSubject);*/
 
         // Check for admin rights
         boolean admin = false;
@@ -153,14 +144,7 @@ public class TeacherController {
                 model.addAttribute("isUser", user);
             }
         }
-
-     /*   if(queueStatus != null){
-            if(queueStatus.equals("0")){
-                subjectJDBCTemplate.setStatus(1, currentSubject);
-            }else{
-                subjectJDBCTemplate.setStatus(0, currentSubject);
-            }
-        }*/
+        
         if(queueStatus != null){
             if(Integer.parseInt(queueStatus) == 0){
                 subjectJDBCTemplate.setStatus(1, currentSubject);
@@ -203,7 +187,6 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
 
         if (cancel != null) {
-          //  model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
             return "redirect:/access/teacher" + current;
         }
         if (approve != null) {
@@ -227,10 +210,8 @@ public class TeacherController {
             }
 
             queueJDBCTemplate.delete(queueID);
-            //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
-
+           
         }
-       // model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
         return "redirect:/access/teacher" + current;
     }
 

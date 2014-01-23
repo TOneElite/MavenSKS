@@ -88,6 +88,7 @@ public class HomeController {
         model.addAttribute("activeSubject", subjectCode);
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
+        model.addAttribute("queueStatus", subjectJDBCTemplate.getSubject(subjectCode));
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
