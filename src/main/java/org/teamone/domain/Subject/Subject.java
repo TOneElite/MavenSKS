@@ -6,7 +6,16 @@ public class Subject {
     private String name;
     private int status;
     private int nrOfTasks;
+    private String ruleString;
 
+    public String getRuleString() {
+        return ruleString;
+    }
+
+    public void setRuleString(String ruleString) {
+        this.ruleString = ruleString;
+    }
+    
     public String getCode() {
         return code;
     }
