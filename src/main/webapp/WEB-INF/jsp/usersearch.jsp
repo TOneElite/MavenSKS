@@ -8,8 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<form accept-charset="utf-8" action="<c:url value="/access/usersearched" />" method="GET">
-            <input name ="con" type="text" id="fname" onchange="searchSel()">
+<form accept-charset="utf-8" action="<c:url value="/access/usersearch" />" method="GET">
+            <input name ="con" type="text" id="fname">
             <label for="usercon">Bruker :</label>  
             <select name="usercon" id="usercon" class="styledSelect">
                 <c:forEach var="usercon" items="${usercons}">

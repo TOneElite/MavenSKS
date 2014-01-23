@@ -82,11 +82,6 @@
         <put-attribute name="body" value="/WEB-INF/jsp/usersearch.jsp"/>
     </definition>
     
-     <definition name="usersearched" extends="template">
-        <put-attribute name="title" value="searched"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/usersearched.jsp"/>
-    </definition>
-    
     <definition name="taskoverview" extends="template">
         <put-attribute name="title" value="Oversikt"/>
         <put-attribute name="body" value="/WEB-INF/jsp/taskOverview.jsp"/>

@@ -305,35 +305,10 @@ public class TeacherController {
         
         return "subjectSettings";
     }
-    
-    @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
-    public String userSearch(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
-        model.addAttribute("usercons", userJDBCTemplate.listUsers());
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        // Check for admin rights
-        boolean admin = false;
-        boolean teacher = false;
-        for (GrantedAuthority ga : auth.getAuthorities()) {
-            if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
-                admin = true;
-                model.addAttribute("isAdmin", admin);
-            }
-            if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
-                teacher = true;
-                model.addAttribute("isTeacher", teacher);
-            }
-        }
-        return "usersearch";
-    }
 
-    @RequestMapping(value = "/access/usersearched", method = RequestMethod.GET)
-    public String userSearched(
-            @RequestParam("con") String con, Model model) {
+    @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
+    public String userSearch(
+            @RequestParam(value = "con", required = false) String con, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
@@ -354,6 +329,6 @@ public class TeacherController {
                 model.addAttribute("isTeacher", teacher);
             }
         }
-        return "usersearched";
+        return "usersearch";
     }
 }
