@@ -22,6 +22,7 @@ import org.teamone.domain.User.User;
 import org.teamone.domain.User.UserJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.ApprovedTasks.ApprovedTasks;
+import org.teamone.domain.Queue.QueueApproveJDBCTemplate;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
@@ -48,7 +49,7 @@ public class TeacherController {
     private RoomJDBCTemplate roomJDBCTemplate;
 
     @Autowired
-    private RoleNameJDBCTemplate roleNameJDBCTemplate;
+    private QueueApproveJDBCTemplate QueueApproveJDBCTemplate;
     
 
     /*
@@ -130,7 +131,7 @@ public class TeacherController {
         }
         if (approve != null) {
             int id = Integer.parseInt(queueId);
-            model.addAttribute("queue", queueJDBCTemplate.getQueue(id));
+            model.addAttribute("queue", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
         }
         if (queueStatus != null) {
