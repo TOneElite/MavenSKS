@@ -62,4 +62,18 @@ public class ApprovedTasks {
 	public String toString() {
 		return "ApprovedTasks{" + "email=" + email + ", subjectCode=" + subjectCode + ", taskNr=" + taskNr + ", approvedDate=" + approvedDate + ", approvedBy=" + approvedBy + '}';
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null ||!(obj instanceof ApprovedTasks)) return false;
+		
+		ApprovedTasks other = (ApprovedTasks) obj;
+		if (!other.getEmail().equals(this.getEmail())) return false;
+		if (!other.getSubjectCode().equals(this.getSubjectCode())) return false;
+		if (other.getTaskNr() != this.getTaskNr()) return false;
+		// if (!other.getApprovedDate().equals(this.getApprovedDate())) return false; // TODO: Dates are buggy, review this.
+		if (!other.getApprovedBy().equals(this.getApprovedBy())) return false;
+		
+		return true;
+	}
 }

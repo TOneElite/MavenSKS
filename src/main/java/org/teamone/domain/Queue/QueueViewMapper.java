@@ -17,7 +17,7 @@ public class QueueViewMapper implements RowMapper<QueueView> {
         queueView.setLocation(rs.getString("location"));
         queueView.setTimestamp(rs.getDate("timestamp"));
         queueView.setEmail(rs.getString("email"));
-        queueView.setTaksNr(rs.getInt("task_nr"));
+        queueView.setTaskNr(rs.getInt("task_nr"));
         
         return queueView;
     }

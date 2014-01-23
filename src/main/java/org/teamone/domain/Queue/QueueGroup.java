@@ -29,4 +29,8 @@ public class QueueGroup {
     public String toString() {
         return "QueueGroup{" + "tasknr=" + taskNrs + ", users=" + users + '}';
     }
+	
+	/*
+	 * TODO: Create Equals-method
+	 */
 }

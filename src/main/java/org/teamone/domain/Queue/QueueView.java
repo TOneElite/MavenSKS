@@ -11,7 +11,7 @@ public class QueueView {
     private String location;
     private Date timestamp;
     private String email;
-    private int taksNr;
+    private int taskNr;
 
     public int getQueueId() {
         return queueId;
@@ -69,29 +69,30 @@ public class QueueView {
         this.email = email;
     }
 
-    public int getTaksNr() {
-        return taksNr;
+    public int getTaskNr() {
+        return taskNr;
     }
 
-    public void setTaksNr(int taksNr) {
-        this.taksNr = taksNr;
+    public void setTaskNr(int taksNr) {
+        this.taskNr = taksNr;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof QueueView)) {
-            return false;
-        }
-        final QueueView other = (QueueView) obj;
-        if (this.queueId != other.queueId) {
-            return false;
-        }
-        return true;
+        if(obj == null ||!(obj instanceof QueueView)) return false;
+		
+		QueueView other = (QueueView) obj;
+		if (!other.getEmail().equals(this.getEmail())) return false;
+		if (other.getQueueId() != this.getQueueId()) return false;
+		if (other.getTaskNr() != this.getTaskNr()) return false;
+		if (!other.getComment().equals(this.getComment())) return false;
+		if (!other.getLocation().equals(this.getLocation())) return false;
+		if (!other.getStatus().equals(this.getStatus())) return false;
+		if (!other.getSubjectCode().equals(this.getSubjectCode())) return false;
+		// if (!other.getTimestamp().equals(this.getTimestamp())) return false; TODO: Currently buggy
+		
+		return true;
     }
-    
-    
     
 }

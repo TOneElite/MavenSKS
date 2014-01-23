@@ -14,4 +14,14 @@ public class RoleName {
     public String toString(){
         return "roleName";
     }
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null ||!(obj instanceof RoleName)) return false;
+		
+		RoleName other = (RoleName) obj;
+		if (!other.getRoleName().equals(this.getRoleName())) return false;
+		
+		return true;
+	}
 }

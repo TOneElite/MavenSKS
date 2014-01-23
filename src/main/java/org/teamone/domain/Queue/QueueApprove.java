@@ -34,4 +34,15 @@ public class QueueApprove {
         return queueId+";"+email+";"+taskNr;
     }
     
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null ||!(obj instanceof QueueApprove)) return false;
+		
+		QueueApprove other = (QueueApprove) obj;
+		if (!other.getEmail().equals(this.getEmail())) return false;
+		if (other.getQueueId() != this.getQueueId()) return false;
+		if (other.getTaskNr() != this.getTaskNr()) return false;
+		
+		return true;
+	}
 }

@@ -38,4 +38,15 @@ public class UserRights {
     public void setUser(User user) {
         this.user = user;
     }
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null ||!(obj instanceof UserRights)) return false;
+		
+		UserRights other = (UserRights) obj;
+		if (!other.getSubject().equals(this.getSubject())) return false;
+		if (!other.getRole().equals(this.getRole())) return false;
+		if (!other.getUser().equals(this.getUser())) return false;
+		return true;
+	}
 }

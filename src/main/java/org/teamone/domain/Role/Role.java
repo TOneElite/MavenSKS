@@ -43,4 +43,16 @@ public class Role {
     public String toString() {
         return "email: " + email + ", subjectCode: " + subjectCode + ", rolename : " + roleName;
     }
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null ||!(obj instanceof Role)) return false;
+		
+		Role other = (Role) obj;
+		if (!other.getEmail().equals(this.getEmail())) return false;
+		if (!other.getRoleName().equals(this.getRoleName())) return false;
+		if (!other.getSubjectCode().equals(this.getSubjectCode())) return false;
+		
+		return true;
+	}
 }

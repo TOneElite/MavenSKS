@@ -53,7 +53,20 @@ public class Subject {
         return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + ", nrOfTasks=" + nrOfTasks + ", rules=" + rules + '}';
     }
 
-    
-
-    
+    @Override
+	public boolean equals(Object obj){
+		if(obj == null ||!(obj instanceof Subject)) return false;
+		
+		Subject other = (Subject) obj;
+		if (!other.getName().equals(this.getName())) return false;
+		if (other.getNrOfTasks() != this.getNrOfTasks()) return false;
+		for(int i=0; i<other.getRules().length; i++){
+			for (int j=0; j<other.getRules()[i].length; i++){
+				if (other.getRules()[i][j] != this.getRules()[i][j]) return false;
+			}
+		}
+		if (other.getStatus() != this.getStatus()) return false;
+		if (other.getCode().equals(this.getCode())) return false;
+		return true;
+	}
 }

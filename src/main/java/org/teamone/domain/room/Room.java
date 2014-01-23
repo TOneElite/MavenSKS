@@ -53,4 +53,15 @@ public class Room {
         return "roomcode: " + roomCode + ", tablecount: " + tableCount +  ", picturelink: " + pictureLink + ", dscription: " + description;
     }
     
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Room)) return false;
+		
+		Room other = (Room) obj;
+		if (!other.getDescription().equals(this.getDescription())) return false;
+		if (!other.getPictureLink().equals(this.getPictureLink())) return false;
+		if (!other.getRoomCode().equals(this.getRoomCode())) return false;
+		if (other.getTableCount() != this.getTableCount()) return false;
+		return true;
+	}
 }
