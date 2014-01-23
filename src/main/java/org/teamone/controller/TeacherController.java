@@ -324,9 +324,9 @@ public class TeacherController {
         return "usersearch";
     }
 
-    @RequestMapping(value = "/access/usersearched", method = RequestMethod.GET)
-    public String userSearched(
-            @RequestParam("con") String con, Model model) {
+    @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
+    public String userSearch(
+            @RequestParam(value = "con", required = false) String con, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
@@ -347,6 +347,6 @@ public class TeacherController {
                 model.addAttribute("isTeacher", teacher);
             }
         }
-        return "usersearched";
+        return "usersearch";
     }
 }

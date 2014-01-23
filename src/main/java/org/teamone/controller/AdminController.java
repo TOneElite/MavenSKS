@@ -33,11 +33,12 @@ public class AdminController {
      * @param model
      * @return 
      */
-    @RequestMapping(value = "/access/admin")
-    public String adminView(Model model) {
+    @RequestMapping(value = "/access/admin", method = RequestMethod.GET)
+    public String adminView(
+            @RequestParam(value = "con", required = false) String con, Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("users", userJDBCTemplate.listUsersCon(con));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
         // Check for admin rights

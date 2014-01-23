@@ -21,12 +21,18 @@ public class UserJDBCTemplate {
     }
     
     public List<User> listUsersCon(String con) {
-        String a = "%"+con+"%";
-        String SQL = "SELECT * FROM users WHERE lastname LIKE ?";
-        List<User> user = jdbcTemplateObject.query(SQL, new Object[]{a}, 
-                new UserMapper(){
-        });
-        return user;
+        if(con == null){
+            String SQL = "SELECT * FROM users ORDER BY lastname ASC" ;
+            List<User> user = jdbcTemplateObject.query(SQL, new UserMapper());
+            return user;
+        }else{
+            String a = "%"+con+"%";
+            String SQL = "SELECT * FROM users WHERE lastname LIKE ?";
+            List<User> user = jdbcTemplateObject.query(SQL, new Object[]{a}, 
+                    new UserMapper(){
+            });
+            return user;
+        }
     }
     
     public boolean setPassword(String password, String email){

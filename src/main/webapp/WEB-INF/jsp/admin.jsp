@@ -50,20 +50,24 @@
 
         <div id="adminUserList">
             <h4>Brukerliste:</h4>
+            <form accept-charset="utf-8" action="<c:url value="/access/admin"/>" method="GET">
+            <input name ="con" type="text" class="controller" placeholder="Søk i etternavn (hel/del)">
+            <input class="button" type="submit" value="Søk"/>
+            </form>
             <br/>
             <div class="scroll">
                 <table id="adminUserTable">
                     <tr>
-                        <th class="adminUserHeading">Fornavn</th>
                         <th class="adminUserHeading">Etternavn</th>
+                        <th class="adminUserHeading">Fornavn</th>
                         <th class="adminUserHeading">E-post</th>
                         <th class="adminUserHeading">Aktiv</th>
                         <th class="adminUserHeading">Valg</th>
                     </tr>
                     <c:forEach var="users" items="${users}">
                         <tr>
-                            <td class="aminUserTableCell">${users.firstName}</td>
                             <td class="aminUserTableCell">${users.lastName}</td>
+                            <td class="aminUserTableCell">${users.firstName}</td>
                             <td class="aminUserTableCell">${users.email}</td>
                             <td class="aminUserTableCell">Ikke Implementert</td>
                             <td class="adminUserTableEditCell">
