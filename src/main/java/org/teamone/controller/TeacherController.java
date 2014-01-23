@@ -42,36 +42,24 @@ public class TeacherController {
     private RoleJDBCTemplate roleJDBCTemplate;
     @Autowired
     private UserRightsJDBCTemplate userRightsJDBCTemplate;
-
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
-
     @Autowired
     private ApprovedTasksJDBCTemplate userTasksJDBCTemplate;
-
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
-
     @Autowired
     private QueueApproveJDBCTemplate QueueApproveJDBCTemplate;
-
     @Autowired
     private ApprovedTasksJDBCTemplate approvedTasksJDBCTemplate;
 
 
-    /*
-     @RequestMapping("/access/teacherQueue")
-     public String teacherQueue(Model model) {
-     model.addAttribute("queues", queueJDBCTemplate.listQueue());
-     model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-     return "teacherQueue";
-     }*/
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
     public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
+      //  model.addAttribute("username", auth.getName());
+      //  model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("currentS", subjectCode);
@@ -118,15 +106,18 @@ public class TeacherController {
             @RequestParam(value = "help", required = false) String help,
             @RequestParam(value = "approve", required = false) String approve,
             @RequestParam(value = "queueId", required = false) String queueId,
-            @RequestParam(value = "subjectcode", required = false) String subjectCode,
+            @RequestParam(value = "subjectCode", required = false) String subjectCode,
             @RequestParam(value = "currentSubject", required = false) String currentSubject,
+         //   @RequestParam(value = "queueStatus", required = false) String queueStatus,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
 
+        /*
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("activeSubject", subjectCode);
+        model.addAttribute("thisSubject", currentSubject);*/
 
         // Check for admin rights
         boolean admin = false;
@@ -160,6 +151,13 @@ public class TeacherController {
             }
         }
 
+     /*   if(queueStatus != null){
+            if(queueStatus.equals("0")){
+                subjectJDBCTemplate.setStatus(1, currentSubject);
+            }else{
+                subjectJDBCTemplate.setStatus(0, currentSubject);
+            }
+        }*/
         if (remove != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);
@@ -181,7 +179,7 @@ public class TeacherController {
             model.addAttribute("queueInfo", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
         }
-        return "redirect:/access/teacher" + subjectCode;
+        return "redirect:/access/teacher" + currentSubject;
     }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
@@ -195,8 +193,8 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
 
         if (cancel != null) {
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-            return "teacherQueue";
+          //  model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
+            return "redirect:/access/teacher" + current;
         }
         if (approve != null) {
             int queueID = -1;
@@ -222,7 +220,7 @@ public class TeacherController {
             //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
 
         }
-        model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
+       // model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
         return "redirect:/access/teacher" + current;
     }
 

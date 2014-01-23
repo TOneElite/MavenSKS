@@ -5,15 +5,16 @@
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 
 <form action="<c:url value="/access/approveInQueue"/>" method="POST">
-    <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
+    <input type ="hidden" name="currentSubject" value="${currentS}"/> 
+    <p>${currentS}</p>
     <div id ="teacherQueue">
         <section id="queueHeader">
             <div id="queueInfo">
                 <h1>Kø i <span id="subjectHeader"></span></h1> 
-                    <c:choose>
+                  <%--  <c:choose>
                         <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
                     <c:when test="${thisSubject.status eq 1}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "1">Steng køen</button></c:when>
-                </c:choose>
+                </c:choose> --%>
                 <div class="queueContainer">
                     <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
                     <div class="queueRulesContent">
@@ -28,7 +29,7 @@
 
         <section id="queue">
             <form action="<c:url value="/access/approveInQueue"/>" method="POST">
-                
+
                 <table id="queueTable" width="100%">
                     <col width="10%">
                     <col width="15%">
@@ -57,7 +58,7 @@
 
                             <td class="click"><c:out value="${queue.location}"/></td>    
                             <td id="buttons"><p>
-                                    <input class="check" type="checkbox" style="display:none" name="subjectcode" value="${queue.subjectCode}"/>
+                                    <input class="check" type="checkbox" style="display:none" name="subjectCode" value="${queue.subjectCode}"/>
                                     <input class="check" type="checkbox" style="display:none" name="queueId" value="${queue.id}"/>
                                     <input class="teacherbuttons" name="help" value="&#x2661;" type="submit"/>
                                     <input class="teacherbuttons" name="approve" value="&#x2713;" type="submit"/>
