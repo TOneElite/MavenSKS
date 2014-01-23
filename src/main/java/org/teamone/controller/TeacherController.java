@@ -200,6 +200,7 @@ public class TeacherController {
             //model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
 
         }
+        
         if (approve != null) {
             int queueID = -1;
             for (String t : tasks) {
@@ -224,7 +225,7 @@ public class TeacherController {
             //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
 
         }
-        return "teacherQueue";
+        return "home";
     }
 
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)

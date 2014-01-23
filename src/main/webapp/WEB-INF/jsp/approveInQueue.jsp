@@ -16,7 +16,7 @@
         <c:forEach var="queue" items="${queues}">
             <ul>
                 <li>${queue.email}</li>
-                <li><label class="checkboxLabel">Øving ${i.taskNr}<input class="boxes" type="checkbox" name="task" value="${queue}" checked="checked"></label></li>                
+                <li><label class="checkboxLabel">Øving ${queue.taskNr}<input class="boxes" type="checkbox" name="task" value="${queue}" checked="checked"></label></li>                
             </ul>
         </c:forEach>
 
