@@ -80,8 +80,9 @@ public class QueueController {
 
         /* Comment, date, status and subject code handler */
         queue.setComment(comment);
-        queue.setDate(new Date(new java.util.Date().getTime()));
-        queue.setStatus("");
+        System.out.println("ASD " + new java.sql.Date(new java.util.Date().getTime()));
+        queue.setDate(new java.sql.Date(new java.util.Date().getTime()));
+        queue.setStatus("Venter");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue, queueGroup);
         return "redirect:" + subjectCode;

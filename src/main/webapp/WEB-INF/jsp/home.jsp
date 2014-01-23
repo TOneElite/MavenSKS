@@ -1,7 +1,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 
@@ -73,7 +74,7 @@
             <tr>
                 <c:set var="now" value="<%=new java.util.Date()%>" /> <!-- NOW - QUEUE.DATE = WIN -->
                 <td><c:out value="${queue.date}"/></td>
-                <td><c:out value="${queue.users}"/></td>
+                <td><c:out value="${queue.firstNames}"/></td>
                 <td><c:out value="${queue.tasks}"/></td>
                 <td><c:out value="${queue.comment}"/></td>
                 <td> <c:choose>
@@ -83,11 +84,13 @@
                     </c:choose></td>
                 <td><c:out value="${queue.location}"/></td>
 
-                <td> <c:choose>
-                        <c:when test="${queue.users==username}">   
-                            <button type="button">Fjern</button></c:when>
-                    </c:choose></td>
-
+                <td><c:choose>
+                        <c:when test="${fn:split(queue.users, ', ')[0]==username}">
+                            <button type="button">Endre</button>
+                            <button type="button">Fjern</button>
+                        </c:when>
+                    </c:choose>
+                </td>
             </tr>
         </c:forEach>
     </table>
