@@ -15,17 +15,16 @@
             <div class="scroll">
                 <table id="subjectTable">
                     <tr class="subjectTableRow">
-                        <th class="subjectHeader subjectCell">Regel</th>
+                        <th class="subjectHeader subjectCell">Fagkode</th>
+                        <th class="subjectHeader subjectCell">Fagnavn</th>
+                        <th class="subjectHeader subjectCell">Valg</th>
+                        <th class="subjectHeader subjectCell">Rules</th>
                     </tr>
-                    <c:forEach var="tasks" items="${taskRules}">
+                    <c:forEach var="subject" items="${subjects}">
                         <tr class="subjectTableRow">
-                            <td class="subjectCell">${rulestring}</td>
-                            <td class="subjectCell">Nothing</td>
-                            <td class="subjectCell">Ikke Implementert</td>
-                            <td class="subjectCell">
-                                <a href="#" class="adminLinks editLinkPadding">Endre</a>
-                                <a href="#" class="adminLinks editLinkPadding">Slett</a>
-                            </td>
+                            <td class="subjectCell">${subject.code}</td>
+                            <td class="subjectCell">${subject.name}</td>
+                            <td class="subjectCell">${subject.ruleString}</td>
                         </tr>
                     </c:forEach>
                 </table>

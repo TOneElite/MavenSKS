@@ -6,15 +6,17 @@ public class Subject {
     private String name;
     private int status;
     private int nrOfTasks;
-    private String ruleString;
+    private String[] rules;
 
-    public String getRuleString() {
-        return ruleString;
+    public String[] getRules() {
+        return rules;
     }
 
-    public void setRuleString(String ruleString) {
-        this.ruleString = ruleString;
+    public void setRules(String[] rules) {
+        this.rules = rules;
     }
+
+    
     
     public String getCode() {
         return code;
@@ -50,6 +52,8 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + ", nr_of_tasks=" + nrOfTasks + '}';
+        return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + ", nrOfTasks=" + nrOfTasks + ", rules=" + rules + '}';
     }
+
+    
 }
