@@ -29,7 +29,7 @@
                     <c:forEach var="subject" items="${subjects}" >
                         <c:if test="${subject.code == activeCode}">
                             <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}"></label></li>
+                                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}" required></label></li>
                                     </c:forEach>
                                 </c:if>
                             </c:forEach>
@@ -42,7 +42,9 @@
                 <select name="group" id="group" class="queueFormMiddle">
                     <option selected value="Alene">Alene</option>
                     <c:forEach var="user" items="${users}">
-                        <option value="${user.email}" title="${user.lastName}.${fn:substring(user.firstName, 0, 1)}">${user.lastName}, ${user.firstName}</option>
+                        <c:if test="${user.email != username}" >
+                            <option value="${user.email}" title="${user.lastName}.${fn:substring(user.firstName, 0, 1)}">${user.lastName}, ${user.firstName}</option>
+                        </c:if>
                     </c:forEach>
                 </select>
             </div>
@@ -124,8 +126,23 @@
                     selectedGroupMember.remove();
                 };
                 selectedUserList.onchange();
+                
+                
+                function checkRequiredTasks(){
+                    var taskOptions = document.getElementsByClassName("boxes");
+                    for (var i=0, l=taskOptions.length; i<l;i++){
+                        if(taskOptions[i].checked){
+                            for (var i=0, l=taskOptions.length; i<l;i++){
+                                taskOptions[i].required = false;
+                            }
+                            return true;
+                        }
+                    }
+                    return false;
+                };
 
                 function groupArray() {
+                    checkRequiredTasks();
                     var selectList = document.getElementById("selectedUserList");
                     var groupList = document.getElementById("groupList");
                     for (var i = 0; i < selectList.options.length; i++) {

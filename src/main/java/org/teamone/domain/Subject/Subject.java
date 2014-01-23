@@ -6,16 +6,14 @@ public class Subject {
     private String name;
     private int status;
     private int nrOfTasks;
-    private String[] rules;
-
-    public String[] getRules() {
+    private int[][] rules;
+    public int[][] getRules() {
         return rules;
     }
 
-    public void setRules(String[] rules) {
+    public void setRules(int[][] rules) {
         this.rules = rules;
     }
-
     
     
     public String getCode() {
@@ -54,6 +52,8 @@ public class Subject {
     public String toString() {
         return "Subject{" + "code=" + code + ", name=" + name + ", status=" + status + ", nrOfTasks=" + nrOfTasks + ", rules=" + rules + '}';
     }
+
+    
 
     
 }

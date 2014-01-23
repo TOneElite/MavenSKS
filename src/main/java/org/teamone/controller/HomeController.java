@@ -40,7 +40,8 @@ public class HomeController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        System.out.println("test: " + auth.getName());
+        model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
+        model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
@@ -85,7 +86,8 @@ public class HomeController {
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("activeSubject", subjectCode);
-        System.out.println("test: " + auth.getAuthorities());
+        model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
+        model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
