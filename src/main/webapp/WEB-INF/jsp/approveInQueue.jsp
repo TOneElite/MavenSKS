@@ -4,22 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <section id="queue">
-    
-        <style>
-            li{
-                padding: 5px;
-            }
-    </style>
-    
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
 
-        <c:forEach var="queue" items="${queues}">
+        <c:forEach var="queue" items="${queueInfo}">
             <ul>
                 <li>${queue.email}</li>
                 <li><label class="checkboxLabel">Øving ${queue.taskNr}<input class="boxes" type="checkbox" name="task" value="${queue}" checked="checked"></label></li>                
             </ul>
         </c:forEach>
 
+        <input type ="hidden" name="currentSubject" value="${current}"/>
         <input name="approved" value="Godkjenn" type="submit"/>
         <input name="cancel" value="Avbryt" type="submit"/>
     </form>
