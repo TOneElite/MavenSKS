@@ -66,11 +66,6 @@ public class TeacherController {
      model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
      return "teacherQueue";
      }*/
-    @RequestMapping("/access/eksamensrapport")
-    public String examOverview() {
-        return "eksamensrapport";
-    }
-
     @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String options(
             @RequestParam(value = "remove", required = false) String remove,
@@ -149,15 +144,15 @@ public class TeacherController {
         model.addAttribute("activeSubject", subjectCode);
         return "readfile";
     }
-    
+
     @RequestMapping(value = "/access/fileread{subjectCode}", method = RequestMethod.POST)
     public String fileread(
             @RequestParam(value = "output", required = false) String fileread,
             @PathVariable String subjectCode) {
-        if(fileread == null){
+        if (fileread == null) {
             return "readfile";
-        }else{ 
-           String[] words = fileread.split("[,\\n]");
+        } else {
+            String[] words = fileread.split("[,\\n]");
             User user = new User();
             Role role = new Role();
             List<Subject> subjects = subjectJDBCTemplate.listSubjects();
@@ -166,13 +161,13 @@ public class TeacherController {
             Boolean error = false;
             int remove = words.length % 4;
             for (int i = 0; i < (words.length / 4); i++) {
-                if(words[(i*4)+2].contains("@")){
-                }else{
+                if (words[(i * 4) + 2].contains("@")) {
+                } else {
                     JOptionPane.showMessageDialog(null, "There is an error in file format");
                     error = true;
                 }
             }
-            if(error == true){
+            if (error == true) {
                 return "admin";
             }
             int test = words.length - remove;
@@ -188,24 +183,24 @@ public class TeacherController {
                 user.setDate(date);
                 userRights.setRole(role);
                 List<User> users = userJDBCTemplate.listUsers();
-                List<Role> roles = roleJDBCTemplate.getSubjectRoles(words[(i*4)+2]);
+                List<Role> roles = roleJDBCTemplate.getSubjectRoles(words[(i * 4) + 2]);
                 Boolean exist = false;
                 for (User email : users) {
                     if (email.getEmail().equals(user.getEmail())) {
                         exist = true;
                     }
                 }
-                if(exist == false){
-                        userJDBCTemplate.create(user);
+                if (exist == false) {
+                    userJDBCTemplate.create(user);
                 }
                 Boolean rexist = false;
-                for(Role rolee : roles){
-                    if(subjectCode.equals(rolee.getSubjectCode())){
+                for (Role rolee : roles) {
+                    if (subjectCode.equals(rolee.getSubjectCode())) {
                         System.out.println(user.getEmail() + " code " + role.getSubjectCode() + " list " + rolee.getSubjectCode());
                         rexist = true;
                     }
                 }
-                if(rexist == false){
+                if (rexist == false) {
                     roleJDBCTemplate.create(role);
                 }
             }
@@ -302,10 +297,11 @@ public class TeacherController {
 
     /**
      * Proof on concept
+     *
      * @param model
      * @param email
      * @param subjectCode
-     * @return 
+     * @return
      */
     @RequestMapping(value = "/access/vertifyTasks/{email}/{subjectCode}", method = RequestMethod.GET)
     public String vertifyTasksForStudent(Model model, @PathVariable String email, @PathVariable String subjectCode) {
@@ -361,7 +357,25 @@ public class TeacherController {
         return "subjectSettings";
     }
 
+    @RequestMapping(value = "/access/examView{subjectCode}", method = RequestMethod.GET)
+    public String examView(Model model, @PathVariable String subjectCode) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
+
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjectname", subject.getName());
+        model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
+        model.addAttribute("isTeacher", true);
+
+        return "eksamensrapport";
+    }
+
+    
+
     @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
+
     public String userSearch(
             @RequestParam(value = "con", required = false) String con, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
