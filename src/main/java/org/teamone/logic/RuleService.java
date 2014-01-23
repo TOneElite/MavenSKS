@@ -67,13 +67,22 @@ public class RuleService {
     public boolean vertifyRequirements(boolean[] taskDone, int[][] rules) {
         int required = 0;
         int done = 0;
-        
-        for(int i = 0; i < rules.length;i++){
-            for(int j = 0; j < rules[i].length;j++){
-                if(j==0) required = rules[i][j];
-                if(taskDone[j]) done++; 
+
+        for (int i = 0; i < rules.length; i++) {
+            for (int j = 0; j < rules[i].length; j++) {
+                if (j == 0) {
+                    required = rules[i][j];
+                } else {
+                    if (taskDone[j - 1] && rules[i][j] == 1) {
+                        done++;
+                    }
+                }
             }
-            if(done < required) return false;
+            System.out.println(required + " " +done);
+            if (done < required) {
+                return false;
+            }
+            done = 0;
         }
 
         return true;

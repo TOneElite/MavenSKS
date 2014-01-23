@@ -28,6 +28,7 @@ import org.teamone.domain.Queue.QueueApproveJDBCTemplate;
 import org.teamone.domain.room.RoomJDBCTemplate;
 import org.teamone.domain.userRights.UserRights;
 import org.teamone.domain.userRights.UserRightsJDBCTemplate;
+import org.teamone.logic.RuleService;
 
 @Controller
 public class TeacherController {
@@ -273,6 +274,39 @@ public class TeacherController {
             }
         }
         return "teacherQueue";
+    }
+
+    /**
+     * Proof on concept
+     * @param model
+     * @param email
+     * @param subjectCode
+     * @return 
+     */
+    @RequestMapping(value = "/access/vertifyTasks/{email}/{subjectCode}", method = RequestMethod.GET)
+    public String vertifyTasksForStudent(Model model, @PathVariable String email, @PathVariable String subjectCode) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
+        List<ApprovedTasks> approvedTasks = approvedTasksJDBCTemplate.listApprovedTasks(email, subjectCode);
+
+        boolean[] tasksDone = new boolean[subject.getNrOfTasks()];
+
+        for (ApprovedTasks as : approvedTasks) {
+            tasksDone[as.getTaskNr() - 1] = true;
+        }
+
+        boolean ready = new RuleService().vertifyRequirements(tasksDone, subject.getRules());
+
+        System.out.println("Ready for exam?: " + ready);
+
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjectname", subject.getName());
+        model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
+        model.addAttribute("isTeacher", true);
+
+        return "subjectSettings";
     }
 
     @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
