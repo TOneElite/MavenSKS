@@ -10,9 +10,7 @@
         <section id="queueHeader">
             <div id="queueInfo">
                 <h1>Kø i <span id="subjectHeader"></span></h1> 
-                <input type ="hidden" value="${subject}" name="currentSubject"/>
                 <input id="queueButton" name="queueStatus" value="Åpne køen" type="submit"/>
-
 
                 <div class="queueContainer">
                     <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
@@ -28,6 +26,7 @@
 
         <section id="queue">
             <form action="<c:url value="/access/approveInQueue"/>" method="POST">
+                <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
                 <table id="queueTable" width="100%">
                     <col width="10%">
                     <col width="15%">
@@ -65,6 +64,7 @@
                                 </p></td>
                         </tr>
                     </c:forEach>
+                        
                 </table>
         </section>
 </form>
