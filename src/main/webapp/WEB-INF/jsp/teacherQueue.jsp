@@ -25,6 +25,7 @@
 
         <section id="queue">
             <form action="<c:url value="/access/approveInQueue"/>" method="POST">
+                <p>${subjectCode}</p>
                 <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
                 <table id="queueTable" width="100%">
                     <col width="10%">

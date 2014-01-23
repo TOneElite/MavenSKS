@@ -66,6 +66,51 @@ public class TeacherController {
      model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
      return "teacherQueue";
      }*/
+    @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
+    public String teacherQueueView(Model model, @PathVariable String subjectCode
+    ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("currentS", subjectCode);
+
+        System.out.println("test: " + auth.getAuthorities());
+        // Check for admin rights
+        boolean admin = false;
+        boolean teacher = false;
+        boolean user = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                System.out.println("is ADMIN!");
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+            if (ga.toString().equals("ROLE_TEACHER")) {
+                System.out.println("is TEACHER!");
+                teacher = true;
+                model.addAttribute("isTeacher", teacher);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+            if (ga.toString().equals("ROLE_USER")) {
+                System.out.println("is USER!");
+                user = true;
+                model.addAttribute("isUser", user);
+            }
+        }
+        return "teacherQueue";
+    }
+
     @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String options(
             @RequestParam(value = "remove", required = false) String remove,
@@ -139,6 +184,48 @@ public class TeacherController {
         return "teacherQueue";
     }
 
+    @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
+    public String approve(
+            @RequestParam(value = "cancel", required = false) String cancel,
+            @RequestParam(value = "approved", required = false) String approve,
+            @RequestParam(value = "task", required = false) String[] tasks,
+            @RequestParam(value = "currentSubject", required = false) String current,
+            Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+
+        if (cancel != null) {
+            model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
+            return "teacherQueue";
+        }
+        if (approve != null) {
+            int queueID = -1;
+            for (String t : tasks) {
+                String[] info = t.split(";");
+                queueID = Integer.parseInt(info[0]);
+                String email = info[1];
+                int taskNr = Integer.parseInt(info[2]);
+                String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
+                ApprovedTasks at = new ApprovedTasks();
+                at.setApprovedBy(auth.getName());
+                at.setApprovedDate(new Date());
+                at.setEmail(email);
+                at.setSubjectCode(subjectCode);
+                at.setTaskNr(taskNr);
+
+                System.out.println(at.toString());
+                approvedTasksJDBCTemplate.approve(at);
+
+            }
+
+            queueJDBCTemplate.delete(queueID);
+            //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
+
+        }
+        model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
+        return "teacherQueue";
+    }
+
     @RequestMapping(value = "/access/readfile{subjectCode}", method = RequestMethod.GET)
     public String readfile(@PathVariable String subjectCode, Model model) {
         model.addAttribute("activeSubject", subjectCode);
@@ -206,93 +293,6 @@ public class TeacherController {
             }
             return "redirect:subjectSettings";
         }
-    }
-
-    @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
-    public String approve(
-            @RequestParam(value = "cancel", required = false) String cancel,
-            @RequestParam(value = "approved", required = false) String approve,
-            @RequestParam(value = "task", required = false) String[] tasks,
-            @RequestParam(value = "currentSubject", required = false) String current,
-            Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-
-        if (cancel != null) {
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-            return "teacherQueue";
-        }
-        if (approve != null) {
-            int queueID = -1;
-            for (String t : tasks) {
-                String[] info = t.split(";");
-                queueID = Integer.parseInt(info[0]);
-                String email = info[1];
-                int taskNr = Integer.parseInt(info[2]);
-                String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
-                ApprovedTasks at = new ApprovedTasks();
-                at.setApprovedBy(auth.getName());
-                at.setApprovedDate(new Date());
-                at.setEmail(email);
-                at.setSubjectCode(subjectCode);
-                at.setTaskNr(taskNr);
-
-                System.out.println(at.toString());
-                approvedTasksJDBCTemplate.approve(at);
-
-            }
-
-            queueJDBCTemplate.delete(queueID);
-            //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
-
-        }
-        model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-        return "teacherQueue";
-    }
-
-    @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
-    public String teacherQueueView(Model model, @PathVariable String subjectCode
-    ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
-        model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("currentS", subjectCode);
-
-        System.out.println("test: " + auth.getAuthorities());
-        // Check for admin rights
-        boolean admin = false;
-        boolean teacher = false;
-        boolean user = false;
-        for (GrantedAuthority ga : auth.getAuthorities()) {
-            if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
-                admin = true;
-                model.addAttribute("isAdmin", admin);
-            }
-            if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
-                teacher = true;
-                model.addAttribute("isTeacher", teacher);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-        }
-        return "teacherQueue";
     }
 
     /**
@@ -371,8 +371,6 @@ public class TeacherController {
 
         return "eksamensrapport";
     }
-
-    
 
     @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
 
