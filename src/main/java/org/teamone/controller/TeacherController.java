@@ -298,6 +298,7 @@ public class TeacherController {
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
         
         model.addAttribute("username", auth.getName());
+        model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("subjectname", subject.getName());
         model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
