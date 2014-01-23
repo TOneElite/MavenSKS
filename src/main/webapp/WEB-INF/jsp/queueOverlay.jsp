@@ -90,7 +90,7 @@
                         pictureChange('../res/lab4.png');
                         var comment = document.getElementById("comment");
                         comment.required = "required";
-                        comment.setCustomValidity("Annet."); // FAKK THE WATT
+                        // comment.setCustomValidity("Du har valgt rommet 'Annet'. Vennligst beskriv hvor du sitter."); // TODO FAKK THE WATT. Det her ska da funk.
                     }
                     else {
                         table.disabled = false;
@@ -138,6 +138,7 @@
                 function checkRequiredTasks() {
                     var taskOptions = document.getElementsByClassName("boxes");
                     for (var i = 0, l = taskOptions.length; i < l; i++) {
+                        // taskOptions[i].setCustomValidity("Velg øving."); // TODO FAKK THE WATT. Det her ska da funk.
                         if (taskOptions[i].checked) {
                             for (var i = 0, l = taskOptions.length; i < l; i++) {
                                 taskOptions[i].removeAttribute("required");
