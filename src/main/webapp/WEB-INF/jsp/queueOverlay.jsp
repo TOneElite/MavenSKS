@@ -13,7 +13,7 @@
                 <c:forEach var="room" items="${rooms}">
                     <option value="${room.roomCode}#${room.pictureLink}" title="${room.tableCount}">${room.roomCode}</option>
                 </c:forEach>
-                <option value="other" selected>Annet</option>
+                <option value="Se kommentar" selected>Annet</option>
             </select><br>
 
             <label for="table">Bord:</label>
@@ -54,7 +54,7 @@
             <label></label>
             <input class="button" type="submit" onclick="groupArray();" value="OK"/>
             <input name="subjectCode" value="${activeSubject}" hidden />
-            <input name="groupList" id="groupList" value="" hidden />
+            <span id="groupList"><input name="groupMembers" value="Alene" hidden /></span>
         </form>
     </article>
     <article id="right">
@@ -79,7 +79,7 @@
                 }
 
                 room.onchange = function() {
-                    if (this.value === "other") {
+                    if (this.value === "Se kommentar") {
                         table.disabled = true;
                         table.className += " disabled";
                         table.options.length = 0;
@@ -104,26 +104,41 @@
                 group.onchange = function() {
                     var selectedUser = group.options[group.selectedIndex];
                     if (selectedUser.title !== "") {
-                        selectedUserList.options[selectedUserList.options.length] = new Option(selectedUser.title, selectedUser.email);
+                        var option = document.createElement("option");
+                        option.value = selectedUser.value;
+                        option.title = selectedUser.title;
+                        option.text = selectedUser.text;
+                        selectedUserList.appendChild(option);
                         selectedUser.remove();
                     }
                 };
                 group.onchange();
 
                 selectedUserList.onchange = function() {
-                    var removeUser = selectedUserList.options[selectedUserList.selectedIndex];
-                    group.options[group.options.length] = new Option(removeUser.text, removeUser.value);
-                    removeUser.remove();
+                    var selectedGroupMember = selectedUserList.options[selectedUserList.selectedIndex];
+                    var option = document.createElement("option");
+                    option.value = selectedGroupMember.value;
+                    option.title = selectedGroupMember.title;
+                    option.text = selectedGroupMember.text;
+                    group.appendChild(option);
+                    selectedGroupMember.remove();
                 };
                 selectedUserList.onchange();
 
                 function groupArray() {
-                    var groupArray = new Array();
                     var selectList = document.getElementById("selectedUserList");
+                    var groupList = document.getElementById("groupList");
                     for (var i = 0; i < selectList.options.length; i++) {
-                        groupArray[i] = selectList.options[i].value;
+                        var el = document.createElement("input");
+                        el.name = "groupMembers";
+                        el.value = selectList.options[i].value;
+                        el.hidden = true;
+                        groupList.appendChild(el);
                     }
-                    document.getElementById("groupList").value = groupArray;
+                    var table = document.getElementById("table");
+                    if (table.options.length == 0) {
+                        table.options[0] = new Option(" ");
+                    }
                 }
                 ;
 </script>

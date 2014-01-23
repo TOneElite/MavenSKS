@@ -4,21 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <section id="queue">
+    
+        <style>
+            li{
+                padding: 5px;
+            }
+    </style>
+    
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
-        <c:set var="string" value="${queue.tasks}"/>
-        <c:set var="tasktab" value="${fn:split(string, ', ')}"/>
-        <input type ="hidden" value="${tasktab[0]}" name="some"/>
 
-        <ul>
-            <li>${queue.users}</li>
+        <c:forEach var="queue" items="${queues}">
+            <ul>
+                <li>${queue.email}</li>
+                <li><label class="checkboxLabel">Øving ${queue.taskNr}<input class="boxes" type="checkbox" name="task" value="${queue}" checked="checked"></label></li>                
+            </ul>
+        </c:forEach>
 
-            <c:forEach var="i" items="${tasktab}">
-                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${queue.users}, ${i}" checked="checked"></label></li>                
-                    </c:forEach>
-        </ul>
-
-        <input type="hidden" name="subjectCode" value="${queue.subjectCode}">
-        <input type="hidden" name="queueId" value="${queue.id}">
         <input name="approved" value="Godkjenn" type="submit"/>
         <input name="cancel" value="Avbryt" type="submit"/>
     </form>

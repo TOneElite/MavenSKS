@@ -4,77 +4,14 @@
     Author     : Excludos
 --%>
 
-<style>
-    #overview-header{
-        background-color: #f8f8f8;
-        padding: 2%;
-        text-align: left;    
-        margin-bottom: 30px;
-        overflow: hidden;
-        border-radius: 5px;    
-        background-color: #f8f8f8;
-        font-size: 16px; 
-        color: black; 
-        border: 1px solid #ccc;
-        box-shadow: 0 1px 1px 1px #e3e8e5;
-    }
-    #overview-list{
-        overflow: hidden;
-        padding: 0px;
-        border: 1px solid #ccc;
-        box-shadow: 0 1px 1px 1px #e3e8e5;
-        margin: 0px;
-        margin-bottom: 10px;
-    }
-    #overview-table{
-        background-color: #F0F0F0;
-        border-collapse: collapse;
-        border:none;
-        width: 100%;
-    }
-    #overview-table td{
-        padding: 4px;
-    }
-    .highlight-whole {
-        background-color: #74e571 !important;
-    }
-    .highlight-one {
-        color: limegreen !important;
-    }
-    .overviewContainer .overviewRulesHeader {
-        /*background-color:#d3d3d3;*/
-        padding: 4px;
-        cursor: pointer;
-    }
-    .overviewRulesContent {
-        display: none;
-        padding : 5px;
-    }
-    #overview-subject{
-        font-weight: bold
-    }
-    #overview-tasks{
-        float: right;
-    }
-    #overview-tasktable td{
-        border: 1px solid #ccc;
-        box-shadow: 0 1px 1px 1px #e3e8e5;
-        padding:0px;
-    }
-
-    #overview-tasktable td p{
-        display: inline;
-        padding: 2px;
-    }
-</style>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 
 <header id="overview-header">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <h1>Øvingsoversikt for <c:out value="${username}"/> </h1>
 </header>
+
 <c:forEach var="subject" items="${subjects}">
     <div id="overview-list">
         <table id="overview-table">
@@ -116,8 +53,6 @@
         </div>
     </div>
 </c:forEach>
-
-<img src="http://31.media.tumblr.com/tumblr_lj0wls8poh1qb9bjho1_400.gif" alt="Nyancat">
 
 
 <script language="javascript">

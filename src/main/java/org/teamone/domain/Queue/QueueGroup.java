@@ -1,36 +1,32 @@
 package org.teamone.domain.Queue;
 
-import org.teamone.domain.User.User;
-
 /**
  *
  * @author Kim
  */
 public class QueueGroup {
-	
-	private int[] tasknr;
-	private User[] users;
 
-	
-	public int[] getTasknr() {
-		return tasknr;
-	}
+    private int[] taskNrs;
+    private String[] users;
 
-	public void setTasknr(int[] tasknr) {
-		this.tasknr = tasknr;
-	}
+    public int[] getTaskNrs() {
+        return taskNrs;
+    }
 
-	public User[] getUsers() {
-		return users;
-	}
+    public void setTaskNrs(int[] tasknr) {
+        this.taskNrs = tasknr;
+    }
 
-	public void setUsers(User[] users) {
-		this.users = users;
-	}
+    public String[] getUsers() {
+        return users;
+    }
 
-	
-	@Override
-	public String toString() {
-		return "QueueGroup{" + "tasknr=" + tasknr + ", users=" + users + '}';
-	}
+    public void setUsers(String[] users) {
+        this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "QueueGroup{" + "tasknr=" + taskNrs + ", users=" + users + '}';
+    }
 }
