@@ -143,51 +143,63 @@ public class TeacherController {
         return "teacherQueue";
     }
 
-    @RequestMapping(value = "/access/readfile")
-    public String readfile() {
+    @RequestMapping(value = "/access/readfile{subjectCode}", method = RequestMethod.GET)
+    public String readfile(@PathVariable String subjectCode, Model model) {
+        model.addAttribute("activeSubject", subjectCode);
         return "readfile";
     }
-
-    @RequestMapping(value = "/access/fileread", method = RequestMethod.POST)
+    
+    @RequestMapping(value = "/access/fileread{subjectCode}", method = RequestMethod.POST)
     public String fileread(
-            @RequestParam("output") String fileread/*,
-     @RequestParam("subject") String subjectcode*/) {
-        String[] words = fileread.split("[,\\n]");
-        User user = new User();
-        Role role = new Role();
-        String subjectcode = "TDAT1005";
-        List<Subject> subjects = subjectJDBCTemplate.listSubjects();
-        UserRights userRights = new UserRights();
-        Boolean exist = false;
-        Date date = new Date();
-        for (int i = 0; i < (words.length / 4); i++) {
-            user.setLastName(words[(i * 4)]);
-            user.setFirstName(words[(i * 4) + 1]);
-            user.setEmail(words[(i * 4) + 2]);
-            role.setEmail(words[(i * 4) + 2]);
-            user.setPassword(words[(i * 4) + 3]);
-            role.setSubjectCode("TDAT-2007-13H");
-            role.setRoleName("ROLE_USER");
-            user.setDate(date);
-            userRights.setRole(role);
-            for (Subject subject : subjects) {
-                if (subject.getCode().equals(subjectcode)) {
-                    userRights.setSubject(subject);
+            @RequestParam(value = "output", required = false) String fileread,
+            @PathVariable String subjectCode) {
+        System.out.println(subjectCode);
+        if(fileread == null){
+            return "readfile";
+        }else{ 
+           String[] words = fileread.split("[,\\n]");
+            User user = new User();
+            Role role = new Role();
+            List<Subject> subjects = subjectJDBCTemplate.listSubjects();
+            UserRights userRights = new UserRights();
+            Date date = new Date();
+            int remove = words.length % 4;
+            int test = words.length - remove;
+            for (int i = 0; i < (test / 4); i++) {
+                user.setLastName(words[(i * 4)]);
+                user.setFirstName(words[(i * 4) + 1]);
+                user.setEmail(words[(i * 4) + 2]);
+                role.setEmail(words[(i * 4) + 2]);
+                user.setPassword(words[(i * 4) + 3]);
+                role.setSubjectCode(subjectCode);
+                System.out.println(subjectCode);
+                role.setRoleName("ROLE_USER");
+                user.setDate(date);
+                userRights.setRole(role);
+                List<User> users = userJDBCTemplate.listUsers();
+                List<Role> roles = roleJDBCTemplate.getSubjectRoles(words[(i*4)+2]);
+                Boolean exist = false;
+                for (User email : users) {
+                    if (email.getEmail().equals(user.getEmail())) {
+                        exist = true;
+                    }
+                }
+                if(exist == false){
+                        userJDBCTemplate.create(user);
+                }
+                Boolean rexist = false;
+                for(Role rolee : roles){
+                    if(subjectCode.equals(rolee.getSubjectCode())){
+                        System.out.println(user.getEmail() + " code " + role.getSubjectCode() + " list " + rolee.getSubjectCode());
+                        rexist = true;
+                    }
+                }
+                if(rexist == false){
+                    roleJDBCTemplate.create(role);
                 }
             }
-            //user.addUserRights(userRights);
-            List<User> users = userJDBCTemplate.listUsers();
-            for (User email : users) {
-                if (email.getEmail().equals(user.getEmail())) {
-                    exist = true;
-                }
-            }
-            if (exist == false) {
-                userJDBCTemplate.create(user);
-                roleJDBCTemplate.create(role);
-            }
+            return "redirect:teacher"+subjectCode;
         }
-        return "redirect:taskoverview";
     }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
