@@ -117,6 +117,8 @@
     </div>
 </c:forEach>
 
+<img src="http://31.media.tumblr.com/tumblr_lj0wls8poh1qb9bjho1_400.gif" alt="Nyancat">
+
 
 <script language="javascript">
     $(".overviewRulesHeader").click(function() {
