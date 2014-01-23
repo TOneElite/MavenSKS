@@ -3,14 +3,17 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-   
+
 <form action="<c:url value="/access/approveInQueue"/>" method="POST">
+    <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
     <div id ="teacherQueue">
         <section id="queueHeader">
             <div id="queueInfo">
                 <h1>Kø i <span id="subjectHeader"></span></h1> 
-                <input id="queueButton" name="queueStatus" value="Åpne køen" type="submit"/>
-
+                    <c:choose>
+                        <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
+                    <c:when test="${thisSubject.status eq 1}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "1">Steng køen</button></c:when>
+                </c:choose>
                 <div class="queueContainer">
                     <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
                     <div class="queueRulesContent">
@@ -25,8 +28,7 @@
 
         <section id="queue">
             <form action="<c:url value="/access/approveInQueue"/>" method="POST">
-                <p>${subjectCode}</p>
-                <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
+                
                 <table id="queueTable" width="100%">
                     <col width="10%">
                     <col width="15%">
@@ -64,7 +66,7 @@
                                 </p></td>
                         </tr>
                     </c:forEach>
-                        
+
                 </table>
         </section>
 </form>

@@ -163,17 +163,17 @@ public class TeacherController {
         if (remove != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
+            //model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status("Utsatt", id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
+           // model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status(helper, id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
+           // model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
             int id = Integer.parseInt(queueId);
@@ -181,7 +181,7 @@ public class TeacherController {
             model.addAttribute("queueInfo", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
         }
-        return "teacherQueue";
+        return "redirect:/access/teacher" + subjectCode;
     }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
@@ -223,7 +223,7 @@ public class TeacherController {
 
         }
         model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-        return "teacherQueue";
+        return "redirect:/access/teacher" + current;
     }
 
     @RequestMapping(value = "/access/readfile{subjectCode}", method = RequestMethod.GET)
