@@ -70,7 +70,6 @@ public class TeacherController {
             @RequestParam(value = "postpone", required = false) String postpone,
             @RequestParam(value = "help", required = false) String help,
             @RequestParam(value = "approve", required = false) String approve,
-            @RequestParam(value = "queueStatus", required = false) String queueStatus,
             @RequestParam(value = "queueId", required = false) String queueId,
             @RequestParam(value = "subjectcode", required = false) String subjectCode,
             @RequestParam(value = "currentSubject", required = false) String currentSubject,
@@ -133,10 +132,6 @@ public class TeacherController {
             int id = Integer.parseInt(queueId);
             model.addAttribute("queue", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
-        }
-        if (queueStatus != null) {
-            subjectJDBCTemplate.setStatus(0, "TDAT1005");
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(currentSubject));
         }
         return "teacherQueue";
     }
@@ -205,26 +200,6 @@ public class TeacherController {
             return "teacherQueue";
         }
         if (approve != null) {
-            if (tasks[0].contains(",")) {
-                for (String s : tasks) {
-                    String[] temp = s.split(", ");
-                    ApprovedTasks userTask = new ApprovedTasks();
-                    userTask.setEmail(temp[0]);
-                    userTask.setSubjectCode(subjectCode);
-                    userTask.setTaskNr(Integer.parseInt(temp[1]));
-                    userTask.setApprovedDate(new Date());
-                    userTasksJDBCTemplate.approve(userTask);
-                    System.out.println("dette er temp 1 " + temp[1] + " dette er temp 0 " + temp[0]);
-                }
-            } else {
-                ApprovedTasks userTask = new ApprovedTasks();
-                userTask.setEmail(tasks[0]);
-                userTask.setSubjectCode(subjectCode);
-                userTask.setTaskNr(Integer.parseInt(tasks[1]));
-                userTask.setApprovedDate(new Date());
-                userTasksJDBCTemplate.approve(userTask);
-                System.out.println("dette er tasks 1 " + tasks[1] + " dette er tasks 0 " + tasks[0]);
-            }
 
             queueJDBCTemplate.delete(Integer.parseInt(queueId));
             model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
