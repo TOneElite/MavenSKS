@@ -475,8 +475,10 @@ h1{
 
 #changePasswordWrapper{
     width: 100%;
-    background-color: #f3ede1;
+    background-color: #f8f8f8;
     padding: 1%;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
 }
 
 #changePasswordWrapper .controller{
@@ -687,5 +689,5 @@ h1{
 }
 
 #rows:hover{
- color:gray;
+    color:gray;
 }
