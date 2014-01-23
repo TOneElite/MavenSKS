@@ -64,7 +64,7 @@
                         <th class="adminUserHeading">Aktiv</th>
                         <th class="adminUserHeading">Valg</th>
                     </tr>
-                    <c:forEach var="users" items="${users}">
+                    <c:forEach var="users "items="${users}">
                         <tr>
                             <td class="aminUserTableCell">${users.lastName}</td>
                             <td class="aminUserTableCell">${users.firstName}</td>
