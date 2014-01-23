@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Fri Jan 17 15:42:08 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+Thu Jan 23 13:44:43 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0143-bf21-8a6a-000000bf3870 
+on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
+Loaded from file:/C:/Users/Tom/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
+java.runtime.version=1.7.0-b147
+user.dir=C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS
 os.name=Windows 7
 os.arch=x86
 os.version=6.1
@@ -13,16 +13,16 @@ derby.system.home=null
 derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri Jan 17 15:42:09 CET 2014:
-Shutting down instance a816c00e-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
+Thu Jan 23 13:44:43 CET 2014:
+Shutting down instance a816c00e-0143-bf21-8a6a-000000bf3870 on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
 ----------------------------------------------------------------
-Fri Jan 17 15:42:09 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance d8cd40ba-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+Thu Jan 23 13:44:44 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance f55fc0a6-0143-bf21-8a6a-000000bf3870 
+on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
+Loaded from file:/C:/Users/Tom/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
+java.runtime.version=1.7.0-b147
+user.dir=C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS
 os.name=Windows 7
 os.arch=x86
 os.version=6.1
@@ -30,16 +30,16 @@ derby.system.home=null
 derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri Jan 17 15:42:10 CET 2014:
-Shutting down instance d8cd40ba-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
+Thu Jan 23 13:44:44 CET 2014:
+Shutting down instance f55fc0a6-0143-bf21-8a6a-000000bf3870 on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
 ----------------------------------------------------------------
-Fri Jan 17 15:42:10 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 2667c166-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+Thu Jan 23 13:44:44 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 5938c13e-0143-bf21-8a6a-000000bf3870 
+on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
+Loaded from file:/C:/Users/Tom/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
+java.runtime.version=1.7.0-b147
+user.dir=C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS
 os.name=Windows 7
 os.arch=x86
 os.version=6.1
@@ -47,345 +47,5 @@ derby.system.home=null
 derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri Jan 17 15:42:10 CET 2014:
-Shutting down instance 2667c166-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:11 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 90e64212-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:11 CET 2014:
-Shutting down instance 90e64212-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:11 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 1848c2be-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:11 CET 2014:
-Shutting down instance 1848c2be-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:12 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance bc8f436a-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:12 CET 2014:
-Shutting down instance bc8f436a-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:13 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 7db9c416-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:13 CET 2014:
-Shutting down instance 7db9c416-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:13 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 5bc844c2-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:13 CET 2014:
-Shutting down instance 5bc844c2-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:14 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 56bac56e-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:14 CET 2014:
-Shutting down instance 56bac56e-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:14 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 6e91461a-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:14 CET 2014:
-Shutting down instance 6e91461a-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:15 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a34bc6c6-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:15 CET 2014:
-Shutting down instance a34bc6c6-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:16 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance f4ea4772-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:16 CET 2014:
-Shutting down instance f4ea4772-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:16 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 636cc81e-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:16 CET 2014:
-Shutting down instance 636cc81e-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:17 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance eed348ca-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:17 CET 2014:
-Shutting down instance eed348ca-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:17 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 971dc976-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:17 CET 2014:
-Shutting down instance 971dc976-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:18 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 5c4c4a22-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:18 CET 2014:
-Shutting down instance 5c4c4a22-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:18 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 3e5ecace-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:19 CET 2014:
-Shutting down instance 3e5ecace-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:19 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 3d554b7a-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:19 CET 2014:
-Shutting down instance 3d554b7a-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:20 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 592fcc26-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:20 CET 2014:
-Shutting down instance 592fcc26-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:20 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 91ee4cd2-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:20 CET 2014:
-Shutting down instance 91ee4cd2-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:21 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance e790cd7e-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:21 CET 2014:
-Shutting down instance e790cd7e-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:21 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance 5a174e2a-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:22 CET 2014:
-Shutting down instance 5a174e2a-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-----------------------------------------------------------------
-Fri Jan 17 15:42:22 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance e981ced6-0143-a0a6-e485-000000c15910 
-on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
-Loaded from file:/C:/Users/Kim/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_06-b24
-user.dir=C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=null
-derby.stream.error.method=org.springframework.jdbc.datasource.embedded.OutputStreamFactory.getNoopOutputStream
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Jan 17 15:42:22 CET 2014:
-Shutting down instance e981ced6-0143-a0a6-e485-000000c15910 on database directory memory:C:\Dropbox\Skolearbeid\SCRUM SKS\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@1f1fba0 
+Thu Jan 23 13:44:44 CET 2014:
+Shutting down instance 5938c13e-0143-bf21-8a6a-000000bf3870 on database directory memory:C:\Users\Tom\Documents\NetBeansProjects\MavenSKS20\MavenSKS\testdb with class loader sun.misc.Launcher$AppClassLoader@19f953d 
