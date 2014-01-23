@@ -185,7 +185,7 @@ public class TeacherController {
                 roleJDBCTemplate.create(role);
             }
         }
-        return "redirect:home";
+        return "redirect:taskoverview";
     }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
