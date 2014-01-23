@@ -209,7 +209,7 @@ public class TeacherController {
                     roleJDBCTemplate.create(role);
                 }
             }
-            return "redirect:teacher"+subjectCode;
+            return "redirect:subjectSettings";
         }
     }
 
@@ -346,7 +346,7 @@ public class TeacherController {
         return "teacherSettings";
     }
 
-    @RequestMapping(value = "/access/subjectSettings/{subjectCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/subjectSettings{subjectCode}", method = RequestMethod.GET)
     public String subjectSettings(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);

@@ -40,7 +40,8 @@
                             <td class="subjectCell">${subject.name}</td>
                             <td class="subjectCell">
                                 <a href="#" class="adminLinks">Detaljer</a>
-                                <a href="<c:url value="/access/subjectSettings/${subject.code}"/>" class="adminLinks editLinkPadding">Endre</a>
+                                <a href="<c:url value="subjectSettings${subject.code}"/>" class="adminLinks editLinkPadding">Endre</a>    
+                                <a href="<c:url value="readfile${subject.code}"/>" class="adminLinks editLinkPadding">Legg til Studenter</a>
                             </td>
                         </tr>
                     </c:forEach>
