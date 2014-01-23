@@ -1,16 +1,4 @@
-<!--
-<section id="queueHeader">
-    <div id="queueInfo">                         
-        <h1>Øvinger i Matematikk 2</h1>
-        <p>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</p>
-    </div>
 
-
-    <div id="queueButtons">         
-        <input type="button" value="Stå i kø" name="getInLine"/>
-    </div>
-</section>
--->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -23,14 +11,30 @@
 
         <div id="queueInfo">
             <h1>Kø i <span id="subjectHeader"></span></h1>
-            
-            <p> 1 <span id="mandatory">2</span> <span id="accepted">3 4 5</span> 6 7 8 9 10 <span id="mandatory"><span id="accepted">11</span></span> 12 13 14 15 16 17 18 19 </p>
-            
+            <c:forEach var="subject" items="${subjects}">
+                <c:if test="${subject.code==activeSubject}">
+                    <table id="overview-tasktable">
+                        <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
+                            <td
+                                <c:forEach var="thetasks" items="${userTasks}">
+                                    <c:if test="${thetasks.subjectCode == subject.code}">
+                                        <c:if test="${thetasks.taskNr==i}">
+                                            class="highlight-whole"
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                                >
+                                <p><c:out value="${i}"/></p>
+                            </td>
+                        </c:forEach>
+                    </table>
+                </c:if>
+            </c:forEach>
             <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
                 <button id="queueButton" type="button">Stå i kø</button>
             </a>
-                
-                <br /><br />
+
+            <br /><br />
 
             <div class="queueContainer">
                 <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
@@ -79,44 +83,44 @@
                         <c:otherwise><c:out value="${queue.status}"/> </c:otherwise>
                     </c:choose></td>
                 <td><c:out value="${queue.location}"/></td>
-               
-                        <td> <c:choose>
-                    <c:when test="${queue.users==username}">   
-                        <button type="button">Fjern</button></c:when>
+
+                <td> <c:choose>
+                        <c:when test="${queue.users==username}">   
+                            <button type="button">Fjern</button></c:when>
                     </c:choose></td>
 
-                </tr>
+            </tr>
         </c:forEach>
     </table>
 </section>
 
 <script language="javascript">
     <c:set var="defaultSubject" value="${subjects[0]}" />
-    if (sessionStorage.activeSubject == null)
-        sessionStorage.activeSubject = "${defaultSubject.name}";
-    document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    function changeSubject(subject) {
-        sessionStorage.activeSubject = subject;
+        if (sessionStorage.activeSubject == null)
+            sessionStorage.activeSubject = "${defaultSubject.name}";
         document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    }
+        function changeSubject(subject) {
+            sessionStorage.activeSubject = subject;
+            document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
+        }
 
-    $(".queueRulesHeader").click(function() {
+        $(".queueRulesHeader").click(function() {
 
-        $queueRulesHeader = $(this);
-        //getting the next element
-        $queueRulesContent = $queueRulesHeader.next();
-        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-        $queueRulesContent.slideToggle(500, function() {
-            //execute this after slideToggle is done
-            //change text of header based on visibility of content div
-            /*$queueRulesHeader.text = (function() {
+            $queueRulesHeader = $(this);
+            //getting the next element
+            $queueRulesContent = $queueRulesHeader.next();
+            //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+            $queueRulesContent.slideToggle(500, function() {
+                //execute this after slideToggle is done
+                //change text of header based on visibility of content div
+                /*$queueRulesHeader.text = (function() {
              //change text based on condition
              return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
              });*/
+            });
         });
-    });
 
-    $("a[rel]").overlay();
+        $("a[rel]").overlay();
 
 
 </script> 
