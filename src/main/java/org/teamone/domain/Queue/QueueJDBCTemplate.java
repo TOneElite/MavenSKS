@@ -24,7 +24,7 @@ public class QueueJDBCTemplate {
 
 	public Queue getQueue(int ID) {
 		String SQL = "SELECT * FROM queue NATURAL JOIN queue_group WHERE queue.queue_id = queue_group.queue_id AND queue.queue_id = ?";
-		Queue queue = (Queue) jdbcTemplateObject.queryForObject(SQL, new Object[]{ID}, new QueueMapper());
+		Queue queue = (Queue) jdbcTemplateObject.queryForObject(SQL, new Object[]{ID}, new QueueTestMapper());
 		return queue;
 	}
 

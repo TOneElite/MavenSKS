@@ -30,6 +30,8 @@ public class QueueApprove {
         this.taskNr = taskNr;
     }
     
-    
+    public String toString(){
+        return queueId+";"+email+";"+taskNr;
+    }
     
 }
