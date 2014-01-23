@@ -27,14 +27,13 @@
                                 <p><c:out value="${i}"/></p>
                             </td>
                         </c:forEach>
+                        <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
+                            <button id="queueButton" type="button">Stå i kø</button>
+                        </a>                    
                     </table>
                 </c:if>
             </c:forEach>
-            <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
-                <button id="queueButton" type="button">Stå i kø</button>
-            </a>
-
-            <br /><br />
+            <br />
 
             <div class="queueContainer">
                 <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
