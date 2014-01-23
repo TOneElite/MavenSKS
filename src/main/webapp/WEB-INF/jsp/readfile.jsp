@@ -3,9 +3,11 @@
     Created on : 15.jan.2014, 12:19:27
     Author     : Zilca
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
@@ -58,7 +60,7 @@
   }
 </script>
 
-<form accept-charset="utf-8" action="<c:url value="/access/fileread" />" method="POST"> 
+<form accept-charset="utf-8" action="<c:url value="/access/fileread${activeSubject}" />" method="POST"> 
     <textarea style="display:none" id="output" name="output">${fileString}</textarea>
     <input style="display: none" id="button" class="button" type="submit" value="OK"/>
 </form>

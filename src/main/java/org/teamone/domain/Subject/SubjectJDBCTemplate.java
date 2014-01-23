@@ -25,10 +25,9 @@ public class SubjectJDBCTemplate {
         List<Subject> subjects = jdbcTemplateObject.query(SQL, new SubjectMapper());
         return subjects;
     }
-
-
-    public void setStatus(int status, String subjectCode) {
+    
+    public void setStatus(int status, String subjectCode){
         String SQL = "UPDATE subject SET status = ? where subject_code = ?";
-        jdbcTemplateObject.update(SQL, status, subjectCode);
+         jdbcTemplateObject.update(SQL, status, subjectCode);        
     }
 }

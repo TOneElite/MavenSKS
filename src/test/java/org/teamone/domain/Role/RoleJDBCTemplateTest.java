@@ -21,17 +21,18 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  * @author Kim
  */
 
-@Ignore("Test not ready yet")
+//@Ignore("Test not ready yet")
 public class RoleJDBCTemplateTest {
 	
 	private EmbeddedDatabase db;
 	private DataSource dataSource;
+        private RoleJDBCTemplate jdbc = new RoleJDBCTemplate();
 	
 
 	@Before
 	public void setUp() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		db = builder.setType(EmbeddedDatabaseType.DERBY).addScript("schema.sql").addScript("data.sql").build();
+		db = builder.setType(EmbeddedDatabaseType.H2).addScript("schema.sql").addScript("data.sql").build();
 		dataSource = db;
 	}
 	
@@ -45,7 +46,7 @@ public class RoleJDBCTemplateTest {
 	 */
 	@Test
 	public void testSetDataSource() {
-		
+		jdbc.setDataSource(dataSource);
 	}
 
 	/**

@@ -76,4 +76,41 @@ public class User {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null ||!(obj instanceof User)){
+            return false;
+        }
+        User other = (User)obj;
+        //if(!other.getDate().equals(this.getDate()))
+           // return false;
+        if(!other.getEmail().equals(this.getEmail()))
+            return false;
+        if(other.getEnabled() != this.getEnabled())
+            return false;
+        if(!other.getFirstName().equals(this.getFirstName()))
+            return false;
+        if(!other.getLastName().equals(this.getLastName()))
+            return false;
+        if(!other.getPassword().equals(this.getPassword()))
+            return false;
+        
+        return true;
+    }
+
+    
+
+    @Override
+    public String toString() {
+        return "User{" + "email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", enabled=" + enabled + ", date=" + date + '}';
+    }
+    
+    
+
 }
