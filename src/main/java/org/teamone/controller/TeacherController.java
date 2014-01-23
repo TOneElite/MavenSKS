@@ -317,7 +317,6 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("usercons", userJDBCTemplate.listUsers());
-        model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         // Check for admin rights
         boolean admin = false;
@@ -344,7 +343,6 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("usercons", userJDBCTemplate.listUsersCon(con));
-        model.addAttribute("queues", queueJDBCTemplate.listQueue());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         // Check for admin rights
         boolean admin = false;
