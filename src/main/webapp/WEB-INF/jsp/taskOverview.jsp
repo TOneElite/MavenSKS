@@ -70,54 +70,52 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<body background="https://support.kaspersky.com/resources/img/nyan_cat_animation_new.gif">
-    <header id="overview-header">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <h1>Øvingsoversikt for <c:out value="${username}"/> </h1>
-    </header>
+<header id="overview-header">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <h1>Øvingsoversikt for <c:out value="${username}"/> </h1>
+</header>
 
-    <c:forEach var="subject" items="${subjects}">
-        <div id="overview-list">
-            <table id="overview-table">
-                <col width="15%">
-                <col width="15%">
-                <tr>
-                    <td>
-                        <p id="overview-subject"><c:out value="${subject.name}"/></p>
-                    </td>
-                    <td>
-                        <section id="overview-tasks">
-                            <table id="overview-tasktable">
-                                <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                                    <td
-                                        <c:forEach var="thetasks" items="${userTasks}">
-                                            <c:if test="${thetasks.subjectCode == subject.code}">
-                                                <c:if test="${thetasks.taskNr==i}">
-                                                    class="highlight-whole"
-                                                </c:if>
+<c:forEach var="subject" items="${subjects}">
+    <div id="overview-list">
+        <table id="overview-table">
+            <col width="15%">
+            <col width="15%">
+            <tr>
+                <td>
+                    <p id="overview-subject"><c:out value="${subject.name}"/></p>
+                </td>
+                <td>
+                    <section id="overview-tasks">
+                        <table id="overview-tasktable">
+                            <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
+                                <td
+                                    <c:forEach var="thetasks" items="${userTasks}">
+                                        <c:if test="${thetasks.subjectCode == subject.code}">
+                                            <c:if test="${thetasks.taskNr==i}">
+                                                class="highlight-whole"
                                             </c:if>
-                                        </c:forEach>
-                                        >
-                                        <p><c:out value="${i}"/></p>
-                                    </td>
-                                </c:forEach>
-                            </table>
-                        </section>
-                    </td>
-                </tr>
-            </table>
-            <div class="overviewContainer">
-                <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
-                <div class="overviewRulesContent">
-                    <p>
-                        Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                        Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                    </p>
-                </div>
+                                        </c:if>
+                                    </c:forEach>
+                                    >
+                                    <p><c:out value="${i}"/></p>
+                                </td>
+                            </c:forEach>
+                        </table>
+                    </section>
+                </td>
+            </tr>
+        </table>
+        <div class="overviewContainer">
+            <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
+            <div class="overviewRulesContent">
+                <p>
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                </p>
             </div>
         </div>
-    </c:forEach>
-</body>
+    </div>
+</c:forEach>
 
 
 <script language="javascript">
