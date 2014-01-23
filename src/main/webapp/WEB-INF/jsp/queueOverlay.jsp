@@ -13,12 +13,13 @@
                 <c:forEach var="room" items="${rooms}">
                     <option value="${room.roomCode}#${room.pictureLink}" title="${room.tableCount}">${room.roomCode}</option>
                 </c:forEach>
-                <option value="Se kommentar" selected>Annet</option>
+                <option value="Se kommentar">Annet</option>
             </select><br>
 
             <label for="table">Bord:</label>
             <select name="table" id="table" class="styledSelect">
-            </select><br>
+            </select>
+            <br>
 
             <label>Øving:</label>
 
@@ -29,10 +30,10 @@
                     <c:forEach var="subject" items="${subjects}" >
                         <c:if test="${subject.code == activeCode}">
                             <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
-                                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}" required></label></li>
-                                    </c:forEach>
-                                </c:if>
+                                <li><label class="checkboxLabel">Øving ${i}<input class="boxes" type="checkbox" name="task" value="${i}" required ></label></li>
                             </c:forEach>
+                        </c:if>
+                    </c:forEach>
                 </ul>
             </section>
 
@@ -49,9 +50,9 @@
                 </select>
             </div>
 
-
             <label for="comment">Kommentar:</label>
-            <textarea name="comment" style="resize:none"></textarea><br>
+            <textarea id="comment" name="comment" style="resize:none" oninput="document.getElementById('comment').removeAttribute('required');"></textarea>
+            <br>
 
             <label></label>
             <input class="button" type="submit" onclick="groupArray();" value="OK"/>
@@ -75,17 +76,21 @@
 
                 var room = document.getElementById("room");
                 var table = document.getElementById("table");
-
+                
                 function pictureChange(pictureLink) {
                     document.getElementById("roomImg").src = pictureLink;
                 }
-
+                
                 room.onchange = function() {
                     if (this.value === "Se kommentar") {
                         table.disabled = true;
                         table.className += " disabled";
-                        table.options.length = 0;
+                        table.options.length = 1;
+                        table.options[0] = new Option("", "Se kommentar");
                         pictureChange('../res/lab4.png');
+                        var comment = document.getElementById("comment");
+                        comment.required = "required";
+                        comment.setCustomValidity("Annet."); // FAKK THE WATT
                     }
                     else {
                         table.disabled = false;
@@ -97,8 +102,10 @@
                             table.options[table.options.length] = new Option("Bord " + i);
                         }
                         pictureChange(room.options[room.selectedIndex].value.split("#")[1]);
+                        comment.removeAttribute("required");
                     }
                 };
+                room.onchange();
 
                 /* Filling the GROUP box */
                 var group = document.getElementById("group");
@@ -126,20 +133,21 @@
                     selectedGroupMember.remove();
                 };
                 selectedUserList.onchange();
-                
-                
-                function checkRequiredTasks(){
+
+
+                function checkRequiredTasks() {
                     var taskOptions = document.getElementsByClassName("boxes");
-                    for (var i=0, l=taskOptions.length; i<l;i++){
-                        if(taskOptions[i].checked){
-                            for (var i=0, l=taskOptions.length; i<l;i++){
-                                taskOptions[i].required = false;
+                    for (var i = 0, l = taskOptions.length; i < l; i++) {
+                        if (taskOptions[i].checked) {
+                            for (var i = 0, l = taskOptions.length; i < l; i++) {
+                                taskOptions[i].removeAttribute("required");
                             }
                             return true;
                         }
                     }
                     return false;
-                };
+                }
+                ;
 
                 function groupArray() {
                     checkRequiredTasks();
@@ -153,9 +161,7 @@
                         groupList.appendChild(el);
                     }
                     var table = document.getElementById("table");
-                    if (table.options.length == 0) {
-                        table.options[0] = new Option(" ");
-                    }
+                    table.disabled = false;
                 }
                 ;
 </script>

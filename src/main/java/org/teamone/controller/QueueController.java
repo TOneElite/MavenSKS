@@ -1,6 +1,5 @@
 package org.teamone.controller;
 
-import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,7 +79,7 @@ public class QueueController {
 
         /* Comment, date, status and subject code handler */
         queue.setComment(comment);
-        System.out.println("ASD " + new java.sql.Date(new java.util.Date().getTime()));
+        System.out.println(comment);
         queue.setDate(new java.sql.Date(new java.util.Date().getTime()));
         queue.setStatus("Venter");
         queue.setSubjectCode(subjectCode);
