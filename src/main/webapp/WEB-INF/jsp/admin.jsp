@@ -60,11 +60,11 @@
                         <th class="adminUserHeading">Aktiv</th>
                         <th class="adminUserHeading">Valg</th>
                     </tr>
-                    <c:forEach var="user" items="${users}">
+                    <c:forEach var="users" items="${users}">
                         <tr>
-                            <td class="aminUserTableCell">${user.firstName}</td>
-                            <td class="aminUserTableCell">${user.surname}</td>
-                            <td class="aminUserTableCell">${user.email}</td>
+                            <td class="aminUserTableCell">${users.firstName}</td>
+                            <td class="aminUserTableCell">${users.lastName}</td>
+                            <td class="aminUserTableCell">${users.email}</td>
                             <td class="aminUserTableCell">Ikke Implementert</td>
                             <td class="adminUserTableEditCell">
                                 <a href="#" class="adminLinks">Detaljer</a>
