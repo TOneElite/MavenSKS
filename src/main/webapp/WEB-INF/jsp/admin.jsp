@@ -50,6 +50,10 @@
 
         <div id="adminUserList">
             <h4>Brukerliste:</h4>
+            <form accept-charset="utf-8" action="<c:url value="/access/admin"/>" method="GET">
+            <input name ="con" type="text" class="controller" placeholder="Søk etternavn">
+            <input class="button" type="submit" value="Søk"/>
+            </form>
             <br/>
             <div class="scroll">
                 <table id="adminUserTable">
