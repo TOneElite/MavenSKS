@@ -51,7 +51,7 @@
         <div id="adminUserList">
             <h4>Brukerliste:</h4>
             <form accept-charset="utf-8" action="<c:url value="/access/admin"/>" method="GET">
-            <input name ="con" type="text" class="controller" placeholder="Søk etternavn">
+            <input name ="con" type="text" class="controller" placeholder="Søk i etternavn (hel/del)">
             <input class="button" type="submit" value="Søk"/>
             </form>
             <br/>
