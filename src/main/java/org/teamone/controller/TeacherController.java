@@ -63,6 +63,7 @@ public class TeacherController {
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("currentS", subjectCode);
+        model.addAttribute("thisSubject", subjectJDBCTemplate.getSubject(subjectCode));
 
         System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights
@@ -101,6 +102,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String options(
+            @RequestParam(value = "queueStatus", required = false) String queueStatus,
             @RequestParam(value = "remove", required = false) String remove,
             @RequestParam(value = "postpone", required = false) String postpone,
             @RequestParam(value = "help", required = false) String help,
@@ -114,6 +116,7 @@ public class TeacherController {
         String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
 
+        
         /*
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("activeSubject", subjectCode);
@@ -158,6 +161,13 @@ public class TeacherController {
                 subjectJDBCTemplate.setStatus(0, currentSubject);
             }
         }*/
+        if(queueStatus != null){
+            if(Integer.parseInt(queueStatus) == 0){
+                subjectJDBCTemplate.setStatus(1, currentSubject);
+            }else{
+                subjectJDBCTemplate.setStatus(0, currentSubject);
+            }
+        }
         if (remove != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);

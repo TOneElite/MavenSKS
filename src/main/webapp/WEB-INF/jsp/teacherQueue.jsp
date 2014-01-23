@@ -11,10 +11,12 @@
         <section id="queueHeader">
             <div id="queueInfo">
                 <h1>Kø i <span id="subjectHeader"></span></h1> 
-                  <%--  <c:choose>
-                        <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
+
+                <c:choose>
+                    <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
                     <c:when test="${thisSubject.status eq 1}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "1">Steng køen</button></c:when>
-                </c:choose> --%>
+                </c:choose>
+
                 <div class="queueContainer">
                     <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
                     <div class="queueRulesContent">
