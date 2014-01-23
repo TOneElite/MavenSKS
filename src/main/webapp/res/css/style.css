@@ -157,6 +157,24 @@ h1{
     top:1px;
 }
 
+#queueHeader #disabled{
+    background-color: lightgray !important;
+    cursor: default !important;
+}
+
+#queueHeader #open{
+    color: green;
+}
+
+#queueHeader #closed{
+    color: red;
+}
+
+#queueHeader #queueStatus{
+    float: right;
+    width: 20%;
+}
+
 /********** OVERLAY **********/
 
 .simple_overlay {  

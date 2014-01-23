@@ -28,9 +28,25 @@
                                 <p><c:out value="${i}"/></p>
                             </td>
                         </c:forEach>
+                            
+                            <section id ="queueStatus">
+                            <c:choose>
+                                <c:when test = "${queueStatus.status == 1}">
+                                    <label id="open">Køen er åpen</label>
                         <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
-                            <button id="queueButton" type="button">Stå i kø</button>
-                        </a>                    
+                            <button class="queueButton" type="button">Stå i kø</button>
+                        </a>     
+                                </c:when>
+                                      <c:otherwise>
+                                    <label id="closed">Køen er stengt</label>
+                        <a href="<c:url value="queueOverlay.htm"/>" rel="#overlay">
+                            <button class="queueButton" id="disabled" type="button" disabled>Stå i kø</button>
+                        </a>     
+                                </c:otherwise>
+                            </c:choose>
+                            </section>
+                            
+                            
                     </table>
                 </c:if>
             </c:forEach>

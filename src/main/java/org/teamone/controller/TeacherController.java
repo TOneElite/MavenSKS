@@ -53,7 +53,6 @@ public class TeacherController {
     @Autowired
     private ApprovedTasksJDBCTemplate approvedTasksJDBCTemplate;
 
-
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
     public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
@@ -144,28 +143,25 @@ public class TeacherController {
                 model.addAttribute("isUser", user);
             }
         }
-        
-        if(queueStatus != null){
-            if(Integer.parseInt(queueStatus) == 0){
+
+        if (queueStatus != null) {
+            if (Integer.parseInt(queueStatus) == 0) {
                 subjectJDBCTemplate.setStatus(1, currentSubject);
-            }else{
+            } else {
                 subjectJDBCTemplate.setStatus(0, currentSubject);
             }
         }
         if (remove != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);
-            //model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status("Utsatt", id);
-           // model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status(helper, id);
-           // model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
             int id = Integer.parseInt(queueId);
@@ -210,7 +206,7 @@ public class TeacherController {
             }
 
             queueJDBCTemplate.delete(queueID);
-           
+
         }
         return "redirect:/access/teacher" + current;
     }

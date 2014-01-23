@@ -53,7 +53,7 @@
                     <c:forEach var="queue" items="${queues}">
                         <tr id="rows">  
                             <td class="click"><c:out value="${queue.date}"/></td>
-                            <td class="click"><c:out value="${queue.users}"/></td>
+                            <td class="click"><c:out value="${queue.firstNames}"/></td>
                             <td class="click"><c:out value="${queue.tasks}"/></td>
                             <td class="click"><c:out value="${queue.comment}"/></td>
                             <td class="click"><c:out value="${queue.status}"/></td>
