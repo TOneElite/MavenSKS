@@ -4,10 +4,9 @@
     <section class="adminSection">
         <h3>Fagpanel</h3>
         <br/>
-        <div id="adminSubjectList">
+        <div id="adminSubjectList" class="scroll">
             <h4>Fagliste:</h4>
             <br/>
-            <div class="scroll">
                 <table id="subjectTable">
                     <tr class="subjectTableRow">
                         <th class="subjectHeader subjectCell">Fagkode</th>
@@ -28,7 +27,6 @@
                         </tr>
                     </c:forEach>
                 </table>
-            </div>
         </div>
         <div id="adminSubjectForm">
             <h4>Legg til fag:</h4>
@@ -48,14 +46,13 @@
         <h3>Brukere</h3>
         <br/>
 
-        <div id="adminUserList">
+        <div id="adminUserList" class="scroll">
             <h4>Brukerliste:</h4>
             <form accept-charset="utf-8" action="<c:url value="/access/admin"/>" method="GET">
             <input name ="con" type="text" class="controller" placeholder="Søk i etternavn (hel/del)">
             <input class="button" type="submit" value="Søk"/>
             </form>
             <br/>
-            <div class="scroll">
                 <table id="adminUserTable">
                     <tr>
                         <th class="adminUserHeading">Etternavn</th>
@@ -81,7 +78,6 @@
                         </tr>
                     </c:forEach>
                 </table>
-            </div>
         </div>
         <div id="adminAddUserForm">
             <h4>Legg til bruker:</h4>
