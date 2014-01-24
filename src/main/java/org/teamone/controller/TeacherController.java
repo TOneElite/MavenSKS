@@ -189,8 +189,7 @@ public class TeacherController {
             @RequestParam(value = "currentSubject", required = false) String current,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-
+        menuItems(model);
         if (cancel != null) {
             return "redirect:/access/teacher" + current;
         }
@@ -235,7 +234,9 @@ public class TeacherController {
     @RequestMapping(value = "/access/fileread{subjectCode}", method = RequestMethod.POST)
     public String fileread(
             @RequestParam(value = "output", required = false) String fileread,
-            @PathVariable String subjectCode) {
+            @PathVariable String subjectCode,
+            Model model) {
+        menuItems(model);
         if (fileread == null) {
             return "readfile";
         } else {
@@ -334,7 +335,6 @@ public class TeacherController {
     ) {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
@@ -348,7 +348,7 @@ public class TeacherController {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        model.addAttribute("username", auth.getName());
+        
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
@@ -359,11 +359,10 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings/{subjectCode}/process", method = RequestMethod.GET)
     public String subjectSettingsProcess(Model model, @PathVariable String subjectCode,
             @RequestParam(value = "ruleString", required = false) String ruleString) {
-
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         subjectJDBCTemplate.setRuleString(subjectCode, ruleString.replaceAll(" ", ""));
 
-        model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
@@ -390,7 +389,6 @@ public class TeacherController {
         }
         ;
 
-        model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("usersSubject", user);
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -406,7 +404,7 @@ public class TeacherController {
     public String userSearch(
             @RequestParam(value = "con", required = false) String con, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
+        menuItems(model);
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("usercons", userJDBCTemplate.listUsersCon(con));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -431,6 +429,7 @@ public class TeacherController {
 
     private void menuItems(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
         model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
         model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
     }
