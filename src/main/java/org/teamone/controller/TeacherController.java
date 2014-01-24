@@ -240,7 +240,6 @@ public class TeacherController {
             String[] words = fileread.split("[,\\n]");
             User user = new User();
             Role role = new Role();
-            List<Subject> subjects = subjectJDBCTemplate.listSubjects();
             UserRights userRights = new UserRights();
             Date date = new Date();
             Boolean error = false;

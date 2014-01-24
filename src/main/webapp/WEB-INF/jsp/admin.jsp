@@ -96,6 +96,13 @@
                 <label for="password">Passord:</label>
                 <input class="controller" id="password" name="password" type="password" placeholder="Lag et passord"/>
 
+                <label for="role">Fag:</label>
+                <select class="multiSelect" name="subjects" multiple="multiple" size="4">
+                    <c:forEach var="subject" items="${subjects}">
+                        <option value="${subject.code}">${subject.code}</option>
+                    </c:forEach>
+                </select>
+                
                 <label for="role">Rettigheter:</label>
                 <select class="multiSelect" name="roles" multiple="multiple" size="4">
                     <c:forEach var="role" items="${roles}">
