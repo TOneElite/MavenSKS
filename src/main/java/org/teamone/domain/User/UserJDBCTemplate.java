@@ -50,7 +50,7 @@ public class UserJDBCTemplate {
     }
     
     public void updateUser(User user){
-        String SQL = "UPDATE users SET firstname=?,lastname=?,email=?,enabled=?,password=? WHERE email=?";
+        String SQL = "UPDATE users SET firstname=?,lastname=?,email=?,password=?,enabled=? WHERE email=?";
         jdbcTemplateObject.update(SQL, new Object[]{user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getEnabled(),user.getEmail()});
     }
     
