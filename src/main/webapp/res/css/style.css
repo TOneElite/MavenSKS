@@ -15,6 +15,9 @@ body{
     margin: 2% auto;
 }
 
+li {
+    list-style-type: none;
+}
 
 /*************** BANNER START ********************/
 
