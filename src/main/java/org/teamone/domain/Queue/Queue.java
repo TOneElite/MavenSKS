@@ -2,9 +2,8 @@ package org.teamone.domain.Queue;
 
 import java.sql.Date;
 
-
 public class Queue {
-    
+
     private int id;
     private Date date;
     private String users;
@@ -22,7 +21,7 @@ public class Queue {
     public void setFirstNames(String firstNames) {
         this.firstNames = firstNames;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -91,22 +90,40 @@ public class Queue {
     public String toString() {
         return "Queue{" + "id=" + id + ", date=" + date + ", users=" + users + ", tasks=" + tasks + ", comment=" + comment + ", status=" + status + ", location=" + location + ", subjectCode=" + subjectCode + '}';
     }
-    
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Queue)) return false;
-		
-		Queue other = (Queue) obj;
-		if (!other.getComment().equals(this.getComment())) return false;
-		//if (!other.getDate().equals(this.getDate())) return false; // TODO: Buggy
-		if (!other.getFirstNames().equals(this.getFirstNames())) return false;
-		if (other.getId() != this.getId()) return false;
-		if (!other.getLocation().equals(this.getLocation())) return false;
-		if (!other.getStatus().equals(this.getStatus())) return false;
-		if (!other.getSubjectCode().equals(this.getSubjectCode())) return false;
-		if (!other.getTasks().equals(this.getTasks())) return false;
-		if (!other.getUsers().equals(this.getUsers())) return false;
-		
-		return true;
-	}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Queue)) {
+            return false;
+        }
+
+        Queue other = (Queue) obj;
+        if (!other.getComment().equals(this.getComment())) {
+            return false;
+        }
+        //if (!other.getDate().equals(this.getDate())) return false; // TODO: Buggy
+        if (!other.getFirstNames().equals(this.getFirstNames())) {
+            return false;
+        }
+        if (other.getId() != this.getId()) {
+            return false;
+        }
+        if (!other.getLocation().equals(this.getLocation())) {
+            return false;
+        }
+        if (!other.getStatus().equals(this.getStatus())) {
+            return false;
+        }
+        if (!other.getSubjectCode().equals(this.getSubjectCode())) {
+            return false;
+        }
+        if (!other.getTasks().equals(this.getTasks())) {
+            return false;
+        }
+        if (!other.getUsers().equals(this.getUsers())) {
+            return false;
+        }
+
+        return true;
+    }
 }

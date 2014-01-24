@@ -1,8 +1,10 @@
 
 package org.teamone.domain.Queue;
 
+import java.sql.Date;
 import javax.sql.DataSource;
 import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -14,7 +16,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  * @author Kim
  */
-@Ignore("Test is a prototype, skip for now")
 public class QueueJDBCTemplateTest {
 
 	private EmbeddedDatabase db;
@@ -34,24 +35,30 @@ public class QueueJDBCTemplateTest {
 		db.shutdown();
 	}
 
-	/**
-	 * Test of setDataSource method, of class QueueJDBCTemplate.
-	 */
-	@Test
-	public void testSetDataSource() {
-	}
 
 	/**
 	 * Test of getQueue method, of class QueueJDBCTemplate.
 	 */
 	@Test
+        @Ignore("Function not working")
 	public void testGetQueue() {
+            String subjectCode = "2ING-2003-14V";
+            Queue expected = new Queue();
+            expected.setId(1);
+            expected.setSubjectCode(subjectCode);
+            expected.setComment("Trenger hjelp");
+            expected.setStatus("Venter");
+            expected.setLocation("Bord 1, rom skvett");
+            expected.setDate(new Date(19600101161011L));
+            Queue actual = jdbc.getQueue(1); 
+            assertEquals(expected, actual);
 	}
 
 	/**
 	 * Test of listQueue method, of class QueueJDBCTemplate.
 	 */
 	@Test
+        @Ignore("Test currently not necessary, function is never used.")
 	public void testListQueue_0args() {
 	}
 
@@ -59,6 +66,7 @@ public class QueueJDBCTemplateTest {
 	 * Test of listQueue method, of class QueueJDBCTemplate.
 	 */
 	@Test
+        @Ignore("Incompatible SQL-database type, cannot be tested with a H2 database-type.")
 	public void testListQueue_String() {
 	}
 
