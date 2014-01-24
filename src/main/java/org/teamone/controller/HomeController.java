@@ -1,5 +1,7 @@
 package org.teamone.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +16,11 @@ import org.teamone.domain.ApprovedTasks.ApprovedTasksJDBCTemplate;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.teamone.domain.ApprovedTasks.ApprovedTasks;
 import org.teamone.domain.Role.RoleJDBCTemplate;
+import org.teamone.domain.Subject.Subject;
+import org.teamone.domain.User.User;
+import org.teamone.logic.RuleService;
 
 @Controller
 public class HomeController {
@@ -80,6 +86,23 @@ public class HomeController {
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
     public String taskOverview(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        List<ApprovedTasks> listApprovedTasks = userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName());
+        List<Subject> listYourSubjects = subjectJDBCTemplate.getYourSubjects("ROLE_USER", auth.getName());
+        List<Subject> listCompletedSubjects = new ArrayList<Subject>();
+
+        for (Subject s : listYourSubjects) {
+            List<ApprovedTasks> approvedTasks = userTaskJDBCTemplate.listApprovedTasks(auth.getName(), s.getCode());
+            boolean[] tasksDone = new boolean[s.getNrOfTasks()];
+            for (ApprovedTasks as : approvedTasks) {
+                tasksDone[as.getTaskNr() - 1] = true;
+            }
+            boolean ready = new RuleService().vertifyRequirements(tasksDone, s.getRules());
+            if(ready){
+                listCompletedSubjects.add(s);
+            }
+        }
+
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
@@ -116,10 +139,10 @@ public class HomeController {
         }
         return "taskoverview";
     }
-    
-    private void menuItems(Model model){
+
+    private void menuItems(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
-        model.addAttribute("teachersubjects",roleJDBCTemplate.getTeacherSubjects(auth.getName()));
+        model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
     }
 }
