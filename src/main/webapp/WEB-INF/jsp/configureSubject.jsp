@@ -1,4 +1,3 @@
-Configure subject
 <%-- 
     Document   : configureSubject
     Created on : Jan 21, 2014, 11:31:49 AM
@@ -41,10 +40,22 @@ Configure subject
         background-color: #F7F7F7;
     }
 
+    .subjectEditor .controller{
+        width:80%;
+        height: 30px;
+    }
+
+    .subjectEditor .button{
+        width: 70px;
+        height: 30px;
+        margin-left: 20px;
+    }
+
 </style>
 <section class="subjectEditor">
+    <h1>${selectedSubject.name}</h1>
     <form accept-charset="utf-8" action="<c:url value="/access/subjectSettings/${selectedSubject.code}/process" />" method="GET">
-        <input class="controller" name="ruleString" type="text" value="${selectedSubject.ruleString}"/>
-        <input class="button" name="submit" type="submit" value="Legg til"/>
+        <input class="controller" name="ruleString" type="text"  value="${selectedSubject.ruleString}"/>
+        <input class="button" name="submit" type="submit" value="Oppdatter"/>
     </form>
 </section>
