@@ -441,14 +441,14 @@ h1{
 .helpedOdd{
     background: #6BB8C0 !important;
     color: black !important;
-  /*border: 3px solid #7EA7D8 !important;*/
+    /*border: 3px solid #7EA7D8 !important;*/
 }
 
 .helpedEven{
-    
+
     background: #4CB6C0 !important;
     color: black !important;
-    
+
     /*border: 3px solid #6ECFF6 !important;*/
 }
 
@@ -796,12 +796,13 @@ h1{
     padding:0px;
     margin-bottom: 0px;
 }
-.overview-table-done{
-    border: 1px solid #ccc;
-    border-color: #74e571;
-    box-shadow: 0 1px 1px 1px #e3e8e5;
-    padding:0px;
-    margin-bottom: 0px;
+.overview-list-done{
+    overflow: hidden;
+    padding: 0px;
+    border: 1px solid #74e571;
+    box-shadow: 0 1px 1px 1px #74e571;
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
 .overview-tasktable td p{
