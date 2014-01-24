@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,17 +29,7 @@ public class QueueController {
         Queue queue = new Queue();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        /* Task handler */
-        String taskString = "";
-        for (int i = 0; i < tasks.length; i++) {
-            if (i == (tasks.length - 1)) {
-                taskString += tasks[i];
-            } else {
-                taskString += tasks[i] + ", ";
-            }
-        }
-
-        /* Group handler */
+        /* Group, Task handler */
         if (group.length <= 1) {
             group[0] = auth.getName(); // Changes "Alene" to the current users name
             queue.setUsers(auth.getName());
@@ -57,17 +46,16 @@ public class QueueController {
             queue.setUsers(groupString);
         }
         for (int i = 0; i < group.length; i++) {
-            System.out.println(" *** " + group[i]); // test outprint in console
+            System.out.println(" *** Groupmembers: " + group[i]); // test outprint in console
         }
 
         for (int i = 0; i < tasks.length; i++) {
-            System.out.println(" *** " + tasks[i]); // test outprint in console
+            System.out.println(" *** Tasks: " + tasks[i]); // test outprint in console
         }
 
         QueueGroup queueGroup = new QueueGroup();
         queueGroup.setUsers(group);
         queueGroup.setTaskNrs(tasks);
-
 
         /* Location handler */
         room = room.split("#")[0];
@@ -79,24 +67,11 @@ public class QueueController {
 
         /* Comment, date, status and subject code handler */
         queue.setComment(comment);
-        System.out.println(comment);
+        System.out.println(" *** Comment: " + comment);
         queue.setDate(new java.sql.Date(new java.util.Date().getTime()));
         queue.setStatus("Venter");
         queue.setSubjectCode(subjectCode);
         queueJDBCTemplate.create(queue, queueGroup);
         return "redirect:" + subjectCode;
     }
-
-    @RequestMapping("/lagre")
-    public String nyView(@ModelAttribute(value = "queue") Queue queue) {
-        //queueJDBCTemplate.create(queue);
-        return "lagre";
-    }
-    /*
-     @RequestMapping(value = "/access/{id}", method = RequestMethod.GET)
-     public String remove(Model model, @PathVariable String id) {
-     queueJDBCTemplate.delete(Integer.parseInt(id));
-     return "home";
-     }
-     */
 }
