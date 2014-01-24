@@ -186,8 +186,48 @@ public class AdminController {
         return "admin";
     }
 
-    @RequestMapping(value = "/admin/updateUser", method = RequestMethod.POST)
-    public String updateUser(Model model) {
+    @RequestMapping(value = "/access/updateUser", method = RequestMethod.POST)
+    public String updateUser(
+            @RequestParam("email") String email,
+            Model model) {
+        User user = userJDBCTemplate.getUserByEmail(email);
+        model.addAttribute("firstname", user.getFirstName());
+        model.addAttribute("lastname", user.getLastName());
+        model.addAttribute("email", email);
+        model.addAttribute("password", user.getPassword());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+        return "endreBruker";
+    }
+    
+    @RequestMapping(value = "/access/updateUserOK", method = RequestMethod.POST)
+    public String updateUserOK(
+            @RequestParam("firstname") String firstname,
+            @RequestParam("lastname") String lastname,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam(value="Endre", required = false) String Endre,
+            @RequestParam(value="Avbryt", required = false) String Avbryt,
+            Model model) {
+        User user = userJDBCTemplate.getUserByEmail(email);
+        System.out.println(user.getFirstName());
+        List<User> users = userJDBCTemplate.listUsers();
+        for(User use : users){
+            if(use.getEmail().equals(email)){
+                user = use;
+            }
+        }
+        if(Avbryt != null){
+            return "redirect:admin";
+        }
+        user.setFirstName(firstname);
+        user.setLastName(lastname);
+        user.setPassword(password);
+        userJDBCTemplate.updateUser(user);
+        model.addAttribute("firstname", user.getFirstName());
+        model.addAttribute("lastname", user.getLastName());
+        model.addAttribute("email", email);
+        model.addAttribute("password", user.getPassword());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         menuItems(model, auth);
         return "endreBruker";
