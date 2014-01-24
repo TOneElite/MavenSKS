@@ -99,6 +99,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String options(
+            @RequestParam(value = "empty", required = false) String empty,
             @RequestParam(value = "queueStatus", required = false) String queueStatus,
             @RequestParam(value = "remove", required = false) String remove,
             @RequestParam(value = "postpone", required = false) String postpone,
@@ -144,6 +145,9 @@ public class TeacherController {
             }
         }
 
+        if(empty != null){
+            queueJDBCTemplate.empty(currentSubject);
+        }
         if (queueStatus != null) {
             if (Integer.parseInt(queueStatus) == 0) {
                 subjectJDBCTemplate.setStatus(1, currentSubject);
