@@ -58,7 +58,7 @@ public class AccountController {
             if (newPassword.equals(repeatPassword)) {
                 user.setPassword(newPassword);
                 userJDBCTemplate.updateUser(user);
-                return "redirect:/access/home";
+                return "redirect:/access/taskoverview";
             } else {
                 error = true;
                 model.addAttribute("error", error);
