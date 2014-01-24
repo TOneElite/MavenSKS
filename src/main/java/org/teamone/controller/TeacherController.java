@@ -357,13 +357,27 @@ public class TeacherController {
         return "subjectSettings";
     }
 
-    @RequestMapping(value = "/access/examView{subjectCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/examView/{subjectCode}", method = RequestMethod.GET)
     public String examView(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
+        List<User> user = userJDBCTemplate.getUserBySubject(subjectCode, "ROLE_USER");
+        for (User u : user) {
+            List<ApprovedTasks> approvedTasks = approvedTasksJDBCTemplate.listApprovedTasks(u.getEmail(), subjectCode);
+            boolean[] tasksDone = new boolean[subject.getNrOfTasks()];
+            for (ApprovedTasks as : approvedTasks) {
+                tasksDone[as.getTaskNr() - 1] = true;
+            }
+            boolean ready = new RuleService().vertifyRequirements(tasksDone, subject.getRules());
+            System.out.println(u.getEmail() + " IS READY: " + ready);
+            u.setReadyForExam(ready);
+
+        }
+        ;
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
+        model.addAttribute("usersSubject", user);
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("subjectname", subject.getName());
         model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
@@ -371,6 +385,7 @@ public class TeacherController {
 
         return "eksamensrapport";
     }
+
 
     @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
 

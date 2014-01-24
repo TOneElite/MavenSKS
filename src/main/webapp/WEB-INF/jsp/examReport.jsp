@@ -7,7 +7,7 @@
         overflow: hidden;
     }
     #exam-list{
-        padding: 10px;
+        padding: 5px;
     }
     #exam-table tr:nth-child(odd) {
         background-color: #F0F0F0;
@@ -16,6 +16,13 @@
     #exam-table tr:nth-child(even) {
         background-color: #FFFFFF;
     }
+    #examTable{
+        font-size: 1.2em;
+        border-collapse: collapse;
+        table-layout: fixed; 
+        width: 100%;
+    }
+
 
     .highlight {
         background-color: limegreen !important;
@@ -23,25 +30,48 @@
 </style>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 
-<header id="exam-header">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <h1>${subjectname}</h1>
-</header>
+
 <div id="exam-list">
-    <table id="queueTable">
-        <form:form method="post" modelAttribute="approvestudent" action="updateapprovelist">
-            <tr class="green">
-            <label>
-                <th class="subjectHeader subjectCell">Student-ID</th>
-                <th class="subjectHeader subjectCell">Fornavn</th>
-                <th class="subjectHeader subjectCell">Etternavn</th>
-                <th class="subjectHeader subjectCell">E-post</th>
-                <th class="subjectHeader subjectCell">Eksamens klar</th>
-                <td>
-                    
+    <header id="exam-header">
+        <h1>${selectedSubject.code} ${selectedSubject.name}</h1>
+    </header>
+    <table id="examTable" border="1">
+        <tr class="green">
+        <tr>
+
+            <th class="subjectHeader subjectCell">Fornavn</th>
+            <th class="subjectHeader subjectCell">Etternavn</th>
+            <th class="subjectHeader subjectCell">E-post</th>
+            <th class="subjectHeader subjectCell">Eksamensklar</th>
+
+        </tr>
+
+        <c:forEach var="user" items="${usersSubject}">
+            <tr>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.email}</td>
+                <td><c:choose>
+                        <c:when test="${user.readyForExam}">
+                            Ja
+                        </c:when>
+                        <c:otherwise>
+                            Nei
+                        </c:otherwise>
+                    </c:choose>
                 </td>
-            </label>
+            </tr>
+        </c:forEach>
     </table>
-    <input type="button" value="Skriv ut" />
 </div>
+<input type='button' value='Print' onclick='printDiv("exam-list");'/>
