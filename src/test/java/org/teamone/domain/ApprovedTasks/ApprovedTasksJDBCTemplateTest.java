@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  * @author Kim
  */
-@Ignore("Test is a prototype, skip for now")
+//@Ignore("Test is a prototype, skip for now")
 public class ApprovedTasksJDBCTemplateTest {
 
 	private EmbeddedDatabase db;
