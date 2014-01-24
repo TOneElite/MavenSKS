@@ -32,11 +32,10 @@ public class SubjectJDBCTemplate {
     }
     
     public void addSubject(Subject subject){
-        String SQL = "INSERT INTO subject (subject_code, subject_name, status, nr_of_tasks, rulestring) VALUES (?,?,1,?,1)";
+        String SQL = "INSERT INTO subject (subject_code, subject_name, status, nr_of_tasks, rulestring) VALUES (?,?,0,0,1)";
         jdbcTemplateObject.update(SQL, new Object[]{
             subject.getCode(),
             subject.getName(),
-            subject.getNrOfTasks()
         });
     }
 }

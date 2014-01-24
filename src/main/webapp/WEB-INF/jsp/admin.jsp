@@ -40,9 +40,6 @@
                 <label for="subjectName">Fagnavn</label>
                 <input name="name" type="text" placeholder="Skriv inn fagnavn" class="controller"/>
                 
-                <label for="subjectName">Øvinger</label>
-                <input name="tasks" type="text" placeholder="Skriv inn antall øvinger" class="controller"/>
-
                 <input type="submit" value="Legg Til" class="button"/>
             </form>
         </div>

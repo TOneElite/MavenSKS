@@ -101,7 +101,6 @@ public class AdminController {
     public String addSubject(
             @RequestParam(value = "code", required = false) String subjectCode,
             @RequestParam(value = "name", required = false) String subjectName,
-            @RequestParam(value = "tasks", required = false) String tasks,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
@@ -122,7 +121,6 @@ public class AdminController {
             if(exists == false){
                 subject.setCode(subjectCode);
                 subject.setName(subjectName);
-                subject.setNrOfTasks(Integer.parseInt(tasks));
                 subjectJDBCTemplate.addSubject(subject);
                 model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
                 return "admin";
