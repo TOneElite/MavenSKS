@@ -145,10 +145,10 @@ public class TeacherController {
             }
         }
 
-        if(empty != null){
-            try{
-            queueJDBCTemplate.empty(currentSubject);
-            }catch(Exception e){
+        if (empty != null) {
+            try {
+                queueJDBCTemplate.empty(currentSubject);
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -194,26 +194,31 @@ public class TeacherController {
             return "redirect:/access/teacher" + current;
         }
         if (approve != null) {
-            int queueID = -1;
-            for (String t : tasks) {
-                String[] info = t.split(";");
-                queueID = Integer.parseInt(info[0]);
-                String email = info[1];
-                int taskNr = Integer.parseInt(info[2]);
-                String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
-                ApprovedTasks at = new ApprovedTasks();
-                at.setApprovedBy(auth.getName());
-                at.setApprovedDate(new Date());
-                at.setEmail(email);
-                at.setSubjectCode(subjectCode);
-                at.setTaskNr(taskNr);
+            try {
 
-                System.out.println(at.toString());
-                approvedTasksJDBCTemplate.approve(at);
+                int queueID = -1;
+                for (String t : tasks) {
+                    String[] info = t.split(";");
+                    queueID = Integer.parseInt(info[0]);
+                    String email = info[1];
+                    int taskNr = Integer.parseInt(info[2]);
+                    String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
+                    ApprovedTasks at = new ApprovedTasks();
+                    at.setApprovedBy(auth.getName());
+                    at.setApprovedDate(new Date());
+                    at.setEmail(email);
+                    at.setSubjectCode(subjectCode);
+                    at.setTaskNr(taskNr);
 
+                    System.out.println(at.toString());
+                    approvedTasksJDBCTemplate.approve(at);
+
+                }
+
+                queueJDBCTemplate.delete(queueID);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-
-            queueJDBCTemplate.delete(queueID);
 
         }
         return "redirect:/access/teacher" + current;
