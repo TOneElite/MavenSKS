@@ -541,7 +541,9 @@ h1{
     font-weight: bold;
 }
 
-
+.display-inline{
+    display: inline;
+}
 /*********************** Admin START ***********************/
 #adminSubjectList{
     width: 80%;
