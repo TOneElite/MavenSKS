@@ -355,7 +355,7 @@ public class TeacherController {
         return "subjectSettings";
     }
 
-    @RequestMapping(value = "/access/examView/{subjectCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/examView{subjectCode}", method = RequestMethod.GET)
     public String examView(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
