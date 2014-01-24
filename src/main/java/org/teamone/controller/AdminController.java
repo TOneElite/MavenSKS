@@ -1,5 +1,6 @@
 package org.teamone.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.domain.Role.Role;
 import org.teamone.domain.Role.RoleJDBCTemplate;
 import org.teamone.domain.Role.RoleNameJDBCTemplate;
+import org.teamone.domain.Subject.Subject;
 import org.teamone.domain.Subject.SubjectJDBCTemplate;
 import org.teamone.domain.User.UserJDBCTemplate;
 
@@ -93,6 +95,39 @@ public class AdminController {
             return "admin";
         }
 
+    }
+    
+    @RequestMapping(value = "/access/adminAddSub", method = RequestMethod.POST)
+    public String addSubject(
+            @RequestParam(value = "code", required = false) String subjectCode,
+            @RequestParam(value = "name", required = false) String subjectName,
+            @RequestParam(value = "tasks", required = false) String tasks,
+            Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("users", userJDBCTemplate.listUsers());
+        model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
+        Subject subject = new Subject();
+        List<Subject> subjects = subjectJDBCTemplate.listSubjects();
+        Boolean exists = false;
+        for(Subject subs : subjects){
+            System.out.println(subs.getCode() + " test " + subjectCode);
+            if(subs.getCode().equals(subjectCode) || subs.getName().equals(subjectName)){
+                System.out.println("exists");
+                exists = true;
+            }
+            System.out.println("test2");
+        }
+        
+            if(exists == false){
+                subject.setCode(subjectCode);
+                subject.setName(subjectName);
+                subject.setNrOfTasks(Integer.parseInt(tasks));
+                subjectJDBCTemplate.addSubject(subject);
+                model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+                return "admin";
+            }
+        return "admin";
     }
     
     /**

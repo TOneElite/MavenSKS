@@ -33,12 +33,15 @@
         <div id="adminSubjectForm">
             <h4>Legg til fag:</h4>
             <br/>
-            <form>
+            <form action="<c:url value="/access/adminAddSub"/>" method="POST">
                 <label for="subjectCode">Fagkode</label>
-                <input type="text" placeholder="Skriv inn fagkode" class="controller"/>
+                <input name="code" type="text" placeholder="Skriv inn fagkode" class="controller"/>
 
                 <label for="subjectName">Fagnavn</label>
-                <input type="text" placeholder="Skriv inn fagnavn" class="controller"/>
+                <input name="name" type="text" placeholder="Skriv inn fagnavn" class="controller"/>
+                
+                <label for="subjectName">Øvinger</label>
+                <input name="tasks" type="text" placeholder="Skriv inn antall øvinger" class="controller"/>
 
                 <input type="submit" value="Legg Til" class="button"/>
             </form>

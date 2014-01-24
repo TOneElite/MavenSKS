@@ -30,4 +30,13 @@ public class SubjectJDBCTemplate {
         String SQL = "UPDATE subject SET status = ? where subject_code = ?";
          jdbcTemplateObject.update(SQL, status, subjectCode);        
     }
+    
+    public void addSubject(Subject subject){
+        String SQL = "INSERT INTO subject (subject_code, subject_name, status, nr_of_tasks, rulestring) VALUES (?,?,1,?,1)";
+        jdbcTemplateObject.update(SQL, new Object[]{
+            subject.getCode(),
+            subject.getName(),
+            subject.getNrOfTasks()
+        });
+    }
 }
