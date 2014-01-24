@@ -124,18 +124,6 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(value = "/access/testDatabase", method = RequestMethod.GET)
-    public String testDatabase(Model model) {
-        model.addAttribute("persons", userJDBCTemplate.listUsers());
-        return "testDatabase";
-    }
-
-    @RequestMapping(value = "/access/testDatabase2", method = RequestMethod.GET)
-    public String testDatabase2(Model model) {
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        return "testDatabase2";
-    }
-
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
     public String taskOverview(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -143,6 +131,8 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects",roleJDBCTemplate.getTeacherSubjects(auth.getName()));
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;

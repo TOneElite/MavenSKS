@@ -35,4 +35,16 @@ public class RoleJDBCTemplate {
             role.getSubjectCode(),
             role.getRoleName()});
     }
+    
+    public List<Role> getStudentSubjects(String email){
+        String SQL = "SELECT * FROM user_subject WHERE email=? AND rolename='ROLE_USER'";
+        List<Role> studentsubjects= jdbcTemplateObject.query(SQL, new Object[]{email}, new RoleMapper());
+        return studentsubjects;
+    }
+    
+    public List<Role> getTeacherSubjects(String email){
+        String SQL = "SELECT * FROM user_subject WHERE email=? AND rolename='ROLE_TEACHER'";
+        List<Role> studentsubjects= jdbcTemplateObject.query(SQL, new Object[]{email}, new RoleMapper());
+        return studentsubjects;
+    }
 }
