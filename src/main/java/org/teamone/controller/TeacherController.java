@@ -146,7 +146,11 @@ public class TeacherController {
         }
 
         if(empty != null){
+            try{
             queueJDBCTemplate.empty(currentSubject);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
         }
         if (queueStatus != null) {
             if (Integer.parseInt(queueStatus) == 0) {
