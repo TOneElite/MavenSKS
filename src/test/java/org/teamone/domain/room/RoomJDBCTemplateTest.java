@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.teamone.domain.room;
 
-import java.util.List;
 import javax.sql.DataSource;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -21,21 +14,21 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  * @author Kim
  */
-
-@Ignore("Test not ready yet")
+@Ignore("Test is a prototype, skip for now")
 public class RoomJDBCTemplateTest {
-	
+
 	private EmbeddedDatabase db;
 	private DataSource dataSource;
-	
+	private RoomJDBCTemplate jdbc = new RoomJDBCTemplate();
 
 	@Before
 	public void setUp() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		db = builder.setType(EmbeddedDatabaseType.DERBY).addScript("schema.sql").addScript("data.sql").build();
+		db = builder.setType(EmbeddedDatabaseType.H2).addScript("schema.sql").addScript("data.sql").build();
 		dataSource = db;
+		jdbc.setDataSource(dataSource);
 	}
-	
+
 	@After
 	public void tearDown() {
 		db.shutdown();
@@ -46,7 +39,6 @@ public class RoomJDBCTemplateTest {
 	 */
 	@Test
 	public void testSetDataSource() {
-		
 	}
 
 	/**
@@ -54,7 +46,6 @@ public class RoomJDBCTemplateTest {
 	 */
 	@Test
 	public void testGetRoom() {
-		
 	}
 
 	/**
@@ -62,6 +53,5 @@ public class RoomJDBCTemplateTest {
 	 */
 	@Test
 	public void testListRoom() {
-		
 	}
 }

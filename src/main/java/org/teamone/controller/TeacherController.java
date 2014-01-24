@@ -42,39 +42,25 @@ public class TeacherController {
     private RoleJDBCTemplate roleJDBCTemplate;
     @Autowired
     private UserRightsJDBCTemplate userRightsJDBCTemplate;
-
     @Autowired
     private SubjectJDBCTemplate subjectJDBCTemplate;
-
     @Autowired
     private ApprovedTasksJDBCTemplate userTasksJDBCTemplate;
-
     @Autowired
     private RoomJDBCTemplate roomJDBCTemplate;
-
     @Autowired
     private QueueApproveJDBCTemplate QueueApproveJDBCTemplate;
-
     @Autowired
     private ApprovedTasksJDBCTemplate approvedTasksJDBCTemplate;
 
-
-    /*
-     @RequestMapping("/access/teacherQueue")
-     public String teacherQueue(Model model) {
-     model.addAttribute("queues", queueJDBCTemplate.listQueue());
-     model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-     return "teacherQueue";
-     }*/
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
     public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("currentS", subjectCode);
+        model.addAttribute("thisSubject", subjectJDBCTemplate.getSubject(subjectCode));
 
         System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights
@@ -113,20 +99,19 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/approveInQueue", method = RequestMethod.POST)
     public String options(
+            @RequestParam(value = "empty", required = false) String empty,
+            @RequestParam(value = "queueStatus", required = false) String queueStatus,
             @RequestParam(value = "remove", required = false) String remove,
             @RequestParam(value = "postpone", required = false) String postpone,
             @RequestParam(value = "help", required = false) String help,
             @RequestParam(value = "approve", required = false) String approve,
             @RequestParam(value = "queueId", required = false) String queueId,
-            @RequestParam(value = "subjectcode", required = false) String subjectCode,
+            @RequestParam(value = "subjectCode", required = false) String subjectCode,
             @RequestParam(value = "currentSubject", required = false) String currentSubject,
             Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String helper = "Får hjelp av " + auth.getName();
         model.addAttribute("username", auth.getName());
-
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("activeSubject", subjectCode);
 
         // Check for admin rights
         boolean admin = false;
@@ -160,20 +145,31 @@ public class TeacherController {
             }
         }
 
+        if (empty != null) {
+            try {
+                queueJDBCTemplate.empty(currentSubject);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        if (queueStatus != null) {
+            if (Integer.parseInt(queueStatus) == 0) {
+                subjectJDBCTemplate.setStatus(1, currentSubject);
+            } else {
+                subjectJDBCTemplate.setStatus(0, currentSubject);
+            }
+        }
         if (remove != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.delete(id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (postpone != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status("Utsatt", id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (help != null) {
             int id = Integer.parseInt(queueId);
             queueJDBCTemplate.status(helper, id);
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         }
         if (approve != null) {
             int id = Integer.parseInt(queueId);
@@ -181,7 +177,7 @@ public class TeacherController {
             model.addAttribute("queueInfo", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
         }
-        return "teacherQueue";
+        return "redirect:/access/teacher" + currentSubject;
     }
 
     @RequestMapping(value = "/access/teacherQueue", method = RequestMethod.POST)
@@ -195,35 +191,37 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
 
         if (cancel != null) {
-            model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-            return "teacherQueue";
+            return "redirect:/access/teacher" + current;
         }
         if (approve != null) {
-            int queueID = -1;
-            for (String t : tasks) {
-                String[] info = t.split(";");
-                queueID = Integer.parseInt(info[0]);
-                String email = info[1];
-                int taskNr = Integer.parseInt(info[2]);
-                String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
-                ApprovedTasks at = new ApprovedTasks();
-                at.setApprovedBy(auth.getName());
-                at.setApprovedDate(new Date());
-                at.setEmail(email);
-                at.setSubjectCode(subjectCode);
-                at.setTaskNr(taskNr);
+            try {
 
-                System.out.println(at.toString());
-                approvedTasksJDBCTemplate.approve(at);
+                int queueID = -1;
+                for (String t : tasks) {
+                    String[] info = t.split(";");
+                    queueID = Integer.parseInt(info[0]);
+                    String email = info[1];
+                    int taskNr = Integer.parseInt(info[2]);
+                    String subjectCode = queueJDBCTemplate.getQueue(queueID).getSubjectCode();
+                    ApprovedTasks at = new ApprovedTasks();
+                    at.setApprovedBy(auth.getName());
+                    at.setApprovedDate(new Date());
+                    at.setEmail(email);
+                    at.setSubjectCode(subjectCode);
+                    at.setTaskNr(taskNr);
 
+                    System.out.println(at.toString());
+                    approvedTasksJDBCTemplate.approve(at);
+
+                }
+
+                queueJDBCTemplate.delete(queueID);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
-            queueJDBCTemplate.delete(queueID);
-            //model.addAttribute("queues", queueJDBCTemplate.listQueue(queueID).getSubjectCode());
-
         }
-        model.addAttribute("queues", queueJDBCTemplate.listQueue(current));
-        return "teacherQueue";
+        return "redirect:/access/teacher" + current;
     }
 
     @RequestMapping(value = "/access/readfile{subjectCode}", method = RequestMethod.GET)

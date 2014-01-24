@@ -5,7 +5,7 @@
 
 <section id="queue">
     <form action="<c:url value="/access/teacherQueue"/>" method="POST">
-
+        <p>${current}</p>
         <c:forEach var="queue" items="${queueInfo}">
             <ul>
                 <li>${queue.email}</li>

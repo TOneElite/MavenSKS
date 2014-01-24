@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.teamone.domain.User;
 
 import java.util.Date;
@@ -22,23 +19,21 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  * @author Kim
  */
-
-//@Ignore("Test not ready yet")
+@Ignore("Test is a prototype, skip for now")
 public class UserJDBCTemplateTest {
-	
+
 	private EmbeddedDatabase db;
 	private DataSource dataSource;
-        private UserJDBCTemplate jdbc = new UserJDBCTemplate();
-	
+	private UserJDBCTemplate jdbc = new UserJDBCTemplate();
 
 	@Before
 	public void setUp() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		db = builder.setType(EmbeddedDatabaseType.H2).addScript("schema.sql").addScript("data.sql").build();
 		dataSource = db;
-                jdbc.setDataSource(dataSource);
+		jdbc.setDataSource(dataSource);
 	}
-	
+
 	@After
 	public void tearDown() {
 		db.shutdown();
@@ -49,7 +44,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testSetDataSource() {
-		
 	}
 
 	/**
@@ -57,7 +51,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testGetUser() {
-		
 	}
 
 	/**
@@ -65,7 +58,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testListUsers() {
-		
 	}
 
 	/**
@@ -73,7 +65,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testSetPassword() {
-		
 	}
 
 	/**
@@ -81,7 +72,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testUpdateUser() {
-		
 	}
 
 	/**
@@ -89,7 +79,6 @@ public class UserJDBCTemplateTest {
 	 */
 	@Test
 	public void testGetUserByEmail() {
-		
 	}
 
 	/**
@@ -98,18 +87,18 @@ public class UserJDBCTemplateTest {
 	@Test
 	public void testCreate() {
 		User user = new User();
-                user.setDate(new Date());
-                user.setEmail("tkolsen@stud.no");
-                user.setFirstName("Tom");
-                user.setLastName("Olsen");
-                user.setEnabled(1);
-                user.setPassword("123");
-                
-                System.out.println("User: " + user.toString());
-                jdbc.create(user);
-                
-                User test = jdbc.getUserByEmail("tkolsen@stud.no");
-                System.out.println("Test user: " + test.toString());
-                assertEquals(user, test);
+		user.setDate(new Date());
+		user.setEmail("tkolsen@stud.no");
+		user.setFirstName("Tom");
+		user.setLastName("Olsen");
+		user.setEnabled(1);
+		user.setPassword("123");
+
+		System.out.println("User: " + user.toString());
+		jdbc.create(user);
+
+		User test = jdbc.getUserByEmail("tkolsen@stud.no");
+		System.out.println("Test user: " + test.toString());
+		assertEquals(user, test);
 	}
 }

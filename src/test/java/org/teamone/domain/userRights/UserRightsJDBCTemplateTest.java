@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.teamone.domain.userRights;
 
 import javax.sql.DataSource;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
@@ -20,21 +15,21 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  * @author Kim
  */
-
-@Ignore("Not ready yet.")
+@Ignore("Test is a prototype, skip for now")
 public class UserRightsJDBCTemplateTest {
-	
+
 	private EmbeddedDatabase db;
 	private DataSource dataSource;
-	
+	private UserRightsJDBCTemplate jdbc = new UserRightsJDBCTemplate();
 
 	@Before
 	public void setUp() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		db = builder.setType(EmbeddedDatabaseType.DERBY).addScript("schema.sql").addScript("data.sql").build();
+		db = builder.setType(EmbeddedDatabaseType.H2).addScript("schema.sql").addScript("data.sql").build();
 		dataSource = db;
+		jdbc.setDataSource(dataSource);
 	}
-	
+
 	@After
 	public void tearDown() {
 		db.shutdown();
@@ -45,7 +40,6 @@ public class UserRightsJDBCTemplateTest {
 	 */
 	@Test
 	public void testSetDataSource() {
-		
 	}
 
 	/**
@@ -53,6 +47,5 @@ public class UserRightsJDBCTemplateTest {
 	 */
 	@Test
 	public void testGetUserRight() {
-		
 	}
 }

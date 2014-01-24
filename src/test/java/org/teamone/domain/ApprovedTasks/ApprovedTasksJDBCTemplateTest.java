@@ -1,5 +1,5 @@
 
-package org.teamone.domain.Role;
+package org.teamone.domain.ApprovedTasks;
 
 import javax.sql.DataSource;
 import org.junit.After;
@@ -15,11 +15,11 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  * @author Kim
  */
 @Ignore("Test is a prototype, skip for now")
-public class RoleJDBCTemplateTest {
-	
+public class ApprovedTasksJDBCTemplateTest {
+
 	private EmbeddedDatabase db;
 	private DataSource dataSource;
-	private RoleJDBCTemplate jdbc = new RoleJDBCTemplate();
+	private ApprovedTasksJDBCTemplate jdbc = new ApprovedTasksJDBCTemplate();
 
 	@Before
 	public void setUp() {
@@ -35,26 +35,31 @@ public class RoleJDBCTemplateTest {
 	}
 
 	/**
-	 * Test of setDataSource method, of class RoleJDBCTemplate.
+	 * Test of setDataSource method, of class ApprovedTasksJDBCTemplate.
 	 */
 	@Test
 	public void testSetDataSource() {
-		
 	}
 
 	/**
-	 * Test of getSubjectRoles method, of class RoleJDBCTemplate.
+	 * Test of approve method, of class ApprovedTasksJDBCTemplate.
 	 */
 	@Test
-	public void testGetSubjectRoles() {
-		
+	public void testApprove() {
 	}
 
 	/**
-	 * Test of create method, of class RoleJDBCTemplate.
+	 * Test of listApprovedTasks method, of class ApprovedTasksJDBCTemplate.
 	 */
 	@Test
-	public void testCreate() {
-		
+	public void testListApprovedTasks() {
+	}
+
+	/**
+	 * Test of listApprovedTasksWithoutSubject method, of class
+	 * ApprovedTasksJDBCTemplate.
+	 */
+	@Test
+	public void testListApprovedTasksWithoutSubject() {
 	}
 }

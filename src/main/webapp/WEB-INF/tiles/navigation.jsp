@@ -4,14 +4,13 @@
 <section id="nav-nav">
     <p class="navigationHeading">Navigasjon</p>
     <ul>
-        <li><a href="<c:url value="/access/taskoverview"/>">Hjem</a></li>
         <li><a href="taskoverview">Øvinger</a></li>
-            <c:if test="${isAdmin}">
+        <c:if test="${isAdmin}">
             <li><a href="<c:url value="admin"/>">Admin</a></li>
-            </c:if>
-            <c:if test="${isTeacher}">
+        </c:if>
+        <c:if test="${isTeacher}">
             <li><a href="<c:url value="subjectSettings"/>">Lærer</a></li>
-            </c:if>
+        </c:if>
     </ul>
 </section>
 <c:if test="${isUser}">
@@ -19,8 +18,12 @@
         <p class="navigationHeading">Fag</p>
         <ul>
             <c:forEach var="subject" items="${subjects}">
-                <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                <c:forEach var="studsubject" items="${studentsubjects}">
+                    <c:if test="${subject.code==studsubject.subjectCode}">
+                        <li><a href="<c:url value="${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                    </c:if>
                 </c:forEach>
+            </c:forEach>
         </ul>
     </section>
 </c:if>
@@ -29,8 +32,12 @@
         <p class="navigationHeading">Lærer</p>
         <ul>
             <c:forEach var="subject" items="${subjects}">
-                <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                <c:forEach var="teachsubject" items="${teachersubjects}">
+                    <c:if test="${subject.code==teachsubject.subjectCode}">
+                        <li><a href="<c:url value="teacher${subject.code}"/>" onclick="changeSubject('${subject.name}')">${subject.name}</a></li>
+                    </c:if>
                 </c:forEach>
+            </c:forEach>
         </ul>
     </section>
 </c:if>

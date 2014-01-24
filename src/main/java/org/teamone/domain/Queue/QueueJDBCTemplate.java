@@ -70,6 +70,10 @@ public class QueueJDBCTemplate {
         jdbcTemplateObject.update(SQL, id);
     }
 
+        public void empty(String subjectCode) {
+        String SQL = "DELETE FROM queue WHERE subject_code = ?";
+        jdbcTemplateObject.update(SQL, subjectCode);
+    }
     /*
      * TODO: Currently not functioning, SQL must be reviewed to include queue_group
      */

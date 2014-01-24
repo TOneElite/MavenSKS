@@ -3,13 +3,20 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-   
+
 <form action="<c:url value="/access/approveInQueue"/>" method="POST">
+    <input type ="hidden" name="currentSubject" value="${currentS}"/> 
     <div id ="teacherQueue">
         <section id="queueHeader">
             <div id="queueInfo">
                 <h1>Kø i <span id="subjectHeader"></span></h1> 
-                <input id="queueButton" name="queueStatus" value="Åpne køen" type="submit"/>
+
+
+                <c:choose>
+                    <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
+                    <c:when test="${thisSubject.status eq 1}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "1">Steng køen</button></c:when>
+                </c:choose>
+                <button class = "queueButton" name = "empty" type = "submit" value = "empty" onclick="return confirm('Er du sikker på at du vil tømme køen?')">Tøm køen</button>
 
                 <div class="queueContainer">
                     <span class="queueRulesHeader">Regler for øvingene &#x25BC</span>
@@ -25,8 +32,7 @@
 
         <section id="queue">
             <form action="<c:url value="/access/approveInQueue"/>" method="POST">
-                <p>${subjectCode}</p>
-                <input type ="hidden" name="currentSubject" value="${subjectCode}"/>
+
                 <table id="queueTable" width="100%">
                     <col width="10%">
                     <col width="15%">
@@ -48,14 +54,13 @@
                     <c:forEach var="queue" items="${queues}">
                         <tr id="rows">  
                             <td class="click"><c:out value="${queue.date}"/></td>
-                            <td class="click"><c:out value="${queue.users}"/></td>
+                            <td class="click"><c:out value="${queue.firstNames}"/></td>
                             <td class="click"><c:out value="${queue.tasks}"/></td>
                             <td class="click"><c:out value="${queue.comment}"/></td>
                             <td class="click"><c:out value="${queue.status}"/></td>
-
                             <td class="click"><c:out value="${queue.location}"/></td>    
                             <td id="buttons"><p>
-                                    <input class="check" type="checkbox" style="display:none" name="subjectcode" value="${queue.subjectCode}"/>
+                                    <input class="check" type="checkbox" style="display:none" name="subjectCode" value="${queue.subjectCode}"/>
                                     <input class="check" type="checkbox" style="display:none" name="queueId" value="${queue.id}"/>
                                     <input class="teacherbuttons" name="help" value="&#x2661;" type="submit"/>
                                     <input class="teacherbuttons" name="approve" value="&#x2713;" type="submit"/>
@@ -64,7 +69,7 @@
                                 </p></td>
                         </tr>
                     </c:forEach>
-                        
+
                 </table>
         </section>
 </form>
@@ -84,16 +89,8 @@
     $(".queueRulesHeader").click(function() {
 
         $queueRulesHeader = $(this);
-        //getting the next element
         $queueRulesContent = $queueRulesHeader.next();
-        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
         $queueRulesContent.slideToggle(500, function() {
-            //execute this after slideToggle is done
-            //change text of header based on visibility of content div
-            /*$queueRulesHeader.text = (function() {
-             //change text based on condition
-             return $queueRulesContent.is(":visible") ? "Regler for øvingene u" : "Regler for øvingene n";
-             });*/
         });
     });
 
@@ -116,6 +113,15 @@
         );
     }
     );
+
+    $("tr td:contains('hjelp')").each(function(index) {
+        if (index % 2 === 0) {
+            $(this).closest('tr').addClass("helpedOdd");
+        } else {
+            $(this).closest('tr').addClass("helpedEven");
+        }
+
+    });
 
 </script> 
 

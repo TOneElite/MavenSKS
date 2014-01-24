@@ -32,51 +32,6 @@ public class HomeController {
     @Autowired
     private RoleJDBCTemplate roleJDBCTemplate;
 
-    @RequestMapping(value = "/access/home", method = RequestMethod.GET)
-    public String homeView(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", auth.getName());
-        model.addAttribute("rooms", roomJDBCTemplate.listRoom());
-        model.addAttribute("users", userJDBCTemplate.listUsers());
-        model.addAttribute("queues", queueJDBCTemplate.listQueue());
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
-        model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
-        // Check for admin rights
-        boolean admin = false;
-        boolean teacher = false;
-        boolean user = false;
-        for (GrantedAuthority ga : auth.getAuthorities()) {
-            if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
-                admin = true;
-                model.addAttribute("isAdmin", admin);
-            }
-            if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
-                teacher = true;
-                model.addAttribute("isTeacher", teacher);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-        }
-
-        return "home";
-    }
-
     @RequestMapping(value = "/access/{subjectCode}", method = RequestMethod.GET)
     public String homeView(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -88,10 +43,9 @@ public class HomeController {
         model.addAttribute("activeSubject", subjectCode);
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
+        model.addAttribute("queueStatus", subjectJDBCTemplate.getSubject(subjectCode));
         // Check for admin rights
-        boolean admin = false;
-        boolean teacher = false;
-        boolean user = false;
+        boolean admin, teacher, user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
                 System.out.println("is ADMIN!");
@@ -119,20 +73,7 @@ public class HomeController {
                 model.addAttribute("isUser", user);
             }
         }
-
         return "home";
-    }
-
-    @RequestMapping(value = "/access/testDatabase", method = RequestMethod.GET)
-    public String testDatabase(Model model) {
-        model.addAttribute("persons", userJDBCTemplate.listUsers());
-        return "testDatabase";
-    }
-
-    @RequestMapping(value = "/access/testDatabase2", method = RequestMethod.GET)
-    public String testDatabase2(Model model) {
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        return "testDatabase2";
     }
 
     @RequestMapping(value = "/access/taskoverview", method = RequestMethod.GET)
@@ -142,10 +83,10 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects",roleJDBCTemplate.getTeacherSubjects(auth.getName()));
         // Check for admin rights
-        boolean admin = false;
-        boolean teacher = false;
-        boolean user = false;
+        boolean admin, teacher, user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
                 System.out.println("is ADMIN!");
@@ -173,7 +114,6 @@ public class HomeController {
                 model.addAttribute("isUser", user);
             }
         }
-        
         return "taskoverview";
     }
 }
