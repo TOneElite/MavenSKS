@@ -74,7 +74,7 @@
                                 <a href="#" class="adminLinks">Detaljer</a>
                                 <form action="<c:url value="/access/updateUser"/>" method="POST">
                                     <input type="hidden" name="email" value="${users.email}"/>
-                                    <a href="#" onclick="this.parentNode.submit()">Endre</a>
+                                    <a href="#" class="adminLinks" onclick="this.parentNode.submit()">Endre</a>
                                 </form>
                                 <a href="#" class="adminLinks editLinkPadding">Slett</a>
                             </td>

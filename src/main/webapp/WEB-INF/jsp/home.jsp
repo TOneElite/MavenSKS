@@ -97,11 +97,14 @@
                 <td><c:out value="${queue.location}"/></td>
 
                 <td>
-                    <c:choose>
-                        <c:when test="${fn:split(queue.users, ', ')[0]==username}">
-                            <a href="delete?id=${queue.id}">Slett køpost</a>                            
-                        </c:when>
-                    </c:choose>
+                    <c:set var="groupusers" value="${fn:split(queue.users, ', ')}"/>
+                    <c:forEach var="i" items="${groupusers}">
+                        <c:choose>    
+                            <c:when test="${i ==username}">
+                                <a href="delete?id=${queue.id}">Slett køpost</a>                            
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>    
                 </td>
             </tr>
         </c:forEach>
