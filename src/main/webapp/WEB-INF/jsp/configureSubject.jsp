@@ -52,10 +52,14 @@
     }
 
 </style>
-<section class="subjectEditor">
-    <h1>${selectedSubject.name}</h1>
+<section class="subjectEditor" style="padding: 2%;">
+    <h1>Endring av øvingsopplegg i ${selectedSubject.name}</h1>
+    <br />
+    <p>Eks. på setting av obligatoriske øvinger: </p>
+    <p>3 av de 5 første, og 5 av de 7 neste øvingene skrives slik: 3{1,2,3,4,5};5{6,7,8,9,10,11,12} </p>
+    <br />
     <form accept-charset="utf-8" action="<c:url value="/access/subjectSettings/${selectedSubject.code}/process" />" method="GET">
         <input class="controller" name="ruleString" type="text"  value="${selectedSubject.ruleString}"/>
-        <input class="button" name="submit" type="submit" value="Oppdatter"/>
+        <input class="button" name="submit" type="submit" value="Oppdater"/>
     </form>
 </section>
