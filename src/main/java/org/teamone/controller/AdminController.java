@@ -105,16 +105,13 @@ public class AdminController {
         if (exist == false) {
             userJDBCTemplate.create(user);
         }
-        System.out.println("test1");
         List<String> sub = new ArrayList<String>();
-        Boolean rexist = false;
         List<Role> rolecheck = roleJDBCTemplate.getSubjectRoles(email);
-        System.out.println("test2");
         System.out.println(rolecheck.size());
         if(rolecheck.size() == 0){
             for(int i = 0; i < subjects.length; i++){
-                for(int j = 0; j < subjects.length; j++){
-                    sub.add(subjects[i]+"/"+roles[i]);
+                for(int j = 0; j < roles.length; j++){
+                    sub.add(subjects[i]+"/"+roles[j]);
                 }
             }
         }else{
@@ -122,7 +119,6 @@ public class AdminController {
                 for (int i = 0; i < subjects.length; i++) {
                     for (int j = 0; j < roles.length; j++) {
                         if (subjects[i].equals(rolee.getSubjectCode()) && roles[j].equals(rolee.getRoleName())) {
-                            rexist = true;
                             System.out.println("role does");
                         }else{
                             System.out.println("role not");
