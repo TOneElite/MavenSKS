@@ -10,6 +10,15 @@ public class User {
     private String password;
     private int enabled;
     private Date date;
+    private boolean readyForExam;
+
+    public boolean isReadyForExam() {
+        return readyForExam;
+    }
+
+    public void setReadyForExam(boolean readyForExam) {
+        this.readyForExam = readyForExam;
+    }
 
     public String getFirstName() {
         return firstName;

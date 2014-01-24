@@ -60,6 +60,12 @@ public class UserJDBCTemplate {
         return user;
     }
     
+    public List<User> getUserBySubject(String subject, String role){
+        String SQL = "SELECT * FROM users NATURAL JOIN user_subject WHERE user_subject.subject_code = ? AND user_subject.rolename = ?";
+        List<User> user = jdbcTemplateObject.query(SQL, new Object[]{subject, role}, new UserMapper());
+        return user;
+    }
+    
     public void create(User user){
         System.out.println(user.toString());
         String SQL = "INSERT INTO users (email, firstname, lastname, password, enabled, registerdate) values(?,?,?,?,1,?)";

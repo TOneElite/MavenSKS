@@ -80,6 +80,7 @@ public class RuleService {
             }
             System.out.println(required + " " +done);
             if (done < required) {
+                System.out.println("FAILED ON :"+i);
                 return false;
             }
             done = 0;
