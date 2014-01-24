@@ -76,6 +76,9 @@
 
                 var room = document.getElementById("room");
                 var table = document.getElementById("table");
+                var group = document.getElementById("group");
+                var selectedUserList = document.getElementById("selectedUserList");
+                var comment = document.getElementById("comment");
                 
                 function pictureChange(pictureLink) {
                     document.getElementById("roomImg").src = pictureLink;
@@ -88,8 +91,8 @@
                         table.options.length = 1;
                         table.options[0] = new Option("", "Se kommentar");
                         pictureChange('../res/lab4.png');
-                        var comment = document.getElementById("comment");
                         comment.required = "required";
+                        comment.placeholder = "Vennligst beskriv hvor du sitter.";
                         // comment.setCustomValidity("Du har valgt rommet 'Annet'. Vennligst beskriv hvor du sitter."); // TODO FAKK THE WATT. Det her ska da funk.
                     }
                     else {
@@ -108,8 +111,6 @@
                 room.onchange();
 
                 /* Filling the GROUP box */
-                var group = document.getElementById("group");
-                var selectedUserList = document.getElementById("selectedUserList");
                 group.onchange = function() {
                     var selectedUser = group.options[group.selectedIndex];
                     if (selectedUser.title !== "") {
