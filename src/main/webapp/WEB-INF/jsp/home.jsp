@@ -11,9 +11,9 @@
     <section id="queueHeader">
 
         <div id="queueInfo">
-            <h1>Kø i <span id="subjectHeader"></span></h1>
-                <c:forEach var="subject" items="${subjects}">
-                    <c:if test="${subject.code==activeSubject}">
+            <h1>Kø i <c:out value="${queueStatus.name}" /></h1>
+            <c:forEach var="subject" items="${subjects}">
+                <c:if test="${subject.code==activeSubject}">
                     <table id="overview-tasktable">
                         <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
                             <td
@@ -45,8 +45,6 @@
                                 </c:otherwise>
                             </c:choose>
                         </section>
-
-
                     </table>
                 </c:if>
             </c:forEach>
@@ -88,7 +86,6 @@
         </tr>
         <c:forEach var="queue" items="${queues}">
             <tr>
-                <c:set var="now" value="<%=new java.util.Date()%>" /> <!-- NOW - QUEUE.DATE = WIN -->
                 <td><c:out value="${queue.date}"/></td>
                 <td><c:out value="${queue.firstNames}"/></td>
                 <td><c:out value="${queue.tasks}"/></td>
@@ -112,15 +109,6 @@
 </section>
 
 <script language="javascript">
-    <c:set var="defaultSubject" value="${subjects[0]}" />
-    if (sessionStorage.activeSubject == null)
-        sessionStorage.activeSubject = "${defaultSubject.name}";
-    document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    function changeSubject(subject) {
-        sessionStorage.activeSubject = subject;
-        document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    }
-
     $(".queueRulesHeader").click(function() {
 
         $queueRulesHeader = $(this);
@@ -131,7 +119,6 @@
 
     $("a[rel]").overlay();
 
-
     $("tr td:contains('hjelp')").each(function(index) {
         if (index % 2 === 0) {
             $(this).closest('tr').addClass("helpedOdd");
@@ -140,6 +127,5 @@
         }
 
     });
-
 </script> 
 
