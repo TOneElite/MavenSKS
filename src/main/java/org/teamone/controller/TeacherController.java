@@ -174,7 +174,7 @@ public class TeacherController {
         }
         if (approve != null) {
             int id = Integer.parseInt(queueId);
-            model.addAttribute("current", currentSubject);
+            model.addAttribute("current", subjectJDBCTemplate.getSubject(currentSubject));
             model.addAttribute("queueInfo", QueueApproveJDBCTemplate.listQueueApproveID(id));
             return "approveInQueue";
         }
