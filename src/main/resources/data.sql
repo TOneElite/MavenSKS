@@ -33,6 +33,7 @@ VALUES	('megaman@rockman.no', '2ING-2003-14V', 1, '2014-03-11', 'leonardo@ninjat
 		('megaman@rockman.no', '2ING-2003-14V', 2, '2014-03-11', 'leonardo@ninjaturtle.jap'),
 		('megaman@rockman.no', '2ING-2003-14V', 4, '2014-03-11', 'leonardo@ninjaturtle.jap'),
 		('megaman@rockman.no', '2ING-2003-14V', 6, '2014-03-11', 'leonardo@ninjaturtle.jap'),
+		('megaman@rockman.no', 'TDAT-1995-12H', 9, '2014-03-11', 'leonardo@ninjaturtle.jap'),
 		('mario@peachcastle.derp', 'TDAT-1995-12H', 4 ,'2013-05-06', 'megaman@rockman.no'),
 		('mario@peachcastle.derp', 'TDAT-1995-12H', 6 ,'2013-05-07', 'megaman@rockman.no'),
 		('mario@peachcastle.derp', 'TDAT-1995-12H', 7 ,'2013-05-08', 'megaman@rockman.no');
