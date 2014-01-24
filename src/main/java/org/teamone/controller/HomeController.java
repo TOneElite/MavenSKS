@@ -35,6 +35,7 @@ public class HomeController {
     @RequestMapping(value = "/access/{subjectCode}", method = RequestMethod.GET)
     public String homeView(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model);
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
@@ -83,8 +84,7 @@ public class HomeController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
-        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
-        model.addAttribute("teachersubjects",roleJDBCTemplate.getTeacherSubjects(auth.getName()));
+        menuItems(model);
         // Check for admin rights
         boolean admin, teacher, user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
@@ -115,5 +115,11 @@ public class HomeController {
             }
         }
         return "taskoverview";
+    }
+    
+    private void menuItems(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects",roleJDBCTemplate.getTeacherSubjects(auth.getName()));
     }
 }

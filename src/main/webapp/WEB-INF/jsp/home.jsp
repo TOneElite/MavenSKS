@@ -99,8 +99,7 @@
                 <td>
                     <c:choose>
                         <c:when test="${fn:split(queue.users, ', ')[0]==username}">
-                            <button type="button">Endre</button>
-                            <button type="button">Fjern</button>
+                            <a href="delete?id=${queue.id}">Slett køpost</a>                            
                         </c:when>
                     </c:choose>
                 </td>
