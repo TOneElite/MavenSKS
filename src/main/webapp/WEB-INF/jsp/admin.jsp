@@ -72,7 +72,10 @@
                             <td class="aminUserTableCell">Ikke Implementert</td>
                             <td class="adminUserTableEditCell">
                                 <a href="#" class="adminLinks">Detaljer</a>
-                                <a href="#" class="adminLinks editLinkPadding">Endre</a>
+                                <form action="<c:url value="/admin/updateUser"/>" method="POST">
+                                    <input type="hidden" name="email" value="${users.email}"/>
+                                    <a href="#" onclick="this.parentNode.submit()">Endre</a>
+                                </form>
                                 <a href="#" class="adminLinks editLinkPadding">Slett</a>
                             </td>
                         </tr>

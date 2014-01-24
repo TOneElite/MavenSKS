@@ -95,4 +95,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/configureSubject.jsp"/>
     </definition>
     
+    <definition name="endreBruker" extends="template">
+        <put-attribute name="title" value="Endre Bruker"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/endre-bruker.jsp"/>
+    </definition>
+    
 </tiles-definitions>

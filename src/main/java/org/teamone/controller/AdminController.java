@@ -42,21 +42,14 @@ public class AdminController {
     @RequestMapping(value = "/access/admin", method = RequestMethod.GET)
     public String adminView(
             @RequestParam(value = "con", required = false) String con, Model model) {
-        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+        
         model.addAttribute("username", auth.getName());
         model.addAttribute("users", userJDBCTemplate.listUsersCon(con));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
-        // Check for admin rights
-        boolean admin = false;
-        for (GrantedAuthority ga : auth.getAuthorities()) {
-            if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
-                admin = true;
-                model.addAttribute("isAdmin", admin);
-            }
-        }
+        
         return "admin";
     }
 
@@ -81,9 +74,9 @@ public class AdminController {
             @RequestParam(value = "roles", required = false) String[] roles,
             @RequestParam(value = "subjects", required = false) String[] subjects,
             Model model) {
-
-        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
@@ -145,8 +138,9 @@ public class AdminController {
             @RequestParam(value = "code", required = false) String subjectCode,
             @RequestParam(value = "name", required = false) String subjectName,
             Model model) {
-        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+
         model.addAttribute("username", auth.getName());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
@@ -182,8 +176,9 @@ public class AdminController {
      */
     @RequestMapping(value = "/admin")
     public String adminHomeView(Model model) {
-        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("username", auth.getName());
@@ -191,9 +186,24 @@ public class AdminController {
         return "admin";
     }
 
-    private void menuItems(Model model) {
+    @RequestMapping(value = "/admin/updateUser", method = RequestMethod.POST)
+    public String updateUser(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        menuItems(model, auth);
+        return "endreBruker";
+    }
+    
+    private void menuItems(Model model, Authentication auth) {
+        model.addAttribute("username", auth.getName());
         model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
         model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
+        boolean admin = false;
+        for (GrantedAuthority ga : auth.getAuthorities()) {
+            if (ga.toString().equals("ROLE_ADMIN")) {
+                admin = true;
+                model.addAttribute("isAdmin", admin);
+            }
+        }
     }
+    
 }
