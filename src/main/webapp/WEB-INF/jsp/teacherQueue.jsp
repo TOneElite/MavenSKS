@@ -9,8 +9,7 @@
     <div id ="teacherQueue">
         <section id="queueHeader">
             <div id="queueInfo">
-                <h1>Kø i <span id="subjectHeader"></span></h1> 
-
+                <h1>Kø i <c:out value="${thisSubject.name}" /></h1> 
 
                 <c:choose>
                     <c:when test="${thisSubject.status eq 0}"><button class = "queueButton" name = "queueStatus" type = "submit" value = "0">Åpne køen</button></c:when>
@@ -69,60 +68,46 @@
                                 </p></td>
                         </tr>
                     </c:forEach>
-
                 </table>
         </section>
+    </div>
 </form>
 
 
 <script language="javascript">
+                    $(".queueRulesHeader").click(function() {
 
-    <c:set var="defaultSubject" value="${subjects[0]}" />
-    if (sessionStorage.activeSubject == null)
-        sessionStorage.activeSubject = "${defaultSubject.name}";
-    document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    function changeSubject(subject) {
-        sessionStorage.activeSubject = subject;
-        document.getElementById("subjectHeader").innerHTML = sessionStorage.activeSubject;
-    }
+                        $queueRulesHeader = $(this);
+                        $queueRulesContent = $queueRulesHeader.next();
+                        $queueRulesContent.slideToggle(500, function() {
+                        });
+                    });
 
-    $(".queueRulesHeader").click(function() {
+                    $(document).ready(function() {
+                        $('td p').hide();
+                        $('td p:first').show();
+                        $('#rows').addClass("selected");
 
-        $queueRulesHeader = $(this);
-        $queueRulesContent = $queueRulesHeader.next();
-        $queueRulesContent.slideToggle(500, function() {
-        });
-    });
+                        $('td').click(function() {
+                            $('td p').hide();
+                            $('tr').removeClass("selected");
+                            $(this).closest('tr').find('p').show();
+                            $('tr .check').prop("checked", false);
+                            $(this).closest('tr').find('.check').prop("checked", true);
+                            $(this).closest('tr').addClass("selected");
 
+                        }
+                        );
+                    }
+                    );
 
+                    $("tr td:contains('hjelp')").each(function(index) {
+                        if (index % 2 === 0) {
+                            $(this).closest('tr').addClass("helpedOdd");
+                        } else {
+                            $(this).closest('tr').addClass("helpedEven");
+                        }
 
-    $(document).ready(function() {
-        $('td p').hide();
-        $('td p:first').show();
-        $('#rows').addClass("selected");
-
-        $('td').click(function() {
-            $('td p').hide();
-            $('tr').removeClass("selected");
-            $(this).closest('tr').find('p').show();
-            $('tr .check').prop("checked", false);
-            $(this).closest('tr').find('.check').prop("checked", true);
-            $(this).closest('tr').addClass("selected");
-
-        }
-        );
-    }
-    );
-
-    $("tr td:contains('hjelp')").each(function(index) {
-        if (index % 2 === 0) {
-            $(this).closest('tr').addClass("helpedOdd");
-        } else {
-            $(this).closest('tr').addClass("helpedEven");
-        }
-
-    });
+                    });
 
 </script> 
-
-</div>
