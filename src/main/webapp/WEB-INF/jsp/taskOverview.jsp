@@ -7,25 +7,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<header id="overview-header">
+<header class="overview-header">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <h1>Øvingsoversikt for <c:out value="${username}"/> </h1>
 </header>
-
+    
 <c:forEach var="subject" items="${subjects}">
     <c:forEach var="studsubject" items="${studentsubjects}">
         <c:if test="${subject.code==studsubject.subjectCode}">
-            <div id="overview-list">
-                <table id="overview-table">
+            <div class="overview-list">
+                <table class="overview-table">
                     <col width="15%">
                     <col width="15%">
                     <tr>
                         <td>
-                            <p id="overview-subject"><c:out value="${subject.name}"/></p>
+                            <p class="overview-subject"><c:out value="${subject.name}"/></p>
                         </td>
                         <td>
-                            <section id="overview-tasks">
-                                <table id="overview-tasktable">
+                            <section class="overview-tasks">
+                                <table class="overview-tasktable">
+                                    <c:forEach var="completed" items="${completedsubjects}">
+                                        test
+                                        <c:if test="${completed.code==subject.code}">
+                                            test!
+                                        </c:if>
+                                    </c:forEach>
                                     <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
                                         <td
                                             <c:forEach var="thetasks" items="${userTasks}">
@@ -43,19 +49,20 @@
                             </section>
                         </td>
                     </tr>
-                </table>
-                <div class="overviewContainer">
-                    <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
-                    <div class="overviewRulesContent">
-                        <p>
-                            Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                            Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                        </p>
-                    </div>
-                </div>
             </div>
-        </c:if>
-    </c:forEach>
+        </table>
+        <div class="overviewContainer">
+            <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
+            <div class="overviewRulesContent">
+                <p>
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                </p>
+            </div>
+        </div>
+    </div>
+</c:if>
+</c:forEach>
 </c:forEach>
 
 

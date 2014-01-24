@@ -739,7 +739,7 @@ h1{
 
 /****************************Overview Start*************************/
 
-#overview-header{
+.overview-header{
     background-color: #f8f8f8;
     padding: 2%;
     text-align: left;    
@@ -752,7 +752,7 @@ h1{
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px 1px #e3e8e5;
 }
-#overview-list{
+.overview-list{
     overflow: hidden;
     padding: 0px;
     border: 1px solid #ccc;
@@ -760,13 +760,13 @@ h1{
     margin: 0px;
     margin-bottom: 10px;
 }
-#overview-table{
+.overview-table{
     background-color: #F0F0F0;
     border-collapse: collapse;
     border:none;
     width: 100%;
 }
-#overview-table td{
+.overview-table td{
     padding: 4px;
 }
 .highlight-whole {
@@ -784,20 +784,27 @@ h1{
     display: none;
     padding : 5px;
 }
-#overview-subject{
+.overview-subject{
     font-weight: bold
 }
-#overview-tasks{
+.overview-tasks{
     float: right;
 }
-#overview-tasktable td{
+.overview-tasktable td{
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px 1px #e3e8e5;
     padding:0px;
     margin-bottom: 0px;
 }
+.overview-table-done{
+    border: 1px solid #ccc;
+    border-color: #74e571;
+    box-shadow: 0 1px 1px 1px #e3e8e5;
+    padding:0px;
+    margin-bottom: 0px;
+}
 
-#overview-tasktable td p{
+.overview-tasktable td p{
     display: inline;
     padding: 2px;
 }

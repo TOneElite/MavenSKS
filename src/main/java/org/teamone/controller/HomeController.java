@@ -87,7 +87,6 @@ public class HomeController {
     public String taskOverview(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        List<ApprovedTasks> listApprovedTasks = userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName());
         List<Subject> listYourSubjects = subjectJDBCTemplate.getYourSubjects("ROLE_USER", auth.getName());
         List<Subject> listCompletedSubjects = new ArrayList<Subject>();
 
@@ -102,11 +101,16 @@ public class HomeController {
                 listCompletedSubjects.add(s);
             }
         }
+        
+        for(Subject s:listCompletedSubjects){
+            System.out.println("FAG: " + s.getName());
+        }
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
+        model.addAttribute("completedsubject", listCompletedSubjects);
         menuItems(model);
         // Check for admin rights
         boolean admin, teacher, user = false;
