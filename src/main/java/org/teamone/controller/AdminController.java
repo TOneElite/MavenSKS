@@ -42,6 +42,7 @@ public class AdminController {
     @RequestMapping(value = "/access/admin", method = RequestMethod.GET)
     public String adminView(
             @RequestParam(value = "con", required = false) String con, Model model) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("users", userJDBCTemplate.listUsersCon(con));
@@ -81,6 +82,7 @@ public class AdminController {
             @RequestParam(value = "subjects", required = false) String[] subjects,
             Model model) {
 
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -108,27 +110,27 @@ public class AdminController {
         List<String> sub = new ArrayList<String>();
         List<Role> rolecheck = roleJDBCTemplate.getSubjectRoles(email);
         System.out.println(rolecheck.size());
-        if(rolecheck.size() == 0){
-            for(int i = 0; i < subjects.length; i++){
-                for(int j = 0; j < roles.length; j++){
-                    sub.add(subjects[i]+"/"+roles[j]);
+        if (rolecheck.size() == 0) {
+            for (int i = 0; i < subjects.length; i++) {
+                for (int j = 0; j < roles.length; j++) {
+                    sub.add(subjects[i] + "/" + roles[j]);
                 }
             }
-        }else{
+        } else {
             for (Role rolee : rolecheck) {
                 for (int i = 0; i < subjects.length; i++) {
                     for (int j = 0; j < roles.length; j++) {
                         if (subjects[i].equals(rolee.getSubjectCode()) && roles[j].equals(rolee.getRoleName())) {
                             System.out.println("role does");
-                        }else{
+                        } else {
                             System.out.println("role not");
-                            sub.add(subjects[i]+"/"+roles[j]);
+                            sub.add(subjects[i] + "/" + roles[j]);
                         }
                     }
                 }
             }
         }
-        for(String works : sub){
+        for (String works : sub) {
             String[] split = works.split("/");
             role.setRoleName(split[1]);
             role.setSubjectCode(split[0]);
@@ -143,6 +145,7 @@ public class AdminController {
             @RequestParam(value = "code", required = false) String subjectCode,
             @RequestParam(value = "name", required = false) String subjectName,
             Model model) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("users", userJDBCTemplate.listUsers());
@@ -179,11 +182,18 @@ public class AdminController {
      */
     @RequestMapping(value = "/admin")
     public String adminHomeView(Model model) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("username", auth.getName());
 
         return "admin";
+    }
+
+    private void menuItems(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
     }
 }

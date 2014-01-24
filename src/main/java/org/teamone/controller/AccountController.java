@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.teamone.logic.EmailService;
 import org.teamone.domain.User.UserJDBCTemplate;
+import org.teamone.domain.Role.RoleJDBCTemplate;
 
 @Controller
 public class AccountController {
-    
+
     @Autowired
     private UserJDBCTemplate userJDBCTemplate;
-    
+    @Autowired
+    private RoleJDBCTemplate roleJDBCTemplate;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -28,21 +31,23 @@ public class AccountController {
     public String forgotPassword() {
         return "passwordReset";
     }
-    
+
     @RequestMapping("/access/change-password")
     public String changePasswordView(Model model) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         return "change-password";
     }
-    
+
     @RequestMapping(value = "/access/change-password/process", method = RequestMethod.POST)
     public String changePasswordProcess(
             @RequestParam(value = "oldPassword") String oldPassword,
             @RequestParam(value = "newPassword") String newPassword,
             @RequestParam(value = "repeatPassword") String repeatPassword,
             Model model) {
-
+        
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // Get old password from database
         org.teamone.domain.User.User user = userJDBCTemplate.getUserByEmail(auth.getName());
@@ -67,9 +72,10 @@ public class AccountController {
             return "change-password";
         }
     }
-    
+
     @RequestMapping(value = "/open/passwordReset/process")
     public String processPasswordReset(@RequestParam("emailReset") String emailReset, Model model) throws MessagingException {
+        menuItems(model);
         String password = RandomStringUtils.random(8, true, true);
         String email = "Hei, \n det nye passordet ditt er : "
                 + password + "\n Ha en fin dag!ø \n Mvh.\nSKS";
@@ -92,5 +98,10 @@ public class AccountController {
             return "passwordReset";
         }
     }
-    
+
+    private void menuItems(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
+    }
 }

@@ -56,6 +56,7 @@ public class TeacherController {
     @RequestMapping(value = "/access/teacher{subjectCode}", method = RequestMethod.GET)
     public String teacherQueueView(Model model, @PathVariable String subjectCode
     ) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("queues", queueJDBCTemplate.listQueue(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -226,6 +227,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/readfile{subjectCode}", method = RequestMethod.GET)
     public String readfile(@PathVariable String subjectCode, Model model) {
+        menuItems(model);
         model.addAttribute("activeSubject", subjectCode);
         return "readfile";
     }
@@ -302,6 +304,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/access/vertifyTasks/{email}/{subjectCode}", method = RequestMethod.GET)
     public String vertifyTasksForStudent(Model model, @PathVariable String email, @PathVariable String subjectCode) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
         List<ApprovedTasks> approvedTasks = approvedTasksJDBCTemplate.listApprovedTasks(email, subjectCode);
@@ -329,6 +332,7 @@ public class TeacherController {
     @RequestMapping(value = "/access/subjectSettings", method = RequestMethod.GET)
     public String teacherSettings(Model model
     ) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
@@ -341,6 +345,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/subjectSettings{subjectCode}", method = RequestMethod.GET)
     public String subjectSettings(Model model, @PathVariable String subjectCode) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
 
@@ -356,6 +361,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/access/examView{subjectCode}", method = RequestMethod.GET)
     public String examView(Model model, @PathVariable String subjectCode) {
+        menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
         List<User> user = userJDBCTemplate.getUserBySubject(subjectCode, "ROLE_USER");
@@ -393,6 +399,7 @@ public class TeacherController {
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("usercons", userJDBCTemplate.listUsersCon(con));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        menuItems(model);
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
@@ -409,5 +416,11 @@ public class TeacherController {
             }
         }
         return "usersearch";
+    }
+    
+    private void menuItems(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
+        model.addAttribute("teachersubjects", roleJDBCTemplate.getTeacherSubjects(auth.getName()));
     }
 }
