@@ -42,4 +42,10 @@ public class SubjectJDBCTemplate {
         String SQL = "UPDATE subject SET rulestring = ? where subject_code = ?";
         jdbcTemplateObject.update(SQL, new Object[]{ruleString, subjectCode});
     }
+    
+    public List<Subject> getYourSubjects(String rolename, String email){
+        String SQL = "SELECT subject.* FROM user_subject NATURAL JOIN subject WHERE rolename=? AND email=?";
+        List<Subject> subjects = jdbcTemplateObject.query(SQL, new Object[]{rolename, email}, new SubjectMapper());
+        return subjects;
+    }
 }

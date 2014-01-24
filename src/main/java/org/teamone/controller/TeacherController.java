@@ -337,7 +337,7 @@ public class TeacherController {
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
         System.out.println("IS HERE");
         return "teacherSettings";
@@ -350,7 +350,7 @@ public class TeacherController {
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
 
         return "subjectSettings";
@@ -365,7 +365,7 @@ public class TeacherController {
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
 
         return "subjectSettings";
