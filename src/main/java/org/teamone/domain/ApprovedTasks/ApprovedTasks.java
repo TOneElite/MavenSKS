@@ -71,7 +71,7 @@ public class ApprovedTasks {
 		if (!other.getEmail().equals(this.getEmail())) return false;
 		if (!other.getSubjectCode().equals(this.getSubjectCode())) return false;
 		if (other.getTaskNr() != this.getTaskNr()) return false;
-		// if (!other.getApprovedDate().equals(this.getApprovedDate())) return false; // TODO: Dates are buggy, review this.
+		if (!other.getApprovedDate().equals(this.getApprovedDate())) return false; // TODO: Dates are buggy, review this.
 		if (!other.getApprovedBy().equals(this.getApprovedBy())) return false;
 		
 		return true;
