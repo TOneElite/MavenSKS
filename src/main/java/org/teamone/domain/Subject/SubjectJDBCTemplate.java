@@ -25,17 +25,21 @@ public class SubjectJDBCTemplate {
         List<Subject> subjects = jdbcTemplateObject.query(SQL, new SubjectMapper());
         return subjects;
     }
-    
-    public void setStatus(int status, String subjectCode){
+
+    public void setStatus(int status, String subjectCode) {
         String SQL = "UPDATE subject SET status = ? where subject_code = ?";
-         jdbcTemplateObject.update(SQL, status, subjectCode);        
+        jdbcTemplateObject.update(SQL, status, subjectCode);
     }
-    
-    public void addSubject(Subject subject){
+
+    public void addSubject(Subject subject) {
         String SQL = "INSERT INTO subject (subject_code, subject_name, status, nr_of_tasks, rulestring) VALUES (?,?,0,0,1)";
         jdbcTemplateObject.update(SQL, new Object[]{
             subject.getCode(),
-            subject.getName(),
-        });
+            subject.getName(),});
+    }
+
+    public void setRuleString(String subjectCode, String ruleString) {
+        String SQL = "UPDATE subject SET rulestring = ? where subject_code = ?";
+        jdbcTemplateObject.update(SQL, new Object[]{ruleString, subjectCode});
     }
 }

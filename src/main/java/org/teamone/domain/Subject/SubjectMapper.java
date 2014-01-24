@@ -15,6 +15,7 @@ public class SubjectMapper implements RowMapper<Subject> {
         subject.setStatus(rs.getInt("status"));
         subject.setNrOfTasks(rs.getInt("nr_of_tasks"));
         subject.setRules(new RuleService().readRuleString(rs.getInt("nr_of_tasks"), rs.getString("rulestring")));
+        subject.setRuleString(rs.getString("rulestring"));
         return subject;
     }
 }

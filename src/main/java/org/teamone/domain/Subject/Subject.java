@@ -7,6 +7,16 @@ public class Subject {
     private int status;
     private int nrOfTasks;
     private int[][] rules;
+    private String ruleString;
+
+    public String getRuleString() {
+        return ruleString;
+    }
+
+    public void setRuleString(String ruleString) {
+        this.ruleString = ruleString;
+    }
+
     public int[][] getRules() {
         return rules;
     }
@@ -14,8 +24,7 @@ public class Subject {
     public void setRules(int[][] rules) {
         this.rules = rules;
     }
-    
-    
+
     public String getCode() {
         return code;
     }
@@ -54,19 +63,31 @@ public class Subject {
     }
 
     @Override
-	public boolean equals(Object obj){
-		if(obj == null ||!(obj instanceof Subject)) return false;
-		
-		Subject other = (Subject) obj;
-		if (!other.getName().equals(this.getName())) return false;
-		if (other.getNrOfTasks() != this.getNrOfTasks()) return false;
-		for(int i=0; i<other.getRules().length; i++){
-			for (int j=0; j<other.getRules()[i].length; i++){
-				if (other.getRules()[i][j] != this.getRules()[i][j]) return false;
-			}
-		}
-		if (other.getStatus() != this.getStatus()) return false;
-		if (other.getCode().equals(this.getCode())) return false;
-		return true;
-	}
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Subject)) {
+            return false;
+        }
+
+        Subject other = (Subject) obj;
+        if (!other.getName().equals(this.getName())) {
+            return false;
+        }
+        if (other.getNrOfTasks() != this.getNrOfTasks()) {
+            return false;
+        }
+        for (int i = 0; i < other.getRules().length; i++) {
+            for (int j = 0; j < other.getRules()[i].length; i++) {
+                if (other.getRules()[i][j] != this.getRules()[i][j]) {
+                    return false;
+                }
+            }
+        }
+        if (other.getStatus() != this.getStatus()) {
+            return false;
+        }
+        if (other.getCode().equals(this.getCode())) {
+            return false;
+        }
+        return true;
+    }
 }

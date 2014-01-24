@@ -343,23 +343,35 @@ public class TeacherController {
         return "teacherSettings";
     }
 
-    @RequestMapping(value = "/access/subjectSettings{subjectCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/subjectSettings/{subjectCode}", method = RequestMethod.GET)
     public String subjectSettings(Model model, @PathVariable String subjectCode) {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Subject subject = subjectJDBCTemplate.getSubject(subjectCode);
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
-        model.addAttribute("subjectname", subject.getName());
-        model.addAttribute("subjectTaskNr", subject.getNrOfTasks());
         model.addAttribute("isTeacher", true);
 
         return "subjectSettings";
     }
 
-    @RequestMapping(value = "/access/examView{subjectCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/subjectSettings/{subjectCode}/process", method = RequestMethod.GET)
+    public String subjectSettingsProcess(Model model, @PathVariable String subjectCode,
+            @RequestParam(value = "ruleString", required = false) String ruleString) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        subjectJDBCTemplate.setRuleString(subjectCode, ruleString.replaceAll(" ", ""));
+
+        model.addAttribute("username", auth.getName());
+        model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("isTeacher", true);
+
+        return "subjectSettings";
+    }
+
+    @RequestMapping(value = "/access/examView/{subjectCode}", method = RequestMethod.GET)
     public String examView(Model model, @PathVariable String subjectCode) {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -389,7 +401,6 @@ public class TeacherController {
         return "eksamensrapport";
     }
 
-
     @RequestMapping(value = "/access/usersearch", method = RequestMethod.GET)
 
     public String userSearch(
@@ -417,7 +428,7 @@ public class TeacherController {
         }
         return "usersearch";
     }
-    
+
     private void menuItems(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
