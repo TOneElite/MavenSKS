@@ -17,7 +17,7 @@ VALUES	('ROLE_ADMIN'),
 
 INSERT INTO room (room_code, tablecount, picturelink, description)
 VALUES	('KA-BR233', 9, '/res/labb1.bmp', 'Labben i 2.Etasje?'),
-		('KA-KE101', 5, '/res/kake.jpg', 'Skolekjøkkenet');
+		('KA-KE101', 5, '/res/kake.jpg', 'Grupperom');
 
 INSERT INTO user_subject (email, subject_code, rolename)
 VALUES	('megaman@rockman.no', '2ING-2003-14V', 'ROLE_USER'),
