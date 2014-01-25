@@ -65,7 +65,8 @@
             <br/>
             <form accept-charset="utf-8" action="<c:url value="/access/updateUserOK"/>" method="POST">
                 <label for="firstName">Email:</label>
-                <input class="controller" id="firstName" name="email" type="text" value="${email}" readonly/>
+                <input class="controller" id="firstName" type="text" placeholder="${email}" readonly/>
+                <input name="email" type="hidden" value="${email}"/>
 
                 <label for="role">Fag:</label>
                 <select class="multiSelect" name="ssubject">
