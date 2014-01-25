@@ -38,7 +38,6 @@ public class QueueApproveJDBCTemplateTest {
 
 	/**
 	 * Test of listQueueApproveID method, of class QueueApproveJDBCTemplate.
-         * Not sure why, but the listQueueApproveID method pulls the 
 	 */
 	@Test
 	public void testListQueueApproveID() {
