@@ -213,7 +213,6 @@ public class AdminController {
             @RequestParam(value = "ssubject", required = false) String ssubject,
             @RequestParam(value = "srole", required = false) String srole,
             @RequestParam(value = "submit", required = false) String submit,
-            
             @RequestParam(value = "firstname", required = false) String firstname,
             @RequestParam(value = "lastname", required = false) String lastname,
             @RequestParam(value = "email", required = false) String email,
@@ -224,6 +223,7 @@ public class AdminController {
         User user = userJDBCTemplate.getUserByEmail(email);
         System.out.println(user.getFirstName());
         List<User> users = userJDBCTemplate.listUsers();
+        List<Role> roles = roleJDBCTemplate.getSubjectRoles(email);
         for (User use : users) {
             if (use.getEmail().equals(email)) {
                 user = use;
@@ -235,7 +235,7 @@ public class AdminController {
         user.setFirstName(firstname);
         user.setLastName(lastname);
         user.setPassword(password);
-        if(Endre != null){
+        if (Endre != null) {
             userJDBCTemplate.updateUser(user);
         }
         model.addAttribute("firstname", user.getFirstName());
@@ -243,7 +243,6 @@ public class AdminController {
         model.addAttribute("email", email);
         model.addAttribute("password", user.getPassword());
         if (submit != null) {
-            
             User user2 = userJDBCTemplate.getUserByEmail(email);
             model.addAttribute("firstname", user2.getFirstName());
             model.addAttribute("lastname", user2.getLastName());
@@ -253,7 +252,16 @@ public class AdminController {
             role.setEmail(email);
             role.setRoleName(srole);
             role.setSubjectCode(ssubject);
-            roleJDBCTemplate.create(role);
+            Boolean rexist = false;
+            for (Role roless : roles) {
+                if (roless.getRoleName().equals(role.getRoleName())
+                        && roless.getSubjectCode().equals(role.getSubjectCode())) {
+                    rexist = true;
+                }
+            }
+            if (rexist == false) {
+                roleJDBCTemplate.create(role);
+            }
             model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
             model.addAttribute("subject", roleJDBCTemplate.getSubjectRoles(email));
             model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
