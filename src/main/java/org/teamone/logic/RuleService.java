@@ -14,13 +14,13 @@ import org.apache.commons.lang.StringUtils;
 public class RuleService {
 
     /**
-     * Method that takes task rules on format (nr. of tasks){task1, task2,
-     * task3,
-     *
-     * @param nrOfTasks
-     * @param rules
-     * @return
-     */
+	 * Replaces last character in the string s with the string 'with'
+	 * 
+	 * @param s
+	 * @param character
+	 * @param with
+	 * @return 
+	 */
     public String replaceLast(String s, String character, String with) {
         StringBuilder b = new StringBuilder(s);
         b.replace(s.lastIndexOf(character), s.lastIndexOf(character) + 1, with);
@@ -28,6 +28,14 @@ public class RuleService {
         return s;
     }
 
+	
+	/**
+	 * Takes a int[][] as argument and converts this into the string
+	 * easily saved in a database. 
+	 * 
+	 * @param table
+	 * @return 
+	 */
     public String readTabletoRules(int[][] table) {
         String ruleString = "";
         for (int i = 0; i < table.length; i++) {
@@ -44,6 +52,14 @@ public class RuleService {
         return ruleString;
     }
 
+	/**
+     * Method that takes task rules on format (nr. of tasks){task1, task2,
+     * task3,
+     * Method will fail if the given string is not perfectly formatted.
+     * @param nrOfTasks
+     * @param rules
+     * @return
+     */
     public int[][] readRuleString(int nrOfTasks, String rules) {
         String[] ruleStrings = rules.split(";");
         int[][] tasks = new int[StringUtils.countMatches(rules, ";") + 1][nrOfTasks + 1];
@@ -61,6 +77,15 @@ public class RuleService {
         return tasks;
     }
 
+	/**
+	 * Takes the list of approved tasks a user has, and compares this to the rules
+	 * the subject requires. Returns whether or not the user has enough tasks done
+	 * to be able to take exams.
+	 * 
+	 * @param taskDone
+	 * @param rules
+	 * @return 
+	 */
     public boolean vertifyRequirements(boolean[] taskDone, int[][] rules) {
         int required = 0;
         int done = 0;
@@ -83,7 +108,13 @@ public class RuleService {
 
         return true;
     }
-
+	
+	/**
+	 * Converts the rule-table to a readable text sentence
+	 * 
+	 * @param rules
+	 * @return 
+	 */
     public String[] readRulesNOR(int[][] rules) {
         String[] rulesString = new String[rules.length];
 
@@ -100,5 +131,14 @@ public class RuleService {
 
         return rulesString;
     }
+	
+	public static void main(String[] args){
+		RuleService test = new RuleService();
+		int[][] rules = {{5,1,1,1,1,1,1,1}, {1,1,1,0,0,0,0,0}, {3,0,0,0,1,1,1,0}};
+		String[] items = test.readRulesNOR(rules);
+		for (String item : items){
+			System.out.println(item);
+		}
+	}
 
 }
