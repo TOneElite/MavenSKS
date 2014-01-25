@@ -112,9 +112,7 @@ public class QueueJDBCTemplate {
 	}
 
 	public void create(Queue queue, QueueGroup group) {
-		System.out.println(queue.toString());
 		int id = createReturnID(queue);
-		System.out.println(id);
 		for (String groupMember : group.getUsers()) {
 			for (int i : group.getTaskNrs()) {
 				String SQL2 = "INSERT INTO queue_group(queue_id, email, task_nr) VALUES (?,?,?)";

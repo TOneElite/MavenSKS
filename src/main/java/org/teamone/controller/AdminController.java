@@ -102,7 +102,6 @@ public class AdminController {
         }
         List<String> sub = new ArrayList<String>();
         List<Role> rolecheck = roleJDBCTemplate.getSubjectRoles(email);
-        System.out.println(rolecheck.size());
         if (rolecheck.size() == 0) {
             for (int i = 0; i < subjects.length; i++) {
                 for (int j = 0; j < roles.length; j++) {
@@ -114,9 +113,7 @@ public class AdminController {
                 for (int i = 0; i < subjects.length; i++) {
                     for (int j = 0; j < roles.length; j++) {
                         if (subjects[i].equals(rolee.getSubjectCode()) && roles[j].equals(rolee.getRoleName())) {
-                            System.out.println("role does");
                         } else {
-                            System.out.println("role not");
                             sub.add(subjects[i] + "/" + roles[j]);
                         }
                     }
@@ -148,12 +145,9 @@ public class AdminController {
         List<Subject> subjects = subjectJDBCTemplate.listSubjects();
         Boolean exists = false;
         for (Subject subs : subjects) {
-            System.out.println(subs.getCode() + " test " + subjectCode);
             if (subs.getCode().equals(subjectCode) || subs.getName().equals(subjectName)) {
-                System.out.println("exists");
                 exists = true;
             }
-            System.out.println("test2");
         }
 
         if (exists == false) {
@@ -221,7 +215,6 @@ public class AdminController {
             @RequestParam(value = "Avbryt", required = false) String Avbryt,
             Model model) {
         User user = userJDBCTemplate.getUserByEmail(email);
-        System.out.println(user.getFirstName());
         List<User> users = userJDBCTemplate.listUsers();
         List<Role> roles = roleJDBCTemplate.getSubjectRoles(email);
         for (User use : users) {

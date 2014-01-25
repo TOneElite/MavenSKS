@@ -67,7 +67,6 @@ public class UserJDBCTemplate {
     }
     
     public void create(User user){
-        System.out.println(user.toString());
         String SQL = "INSERT INTO users (email, firstname, lastname, password, enabled, registerdate) values(?,?,?,?,1,?)";
         jdbcTemplateObject.update(SQL, new Object[]{
             user.getEmail(),
