@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -101,6 +100,22 @@ public class RoleJDBCTemplateTest {
                 List<Role> test = jdbc.getRoleInSubject("leonardo@ninjaturtle.jap", "2ING-2003-14V");
                 // Check if the user has the right amount of roles in the subject.
                 assertEquals(2, test.size());
+                
+                // Try to insert with invalid data.
+                try{
+                    role.setEmail("fail@fail.no");
+                    jdbc.create(role);
+                    role.setEmail("leonardo@ninjaturtle.jap");
+                    role.setRoleName("fail");
+                    jdbc.create(role);
+                    role.setRoleName("ROLE_USER");
+                    role.setSubjectCode("fail");
+                    jdbc.create(role);
+                    assert(false);
+                }catch(Exception e){
+                    assert(true);
+                }
+                
                 // Check if the user has USER_ROLE in the subject
                 for(Role r : test){
                     if(r.getRoleName().equals("ROLE_USER")){
