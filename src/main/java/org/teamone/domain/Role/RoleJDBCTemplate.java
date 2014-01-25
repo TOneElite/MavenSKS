@@ -27,7 +27,21 @@ public class RoleJDBCTemplate {
         List<Role> roles= jdbcTemplateObject.query(SQL, new Object[]{email}, new RoleMapper());
         return roles;
     }
-
+    
+    public List<Role> getSubjectRolesCon(String email, String con) {
+        if(con.equals(null)){
+            String SQL = "SELECT * FROM user_subject WHERE email=?";
+            List<Role> roles= jdbcTemplateObject.query(SQL, new Object[]{email}, new RoleMapper());
+            return roles;
+        }else{
+            String a = "%"+con+"%";
+             String SQL = "SELECT * FROM user_subject WHERE email=? AND subject_code LIKE ?";
+            List<Role> roles = jdbcTemplateObject.query(SQL, new Object[]{email,a}, 
+                    new RoleMapper(){
+            });
+            return roles;
+        }
+    }
     public void create(Role role) {
         String SQL = "insert into user_subject (email, subject_code, rolename) values(?,?,?)";
         jdbcTemplateObject.update(SQL, new Object[]{

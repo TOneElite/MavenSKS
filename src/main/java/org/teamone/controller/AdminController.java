@@ -44,12 +44,12 @@ public class AdminController {
             @RequestParam(value = "con", required = false) String con, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         menuItems(model, auth);
-        
+
         model.addAttribute("username", auth.getName());
         model.addAttribute("users", userJDBCTemplate.listUsersCon(con));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
-        
+
         return "admin";
     }
 
@@ -189,8 +189,16 @@ public class AdminController {
     @RequestMapping(value = "/access/updateUser", method = RequestMethod.POST)
     public String updateUser(
             @RequestParam("email") String email,
+            @RequestParam(value = "con", required = false) String con,
             Model model) {
         User user = userJDBCTemplate.getUserByEmail(email);
+        if (con == null) {
+            model.addAttribute("subject", roleJDBCTemplate.getSubjectRoles(email));
+        } else {
+            model.addAttribute("subject", roleJDBCTemplate.getSubjectRolesCon(email, con));
+        }
+        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
         model.addAttribute("firstname", user.getFirstName());
         model.addAttribute("lastname", user.getLastName());
         model.addAttribute("email", email);
@@ -199,40 +207,63 @@ public class AdminController {
         menuItems(model, auth);
         return "endreBruker";
     }
-    
+
     @RequestMapping(value = "/access/updateUserOK", method = RequestMethod.POST)
     public String updateUserOK(
-            @RequestParam("firstname") String firstname,
-            @RequestParam("lastname") String lastname,
-            @RequestParam("email") String email,
-            @RequestParam("password") String password,
-            @RequestParam(value="Endre", required = false) String Endre,
-            @RequestParam(value="Avbryt", required = false) String Avbryt,
+            @RequestParam(value = "ssubject", required = false) String ssubject,
+            @RequestParam(value = "srole", required = false) String srole,
+            @RequestParam(value = "submit", required = false) String submit,
+            
+            @RequestParam(value = "firstname", required = false) String firstname,
+            @RequestParam(value = "lastname", required = false) String lastname,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "Endre", required = false) String Endre,
+            @RequestParam(value = "Avbryt", required = false) String Avbryt,
             Model model) {
         User user = userJDBCTemplate.getUserByEmail(email);
         System.out.println(user.getFirstName());
         List<User> users = userJDBCTemplate.listUsers();
-        for(User use : users){
-            if(use.getEmail().equals(email)){
+        for (User use : users) {
+            if (use.getEmail().equals(email)) {
                 user = use;
             }
         }
-        if(Avbryt != null){
+        if (Avbryt != null) {
             return "redirect:admin";
         }
         user.setFirstName(firstname);
         user.setLastName(lastname);
         user.setPassword(password);
-        userJDBCTemplate.updateUser(user);
+        if(Endre != null){
+            userJDBCTemplate.updateUser(user);
+        }
         model.addAttribute("firstname", user.getFirstName());
         model.addAttribute("lastname", user.getLastName());
         model.addAttribute("email", email);
         model.addAttribute("password", user.getPassword());
+        if (submit != null) {
+            
+            User user2 = userJDBCTemplate.getUserByEmail(email);
+            model.addAttribute("firstname", user2.getFirstName());
+            model.addAttribute("lastname", user2.getLastName());
+            model.addAttribute("email", email);
+            model.addAttribute("password", user2.getPassword());
+            Role role = new Role();
+            role.setEmail(email);
+            role.setRoleName(srole);
+            role.setSubjectCode(ssubject);
+            roleJDBCTemplate.create(role);
+            model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
+            model.addAttribute("subject", roleJDBCTemplate.getSubjectRoles(email));
+            model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+            return "endreBruker";
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         menuItems(model, auth);
         return "endreBruker";
     }
-    
+
     private void menuItems(Model model, Authentication auth) {
         model.addAttribute("username", auth.getName());
         model.addAttribute("studentsubjects", roleJDBCTemplate.getStudentSubjects(auth.getName()));
@@ -245,5 +276,4 @@ public class AdminController {
             }
         }
     }
-    
 }
