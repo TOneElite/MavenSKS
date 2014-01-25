@@ -145,6 +145,26 @@ public class RoleJDBCTemplateTest {
          */
         @Test
         public void testGetTeacherSubjects(){
+            String email = "leonardo@ninjaturtle.jap";
+            String subjectCode1 = "TDAT-1995-12H";
+            String subjectCode2 = "2ING-2003-14V";
             
+            List<Role> roles = jdbc.getTeacherSubjects(email);
+            assertEquals(2, roles.size());
+            
+            boolean role1OK = false;
+            boolean role2OK = false;
+            
+            for(Role r : roles){
+                if(r.getSubjectCode().equals(subjectCode1))
+                    role1OK = true;
+                if(r.getSubjectCode().equals(subjectCode2))
+                    role2OK = true;
+            }
+            
+            if(role1OK && role2OK)
+                assert(true);
+            else
+                assert(false);
         }
 }
