@@ -48,11 +48,8 @@ public class RuleService {
         String[] ruleStrings = rules.split(";");
         int[][] tasks = new int[StringUtils.countMatches(rules, ";") + 1][nrOfTasks + 1];
 
-        System.out.println(tasks.length);
-
         for (int i = 0; i < ruleStrings.length; i++) {
             String tempRule[] = ruleStrings[i].split("[,{}]");
-            System.out.println(tempRule.length);
 
             tasks[i][0] = Integer.parseInt(tempRule[0]);
 
@@ -78,9 +75,7 @@ public class RuleService {
                     }
                 }
             }
-            System.out.println(required + " " +done);
             if (done < required) {
-                System.out.println("FAILED ON :"+i);
                 return false;
             }
             done = 0;
@@ -101,10 +96,6 @@ public class RuleService {
             }
             rulesString[i] = replaceLast(rulesString[i], ",", "");
             rulesString[i] = replaceLast(rulesString[i], ",", " og");
-        }
-
-        for (String s : rulesString) {
-            System.out.println(s);
         }
 
         return rulesString;

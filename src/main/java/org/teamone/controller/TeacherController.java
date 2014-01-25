@@ -62,35 +62,20 @@ public class TeacherController {
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         model.addAttribute("currentS", subjectCode);
         model.addAttribute("thisSubject", subjectJDBCTemplate.getSubject(subjectCode));
-
-        System.out.println("test: " + auth.getAuthorities());
         // Check for admin rights
         boolean admin = false;
         boolean teacher = false;
         boolean user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
             }
             if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }
@@ -120,27 +105,14 @@ public class TeacherController {
         boolean user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
             }
             if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }
@@ -209,8 +181,6 @@ public class TeacherController {
                     at.setEmail(email);
                     at.setSubjectCode(subjectCode);
                     at.setTaskNr(taskNr);
-
-                    System.out.println(at.toString());
                     approvedTasksJDBCTemplate.approve(at);
 
                 }
@@ -265,7 +235,6 @@ public class TeacherController {
                 role.setEmail(words[(i * 4) + 2]);
                 user.setPassword(words[(i * 4) + 3]);
                 role.setSubjectCode(subjectCode);
-                System.out.println(subjectCode);
                 role.setRoleName("ROLE_USER");
                 user.setDate(date);
                 userRights.setRole(role);
@@ -283,7 +252,6 @@ public class TeacherController {
                 Boolean rexist = false;
                 for (Role rolee : roles) {
                     if (subjectCode.equals(rolee.getSubjectCode())) {
-                        System.out.println(user.getEmail() + " code " + role.getSubjectCode() + " list " + rolee.getSubjectCode());
                         rexist = true;
                     }
                 }
@@ -318,8 +286,6 @@ public class TeacherController {
 
         boolean ready = new RuleService().vertifyRequirements(tasksDone, subject.getRules());
 
-        System.out.println("Ready for exam?: " + ready);
-
         model.addAttribute("username", auth.getName());
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -339,7 +305,6 @@ public class TeacherController {
         model.addAttribute("users", userJDBCTemplate.listUsers());
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
-        System.out.println("IS HERE");
         return "teacherSettings";
     }
 
@@ -348,7 +313,6 @@ public class TeacherController {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
         model.addAttribute("isTeacher", true);
@@ -356,12 +320,26 @@ public class TeacherController {
         return "subjectSettings";
     }
 
-    @RequestMapping(value = "/access/subjectSettings/{subjectCode}/process", method = RequestMethod.GET)
-    public String subjectSettingsProcess(Model model, @PathVariable String subjectCode,
+    @RequestMapping(value = "/access/subjectSettings/{subjectCode}/process/updateRuleString", method = RequestMethod.GET)
+    public String subjectSettingsProcessRuleString(Model model, @PathVariable String subjectCode,
             @RequestParam(value = "ruleString", required = false) String ruleString) {
         menuItems(model);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         subjectJDBCTemplate.setRuleString(subjectCode, ruleString.replaceAll(" ", ""));
+
+        model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
+        model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
+        model.addAttribute("isTeacher", true);
+
+        return "subjectSettings";
+    }
+
+    @RequestMapping(value = "/access/subjectSettings/{subjectCode}/process/updateTasks", method = RequestMethod.GET)
+    public String subjectSettingsProcessNrOfTasks(Model model, @PathVariable String subjectCode,
+            @RequestParam(value = "NrOfTasks", required = false) String nrOfTasks) {
+        menuItems(model);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        subjectJDBCTemplate.setNrOfTasks(subjectCode, Integer.parseInt(nrOfTasks));
 
         model.addAttribute("selectedSubject", subjectJDBCTemplate.getSubject(subjectCode));
         model.addAttribute("subjects", subjectJDBCTemplate.getYourSubjects("ROLE_TEACHER", auth.getName()));
@@ -383,7 +361,6 @@ public class TeacherController {
                 tasksDone[as.getTaskNr() - 1] = true;
             }
             boolean ready = new RuleService().vertifyRequirements(tasksDone, subject.getRules());
-            System.out.println(u.getEmail() + " IS READY: " + ready);
             u.setReadyForExam(ready);
 
         }
@@ -414,12 +391,10 @@ public class TeacherController {
         boolean teacher = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
             }
             if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
             }
