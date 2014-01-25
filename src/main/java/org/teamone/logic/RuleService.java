@@ -131,14 +131,4 @@ public class RuleService {
 
         return rulesString;
     }
-	
-	public static void main(String[] args){
-		RuleService test = new RuleService();
-		int[][] rules = {{5,1,1,1,1,1,1,1}, {1,1,1,0,0,0,0,0}, {3,0,0,0,1,1,1,0}};
-		String[] items = test.readRulesNOR(rules);
-		for (String item : items){
-			System.out.println(item);
-		}
-	}
-
 }
