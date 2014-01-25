@@ -237,6 +237,9 @@ public class AdminController {
         user.setPassword(password);
         if (Endre != null) {
             userJDBCTemplate.updateUser(user);
+            model.addAttribute("roles", roleNameJDBCTemplate.listRoleName());
+            model.addAttribute("subject", roleJDBCTemplate.getSubjectRoles(email));
+            model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
         }
         model.addAttribute("firstname", user.getFirstName());
         model.addAttribute("lastname", user.getLastName());
