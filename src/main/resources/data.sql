@@ -6,7 +6,7 @@ VALUES ('dude@boob.net', 'Dude', 'Dudeson', 'qwe123', 1, '2014-03-04'),
 	   ('mario@peachcastle.derp', 'Super', 'Mario', 'omgshrooms', 1, '1999-12-03');
 
 INSERT INTO subject(subject_code, subject_name, status, nr_of_tasks, rulestring)
-VALUES	('TDAT-1995-12H', 'Datateknikk', 1, 15, ''),
+VALUES	('TDAT-1995-12H', 'Datateknikk', 1, 15, '1{1,2}'),
 		('2ING-2003-14V', 'Algoritmer og Datastrukturer', 1, 20, '13{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};5{1,2,3,4,5,6,7,8};3{7,8,11}');
 
 INSERT INTO permissions (rolename)
