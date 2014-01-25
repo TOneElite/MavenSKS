@@ -110,9 +110,8 @@ public class HomeController {
                 listCompletedSubjects.add(s);
             }
         }
-
         model.addAttribute("username", auth.getName());
-        model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
+        model.addAttribute("subjects", listYourSubjects);
         model.addAttribute("userTasks", userTaskJDBCTemplate.listApprovedTasksWithoutSubject(auth.getName()));
         model.addAttribute("usersubjects", roleJDBCTemplate.getSubjectRoles(auth.getName()));
         model.addAttribute("completedsubject", listCompletedSubjects);
