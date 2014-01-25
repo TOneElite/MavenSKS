@@ -1,6 +1,7 @@
 package org.teamone.domain.User;
 
 import java.util.Date;
+import java.util.List;
 import javax.sql.DataSource;
 import org.junit.After;
 import org.junit.Before;
@@ -35,18 +36,22 @@ public class UserJDBCTemplateTest {
         db.shutdown();
     }
 
-    /**
-     * Test of setDataSource method, of class UserJDBCTemplate.
-     */
-    @Test
-    public void testSetDataSource() {
-    }
-
+    
     /**
      * Test of listUsers method, of class UserJDBCTemplate.
      */
     @Test
     public void testListUsers() {
+        List<User> test = jdbc.listUsers();
+        int amontUsers = 5;
+
+        assertFalse(amontUsers != test.size());
+
+        for (int i = 0; i <= test.size(); i++) {
+            for (int j = i++; j <= (test.size() - j); j++) {
+                assertFalse(test.get(i).equals(test.get(j)));
+            }
+        }
     }
 
     /**
@@ -55,21 +60,20 @@ public class UserJDBCTemplateTest {
     @Test
     public void testSetPassword() {
         User user = new User();
-        user.setEmail("oosen@stud.no");
-        user.setFirstName("Ole");
-        user.setLastName("Olsen");
-        user.setEnabled(1);
-        user.setPassword("123");
-        
-        jdbc.create(user);
-        
-        jdbc.setPassword("oosen@stud.no", "12345");
-        
+        user.setEmail("leonardo@ninjaturtle.jap");
+        user.setFirstName("Leonardo");
+        user.setLastName("DaVinci");
+        user.setPassword("ninjatoman");
         user.setPassword("12345");
-        
-        User test = jdbc.getUserByEmail("oosen@stud.no");
+        user.setEnabled(1);
+        user.setDate(new Date("1990-01-02"));
+
+        jdbc.setPassword("leonardo@ninjaturtle.jap", "12345");
+
+        User test = jdbc.getUserByEmail("leonardo@ninjaturtle.jap");
+        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
-              
+
     }
 
     /**
@@ -78,19 +82,17 @@ public class UserJDBCTemplateTest {
     @Test
     public void testUpdateUser() {
         User user = new User();
-        user.setEmail("ohuseby@stud.no");
-        user.setFirstName("Oystein");
-        user.setLastName("Huseby");
+        user.setEmail("megaman@rockman.no");
+        user.setFirstName("Megaman");
+        user.setLastName("Thomasson");
         user.setEnabled(1);
-        user.setPassword("123");
-
-        jdbc.create(user);
+        user.setPassword("motherWhale");
+        user.setDate(new Date("2153-01-09"));
 
         jdbc.updateUser(user);
-        
-        user.setFirstName("Øystein");
 
-        User test = jdbc.getUserByEmail("ohuseby@stud.no");
+        User test = jdbc.getUserByEmail("");
+        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
     }
 
@@ -99,17 +101,19 @@ public class UserJDBCTemplateTest {
      */
     @Test
     public void testGetUserByEmail() {
-        
+
         User user = new User();
-        user.setEmail("tolsen@stud.no");
-        user.setFirstName("Tom");
-        user.setLastName("Olsen");
+        user.setEmail("leonardo@ninjaturtle.jap");
+        user.setFirstName("Leonardo");
+        user.setLastName("DaVinci");
+        user.setPassword("ninjatoman");
+        user.setPassword("12345");
         user.setEnabled(1);
-        user.setPassword("123");
-        
-        jdbc.create(user);
-        
-        User test = jdbc.getUserByEmail("tolsen@stud.no");
+        user.setDate(new Date("1990-01-02"));
+
+        User test = jdbc.getUserByEmail("leonardo@ninjaturtle.jap");
+        System.out.println("Test user: " + test.toString());
+
         assertEquals(user, test);
     }
 
@@ -120,15 +124,16 @@ public class UserJDBCTemplateTest {
     public void testCreate() {
         User user = new User();
         user.setDate(new Date());
-        user.setEmail("pard@stud.no");
-        user.setFirstName("PerI");
-        user.setLastName("Ard");
+        user.setEmail("titsio@boobie.au");
+        user.setFirstName("Titty");
+        user.setLastName("Boobler");
         user.setEnabled(1);
         user.setPassword("123");
 
         jdbc.create(user);
 
-        User test = jdbc.getUserByEmail("pard@stud.no");
+        User test = jdbc.getUserByEmail("titsio@boobie.au");
+        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
     }
 }
