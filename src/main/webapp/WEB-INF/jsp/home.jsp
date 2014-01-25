@@ -14,7 +14,7 @@
             <h1>Kø i <c:out value="${queueStatus.name}" /></h1>
             <c:forEach var="subject" items="${subjects}">
                 <c:if test="${subject.code==activeSubject}">
-                    <table id="overview-tasktable">
+                    <table class="overview-tasktable">
                         <c:forEach var="i" begin="1" end="${subject.nrOfTasks}">
                             <td
                                 <c:forEach var="thetasks" items="${userTasks}">
