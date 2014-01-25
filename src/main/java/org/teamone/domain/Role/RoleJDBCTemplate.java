@@ -18,6 +18,12 @@ public class RoleJDBCTemplate {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
+    
+    public List<Role> getRoleInSubject(String email, String subjectCode){
+        String SQL = "SELECT * FROM user_subject WHERE email =? AND subject_code=?";
+        List<Role> roles = jdbcTemplateObject.query(SQL, new Object[]{email, subjectCode}, new RoleMapper());
+        return roles;
+    }
 
     /*
      * Not used, does not function, no idea what it's supposed to do

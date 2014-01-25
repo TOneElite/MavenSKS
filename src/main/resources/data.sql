@@ -24,6 +24,7 @@ VALUES	('megaman@rockman.no', '2ING-2003-14V', 'ROLE_USER'),
 		('donatello@ninjaturtle.jap', '2ING-2003-14V', 'ROLE_USER'),
 		('megaman@rockman.no', 'TDAT-1995-12H', 'ROLE_STUDASS'),
 		('mario@peachcastle.derp', 'TDAT-1995-12H', 'ROLE_USER'),
+                ('mario@peachcastle.derp', '2ING-2003-14V', 'ROLE_USER'),
 		('dude@boob.net', 'TDAT-1995-12H', 'ROLE_ADMIN'),
 		('leonardo@ninjaturtle.jap', 'TDAT-1995-12H', 'ROLE_TEACHER'),
 		('leonardo@ninjaturtle.jap', '2ING-2003-14V', 'ROLE_TEACHER');
