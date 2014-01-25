@@ -55,27 +55,22 @@ public class HomeController {
         boolean admin, teacher, user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
             }
             if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }
@@ -101,10 +96,6 @@ public class HomeController {
                 listCompletedSubjects.add(s);
             }
         }
-        
-        for(Subject s:listCompletedSubjects){
-            System.out.println("FAG: " + s.getName());
-        }
 
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", subjectJDBCTemplate.listSubjects());
@@ -116,27 +107,14 @@ public class HomeController {
         boolean admin, teacher, user = false;
         for (GrantedAuthority ga : auth.getAuthorities()) {
             if (ga.toString().equals("ROLE_ADMIN")) {
-                System.out.println("is ADMIN!");
                 admin = true;
                 model.addAttribute("isAdmin", admin);
             }
             if (ga.toString().equals("ROLE_TEACHER")) {
-                System.out.println("is TEACHER!");
                 teacher = true;
                 model.addAttribute("isTeacher", teacher);
             }
             if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
-                user = true;
-                model.addAttribute("isUser", user);
-            }
-            if (ga.toString().equals("ROLE_USER")) {
-                System.out.println("is USER!");
                 user = true;
                 model.addAttribute("isUser", user);
             }

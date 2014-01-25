@@ -46,13 +46,6 @@ public class QueueController {
             group[0] = auth.getName(); // Changes "Alene" to the current users name
             queue.setUsers(groupString);
         }
-        for (int i = 0; i < group.length; i++) {
-            System.out.println(" *** Groupmembers: " + group[i]); // test outprint in console
-        }
-
-        for (int i = 0; i < tasks.length; i++) {
-            System.out.println(" *** Tasks: " + tasks[i]); // test outprint in console
-        }
 
         QueueGroup queueGroup = new QueueGroup();
         queueGroup.setUsers(group);
@@ -68,7 +61,6 @@ public class QueueController {
 
         /* Comment, date, status and subject code handler */
         queue.setComment(comment);
-        System.out.println(" *** Comment: " + comment);
         queue.setDate(new java.sql.Date(new java.util.Date().getTime()));
         queue.setStatus("Venter");
         queue.setSubjectCode(subjectCode);

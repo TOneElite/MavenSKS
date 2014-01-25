@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <div id="logo">
-        <h1 class="Bannerlogo">SKS 2.0</h1>
+        <a href="<c:url value="/access/taskoverview"/>"><h1 class="Bannerlogo">SKS 2.0</h1></a>
     </div>
     <div id="info">
         <ul>

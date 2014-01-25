@@ -61,7 +61,6 @@ public class UserJDBCTemplateTest {
         user.setEnabled(1);
         user.setPassword("123");
         
-        System.out.println("User: " + user.toString());
         jdbc.create(user);
         
         jdbc.setPassword("oosen@stud.no", "12345");
@@ -69,7 +68,6 @@ public class UserJDBCTemplateTest {
         user.setPassword("12345");
         
         User test = jdbc.getUserByEmail("oosen@stud.no");
-        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
               
     }
@@ -86,7 +84,6 @@ public class UserJDBCTemplateTest {
         user.setEnabled(1);
         user.setPassword("123");
 
-        System.out.println("User: " + user.toString());
         jdbc.create(user);
 
         jdbc.updateUser(user);
@@ -94,7 +91,6 @@ public class UserJDBCTemplateTest {
         user.setFirstName("Øystein");
 
         User test = jdbc.getUserByEmail("ohuseby@stud.no");
-        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
     }
 
@@ -114,7 +110,6 @@ public class UserJDBCTemplateTest {
         jdbc.create(user);
         
         User test = jdbc.getUserByEmail("tolsen@stud.no");
-        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
     }
 
@@ -131,11 +126,9 @@ public class UserJDBCTemplateTest {
         user.setEnabled(1);
         user.setPassword("123");
 
-        System.out.println("User: " + user.toString());
         jdbc.create(user);
 
         User test = jdbc.getUserByEmail("pard@stud.no");
-        System.out.println("Test user: " + test.toString());
         assertEquals(user, test);
     }
 }
