@@ -26,14 +26,6 @@ public class QueueJDBCTemplate {
 		return queue;
 	}
 
-	/*
-	 * TODO: Returns queues in ALL subjects. Review if the function is necessary
-	 */
-	public List<Queue> listQueue() {
-		String SQL = "SELECT * FROM queue";
-		List<Queue> queues = jdbcTemplateObject.query(SQL, new QueueMapper());
-		return queues;
-	}
 
 	// Returns all queueposts with the given subjectCode
 	public List<Queue> listQueue(String subjectCode) {

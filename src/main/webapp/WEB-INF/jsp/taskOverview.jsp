@@ -16,16 +16,17 @@
     <c:forEach var="studsubject" items="${studentsubjects}">
         <c:if test="${subject.code==studsubject.subjectCode}">
             <div 
+                <c:set var="comparison" value="1"/>
+                <c:set var="trackingtester" value="0"/>
                 <c:forEach var="completed" items="${completedsubject}">
-                    <c:choose>
-                        <c:when test="${completed.code==subject.code}">
-                            class="overview-list-done"
-                        </c:when>
-                        <c:otherwise>
-                            class="overview-list"
-                        </c:otherwise>
-                    </c:choose>
+                    <c:if test="${completed.code==subject.code}">
+                        class="overview-list-done"
+                        <c:set var="trackingtester" value="1"/>
+                    </c:if>
                 </c:forEach>
+                <c:if test="${trackingtester!=comparison}">
+                    class="overview-list"
+                </c:if>
                 >
                 <table class="overview-table">
                     <col width="15%">
