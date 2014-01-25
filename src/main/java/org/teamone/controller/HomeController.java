@@ -41,7 +41,21 @@ public class HomeController {
     @RequestMapping(value = "/access/{subjectCode}", method = RequestMethod.GET)
     public String homeView(Model model, @PathVariable String subjectCode) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<Subject> listYourSubjects = subjectJDBCTemplate.getYourSubjects("ROLE_USER", auth.getName());
+        List<Subject> listCompletedSubjects = new ArrayList<Subject>();
+        for (Subject s : listYourSubjects) {
+            List<ApprovedTasks> approvedTasks = userTaskJDBCTemplate.listApprovedTasks(auth.getName(), s.getCode());
+            boolean[] tasksDone = new boolean[s.getNrOfTasks()];
+            for (ApprovedTasks as : approvedTasks) {
+                tasksDone[as.getTaskNr() - 1] = true;
+            }
+            boolean ready = new RuleService().vertifyRequirements(tasksDone, s.getRules());
+            if (ready) {
+                listCompletedSubjects.add(s);
+            }
+        }
         menuItems(model);
+        model.addAttribute("completedsubject", listCompletedSubjects);
         model.addAttribute("username", auth.getName());
         model.addAttribute("rooms", roomJDBCTemplate.listRoom());
         model.addAttribute("users", userJDBCTemplate.listUsers());
@@ -92,7 +106,7 @@ public class HomeController {
                 tasksDone[as.getTaskNr() - 1] = true;
             }
             boolean ready = new RuleService().vertifyRequirements(tasksDone, s.getRules());
-            if(ready){
+            if (ready) {
                 listCompletedSubjects.add(s);
             }
         }
