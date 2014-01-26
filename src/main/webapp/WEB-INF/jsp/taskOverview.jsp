@@ -57,8 +57,9 @@
             <span class="overviewRulesHeader">Regler for øvingene &#x25BC;</span>
             <div class="overviewRulesContent">
                 <p>
-                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
-                    Bacon ipsum dolor sit amet salami turkey fatback andouille biltong short loin prosciutto swine shoulder. Strip steak meatloaf ball tip cow. Ham hock beef ribs frankfurter doner. Kevin jowl spare ribs, sirloin chuck drumstick cow swine. Drumstick tongue pancetta, meatloaf sausage jerky pig kevin tenderloin doner spare ribs shankle pork beef ribs.
+                    <c:forEach var="norRules" items="${subject.rulesNOR}">
+                        ${norRules}<br>
+                    </c:forEach>
                 </p>
             </div>
         </div>

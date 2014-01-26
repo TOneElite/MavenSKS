@@ -109,6 +109,7 @@ public class HomeController {
             if (ready) {
                 listCompletedSubjects.add(s);
             }
+            s.setRulesNOR(new RuleService().readRulesNOR(s.getRules()));
         }
         model.addAttribute("username", auth.getName());
         model.addAttribute("subjects", listYourSubjects);

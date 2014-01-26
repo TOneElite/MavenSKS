@@ -8,6 +8,15 @@ public class Subject {
     private int nrOfTasks;
     private int[][] rules;
     private String ruleString;
+    private String[] rulesNOR;
+
+    public String[] getRulesNOR() {
+        return rulesNOR;
+    }
+
+    public void setRulesNOR(String[] rulesNOR) {
+        this.rulesNOR = rulesNOR;
+    }
 
     public String getRuleString() {
         return ruleString;
